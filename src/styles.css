@@ -1,0 +1,293 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  background: #eef3f7;
+  color: #1c2733;
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+}
+
+.app-header {
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  margin: 0;
+}
+
+.linklike {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #14416b;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  color: #5b7186;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #d7e2ea;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 2px rgb(20 50 80 / 6%);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #14416b;
+}
+
+.muted {
+  color: #62778c;
+  font-size: 0.92rem;
+}
+
+.big-stat {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 6px 0;
+}
+
+button {
+  font: inherit;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #14416b;
+  background: #1d5c94;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #14416b;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background: #fff;
+  color: #1d5c94;
+  border-color: #9db8cc;
+}
+
+button.secondary:hover:not(:disabled) {
+  background: #eaf2f8;
+}
+
+button.danger {
+  background: #fff;
+  color: #a02020;
+  border-color: #c99;
+}
+
+button.danger:hover:not(:disabled) {
+  background: #fbeeee;
+}
+
+.topic-list,
+.missed-list,
+.mock-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.topic-row,
+.missed-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid #e4ecf2;
+}
+
+.topic-row:first-child,
+.missed-row:first-child {
+  border-top: none;
+}
+
+.topic-side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #e8eef4;
+  color: #3c5a75;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.chip-solid {
+  background: #ddf2e4;
+  color: #1d6b3d;
+}
+
+.chip-in-progress {
+  background: #fdf0d8;
+  color: #8a6415;
+}
+
+.mode-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.session-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.question-figure {
+  margin: 12px 0;
+  text-align: center;
+}
+
+.question-figure img {
+  max-width: 100%;
+  width: 400px;
+  border: 1px solid #d7e2ea;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.prompt {
+  font-size: 1.06rem;
+  font-weight: 600;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.choice {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 14px;
+  border: 1px solid #cdd9e3;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fbfdfe;
+}
+
+.choice:hover {
+  background: #f0f6fa;
+}
+
+.choice.selected {
+  border-color: #1d5c94;
+  background: #e9f2fa;
+}
+
+.choice input {
+  margin-top: 4px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.feedback {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+.feedback-correct {
+  background: #eefaf1;
+  border-color: #9ed8b0;
+}
+
+.feedback-wrong {
+  background: #fdf1f0;
+  border-color: #e3aaa5;
+}
+
+.verdict {
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.feedback-correct .verdict {
+  color: #1d6b3d;
+}
+
+.feedback-wrong .verdict {
+  color: #a02020;
+}
+
+.why-wrong {
+  font-style: italic;
+}
+
+.source {
+  margin-bottom: 0;
+}
+
+.mock-results li {
+  border-top: 1px solid #e4ecf2;
+  padding: 12px 0;
+}
+
+.mock-results .prompt {
+  margin: 4px 0;
+}
+
+.mock-correct .verdict {
+  color: #1d6b3d;
+}
+
+.mock-wrong .verdict {
+  color: #a02020;
+}
+
+@media (max-width: 640px) {
+  .topic-row,
+  .missed-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

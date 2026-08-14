@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Bird's-eye view: your vessel heading up the page, another power-driven vessel approaching from your starboard bow on a crossing course">
+  <rect width="420" height="300" fill="#dcebf5"/>
+  <!-- compass hint -->
+  <g stroke="#7a93a5" stroke-width="1.5" fill="none">
+    <line x1="30" y1="60" x2="30" y2="24"/>
+    <path d="M30 18 l-6 12 h12 z" fill="#7a93a5" stroke="none"/>
+  </g>
+  <text x="30" y="80" font-family="sans-serif" font-size="13" fill="#456" text-anchor="middle">N</text>
+  <!-- own vessel: bottom centre, heading up -->
+  <g transform="translate(150 220)">
+    <path d="M0 -34 L14 -10 L14 30 L-14 30 L-14 -10 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
+    <line x1="0" y1="-40" x2="0" y2="-92" stroke="#2b6cb0" stroke-width="3"/>
+    <path d="M0 -100 l-7 14 h14 z" fill="#2b6cb0"/>
+    <text x="0" y="52" font-family="sans-serif" font-size="14" fill="#1a3d5c" text-anchor="middle">Your vessel</text>
+  </g>
+  <!-- other vessel: starboard bow, heading left across your course -->
+  <g transform="translate(330 110) rotate(-90)">
+    <path d="M0 -34 L14 -10 L14 30 L-14 30 L-14 -10 Z" fill="#c05621" stroke="#8a3c12" stroke-width="2"/>
+    <line x1="0" y1="-40" x2="0" y2="-92" stroke="#c05621" stroke-width="3"/>
+    <path d="M0 -100 l-7 14 h14 z" fill="#c05621"/>
+  </g>
+  <text x="330" y="160" font-family="sans-serif" font-size="14" fill="#6b3410" text-anchor="middle">Power-driven vessel</text>
+  <!-- projected meeting point -->
+  <circle cx="150" cy="110" r="5" fill="none" stroke="#90a4b3" stroke-width="2" stroke-dasharray="3 3"/>
+</svg>

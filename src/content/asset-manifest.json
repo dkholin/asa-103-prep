@@ -1,0 +1,124 @@
+{
+  "assets": [
+    {
+      "id": "uscg-rule23a-power-under-50m",
+      "filename": "Nr_Rule23aPDV-U-u50.gif",
+      "description": "USCG Navigation Rules illustration: lights of a power-driven vessel under 50 m underway (Rule 23(a)); animated day/night figure",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule23aPDV-U-u50.gif",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Nr_Rule23aPDV-U-u50.gif",
+      "creator": "US Coast Guard (Navigation Rules online handbook, navcen.uscg.gov)",
+      "license": "Public domain (US Government work)",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": ["lights-power-underway"]
+    },
+    {
+      "id": "uscg-rule25a-sailing",
+      "filename": "Nr_Rule25a.gif",
+      "description": "USCG Navigation Rules illustration: lights of a sailing vessel underway (Rule 25(a)); animated day/night figure",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule25a.gif",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Nr_Rule25a.gif",
+      "creator": "US Coast Guard (Navigation Rules online handbook, navcen.uscg.gov)",
+      "license": "Public domain (US Government work)",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": ["lights-sail-underway"]
+    },
+    {
+      "id": "uscg-rule26b-trawling",
+      "filename": "Nr_Rule26b1.gif",
+      "description": "USCG Navigation Rules illustration: vessel engaged in trawling (Rule 26(b)) — green over white all-round lights and day shape; animated figure",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule26b1.gif",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Nr_Rule26b1.gif",
+      "creator": "US Coast Guard (Navigation Rules online handbook, navcen.uscg.gov)",
+      "license": "Public domain (US Government work)",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": ["lights-trawling"]
+    },
+    {
+      "id": "uscg-rule30b-anchored",
+      "filename": "Nr_Rule30b.gif",
+      "description": "USCG Navigation Rules illustration: vessel at anchor showing the all-round white anchor light and ball day shape (Rule 30); animated figure",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule30b.gif",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Nr_Rule30b.gif",
+      "creator": "US Coast Guard (Navigation Rules online handbook, navcen.uscg.gov)",
+      "license": "Public domain (US Government work)",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": ["lights-anchored"]
+    },
+    {
+      "id": "custom-night-green-only",
+      "filename": "night-green-only.svg",
+      "description": "Purpose-built night scene: a single green light visible low over the water with no white light above it",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": ["lights-id-green-only"]
+    },
+    {
+      "id": "custom-night-headon",
+      "filename": "night-headon.svg",
+      "description": "Purpose-built night scene: white masthead light with green light lower-left and red light lower-right, seen dead ahead",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": ["lights-id-headon-night"]
+    },
+    {
+      "id": "custom-crossing",
+      "filename": "crossing-give-way.svg",
+      "description": "Purpose-built bird's-eye diagram: power-driven vessel approaching from your starboard bow on a crossing course",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": ["rules-crossing-power"]
+    },
+    {
+      "id": "custom-overtaking",
+      "filename": "overtaking.svg",
+      "description": "Purpose-built bird's-eye diagram: your faster vessel coming up on a slower vessel from well abaft its beam",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": ["rules-overtaking"]
+    },
+    {
+      "id": "custom-sail-opposite-tacks",
+      "filename": "sail-opposite-tacks.svg",
+      "description": "Purpose-built diagram: two converging sailing vessels with wind from the top; boat A wind on port side, boat B wind on starboard side",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": ["rules-sail-opposite-tacks"]
+    },
+    {
+      "id": "custom-sail-same-tack",
+      "filename": "sail-same-tack.svg",
+      "description": "Purpose-built diagram: two sailing vessels on the same tack, wind from the left; boat A windward, boat B leeward",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": ["rules-sail-same-tack"]
+    }
+  ]
+}

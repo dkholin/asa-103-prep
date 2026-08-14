@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Bird's-eye view: your faster vessel approaching another vessel from well abaft its beam, both heading up the page">
+  <rect width="420" height="300" fill="#dcebf5"/>
+  <!-- slower vessel ahead -->
+  <g transform="translate(210 90)">
+    <path d="M0 -34 L14 -10 L14 30 L-14 30 L-14 -10 Z" fill="#2f855a" stroke="#1d5c3d" stroke-width="2"/>
+    <line x1="0" y1="-40" x2="0" y2="-64" stroke="#2f855a" stroke-width="3"/>
+    <path d="M0 -72 l-7 14 h14 z" fill="#2f855a"/>
+    <text x="70" y="4" font-family="sans-serif" font-size="14" fill="#194d33">Slower vessel</text>
+  </g>
+  <!-- your vessel astern, faster -->
+  <g transform="translate(210 235)">
+    <path d="M0 -34 L14 -10 L14 30 L-14 30 L-14 -10 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
+    <line x1="0" y1="-40" x2="0" y2="-86" stroke="#2b6cb0" stroke-width="3"/>
+    <path d="M0 -94 l-7 14 h14 z" fill="#2b6cb0"/>
+    <text x="70" y="4" font-family="sans-serif" font-size="14" fill="#1a3d5c">Your vessel</text>
+    <text x="70" y="22" font-family="sans-serif" font-size="12" fill="#1a3d5c">(faster, coming up astern)</text>
+  </g>
+</svg>

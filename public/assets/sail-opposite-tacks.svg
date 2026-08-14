@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Two sailing vessels converging with the wind blowing from the top of the picture; boat A has the wind on its port side, boat B has the wind on its starboard side">
+  <rect width="420" height="300" fill="#dcebf5"/>
+  <!-- wind arrow -->
+  <g stroke="#456" stroke-width="3" fill="none">
+    <line x1="210" y1="26" x2="210" y2="64"/>
+    <path d="M210 74 l-8 -14 h16 z" fill="#456" stroke="none"/>
+  </g>
+  <text x="210" y="18" font-family="sans-serif" font-size="14" fill="#456" text-anchor="middle">WIND</text>
+  <!-- boat A: sailing toward upper right, wind over port side -->
+  <g transform="translate(110 200) rotate(40)">
+    <path d="M0 -30 L11 -6 L11 24 L-11 24 L-11 -6 Z" fill="#b83280" stroke="#7d1f56" stroke-width="2"/>
+    <path d="M0 -18 Q-22 6 0 18 Z" fill="#f3d1e5" stroke="#7d1f56" stroke-width="1.5"/>
+    <line x1="0" y1="-36" x2="0" y2="-62" stroke="#b83280" stroke-width="3"/>
+    <path d="M0 -70 l-6 12 h12 z" fill="#b83280"/>
+  </g>
+  <text x="70" y="255" font-family="sans-serif" font-size="14" fill="#701d4c">Boat A — wind on port side</text>
+  <!-- boat B: sailing toward upper left, wind over starboard side -->
+  <g transform="translate(310 200) rotate(-40)">
+    <path d="M0 -30 L11 -6 L11 24 L-11 24 L-11 -6 Z" fill="#2c7a7b" stroke="#1d5354" stroke-width="2"/>
+    <path d="M0 -18 Q22 6 0 18 Z" fill="#cfe8e8" stroke="#1d5354" stroke-width="1.5"/>
+    <line x1="0" y1="-36" x2="0" y2="-62" stroke="#2c7a7b" stroke-width="3"/>
+    <path d="M0 -70 l-6 12 h12 z" fill="#2c7a7b"/>
+  </g>
+  <text x="330" y="255" font-family="sans-serif" font-size="14" fill="#1d5354" text-anchor="middle">Boat B — wind on starboard side</text>
+</svg>
