@@ -68,6 +68,9 @@ describe('serialization', () => {
     expect(deserialize(null)).toEqual(emptyProgress());
     expect(deserialize('{"version":99}')).toEqual(emptyProgress());
     expect(deserialize('"just a string"')).toEqual(emptyProgress());
+    expect(
+      deserialize('{"version":1,"stats":null,"reviewQueue":[],"mockResults":[]}'),
+    ).toEqual(emptyProgress());
   });
 });
 

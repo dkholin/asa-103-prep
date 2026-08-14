@@ -126,6 +126,7 @@ export function deserialize(raw: string | null): Progress {
       parsed === null ||
       (parsed as { version?: unknown }).version !== 1 ||
       typeof (parsed as { stats?: unknown }).stats !== 'object' ||
+      (parsed as { stats?: unknown }).stats === null ||
       !Array.isArray((parsed as { reviewQueue?: unknown }).reviewQueue) ||
       !Array.isArray((parsed as { mockResults?: unknown }).mockResults)
     ) {
