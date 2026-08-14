@@ -9,7 +9,7 @@ test('progress survives a browser reload', async ({ page }) => {
     `0 of ${QUESTIONS_TOTAL} questions solid`,
   );
 
-  await page.getByRole('button', { name: 'Start practice' }).click();
+  await page.getByRole('button', { name: 'Continue studying' }).click();
   await page.getByRole('radio', { name: correctText(q1) }).check();
   await page.getByRole('button', { name: 'Submit' }).click();
   await expect(page.getByText('Correct', { exact: true })).toBeVisible();

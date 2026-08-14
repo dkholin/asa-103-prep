@@ -16,6 +16,21 @@ export const TOPICS: { id: TopicId; title: string; blurb: string }[] = [
     title: 'Sound Signals',
     blurb: 'Maneuvering, warning, and restricted-visibility signals',
   },
+  {
+    id: 'flags',
+    title: 'Signal Flags',
+    blurb: 'Alpha and diver-down flags you will meet on the water',
+  },
+  {
+    id: 'chart-nav',
+    title: 'Coastal Navigation & Charts',
+    blurb: 'Chart symbols, ATONs, soundings, lat/long, and basic piloting',
+  },
+  {
+    id: 'anchoring',
+    title: 'Anchoring & Mooring',
+    blurb: 'Anchor types, anchorage selection, scope, and ground tackle',
+  },
 ];
 
 export const TOPIC_IDS: TopicId[] = TOPICS.map((t) => t.id);

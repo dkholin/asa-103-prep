@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 320" role="img" aria-label="Side view of a boat at anchor showing water depth of 10 feet, bow height above the water of 4 feet, and the anchor rode running at a shallow angle down to the anchor on the bottom">
+  <rect width="460" height="320" fill="#eef5fa"/>
+  <!-- water -->
+  <rect x="0" y="150" width="460" height="120" fill="#cfe4f2"/>
+  <line x1="0" y1="150" x2="460" y2="150" stroke="#2b6cb0" stroke-width="2"/>
+  <!-- bottom -->
+  <rect x="0" y="270" width="460" height="20" fill="#d8cba3"/>
+  <!-- boat hull at bow, on the right -->
+  <g transform="translate(370 150)">
+    <path d="M-30 0 L30 0 L22 24 L-22 24 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
+    <line x1="-20" y1="0" x2="-20" y2="-70" stroke="#456" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <line x1="-20" y1="-70" x2="0" y2="-70" stroke="#456" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="-40" y="-30" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">Bow height</text>
+    <text x="-40" y="-12" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3d5c" text-anchor="middle">H = 4 ft</text>
+  </g>
+  <!-- depth marker -->
+  <line x1="60" y1="150" x2="60" y2="270" stroke="#456" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="30" y="200" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">Depth</text>
+  <text x="30" y="218" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3d5c" text-anchor="middle">D = 10 ft</text>
+  <!-- rode from bow chock down to anchor on bottom -->
+  <line x1="350" y1="130" x2="90" y2="272" stroke="#c05621" stroke-width="3"/>
+  <text x="230" y="150" font-family="sans-serif" font-size="14" font-weight="bold" fill="#8a3c12" text-anchor="middle">Rode length = L</text>
+  <!-- anchor symbol -->
+  <g transform="translate(90 278)">
+    <circle cx="0" cy="-14" r="4" fill="#333"/>
+    <line x1="0" y1="-10" x2="0" y2="6" stroke="#333" stroke-width="2.5"/>
+    <path d="M-10 6 Q0 16 10 6" fill="none" stroke="#333" stroke-width="2.5"/>
+    <path d="M-10 6 l-4 -6 M10 6 l4 -6" stroke="#333" stroke-width="2.5"/>
+  </g>
+  <text x="230" y="300" font-family="sans-serif" font-size="12" fill="#52697c" text-anchor="middle">Scope = rode length ÷ (depth + bow height) = L ÷ (D + H)</text>
+</svg>

@@ -11,9 +11,11 @@ export interface AssetRecord {
   attributionRequired: boolean;
   modified: boolean;
   usedByQuestions: string[];
+  /** Visual assets rendered on a dark background (e.g. night scenes) should stay on dark. */
+  theme?: 'light' | 'dark';
 }
 
-export const ASSETS: AssetRecord[] = manifest.assets;
+export const ASSETS: AssetRecord[] = manifest.assets as AssetRecord[];
 
 const byId = new Map(ASSETS.map((a) => [a.id, a]));
 

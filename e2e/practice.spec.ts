@@ -8,7 +8,7 @@ test('practice flow: answer correctly, see feedback, advance', async ({ page }) 
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'ASA 103 Prep' })).toBeVisible();
 
-  await page.getByRole('button', { name: 'Start practice' }).click();
+  await page.getByRole('button', { name: 'Continue studying' }).click();
   await expect(page.getByText(`Question 1 of ${NAV_LIGHTS.length}`)).toBeVisible();
   await expect(page.getByText(q1.prompt)).toBeVisible();
 
@@ -27,7 +27,7 @@ test('wrong answer flow: explanation shown, question enters review queue, retry 
   page,
 }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Start practice' }).click();
+  await page.getByRole('button', { name: 'Continue studying' }).click();
 
   const wrong = wrongChoice(q1);
   await page.getByRole('radio', { name: wrong.text }).check();
@@ -59,7 +59,7 @@ test('wrong answer flow: explanation shown, question enters review queue, retry 
 
 test('skip flow: skipped question advances and enters review queue', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Start practice' }).click();
+  await page.getByRole('button', { name: 'Continue studying' }).click();
   await expect(page.getByText(q1.prompt)).toBeVisible();
 
   await page.getByRole('button', { name: 'Skip' }).click();

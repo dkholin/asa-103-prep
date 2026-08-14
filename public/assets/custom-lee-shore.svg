@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="A small sailboat anchored close to a rocky shoreline, with wind arrows blowing from open water directly toward the boat and the shore, and breaking waves along the beach">
+  <rect width="420" height="300" fill="#dcebf5"/>
+  <!-- water -->
+  <rect x="0" y="0" width="420" height="230" fill="#cfe4f2"/>
+  <!-- shore / land, on the right, downwind -->
+  <path d="M320 0 L420 0 L420 300 L300 300 Q290 200 310 120 Q320 60 320 0 Z" fill="#d8cba3" stroke="#a68f5c" stroke-width="2"/>
+  <!-- rocks along shore -->
+  <circle cx="305" cy="150" r="7" fill="#8a7350"/>
+  <circle cx="298" cy="190" r="6" fill="#8a7350"/>
+  <circle cx="312" cy="215" r="8" fill="#8a7350"/>
+  <!-- surf line -->
+  <path d="M290 100 q10 10 0 20 q-10 10 0 20 q10 10 0 20 q-10 10 0 20 q10 10 0 20 q-10 10 0 20" fill="none" stroke="#fff" stroke-width="3" opacity="0.85"/>
+  <!-- wind arrows blowing onshore (left to right) -->
+  <g stroke="#456" stroke-width="3" fill="#456">
+    <line x1="40" y1="60" x2="160" y2="60"/>
+    <path d="M160 60 l-14 -8 v16 z"/>
+    <line x1="40" y1="100" x2="180" y2="100"/>
+    <path d="M180 100 l-14 -8 v16 z"/>
+    <line x1="40" y1="140" x2="170" y2="140"/>
+    <path d="M170 140 l-14 -8 v16 z"/>
+  </g>
+  <text x="80" y="40" font-family="sans-serif" font-size="14" fill="#1a3d5c">Wind</text>
+  <!-- anchored boat close to shore -->
+  <g transform="translate(230 175)">
+    <path d="M-24 0 L24 0 L16 20 L-16 20 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
+    <line x1="0" y1="0" x2="0" y2="-38" stroke="#2b6cb0" stroke-width="3"/>
+    <line x1="-16" y1="20" x2="-4" y2="52" stroke="#456" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <circle cx="-4" cy="55" r="3" fill="#456"/>
+  </g>
+  <text x="230" y="245" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">Anchored boat</text>
+  <text x="365" y="270" font-family="sans-serif" font-size="13" fill="#6b5a30" text-anchor="middle">Shore</text>
+</svg>

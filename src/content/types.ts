@@ -1,4 +1,10 @@
-export type TopicId = 'nav-lights' | 'right-of-way' | 'sound-signals';
+export type TopicId =
+  | 'nav-lights'
+  | 'right-of-way'
+  | 'sound-signals'
+  | 'flags'
+  | 'chart-nav'
+  | 'anchoring';
 
 export interface Choice {
   id: string;

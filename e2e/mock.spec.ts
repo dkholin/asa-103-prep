@@ -40,5 +40,9 @@ test('mock exam withholds feedback until submission, then reveals results', asyn
   await expect(page.getByText(lastQ.explanation)).toBeVisible();
 
   await page.getByRole('button', { name: 'Back to dashboard' }).click();
-  await expect(page.getByText(/Last mock exam: 5 \/ 6 correct/)).toBeVisible();
+  await expect(
+    page.getByText(
+      `Last mock exam: ${MOCK_QUESTIONS.length - 1} / ${MOCK_QUESTIONS.length} correct.`,
+    ),
+  ).toBeVisible();
 });

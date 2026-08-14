@@ -1,0 +1,167 @@
+import { useEffect, useState, type ReactNode } from 'react';
+import type { Question } from '../content/types';
+import { assetById, assetUrl } from '../lib/assets';
+
+/**
+ * Full-screen click-to-enlarge overlay for a figure image. Several sourced
+ * references (NOAA chart-symbol tables, buoyage diagrams) carry small print
+ * that isn't legible at the figure column's fixed width, so every figure is
+ * enlargeable on click/Enter; Escape or clicking the backdrop closes it.
+ */
+function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+  return (
+    <div className="lightbox-backdrop" onClick={onClose} role="dialog" aria-modal="true" aria-label="Enlarged figure">
+      <button className="lightbox-close" onClick={onClose} aria-label="Close enlarged figure">
+        &times;
+      </button>
+      <img className="lightbox-img" src={src} alt={alt} onClick={(e) => e.stopPropagation()} />
+    </div>
+  );
+}
+
+export function QuestionFigure({ question }: { question: Question }) {
+  const [open, setOpen] = useState(false);
+  if (question.format !== 'visual' || !question.assetId) return null;
+  const asset = assetById(question.assetId);
+  if (!asset) return null;
+  const dark = asset.theme === 'dark';
+  const src = assetUrl(question.assetId);
+  return (
+    <figure className={`question-figure ${dark ? 'theme-dark' : ''}`}>
+      <button
+        type="button"
+        className="figure-zoom-trigger"
+        onClick={() => setOpen(true)}
+        aria-label={`Enlarge figure: ${asset.description}`}
+      >
+        <img src={src} alt={asset.description} />
+        <span className="figure-zoom-hint">Click to enlarge</span>
+      </button>
+      {open && <Lightbox src={src} alt={asset.description} onClose={() => setOpen(false)} />}
+    </figure>
+  );
+}
+
+/**
+ * Renders the question prompt beside (desktop) or above (narrow viewports) its
+ * figure, when the question has one. Falls back to a plain question body when
+ * there is no visual.
+ */
+export function QuestionLayout({
+  question,
+  children,
+}: {
+  question: Question;
+  children: ReactNode;
+}) {
+  const hasFigure = question.format === 'visual' && !!question.assetId && !!assetById(question.assetId);
+  return (
+    <div className={`question-with-figure ${hasFigure ? 'has-figure' : ''}`}>
+      {hasFigure && <QuestionFigure question={question} />}
+      <div className="question-body">
+        <p className="prompt">{question.prompt}</p>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+export function ChoiceList(props: {
+  question: Question;
+  selected: string | null;
+  onSelect: (choiceId: string) => void;
+  disabled?: boolean;
+  /** When set, the submitted choice id — used to mark correct/wrong choices visually. */
+  revealed?: string | null;
+}) {
+  const { question, revealed } = props;
+  return (
+    <div className="choices" role="radiogroup" aria-label="Answer choices">
+      {question.choices.map((c) => {
+        let stateClass = '';
+        let mark: string | null = null;
+        if (revealed) {
+          if (c.id === question.correctChoiceId) {
+            stateClass = 'result-correct';
+            mark = 'Correct answer';
+          } else if (c.id === revealed) {
+            stateClass = 'result-chosen-wrong';
+            mark = 'Your answer';
+          } else {
+            stateClass = 'result-inert';
+          }
+        }
+        return (
+          <label
+            key={c.id}
+            className={`choice ${props.selected === c.id ? 'selected' : ''} ${stateClass}`}
+          >
+            <input
+              type="radio"
+              name={`choice-${question.id}`}
+              value={c.id}
+              checked={props.selected === c.id}
+              disabled={props.disabled}
+              onChange={() => props.onSelect(c.id)}
+            />
+            <span className="choice-text">{c.text}</span>
+            {mark && <span className="choice-mark">{mark === 'Correct answer' ? '✓ ' : '✗ '}{mark}</span>}
+          </label>
+        );
+      })}
+    </div>
+  );
+}
+
+export function Feedback({ question, chosenId }: { question: Question; chosenId: string }) {
+  const correct = chosenId === question.correctChoiceId;
+  const correctChoice = question.choices.find((c) => c.id === question.correctChoiceId)!;
+  const chosen = question.choices.find((c) => c.id === chosenId);
+  return (
+    <div className={`feedback ${correct ? 'feedback-correct' : 'feedback-wrong'}`}>
+      <p className="verdict">{correct ? 'Correct' : 'Incorrect'}</p>
+      {!correct && (
+        <p className="answer-line">
+          Correct answer: <strong>{correctChoice.text}</strong>
+        </p>
+      )}
+      {!correct && chosen?.whyWrong && (
+        <p className="why-wrong">Why your answer is wrong: {chosen.whyWrong}</p>
+      )}
+      <p className="explanation-text">{question.explanation}</p>
+      <p className="meta source">Source: {question.source}</p>
+    </div>
+  );
+}
+
+export function ProgressBar({ value, max, complete }: { value: number; max: number; complete?: boolean }) {
+  const pct = max > 0 ? Math.round((value / max) * 100) : 0;
+  return (
+    <div
+      className="progress-track"
+      role="progressbar"
+      aria-valuenow={value}
+      aria-valuemin={0}
+      aria-valuemax={max}
+    >
+      <div className={`progress-fill ${complete ? 'complete' : ''}`} style={{ width: `${pct}%` }} />
+    </div>
+  );
+}
+
+export function readinessLabel(mastered: number, total: number, attempted: number): string {
+  if (attempted === 0) return 'Not started';
+  if (mastered === total) return 'Solid';
+  return 'In progress';
+}
+
+export function readinessChipClass(label: string): string {
+  return `chip chip-${label.replace(' ', '-').toLowerCase()}`;
+}

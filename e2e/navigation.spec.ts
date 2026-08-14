@@ -5,7 +5,14 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
   await page.goto('/');
 
   // Topic practice buttons open the matching session, Back returns.
-  for (const topic of ['Navigation Lights', 'Right of Way', 'Sound Signals']) {
+  for (const topic of [
+    'Navigation Lights',
+    'Right of Way',
+    'Sound Signals',
+    'Signal Flags',
+    'Coastal Navigation & Charts',
+    'Anchoring & Mooring',
+  ]) {
     await page
       .getByRole('listitem')
       .filter({ hasText: topic })
@@ -13,7 +20,7 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
       .click();
     await expect(page.getByRole('heading', { name: topic })).toBeVisible();
     await page.getByRole('button', { name: 'Back to dashboard' }).click();
-    await expect(page.getByRole('heading', { name: 'Study status' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
   }
 
   // Missed questions screen and back.
@@ -26,15 +33,15 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
   await page.getByRole('button', { name: 'Mock exam' }).click();
   await expect(page.getByRole('heading', { name: 'Mock exam' })).toBeVisible();
   await page.getByRole('button', { name: 'Abandon exam' }).click();
-  await expect(page.getByRole('heading', { name: 'Study status' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
 
   // Header title acts as home from inside a session.
-  await page.getByRole('button', { name: 'Start practice' }).click();
+  await page.getByRole('button', { name: 'Continue studying' }).click();
   await page.getByRole('button', { name: 'ASA 103 Prep' }).click();
-  await expect(page.getByRole('heading', { name: 'Study status' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
 
   // Reset progress clears saved state (confirm dialog accepted).
-  await page.getByRole('button', { name: 'Start practice' }).click();
+  await page.getByRole('button', { name: 'Continue studying' }).click();
   await page.getByRole('radio', { name: correctText(NAV_LIGHTS[0]) }).check();
   await page.getByRole('button', { name: 'Submit' }).click();
   await page.getByRole('button', { name: 'Back to dashboard' }).click();
