@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Bird's-eye view of a dock with wind blowing directly onto the dock, showing a boat approaching at a shallow angle into the wind to stay in control while docking" >
+  <rect width="420" height="260" fill="#dcebf5"/>
+  <rect x="30" y="120" width="360" height="18" fill="#8a6d4c"/>
+  <text x="210" y="115" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Dock</text>
+  <g transform="translate(260 200) rotate(-25)">
+    <path d="M-70 -18 L60 -18 L80 0 L60 18 L-70 18 Z" fill="#c9c2b0" stroke="#333" stroke-width="2"/>
+  </g>
+  <path d="M330 40 L280 100" stroke="#2b6cb0" stroke-width="3" marker-end="url(#w1)"/>
+  <path d="M300 40 L250 100" stroke="#2b6cb0" stroke-width="3" marker-end="url(#w1)"/>
+  <text x="330" y="35" font-family="sans-serif" font-size="12" fill="#1a4a7a">Wind onto dock</text>
+  <defs>
+    <marker id="w1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#2b6cb0"/>
+    </marker>
+  </defs>
+  <text x="210" y="240" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Approach at a shallow angle, hold against the wind</text>
+</svg>

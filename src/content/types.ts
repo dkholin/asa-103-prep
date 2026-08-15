@@ -4,7 +4,10 @@ export type TopicId =
   | 'sound-signals'
   | 'flags'
   | 'chart-nav'
-  | 'anchoring';
+  | 'anchoring'
+  | 'cruising-systems'
+  | 'safety-equipment'
+  | 'engine-docking';
 
 export interface Choice {
   id: string;

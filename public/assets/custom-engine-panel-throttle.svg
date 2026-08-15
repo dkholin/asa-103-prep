@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Diagram of a diesel engine instrument panel with key switch, oil pressure and temperature gauges, and a separate single-lever throttle/shift control showing forward, neutral, and reverse positions" >
+  <rect width="420" height="260" fill="#f3ede2"/>
+  <rect x="30" y="40" width="200" height="150" rx="8" fill="#2b2b2b"/>
+  <text x="130" y="30" font-family="sans-serif" font-size="13" fill="#333" text-anchor="middle">Engine instrument panel</text>
+  <circle cx="80" cy="90" r="24" fill="#eee" stroke="#333" stroke-width="1.5"/>
+  <text x="80" y="94" font-family="sans-serif" font-size="9" fill="#333" text-anchor="middle">Oil psi</text>
+  <circle cx="180" cy="90" r="24" fill="#eee" stroke="#333" stroke-width="1.5"/>
+  <text x="180" y="94" font-family="sans-serif" font-size="9" fill="#333" text-anchor="middle">Temp</text>
+  <rect x="60" y="140" width="30" height="20" fill="#c05621"/>
+  <text x="75" y="175" font-family="sans-serif" font-size="10" fill="#eee" text-anchor="middle">Key switch</text>
+  <circle cx="170" cy="150" r="12" fill="#e0403a"/>
+  <text x="170" y="175" font-family="sans-serif" font-size="10" fill="#eee" text-anchor="middle">Alarm light</text>
+  <g transform="translate(320 115)">
+    <line x1="0" y1="-70" x2="0" y2="70" stroke="#333" stroke-width="4"/>
+    <circle cx="0" cy="-40" r="9" fill="#c05621"/>
+    <text x="30" y="-38" font-family="sans-serif" font-size="11" fill="#333">Forward</text>
+    <text x="30" y="4" font-family="sans-serif" font-size="11" fill="#333">Neutral (detent)</text>
+    <text x="30" y="46" font-family="sans-serif" font-size="11" fill="#333">Reverse</text>
+    <line x1="-10" y1="0" x2="10" y2="0" stroke="#333" stroke-width="2"/>
+  </g>
+  <text x="320" y="200" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Single-lever throttle/shift</text>
+</svg>

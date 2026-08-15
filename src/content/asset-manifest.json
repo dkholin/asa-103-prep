@@ -429,7 +429,8 @@
       "attributionRequired": true,
       "modified": false,
       "usedByQuestions": [
-        "anchor-type-danforth-fluke"
+        "anchor-type-danforth-fluke",
+        "sys-ground-tackle-defn"
       ]
     },
     {
@@ -542,6 +543,288 @@
       "modified": false,
       "usedByQuestions": [
         "anchor-selection-wind-protection"
+      ]
+    },
+    {
+      "id": "photo-chainplate",
+      "filename": "photo-chainplate.jpg",
+      "description": "Photo of a stainless-steel chainplate on a Bavaria 35 Match sailboat, bolted through the deck/hull with a turnbuckle terminal attached",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Chainplate_on_a_Bavaria_35_Match_..jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Chainplate_on_a_Bavaria_35_Match_..jpg",
+      "creator": "Prillen (Wikimedia Commons)",
+      "license": "CC BY-SA 3.0",
+      "attributionRequired": true,
+      "modified": false,
+      "usedByQuestions": [
+        "sys-chainplate-id"
+      ]
+    },
+    {
+      "id": "photo-outboard-engine",
+      "filename": "photo-outboard-engine.jpg",
+      "description": "Photo of outboard motors mounted on a boat transom, one of the two common auxiliary-engine types on cruising boats alongside inboard diesels",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Yamaha_Outboard_Motors_001.JPG",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Yamaha_Outboard_Motors_001.JPG",
+      "creator": "Tennen-Gas (Wikimedia Commons)",
+      "license": "CC BY-SA 3.0",
+      "attributionRequired": true,
+      "modified": false,
+      "usedByQuestions": [
+        "eng-auxiliary-engine-types"
+      ]
+    },
+    {
+      "id": "photo-fire-extinguisher-use",
+      "filename": "photo-fire-extinguisher-use.jpg",
+      "description": "Photo of a person demonstrating proper handheld fire extinguisher use, aiming at the base of a simulated fire",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:US_Navy_110520-N-ZK021-006_Sailors_learn_to_properly_use_a_fire_extinguisher_during_a_safety_fair_at_Naval_Air_Station_Whidbey_Island.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/US_Navy_110520-N-ZK021-006_Sailors_learn_to_properly_use_a_fire_extinguisher_during_a_safety_fair_at_Naval_Air_Station_Whidbey_Island.jpg",
+      "creator": "U.S. Navy (Mass Communication Specialist 2nd Class Nardel Gervacio)",
+      "license": "Public domain (US Government work)",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "safety-req-fire-extinguisher-condition"
+      ]
+    },
+    {
+      "id": "custom-turnbuckle",
+      "filename": "custom-turnbuckle.svg",
+      "description": "Purpose-built diagram: a turnbuckle connecting a wire shroud above to a chainplate below, with the threaded barrel body and clevis pin labeled",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sys-turnbuckle-id"
+      ]
+    },
+    {
+      "id": "custom-stemhead-bow-roller",
+      "filename": "custom-stemhead-bow-roller.svg",
+      "description": "Purpose-built diagram: side view of a sailboat bow showing the stemhead fitting and bow roller with the anchor rode leading down to an anchor stowed on deck",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sys-stemhead-id"
+      ]
+    },
+    {
+      "id": "custom-windlass-deck",
+      "filename": "custom-windlass-deck.svg",
+      "description": "Purpose-built diagram: top-down view of a foredeck windlass with a gypsy wheel, control switch, and chain leading to the bow roller and chain locker",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sys-windlass-id"
+      ]
+    },
+    {
+      "id": "custom-binnacle-compass",
+      "filename": "custom-binnacle-compass.svg",
+      "description": "Purpose-built diagram: a cockpit binnacle with steering wheel and mounted magnetic compass, labeling the compass card and lubber line",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sys-binnacle-compass-id"
+      ]
+    },
+    {
+      "id": "custom-seacock-throughhull",
+      "filename": "custom-seacock-throughhull.svg",
+      "description": "Purpose-built diagram: cross-section of a hull below the waterline showing a through-hull fitting, seacock valve, and hose leading to a drain",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sys-seacock-id"
+      ]
+    },
+    {
+      "id": "custom-bilge-pump",
+      "filename": "custom-bilge-pump.svg",
+      "description": "Purpose-built diagram: a bilge with an electric submersible pump wired to a float switch and battery, plus a manual diaphragm backup pump handle",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sys-bilge-pump-id"
+      ]
+    },
+    {
+      "id": "custom-emergency-tiller",
+      "filename": "custom-emergency-tiller.svg",
+      "description": "Purpose-built diagram: the emergency tiller fitted onto the exposed rudder post head through a cockpit locker access hatch, bypassing wheel steering",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sys-emergency-tiller-id"
+      ]
+    },
+    {
+      "id": "custom-cabin-layout",
+      "filename": "custom-cabin-layout.svg",
+      "description": "Purpose-built diagram: top-down floor plan of a small cruising sailboat interior with V-berth, head, saloon, galley, and companionway labeled",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sys-saloon-location",
+        "sys-vberth-location"
+      ]
+    },
+    {
+      "id": "custom-pfd-wearable-throwable",
+      "filename": "custom-pfd-wearable-throwable.svg",
+      "description": "Purpose-built diagram: side-by-side comparison of a wearable Type III PFD vest and a throwable Type IV horseshoe buoy with attached line",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "safety-pfd-type-id"
+      ]
+    },
+    {
+      "id": "custom-visual-distress-flare",
+      "filename": "custom-visual-distress-flare.svg",
+      "description": "Purpose-built diagram: a hand-held red flare (night signal) beside an orange distress flag with black square and ball (day signal)",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "theme": "dark",
+      "usedByQuestions": [
+        "safety-req-visual-distress-coastal"
+      ]
+    },
+    {
+      "id": "custom-harness-tether-jackline",
+      "filename": "custom-harness-tether-jackline.svg",
+      "description": "Purpose-built diagram: overhead view of a deck with jacklines running fore and aft, a crew member's harness clipped to a jackline with a tether, kept inboard",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "safety-harness-id"
+      ]
+    },
+    {
+      "id": "custom-fueling-gas-diesel",
+      "filename": "custom-fueling-gas-diesel.svg",
+      "description": "Purpose-built diagram: side-by-side comparison of gasoline fueling precautions (closed hatches, blower run before starting) and diesel fueling precautions",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "safety-fuel-gas-diesel-diagram"
+      ]
+    },
+    {
+      "id": "custom-engine-panel-throttle",
+      "filename": "custom-engine-panel-throttle.svg",
+      "description": "Purpose-built diagram: a diesel engine instrument panel (key switch, oil pressure and temperature gauges, alarm light) beside a single-lever throttle/shift control",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "eng-control-panel-id"
+      ]
+    },
+    {
+      "id": "custom-prop-walk",
+      "filename": "custom-prop-walk.svg",
+      "description": "Purpose-built diagram: bird's-eye view of a boat backing with a right-hand propeller in reverse, showing the stern walking to port while the boat moves astern",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "eng-prop-walk-id"
+      ]
+    },
+    {
+      "id": "custom-docking-wind",
+      "filename": "custom-docking-wind.svg",
+      "description": "Purpose-built diagram: bird's-eye view of a boat approaching a dock at a shallow angle with wind blowing directly onto the dock",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "eng-dock-wind-onto-approach"
+      ]
+    },
+    {
+      "id": "custom-docking-current",
+      "filename": "custom-docking-current.svg",
+      "description": "Purpose-built diagram: bird's-eye view of a boat approaching a dock bow-first into a current running parallel to the dock",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "eng-dock-current-parallel-approach"
+      ]
+    },
+    {
+      "id": "custom-mooring-approach",
+      "filename": "custom-mooring-approach.svg",
+      "description": "Purpose-built diagram: bird's-eye view of a slow, head-to-wind approach to a mooring ball with crew ready at the bow to retrieve the pendant",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "eng-mooring-approach-id"
       ]
     }
   ]

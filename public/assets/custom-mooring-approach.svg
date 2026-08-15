@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Bird's-eye view of a mooring ball approach with wind from the upper right, showing a boat approaching slowly head to wind so the crew can retrieve the mooring pendant at the bow" >
+  <rect width="420" height="260" fill="#dcebf5"/>
+  <circle cx="230" cy="150" r="10" fill="#e0403a" stroke="#333" stroke-width="1.5"/>
+  <text x="230" y="130" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Mooring ball</text>
+  <g transform="translate(230 230)">
+    <path d="M-16 0 L16 0 L11 -55 L-11 -55 Z" fill="#c9c2b0" stroke="#333" stroke-width="2"/>
+  </g>
+  <text x="270" y="230" font-family="sans-serif" font-size="12" fill="#333">Approach slowly</text>
+  <path d="M310 60 L260 105" stroke="#2b6cb0" stroke-width="3" marker-end="url(#m1)"/>
+  <text x="330" y="55" font-family="sans-serif" font-size="12" fill="#1a4a7a">Wind</text>
+  <defs>
+    <marker id="m1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#2b6cb0"/>
+    </marker>
+  </defs>
+  <text x="230" y="250" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Head to wind, crew ready at the bow</text>
+</svg>

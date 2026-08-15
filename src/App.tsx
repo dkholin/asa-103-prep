@@ -34,7 +34,7 @@ export default function App() {
                 ASA 103 Prep
               </button>
             </h1>
-            <p className="subtitle">Navigation Rules, Charts &amp; Anchoring — practice tool</p>
+            <p className="subtitle">Navigation Rules, Charts, Systems &amp; Safety — practice tool</p>
           </div>
           <nav className="shell-nav" aria-label="Sections">
             <button
