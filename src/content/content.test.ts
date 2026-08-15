@@ -63,6 +63,16 @@ describe('question bank integrity', () => {
       expect(mockTopics, `mock exam missing topic ${t}`).toContain(t);
     }
   });
+
+  it('does not let any answer position dominate the correct answer (Arc 7 normalization)', () => {
+    const positionOf = (q: (typeof QUESTIONS)[number]) => q.choices.findIndex((c) => c.id === q.correctChoiceId);
+    const counts = [0, 0, 0, 0];
+    for (const q of QUESTIONS) counts[positionOf(q)]++;
+    for (const count of counts) {
+      expect(count, `answer position counts ${JSON.stringify(counts)}`).toBeGreaterThan(0);
+      expect(count / QUESTIONS.length, `answer position counts ${JSON.stringify(counts)}`).toBeLessThan(0.4);
+    }
+  });
 });
 
 describe('asset manifest integrity', () => {

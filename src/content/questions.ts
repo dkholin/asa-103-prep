@@ -49,6 +49,12 @@ export const QUESTIONS: Question[] = [
       'A sailing vessel underway (under sail alone) at night must exhibit which lights?',
     choices: [
       {
+        id: 'd',
+        text: 'Green over white all-round lights',
+        whyWrong:
+          'Green over white marks a vessel engaged in trawling (Rule 26(b)).',
+      },
+      {
         id: 'a',
         text: 'Masthead light, sidelights, and a sternlight',
         whyWrong:
@@ -60,12 +66,6 @@ export const QUESTIONS: Question[] = [
         text: 'A single all-round white light',
         whyWrong:
           'A single all-round white light is an anchor light (or the light of a small power-driven vessel), not a sailing vessel underway.',
-      },
-      {
-        id: 'd',
-        text: 'Green over white all-round lights',
-        whyWrong:
-          'Green over white marks a vessel engaged in trawling (Rule 26(b)).',
       },
     ],
     correctChoiceId: 'b',
@@ -115,13 +115,6 @@ export const QUESTIONS: Question[] = [
       'A vessel engaged in trawling is identified at night by which all-round light combination?',
     choices: [
       {
-        id: 'a',
-        text: 'Red over white',
-        whyWrong:
-          '"Red over white, fishing at night" — red over white marks a vessel fishing other than trawling (nets, lines).',
-      },
-      { id: 'b', text: 'Green over white' },
-      {
         id: 'c',
         text: 'Red over red',
         whyWrong: 'Red over red marks a vessel not under command.',
@@ -132,6 +125,13 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Two white lights in a vertical line at the masthead indicate a vessel towing (tow up to 200 m).',
       },
+      {
+        id: 'a',
+        text: 'Red over white',
+        whyWrong:
+          '"Red over white, fishing at night" — red over white marks a vessel fishing other than trawling (nets, lines).',
+      },
+      { id: 'b', text: 'Green over white' },
     ],
     correctChoiceId: 'b',
     explanation:
@@ -147,6 +147,11 @@ export const QUESTIONS: Question[] = [
       'At night you sight a single green light low over the water, with no white light above it. What are you most likely looking at?',
     choices: [
       {
+        id: 'd',
+        text: "A vessel's sternlight",
+        whyWrong: 'A sternlight is white, not green.',
+      },
+      {
         id: 'a',
         text: "A power-driven vessel crossing — you see its starboard side",
         whyWrong:
@@ -160,11 +165,6 @@ export const QUESTIONS: Question[] = [
         id: 'c',
         text: 'A vessel at anchor',
         whyWrong: 'An anchored vessel shows a white all-round light, not green.',
-      },
-      {
-        id: 'd',
-        text: "A vessel's sternlight",
-        whyWrong: 'A sternlight is white, not green.',
       },
     ],
     correctChoiceId: 'b',
@@ -252,12 +252,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'You are overtaking a slower vessel, coming up from well abaft her beam (diagram). You are under sail; she is under power. Who keeps clear?',
     choices: [
-      {
-        id: 'a',
-        text: 'She does — power gives way to sail',
-        whyWrong:
-          'The sail-over-power pecking order does not apply when overtaking. Rule 13 overrides it: any vessel overtaking keeps clear.',
-      },
       { id: 'b', text: 'You do — any vessel overtaking keeps clear' },
       {
         id: 'c',
@@ -269,6 +263,12 @@ export const QUESTIONS: Question[] = [
         text: 'Neither — the vessels sort it out by radio',
         whyWrong:
           'Radio arrangement never replaces the Rules. Rule 13 assigns the obligation to the overtaking vessel.',
+      },
+      {
+        id: 'a',
+        text: 'She does — power gives way to sail',
+        whyWrong:
+          'The sail-over-power pecking order does not apply when overtaking. Rule 13 overrides it: any vessel overtaking keeps clear.',
       },
     ],
     correctChoiceId: 'b',
@@ -284,7 +284,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Two sailing vessels are converging (diagram). Boat A has the wind on her port side; boat B has the wind on her starboard side. Who gives way?',
     choices: [
-      { id: 'a', text: 'Boat A — the vessel with the wind on her port side keeps clear' },
       {
         id: 'b',
         text: 'Boat B — starboard tack always gives way',
@@ -302,6 +301,7 @@ export const QUESTIONS: Question[] = [
         text: 'The larger of the two boats',
         whyWrong: 'Size is not a right-of-way criterion.',
       },
+      { id: 'a', text: 'Boat A — the vessel with the wind on her port side keeps clear' },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -317,6 +317,11 @@ export const QUESTIONS: Question[] = [
       'Two sailing vessels on the same tack are converging (diagram). Boat A is to windward; boat B is to leeward. Who gives way?',
     choices: [
       {
+        id: 'd',
+        text: 'Whichever boat is moving faster',
+        whyWrong: 'Speed is not a right-of-way criterion between sailing vessels.',
+      },
+      {
         id: 'a',
         text: 'Boat B — the leeward boat keeps clear',
         whyWrong:
@@ -328,11 +333,6 @@ export const QUESTIONS: Question[] = [
         text: 'The boat on port tack',
         whyWrong:
           'The port/starboard tack rule applies when the boats have the wind on different sides. Here they are on the same tack.',
-      },
-      {
-        id: 'd',
-        text: 'Whichever boat is moving faster',
-        whyWrong: 'Speed is not a right-of-way criterion between sailing vessels.',
       },
     ],
     correctChoiceId: 'b',
@@ -347,6 +347,11 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Under the International Rules, a power-driven vessel in sight of another sounds ONE short blast. What does it mean?',
     choices: [
+      {
+        id: 'd',
+        text: '"I am operating astern propulsion"',
+        whyWrong: 'Astern propulsion is THREE short blasts.',
+      },
       { id: 'a', text: '"I am altering my course to starboard"' },
       {
         id: 'b',
@@ -358,11 +363,6 @@ export const QUESTIONS: Question[] = [
         text: '"I intend to leave you on my port side"',
         whyWrong:
           'That is the Inland Rules meaning (an intent/agreement signal). Internationally, one short blast announces an actual turn to starboard.',
-      },
-      {
-        id: 'd',
-        text: '"I am operating astern propulsion"',
-        whyWrong: 'Astern propulsion is THREE short blasts.',
       },
     ],
     correctChoiceId: 'a',
@@ -410,13 +410,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'In fog (restricted visibility), a power-driven vessel MAKING WAY through the water sounds:',
     choices: [
-      { id: 'a', text: 'One prolonged blast at intervals of not more than 2 minutes' },
-      {
-        id: 'b',
-        text: 'Two prolonged blasts at intervals of not more than 2 minutes',
-        whyWrong:
-          'Two prolonged blasts is the signal for a power-driven vessel underway but STOPPED and making no way.',
-      },
       {
         id: 'c',
         text: 'One prolonged and two short blasts',
@@ -427,6 +420,13 @@ export const QUESTIONS: Question[] = [
         id: 'd',
         text: 'Rapid ringing of a bell for 5 seconds',
         whyWrong: 'Rapid bell ringing is the fog signal of a vessel at ANCHOR.',
+      },
+      { id: 'a', text: 'One prolonged blast at intervals of not more than 2 minutes' },
+      {
+        id: 'b',
+        text: 'Two prolonged blasts at intervals of not more than 2 minutes',
+        whyWrong:
+          'Two prolonged blasts is the signal for a power-driven vessel underway but STOPPED and making no way.',
       },
     ],
     correctChoiceId: 'a',
@@ -441,10 +441,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'When determining a safe speed, Rule 6 requires every vessel to take into account which of the following?',
     choices: [
-      {
-        id: 'a',
-        text: 'Visibility, traffic density, and the vessel\'s stopping distance and turning ability',
-      },
       {
         id: 'b',
         text: 'Only the posted speed limit for the waterway',
@@ -463,6 +459,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Safe speed must be assessed by day and night, and depends on far more than what lights you can see.',
       },
+      {
+        id: 'a',
+        text: 'Visibility, traffic density, and the vessel\'s stopping distance and turning ability',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -477,15 +477,6 @@ export const QUESTIONS: Question[] = [
       'You are underway with your radar operating. Rule 6(b) adds which additional factor to your safe-speed decision, beyond the factors that apply to every vessel?',
     choices: [
       {
-        id: 'a',
-        text: 'The characteristics, range scale, and limitations of the radar set in use',
-      },
-      {
-        id: 'b',
-        text: "The number of passengers aboard",
-        whyWrong: 'Passenger count is not a Rule 6 safe-speed factor.',
-      },
-      {
         id: 'c',
         text: "The vessel's registration length only",
         whyWrong: 'Registered length is not itself a safe-speed factor under Rule 6.',
@@ -494,6 +485,15 @@ export const QUESTIONS: Question[] = [
         id: 'd',
         text: 'The cost of fuel at the current speed',
         whyWrong: 'Fuel economy plays no part in the Rule 6 safe-speed analysis.',
+      },
+      {
+        id: 'a',
+        text: 'The characteristics, range scale, and limitations of the radar set in use',
+      },
+      {
+        id: 'b',
+        text: "The number of passengers aboard",
+        whyWrong: 'Passenger count is not a Rule 6 safe-speed factor.',
       },
     ],
     correctChoiceId: 'a',
@@ -508,6 +508,12 @@ export const QUESTIONS: Question[] = [
     prompt:
       'You are tracking an approaching vessel and notice her compass bearing from you is not appreciably changing over several minutes. What does Rule 7 say this indicates?',
     choices: [
+      {
+        id: 'd',
+        text: 'Nothing — bearing drift is only meaningful on radar',
+        whyWrong:
+          'A steady visual compass bearing is itself the traditional way mariners detect collision risk, radar or not.',
+      },
       {
         id: 'a',
         text: 'Risk of collision shall be deemed to exist',
@@ -524,12 +530,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'A steady bearing alone does not identify overtaking versus crossing or head-on — it identifies risk of collision.',
       },
-      {
-        id: 'd',
-        text: 'Nothing — bearing drift is only meaningful on radar',
-        whyWrong:
-          'A steady visual compass bearing is itself the traditional way mariners detect collision risk, radar or not.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -543,10 +543,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Rule 7(c) specifically warns against doing what, when assessing risk of collision?',
     choices: [
-      {
-        id: 'a',
-        text: 'Making assumptions on the basis of scanty information, especially scanty radar information',
-      },
       {
         id: 'b',
         text: 'Using radar at all in clear weather',
@@ -563,6 +559,10 @@ export const QUESTIONS: Question[] = [
         text: 'Reducing speed while assessing the situation',
         whyWrong: 'Reducing speed while assessing a developing situation is good practice, not prohibited.',
       },
+      {
+        id: 'a',
+        text: 'Making assumptions on the basis of scanty information, especially scanty radar information',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -576,10 +576,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Rule 8(a) says any action taken to avoid collision shall be:',
     choices: [
-      {
-        id: 'a',
-        text: 'Positive, made in ample time, and in accordance with good seamanship',
-      },
       {
         id: 'b',
         text: 'Delayed until the last safe moment, to avoid overreacting',
@@ -597,6 +593,10 @@ export const QUESTIONS: Question[] = [
         text: 'Left to whichever vessel is more maneuverable',
         whyWrong:
           'Rule 8 applies to whichever vessel is required to act under the other Rules — maneuverability is not the deciding factor.',
+      },
+      {
+        id: 'a',
+        text: 'Positive, made in ample time, and in accordance with good seamanship',
       },
     ],
     correctChoiceId: 'a',
@@ -646,6 +646,11 @@ export const QUESTIONS: Question[] = [
       'If you have insufficient sea room to avoid a close-quarters situation by altering course alone, Rule 8(e) says you should:',
     choices: [
       {
+        id: 'd',
+        text: 'Switch off navigation lights so the other vessel reacts first',
+        whyWrong: 'Navigation lights must never be switched off underway — this is unsafe and unlawful.',
+      },
+      {
         id: 'a',
         text: 'Slacken your speed, stop, or reverse propulsion as necessary',
       },
@@ -660,11 +665,6 @@ export const QUESTIONS: Question[] = [
         text: 'Sound the danger signal and hold course regardless',
         whyWrong:
           'The danger signal (Rule 34(d)) may be appropriate, but it does not replace the duty to actually slow, stop, or reverse when needed.',
-      },
-      {
-        id: 'd',
-        text: 'Switch off navigation lights so the other vessel reacts first',
-        whyWrong: 'Navigation lights must never be switched off underway — this is unsafe and unlawful.',
       },
     ],
     correctChoiceId: 'a',
@@ -747,15 +747,6 @@ export const QUESTIONS: Question[] = [
       'A sailing vessel is normally the stand-on vessel over an ordinary power-driven vessel. Under Rule 18, which vessels must a sailing vessel still keep out of the way of?',
     choices: [
       {
-        id: 'a',
-        text: 'A vessel not under command, a vessel restricted in her ability to maneuver, and a vessel engaged in fishing',
-      },
-      {
-        id: 'b',
-        text: 'Any vessel that is larger than her',
-        whyWrong: 'Size is not a Rule 18 criterion.',
-      },
-      {
         id: 'c',
         text: 'No one — sailing vessels are always stand-on',
         whyWrong:
@@ -766,6 +757,15 @@ export const QUESTIONS: Question[] = [
         text: 'Only other sailing vessels on the opposite tack',
         whyWrong:
           'Tack governs sailing-vessel-to-sailing-vessel encounters under Rule 12, not the Rule 18 hierarchy against other vessel types.',
+      },
+      {
+        id: 'a',
+        text: 'A vessel not under command, a vessel restricted in her ability to maneuver, and a vessel engaged in fishing',
+      },
+      {
+        id: 'b',
+        text: 'Any vessel that is larger than her',
+        whyWrong: 'Size is not a Rule 18 criterion.',
       },
     ],
     correctChoiceId: 'a',
@@ -780,6 +780,11 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Two sailing vessels are running before the wind on the same tack, converging. Vessel A is directly upwind of vessel B. Which vessel must keep clear?',
     choices: [
+      {
+        id: 'd',
+        text: 'Whichever vessel has less sail area',
+        whyWrong: 'Sail area is not a right-of-way criterion.',
+      },
       { id: 'a', text: 'Vessel A, because she is to windward' },
       {
         id: 'b',
@@ -791,11 +796,6 @@ export const QUESTIONS: Question[] = [
         id: 'c',
         text: 'Neither — same-tack sailing vessels have no right-of-way rule',
         whyWrong: 'Rule 12(a)(ii) specifically covers this same-tack case.',
-      },
-      {
-        id: 'd',
-        text: 'Whichever vessel has less sail area',
-        whyWrong: 'Sail area is not a right-of-way criterion.',
       },
     ],
     correctChoiceId: 'a',
@@ -845,16 +845,6 @@ export const QUESTIONS: Question[] = [
       'A vessel is considered to be "overtaking" another when she is approaching from:',
     choices: [
       {
-        id: 'a',
-        text: 'More than 22.5 degrees abaft the other vessel\'s beam — a position from which, at night, she would see only the other\'s sternlight',
-      },
-      {
-        id: 'b',
-        text: 'Anywhere behind the other vessel\'s midpoint',
-        whyWrong:
-          'Rule 13(b) gives a specific angle (22.5° abaft the beam), not a vague "behind the midpoint" description.',
-      },
-      {
         id: 'c',
         text: 'Directly astern only, within 5 degrees of the wake',
         whyWrong: 'The overtaking sector is much wider than 5 degrees — it is any position more than 22.5° abaft the beam on either side.',
@@ -863,6 +853,16 @@ export const QUESTIONS: Question[] = [
         id: 'd',
         text: 'Any position where both vessels are on parallel courses',
         whyWrong: 'Parallel courses alone do not define overtaking; the defining test is the bearing from the overtaken vessel.',
+      },
+      {
+        id: 'a',
+        text: 'More than 22.5 degrees abaft the other vessel\'s beam — a position from which, at night, she would see only the other\'s sternlight',
+      },
+      {
+        id: 'b',
+        text: 'Anywhere behind the other vessel\'s midpoint',
+        whyWrong:
+          'Rule 13(b) gives a specific angle (22.5° abaft the beam), not a vague "behind the midpoint" description.',
       },
     ],
     correctChoiceId: 'a',
@@ -910,6 +910,11 @@ export const QUESTIONS: Question[] = [
       'You began overtaking another vessel from well abaft her beam. As you draw abreast, the bearing between you changes so it now looks more like a crossing situation. Does your overtaking obligation end?',
     choices: [
       {
+        id: 'd',
+        text: 'It depends on which vessel sounds a signal first',
+        whyWrong: 'Sound signals do not reassign right-of-way obligations set by the Rules.',
+      },
+      {
         id: 'a',
         text: 'No — you remain the give-way vessel until you are finally past and clear',
       },
@@ -923,11 +928,6 @@ export const QUESTIONS: Question[] = [
         id: 'c',
         text: 'Yes, but only if you are now faster than she is',
         whyWrong: 'Relative speed does not change the overtaking obligation.',
-      },
-      {
-        id: 'd',
-        text: 'It depends on which vessel sounds a signal first',
-        whyWrong: 'Sound signals do not reassign right-of-way obligations set by the Rules.',
       },
     ],
     correctChoiceId: 'a',
@@ -943,7 +943,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Two power-driven vessels are meeting on reciprocal or nearly reciprocal courses, each seeing the other dead ahead (diagram). What must each vessel do?',
     choices: [
-      { id: 'a', text: 'Each alters course to starboard so they pass port to port' },
       {
         id: 'b',
         text: 'Each alters course to port so they pass starboard to starboard',
@@ -959,6 +958,7 @@ export const QUESTIONS: Question[] = [
         text: 'Both vessels stop engines and wait',
         whyWrong: 'Rule 14 calls for an early, positive alteration to starboard, not stopping and waiting.',
       },
+      { id: 'a', text: 'Each alters course to starboard so they pass port to port' },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -972,12 +972,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'You are approaching another power-driven vessel and are uncertain whether a true head-on situation exists. Rule 14(c) instructs you to:',
     choices: [
-      { id: 'a', text: 'Assume that it does exist and act accordingly' },
-      {
-        id: 'b',
-        text: 'Assume it does not exist and hold your course',
-        whyWrong: 'Rule 14(c) resolves doubt the opposite way — toward assuming the situation exists.',
-      },
       {
         id: 'c',
         text: 'Alter to port until the picture clarifies',
@@ -987,6 +981,12 @@ export const QUESTIONS: Question[] = [
         id: 'd',
         text: 'Take no action until risk of collision is certain',
         whyWrong: 'Rule 7(a) and 14(c) both push toward early action under doubt, not delay.',
+      },
+      { id: 'a', text: 'Assume that it does exist and act accordingly' },
+      {
+        id: 'b',
+        text: 'Assume it does not exist and hold your course',
+        whyWrong: 'Rule 14(c) resolves doubt the opposite way — toward assuming the situation exists.',
       },
     ],
     correctChoiceId: 'a',
@@ -1001,12 +1001,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'In a true head-on situation between two power-driven vessels, which vessel is the stand-on vessel?',
     choices: [
-      { id: 'a', text: 'Neither — both vessels are obligated to alter course' },
-      {
-        id: 'b',
-        text: 'The larger vessel',
-        whyWrong: 'Size does not create a stand-on vessel in a head-on encounter.',
-      },
       {
         id: 'c',
         text: 'The vessel that sounds her whistle first',
@@ -1016,6 +1010,12 @@ export const QUESTIONS: Question[] = [
         id: 'd',
         text: 'Whichever vessel has the wind or current behind her',
         whyWrong: 'Wind and current do not factor into which vessel is stand-on under Rule 14.',
+      },
+      { id: 'a', text: 'Neither — both vessels are obligated to alter course' },
+      {
+        id: 'b',
+        text: 'The larger vessel',
+        whyWrong: 'Size does not create a stand-on vessel in a head-on encounter.',
       },
     ],
     correctChoiceId: 'a',
@@ -1031,10 +1031,6 @@ export const QUESTIONS: Question[] = [
       'Two sailing vessels are approaching each other bow to bow, one on port tack and one on starboard tack. Does Rule 14 (the power-driven head-on rule) govern this encounter?',
     choices: [
       {
-        id: 'a',
-        text: 'No — Rule 14 applies only to power-driven vessels; this is governed by Rule 12\'s tack rules',
-      },
-      {
         id: 'b',
         text: 'Yes — any two vessels meeting bow to bow fall under Rule 14',
         whyWrong: 'Rule 14 is explicitly written for power-driven vessels; sailing vessel encounters are governed by Rule 12.',
@@ -1048,6 +1044,10 @@ export const QUESTIONS: Question[] = [
         id: 'd',
         text: 'It depends on which vessel is larger',
         whyWrong: 'Vessel size does not determine which Rule applies.',
+      },
+      {
+        id: 'a',
+        text: 'No — Rule 14 applies only to power-driven vessels; this is governed by Rule 12\'s tack rules',
       },
     ],
     correctChoiceId: 'a',
@@ -1093,6 +1093,11 @@ export const QUESTIONS: Question[] = [
     prompt:
       'The crossing rule, Rule 15, applies specifically between:',
     choices: [
+      {
+        id: 'd',
+        text: 'A power-driven vessel and a vessel engaged in fishing only',
+        whyWrong: 'A vessel fishing is covered by the Rule 18 hierarchy, not the crossing rule.',
+      },
       { id: 'a', text: 'Two power-driven vessels' },
       {
         id: 'b',
@@ -1104,11 +1109,6 @@ export const QUESTIONS: Question[] = [
         id: 'c',
         text: 'Two sailing vessels only',
         whyWrong: 'Two sailing vessels use Rule 12\'s tack rules, not Rule 15.',
-      },
-      {
-        id: 'd',
-        text: 'A power-driven vessel and a vessel engaged in fishing only',
-        whyWrong: 'A vessel fishing is covered by the Rule 18 hierarchy, not the crossing rule.',
       },
     ],
     correctChoiceId: 'a',
@@ -1124,6 +1124,11 @@ export const QUESTIONS: Question[] = [
       'In a crossing situation, Rule 15 directs the give-way vessel to avoid crossing ahead of the other vessel and, if circumstances allow, to pass astern instead. Why?',
     choices: [
       {
+        id: 'd',
+        text: 'It lets you maintain higher speed throughout',
+        whyWrong: 'The rationale is about clarity and safety margin, not maintaining speed.',
+      },
+      {
         id: 'a',
         text: 'Passing astern removes ambiguity about your intentions and keeps you clear even if your estimate of the other vessel\'s speed is off',
       },
@@ -1136,11 +1141,6 @@ export const QUESTIONS: Question[] = [
         id: 'c',
         text: 'It is required only in narrow channels',
         whyWrong: 'The preference for passing astern in a crossing situation applies generally under Rule 15, not only in narrow channels.',
-      },
-      {
-        id: 'd',
-        text: 'It lets you maintain higher speed throughout',
-        whyWrong: 'The rationale is about clarity and safety margin, not maintaining speed.',
       },
     ],
     correctChoiceId: 'a',
@@ -1155,12 +1155,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Rule 16 says the give-way vessel shall:',
     choices: [
-      { id: 'a', text: 'Take early and substantial action to keep well clear' },
-      {
-        id: 'b',
-        text: 'Wait for the stand-on vessel to signal before acting',
-        whyWrong: 'The give-way vessel\'s duty to act does not depend on a signal from the stand-on vessel.',
-      },
       {
         id: 'c',
         text: 'Reduce speed only as a last resort',
@@ -1170,6 +1164,12 @@ export const QUESTIONS: Question[] = [
         id: 'd',
         text: 'Maintain course until a set distance is reached, then turn sharply',
         whyWrong: 'This describes exactly the late, abrupt action Rule 8 and 16 both discourage.',
+      },
+      { id: 'a', text: 'Take early and substantial action to keep well clear' },
+      {
+        id: 'b',
+        text: 'Wait for the stand-on vessel to signal before acting',
+        whyWrong: 'The give-way vessel\'s duty to act does not depend on a signal from the stand-on vessel.',
       },
     ],
     correctChoiceId: 'a',
@@ -1185,15 +1185,6 @@ export const QUESTIONS: Question[] = [
       'As the stand-on vessel in a crossing situation, you decide it is now clear the give-way vessel is not taking appropriate action, so you take avoiding action of your own under Rule 17(a)(ii). What must you avoid doing, if circumstances allow?',
     choices: [
       {
-        id: 'a',
-        text: 'Altering course to port for a vessel on your own port side',
-      },
-      {
-        id: 'b',
-        text: 'Using your engine at all',
-        whyWrong: 'Rule 17 does not forbid using the engine — slackening or stopping speed is a normal part of avoiding action.',
-      },
-      {
         id: 'c',
         text: 'Sounding any whistle signal',
         whyWrong: 'Sound signals under Rule 34 are expected to accompany maneuvering action, not prohibited.',
@@ -1202,6 +1193,15 @@ export const QUESTIONS: Question[] = [
         id: 'd',
         text: 'Communicating with the other vessel by radio',
         whyWrong: 'Radio communication is not restricted by Rule 17.',
+      },
+      {
+        id: 'a',
+        text: 'Altering course to port for a vessel on your own port side',
+      },
+      {
+        id: 'b',
+        text: 'Using your engine at all',
+        whyWrong: 'Rule 17 does not forbid using the engine — slackening or stopping speed is a normal part of avoiding action.',
       },
     ],
     correctChoiceId: 'a',
@@ -1250,10 +1250,6 @@ export const QUESTIONS: Question[] = [
       'Under Rule 18, an ordinary power-driven vessel underway must generally keep out of the way of which of these vessels (except where Rules 9, 10, or 13 say otherwise)?',
     choices: [
       {
-        id: 'a',
-        text: 'A vessel not under command, a vessel restricted in her ability to maneuver, a vessel engaged in fishing, and a sailing vessel',
-      },
-      {
         id: 'b',
         text: 'Only vessels displaying an anchor light',
         whyWrong: 'Anchored vessels are addressed by anchoring rules, not the Rule 18 give-way hierarchy for vessels underway.',
@@ -1268,6 +1264,10 @@ export const QUESTIONS: Question[] = [
         text: 'No one — a power-driven vessel is always stand-on',
         whyWrong: 'Rule 18(a) lists specific categories a power-driven vessel must give way to; she is not always stand-on.',
       },
+      {
+        id: 'a',
+        text: 'A vessel not under command, a vessel restricted in her ability to maneuver, a vessel engaged in fishing, and a sailing vessel',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -1281,13 +1281,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'The stand-on vessel fails to keep her course and speed as Rule 17 requires. Does this relieve the give-way vessel of her Rule 16 obligation to keep out of the way?',
     choices: [
-      { id: 'a', text: 'No — the give-way vessel\'s obligation continues regardless' },
-      {
-        id: 'b',
-        text: 'Yes — if the stand-on vessel breaks the rule first, the give-way vessel is released from her duty',
-        whyWrong:
-          'Nothing in the Rules makes the give-way vessel\'s obligation conditional on the stand-on vessel behaving perfectly.',
-      },
       {
         id: 'c',
         text: 'Yes, but only in daylight',
@@ -1297,6 +1290,13 @@ export const QUESTIONS: Question[] = [
         id: 'd',
         text: 'Only if the stand-on vessel is the larger of the two',
         whyWrong: 'Vessel size does not affect either vessel\'s obligations under Rules 16 and 17.',
+      },
+      { id: 'a', text: 'No — the give-way vessel\'s obligation continues regardless' },
+      {
+        id: 'b',
+        text: 'Yes — if the stand-on vessel breaks the rule first, the give-way vessel is released from her duty',
+        whyWrong:
+          'Nothing in the Rules makes the give-way vessel\'s obligation conditional on the stand-on vessel behaving perfectly.',
       },
     ],
     correctChoiceId: 'a',
@@ -1311,10 +1311,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'At night you see a vessel showing two white masthead lights in a vertical line, the forward one lower than the after one, along with sidelights and a sternlight. What is she?',
     choices: [
-      {
-        id: 'a',
-        text: 'A power-driven vessel 50 meters or more in length, underway',
-      },
       {
         id: 'b',
         text: 'A sailing vessel underway',
@@ -1331,6 +1327,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'A vessel towing with a tow exceeding 200 m shows THREE masthead lights in a vertical line, not two.',
       },
+      {
+        id: 'a',
+        text: 'A power-driven vessel 50 meters or more in length, underway',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -1344,7 +1344,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'At night, two all-round RED lights displayed in a vertical line indicate a vessel that is:',
     choices: [
-      { id: 'a', text: 'Not under command' },
       {
         id: 'b',
         text: 'Restricted in her ability to maneuver',
@@ -1360,6 +1359,7 @@ export const QUESTIONS: Question[] = [
         text: 'At anchor',
         whyWrong: 'An anchored vessel shows plain white light(s), not red.',
       },
+      { id: 'a', text: 'Not under command' },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -1373,12 +1373,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'At night, all-round lights shown in the order red, white, red (top to bottom) in a vertical line indicate a vessel that is:',
     choices: [
-      { id: 'a', text: 'Restricted in her ability to maneuver' },
-      {
-        id: 'b',
-        text: 'Not under command',
-        whyWrong: 'Not under command is two all-round red lights only, no white light between them.',
-      },
       {
         id: 'c',
         text: 'Engaged in dredging in a narrow channel with an unobstructed side',
@@ -1389,6 +1383,12 @@ export const QUESTIONS: Question[] = [
         id: 'd',
         text: 'A pilot vessel on duty',
         whyWrong: 'A pilot vessel shows white over red all-round lights, not red-white-red.',
+      },
+      { id: 'a', text: 'Restricted in her ability to maneuver' },
+      {
+        id: 'b',
+        text: 'Not under command',
+        whyWrong: 'Not under command is two all-round red lights only, no white light between them.',
       },
     ],
     correctChoiceId: 'a',
@@ -1437,6 +1437,11 @@ export const QUESTIONS: Question[] = [
       'Rule 19(b) requires every vessel, in or near an area of restricted visibility, to:',
     choices: [
       {
+        id: 'd',
+        text: 'Rely on radar alone and disregard sound signals',
+        whyWrong: 'Radar does not replace the sound-signal requirements of Rule 35 in restricted visibility.',
+      },
+      {
         id: 'a',
         text: 'Proceed at a safe speed adapted to the restricted visibility, with engines ready for immediate maneuver',
       },
@@ -1449,11 +1454,6 @@ export const QUESTIONS: Question[] = [
         id: 'c',
         text: 'Increase speed to clear the area of reduced visibility quickly',
         whyWrong: 'Increasing speed in restricted visibility is the opposite of what Rule 19(b) requires.',
-      },
-      {
-        id: 'd',
-        text: 'Rely on radar alone and disregard sound signals',
-        whyWrong: 'Radar does not replace the sound-signal requirements of Rule 35 in restricted visibility.',
       },
     ],
     correctChoiceId: 'a',
@@ -1469,6 +1469,11 @@ export const QUESTIONS: Question[] = [
       'In fog, you hear another vessel\'s fog signal apparently forward of your beam and cannot avoid a close-quarters situation. Rule 19(e) says you must:',
     choices: [
       {
+        id: 'd',
+        text: 'Sound one prolonged blast and continue at the same speed',
+        whyWrong: 'Continuing at the same speed does not satisfy the Rule 19(e) duty to reduce speed.',
+      },
+      {
         id: 'a',
         text: 'Reduce speed to the minimum at which you can be kept on course, and take all way off if necessary',
       },
@@ -1482,11 +1487,6 @@ export const QUESTIONS: Question[] = [
         id: 'c',
         text: 'Immediately alter course to port toward the sound',
         whyWrong: 'Rule 19(d) discourages altering to port for a vessel forward of the beam; the required response here is to slow down and navigate with extreme caution.',
-      },
-      {
-        id: 'd',
-        text: 'Sound one prolonged blast and continue at the same speed',
-        whyWrong: 'Continuing at the same speed does not satisfy the Rule 19(e) duty to reduce speed.',
       },
     ],
     correctChoiceId: 'a',
@@ -1536,6 +1536,11 @@ export const QUESTIONS: Question[] = [
       'You see a small red flag with a white diagonal stripe flown from a boat or a float in the water. What does it mean?',
     choices: [
       {
+        id: 'd',
+        text: 'The vessel wants to be overtaken on that side',
+        whyWrong: 'Overtaking side is negotiated by sound signal (Rule 34), not by flag.',
+      },
+      {
         id: 'a',
         text: 'Divers are in the water nearby — keep well clear and proceed at slow, no-wake speed if you must pass',
       },
@@ -1548,11 +1553,6 @@ export const QUESTIONS: Question[] = [
         id: 'c',
         text: 'The vessel is anchored for the night',
         whyWrong: 'Anchoring is indicated by an anchor light or ball shape, not the diver-down flag.',
-      },
-      {
-        id: 'd',
-        text: 'The vessel wants to be overtaken on that side',
-        whyWrong: 'Overtaking side is negotiated by sound signal (Rule 34), not by flag.',
       },
     ],
     correctChoiceId: 'a',
@@ -1573,16 +1573,6 @@ export const QUESTIONS: Question[] = [
       'In the photo, sailors are plotting a course on a paper chart. What is the two-pointed metal tool being used to step off distances between two points on the chart?',
     choices: [
       {
-        id: 'a',
-        text: 'Dividers',
-      },
-      {
-        id: 'b',
-        text: 'Parallel rules',
-        whyWrong:
-          'Parallel rules are the two long straightedge rulers hinged together, used to transfer a direction line, not to measure distance.',
-      },
-      {
         id: 'c',
         text: 'A compass rose',
         whyWrong:
@@ -1593,6 +1583,16 @@ export const QUESTIONS: Question[] = [
         text: 'A protractor',
         whyWrong:
           'A protractor measures angles directly; it is not the pointed step-off tool shown here.',
+      },
+      {
+        id: 'a',
+        text: 'Dividers',
+      },
+      {
+        id: 'b',
+        text: 'Parallel rules',
+        whyWrong:
+          'Parallel rules are the two long straightedge rulers hinged together, used to transfer a direction line, not to measure distance.',
       },
     ],
     correctChoiceId: 'a',
@@ -1608,10 +1608,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'This drafting-style tool is made of two clear rulers connected by pivoting arms so they can "walk" across a chart while staying parallel. What is its main use in coastal navigation?',
     choices: [
-      {
-        id: 'a',
-        text: 'Transferring a course or bearing line to and from the compass rose to read or plot a direction',
-      },
       {
         id: 'b',
         text: 'Measuring the distance between two charted points',
@@ -1630,6 +1626,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Buoy color/light identification has nothing to do with this drafting tool.',
       },
+      {
+        id: 'a',
+        text: 'Transferring a course or bearing line to and from the compass rose to read or plot a direction',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -1645,16 +1645,6 @@ export const QUESTIONS: Question[] = [
       'A NOAA chart compass rose is shown. It has an outer ring of degree graduations and a separate inner ring labeled "MAGNETIC" with its own set of graduations. What do these two rings represent?',
     choices: [
       {
-        id: 'a',
-        text: 'The outer ring reads true direction; the inner ring reads magnetic direction',
-      },
-      {
-        id: 'b',
-        text: 'The outer ring is for daytime use and the inner ring is for night use',
-        whyWrong:
-          'Compass roses are not time-of-day dependent — both rings are always valid, one for true and one for magnetic directions.',
-      },
-      {
         id: 'c',
         text: 'The outer ring is for power vessels and the inner ring is for sailing vessels',
         whyWrong:
@@ -1665,6 +1655,16 @@ export const QUESTIONS: Question[] = [
         text: 'The two rings show the same thing twice, for redundancy',
         whyWrong:
           'The rings are offset from each other by the local magnetic variation — they are not duplicates.',
+      },
+      {
+        id: 'a',
+        text: 'The outer ring reads true direction; the inner ring reads magnetic direction',
+      },
+      {
+        id: 'b',
+        text: 'The outer ring is for daytime use and the inner ring is for night use',
+        whyWrong:
+          'Compass roses are not time-of-day dependent — both rings are always valid, one for true and one for magnetic directions.',
       },
     ],
     correctChoiceId: 'a',
@@ -1681,12 +1681,6 @@ export const QUESTIONS: Question[] = [
       'This is a schematic layout of a NOAA/NGA nautical chart. Which of these is NOT something you would expect to find printed directly on a real nautical chart\'s border or title block?',
     choices: [
       {
-        id: 'a',
-        text: 'The current weather forecast for the charted area',
-        whyWrong:
-          'Weather forecasts are not printed on a chart — charts show fixed information (soundings, hazards, aids, scale); forecasts are obtained separately (VHF, apps, briefings).',
-      },
-      {
         id: 'b',
         text: 'The chart\'s scale and projection (e.g., "SCALE 1:35,000, Mercator Projection")',
       },
@@ -1697,6 +1691,12 @@ export const QUESTIONS: Question[] = [
       {
         id: 'd',
         text: 'Cautionary notes about hazards or unsurveyed areas',
+      },
+      {
+        id: 'a',
+        text: 'The current weather forecast for the charted area',
+        whyWrong:
+          'Weather forecasts are not printed on a chart — charts show fixed information (soundings, hazards, aids, scale); forecasts are obtained separately (VHF, apps, briefings).',
       },
     ],
     correctChoiceId: 'a',
@@ -1713,16 +1713,6 @@ export const QUESTIONS: Question[] = [
       'The dotted line drawn around the light-blue shaded area in this NOAA Chart No. 1 excerpt is called a "danger line." What is its purpose?',
     choices: [
       {
-        id: 'a',
-        text: 'To draw attention to a hazardous area or an isolated danger that would not otherwise stand out clearly on the chart',
-      },
-      {
-        id: 'b',
-        text: 'To mark the international maritime boundary',
-        whyWrong:
-          'Boundary lines are a separate, distinctly labeled symbol, not a danger line.',
-      },
-      {
         id: 'c',
         text: 'To show the deepest part of the channel',
         whyWrong:
@@ -1733,6 +1723,16 @@ export const QUESTIONS: Question[] = [
         text: 'To indicate a no-wake zone',
         whyWrong:
           'No-wake/speed zones are marked with their own regulatory area symbols, not a danger line.',
+      },
+      {
+        id: 'a',
+        text: 'To draw attention to a hazardous area or an isolated danger that would not otherwise stand out clearly on the chart',
+      },
+      {
+        id: 'b',
+        text: 'To mark the international maritime boundary',
+        whyWrong:
+          'Boundary lines are a separate, distinctly labeled symbol, not a danger line.',
       },
     ],
     correctChoiceId: 'a',
@@ -1748,10 +1748,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'On a chart, an unlabeled small circle sitting atop a teardrop-shaped symbol is the default symbol for a buoy when no other information is given. What is the default symbol for a beacon?',
     choices: [
-      {
-        id: 'a',
-        text: 'A vertical dagger/spike symbol sitting on a small circle, since a beacon is a fixed structure rather than a floating one',
-      },
       {
         id: 'b',
         text: 'The same teardrop-and-circle symbol used for a buoy',
@@ -1769,6 +1765,10 @@ export const QUESTIONS: Question[] = [
         text: 'A five-pointed star',
         whyWrong:
           'A star is used for landmarks/positions of certain features, not as the default beacon symbol.',
+      },
+      {
+        id: 'a',
+        text: 'A vertical dagger/spike symbol sitting on a small circle, since a beacon is a fixed structure rather than a floating one',
       },
     ],
     correctChoiceId: 'a',
@@ -1854,10 +1854,6 @@ export const QUESTIONS: Question[] = [
       'What does the chart abbreviation "Obstn" identify?',
     choices: [
       {
-        id: 'a',
-        text: 'An obstruction — a foreign object or hazard on or near the bottom that is not a rock or a wreck',
-      },
-      {
         id: 'b',
         text: 'An observation station for tides',
         whyWrong:
@@ -1874,6 +1870,10 @@ export const QUESTIONS: Question[] = [
         text: 'An oyster bed',
         whyWrong:
           'Aquaculture areas are shown with their own dedicated symbols, not "Obstn".',
+      },
+      {
+        id: 'a',
+        text: 'An obstruction — a foreign object or hazard on or near the bottom that is not a rock or a wreck',
       },
     ],
     correctChoiceId: 'a',
@@ -1926,10 +1926,6 @@ export const QUESTIONS: Question[] = [
       'The chart symbol shown — a shaded elongated shape labeled with a depth and "Wk" — represents a submerged wreck of known depth. Why does the exact depth over a wreck matter to you as the navigator?',
     choices: [
       {
-        id: 'a',
-        text: 'It tells you whether your vessel\'s draft can safely clear the wreck if you must pass over or near it',
-      },
-      {
         id: 'b',
         text: 'It tells you how old the wreck is',
         whyWrong:
@@ -1947,6 +1943,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Salvage value is not chart information.',
       },
+      {
+        id: 'a',
+        text: 'It tells you whether your vessel\'s draft can safely clear the wreck if you must pass over or near it',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -1962,16 +1962,6 @@ export const QUESTIONS: Question[] = [
       'Compare the two wreck symbols in this NOAA Chart No. 1 excerpt: one is labeled with a specific depth (e.g., "5₂ Wk"), the other only shows "Wk" with no number. What does the unlabeled version mean, and how should you treat it?',
     choices: [
       {
-        id: 'a',
-        text: 'The depth over that wreck is unknown, so you should treat it as a hazard and give it a wide berth rather than assume you can clear it',
-      },
-      {
-        id: 'b',
-        text: 'That wreck is definitely deep enough for any vessel to pass over safely',
-        whyWrong:
-          'No number means the depth was never established — the opposite of a confirmed safe clearance.',
-      },
-      {
         id: 'c',
         text: 'That symbol marks a wreck that has since been fully removed',
         whyWrong:
@@ -1982,6 +1972,16 @@ export const QUESTIONS: Question[] = [
         text: 'It marks a wreck on land, not in the water',
         whyWrong:
           'These wreck symbols are charted hydrographic features in the water, not land features.',
+      },
+      {
+        id: 'a',
+        text: 'The depth over that wreck is unknown, so you should treat it as a hazard and give it a wide berth rather than assume you can clear it',
+      },
+      {
+        id: 'b',
+        text: 'That wreck is definitely deep enough for any vessel to pass over safely',
+        whyWrong:
+          'No number means the depth was never established — the opposite of a confirmed safe clearance.',
       },
     ],
     correctChoiceId: 'a',
@@ -1996,6 +1996,12 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Charted soundings (water depths) are all measured relative to a reference plane abbreviated "CD" on NOAA charts. What does "CD" stand for, and why does it matter?',
     choices: [
+      {
+        id: 'd',
+        text: 'Central Depth — the average depth of the whole chart area',
+        whyWrong:
+          'Chart datum is a fixed vertical reference plane, not an averaged depth statistic.',
+      },
       {
         id: 'a',
         text: 'Chart Datum — a low-water reference level, so charted soundings represent a conservative, close-to-worst-case depth you can generally expect or exceed',
@@ -2012,12 +2018,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Course direction is plotted as a line with a bearing, not abbreviated "CD" on soundings.',
       },
-      {
-        id: 'd',
-        text: 'Central Depth — the average depth of the whole chart area',
-        whyWrong:
-          'Chart datum is a fixed vertical reference plane, not an averaged depth statistic.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2032,10 +2032,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'This NOAA Chart No. 1 excerpt shows sounding examples, including a plain number placed directly at a location on the chart (item 10, "sounding in true position"). What does a plain sounding number tell you?',
     choices: [
-      {
-        id: 'a',
-        text: 'The depth of water at that exact charted position, referenced to chart datum',
-      },
       {
         id: 'b',
         text: 'The maximum safe speed at that location',
@@ -2053,6 +2049,10 @@ export const QUESTIONS: Question[] = [
         text: 'The year the area was last surveyed',
         whyWrong:
           'Survey dates are noted separately (e.g., in the chart\'s source diagram), not encoded in an individual sounding.',
+      },
+      {
+        id: 'a',
+        text: 'The depth of water at that exact charted position, referenced to chart datum',
       },
     ],
     correctChoiceId: 'a',
@@ -2141,6 +2141,12 @@ export const QUESTIONS: Question[] = [
       'This NOAA Chart No. 1 excerpt shows the shaded depth bands used on charts, running from a darker "foreshore" band down through progressively lighter shallow-water bands to deep water. What is the practical value of this color/shade coding at a glance?',
     choices: [
       {
+        id: 'd',
+        text: 'It shows which areas have cellular signal coverage',
+        whyWrong:
+          'Depth shading has nothing to do with communications coverage.',
+      },
+      {
         id: 'a',
         text: 'It lets you instantly judge relative water depth and spot shallow areas by shade alone, without having to read every individual sounding',
       },
@@ -2156,12 +2162,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Fishing regulations are shown with separate area/limit symbols, not depth shading.',
       },
-      {
-        id: 'd',
-        text: 'It shows which areas have cellular signal coverage',
-        whyWrong:
-          'Depth shading has nothing to do with communications coverage.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2175,6 +2175,12 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Charts often print a small italic letter abbreviation near an anchorage, such as "S", "M", or "rky". What are these abbreviations describing?',
     choices: [
+      {
+        id: 'd',
+        text: 'The name of the survey vessel',
+        whyWrong:
+          'Survey vessel identity is not part of routine bottom-character labeling.',
+      },
       {
         id: 'a',
         text: 'The nature of the seabed (bottom characteristics) — for example S = sand, M = mud, rky = rocky',
@@ -2191,12 +2197,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Salinity is not a standard charted feature.',
       },
-      {
-        id: 'd',
-        text: 'The name of the survey vessel',
-        whyWrong:
-          'Survey vessel identity is not part of routine bottom-character labeling.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2211,10 +2211,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'On this NOAA Chart No. 1 excerpt, the magenta circle-with-an-X ECDIS symbol is labeled "isolated danger of depth less than the safety contour." What does an isolated danger mark tell a navigator?',
     choices: [
-      {
-        id: 'a',
-        text: 'There is a small, specific hazard (rock, wreck, or obstruction) of limited extent at that spot that is shallower than a safe working depth — go around it',
-      },
       {
         id: 'b',
         text: 'The entire surrounding area is unsafe to transit',
@@ -2233,6 +2229,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Chart edition boundaries are shown with reference notes, not a magenta danger symbol.',
       },
+      {
+        id: 'a',
+        text: 'There is a small, specific hazard (rock, wreck, or obstruction) of limited extent at that spot that is shallower than a safe working depth — go around it',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2247,10 +2247,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'This NOAA Chart No. 1 excerpt shows a rock symbol described as "which covers and uncovers, height above chart datum." What does it mean for a rock to "cover and uncover"?',
     choices: [
-      {
-        id: 'a',
-        text: 'The rock is exposed (dry) at low tide but submerged at higher tide levels, so its danger to a passing vessel changes with the state of the tide',
-      },
       {
         id: 'b',
         text: 'The rock is sometimes covered by seaweed',
@@ -2269,6 +2265,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Charted rock symbols are permanent chart features, not seasonal.',
       },
+      {
+        id: 'a',
+        text: 'The rock is exposed (dry) at low tide but submerged at higher tide levels, so its danger to a passing vessel changes with the state of the tide',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2284,6 +2284,12 @@ export const QUESTIONS: Question[] = [
       'This is the IALA Region B lateral-mark diagram (the system used in U.S. waters) from NOAA Chart No. 1. What colors and shapes identify the port-hand and starboard-hand marks?',
     choices: [
       {
+        id: 'd',
+        text: 'Colors are not standardized and vary by state',
+        whyWrong:
+          'IALA lateral mark colors are internationally standardized within each buoyage region; Region B (used in the U.S.) is consistent nationwide.',
+      },
+      {
         id: 'a',
         text: 'Port-hand marks are green with a cylindrical (can) shape; starboard-hand marks are red with a conical (nun) shape',
       },
@@ -2298,12 +2304,6 @@ export const QUESTIONS: Question[] = [
         text: 'Both port and starboard marks are yellow, distinguished only by numbers',
         whyWrong:
           'Yellow is used for special marks, not the lateral (port/starboard) system.',
-      },
-      {
-        id: 'd',
-        text: 'Colors are not standardized and vary by state',
-        whyWrong:
-          'IALA lateral mark colors are internationally standardized within each buoyage region; Region B (used in the U.S.) is consistent nationwide.',
       },
     ],
     correctChoiceId: 'a',
@@ -2426,6 +2426,12 @@ export const QUESTIONS: Question[] = [
       'Fixed daymarks (unlit, shore- or piling-mounted signs) also follow the lateral color system. What shape and color combination marks the starboard-hand side of a channel by day?',
     choices: [
       {
+        id: 'd',
+        text: 'A white, circular daymark',
+        whyWrong:
+          'A plain white circle is not a standard lateral daymark shape.',
+      },
+      {
         id: 'a',
         text: 'A red, triangular daymark',
       },
@@ -2441,12 +2447,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Yellow diamonds are used for special-purpose marks, not standard lateral daymarks.',
       },
-      {
-        id: 'd',
-        text: 'A white, circular daymark',
-        whyWrong:
-          'A plain white circle is not a standard lateral daymark shape.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2461,10 +2461,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'This NOAA Chart No. 1 excerpt illustrates several light characteristics. A light charted as "Fl" flashes with the dark period longer than the light period. How would a "Q" (quick-flashing) light differ from an ordinary "Fl" light?',
     choices: [
-      {
-        id: 'a',
-        text: 'A quick-flashing light repeats its flash much more rapidly — about 50 to 79 flashes per minute — versus the slower, more widely spaced single flashes of an ordinary "Fl" light',
-      },
       {
         id: 'b',
         text: 'A quick-flashing light is always red, while "Fl" lights are always white',
@@ -2483,6 +2479,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Fl and Q describe distinctly different flash rates, which is exactly why charts distinguish them — mixing them up could mean misidentifying which aid you are looking at.',
       },
+      {
+        id: 'a',
+        text: 'A quick-flashing light repeats its flash much more rapidly — about 50 to 79 flashes per minute — versus the slower, more widely spaced single flashes of an ordinary "Fl" light',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2497,10 +2497,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'In the light-character illustrations shown, an "Occulting" (Oc) light is defined as one where the total duration of light is longer than the total duration of darkness. How does this differ from a "Fixed" (F) light?',
     choices: [
-      {
-        id: 'a',
-        text: 'A fixed light shows continuously with no dark periods at all, while an occulting light is mostly lit but briefly and regularly goes dark',
-      },
       {
         id: 'b',
         text: 'A fixed light and an occulting light are identical in every way',
@@ -2519,6 +2515,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'That description is reversed — fixed is the steady, unbroken light; occulting is the one with brief eclipses.',
       },
+      {
+        id: 'a',
+        text: 'A fixed light shows continuously with no dark periods at all, while an occulting light is mostly lit but briefly and regularly goes dark',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2533,10 +2533,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Chart No. 1 gives separate default symbols for buoys and beacons, as shown here. Practically speaking, why does it matter to a navigator whether an aid to navigation is a buoy or a beacon?',
     choices: [
-      {
-        id: 'a',
-        text: 'A beacon is fixed to the bottom or shore and stays exactly where charted, while a buoy is anchored and can shift position slightly, be dragged off station by weather, or occasionally go missing — so a beacon\'s charted position is more absolutely reliable',
-      },
       {
         id: 'b',
         text: 'Buoys are always lit and beacons are never lit',
@@ -2554,6 +2550,10 @@ export const QUESTIONS: Question[] = [
         text: 'There is no practical difference to a navigator',
         whyWrong:
           'The fixed-vs-floating distinction has real navigational consequences, particularly for how much you should trust an aid\'s exact charted position.',
+      },
+      {
+        id: 'a',
+        text: 'A beacon is fixed to the bottom or shore and stays exactly where charted, while a buoy is anchored and can shift position slightly, be dragged off station by weather, or occasionally go missing — so a beacon\'s charted position is more absolutely reliable',
       },
     ],
     correctChoiceId: 'a',
@@ -2605,6 +2605,12 @@ export const QUESTIONS: Question[] = [
       'A charted position is given as 41°24.5\'N. How should this be read?',
     choices: [
       {
+        id: 'd',
+        text: '41 degrees, 24 minutes, 5 seconds',
+        whyWrong:
+          'The decimal after 24 means 24.5 minutes (a fraction of a minute), not "24 minutes 5 seconds" — that would be written 41°24\'05".',
+      },
+      {
         id: 'a',
         text: '41 degrees, 24.5 minutes of latitude, north of the equator',
       },
@@ -2620,12 +2626,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'The number is a degrees/minutes coordinate, not a distance in miles.',
       },
-      {
-        id: 'd',
-        text: '41 degrees, 24 minutes, 5 seconds',
-        whyWrong:
-          'The decimal after 24 means 24.5 minutes (a fraction of a minute), not "24 minutes 5 seconds" — that would be written 41°24\'05".',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2639,6 +2639,12 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Latitude is measured as an angular distance north or south of what reference line?',
     choices: [
+      {
+        id: 'd',
+        text: 'The nearest coastline',
+        whyWrong:
+          'Latitude is a fixed global reference (the equator), not a local reference to nearby land.',
+      },
       {
         id: 'a',
         text: 'The equator',
@@ -2654,12 +2660,6 @@ export const QUESTIONS: Question[] = [
         text: 'The International Date Line',
         whyWrong:
           'The date line is a specific meridian used for calendar purposes, not the latitude reference.',
-      },
-      {
-        id: 'd',
-        text: 'The nearest coastline',
-        whyWrong:
-          'Latitude is a fixed global reference (the equator), not a local reference to nearby land.',
       },
     ],
     correctChoiceId: 'a',
@@ -2710,16 +2710,6 @@ export const QUESTIONS: Question[] = [
       'Why is the latitude scale on the side border of a chart used to measure distance, rather than the longitude scale on the top or bottom border?',
     choices: [
       {
-        id: 'a',
-        text: 'One minute of latitude is defined to equal one nautical mile everywhere on Earth, while the real-world distance covered by one minute of longitude shrinks as you move away from the equator toward the poles',
-      },
-      {
-        id: 'b',
-        text: 'The longitude scale is only printed on some charts',
-        whyWrong:
-          'Both scales are printed on virtually all nautical charts; the reason to prefer latitude is the fixed nautical-mile relationship, not availability.',
-      },
-      {
         id: 'c',
         text: 'Longitude cannot be measured accurately with dividers',
         whyWrong:
@@ -2730,6 +2720,16 @@ export const QUESTIONS: Question[] = [
         text: 'Latitude lines are printed in a bolder color for easier reading',
         whyWrong:
           'The reason is the underlying geometry (a fixed nautical mile per minute of latitude), not print styling.',
+      },
+      {
+        id: 'a',
+        text: 'One minute of latitude is defined to equal one nautical mile everywhere on Earth, while the real-world distance covered by one minute of longitude shrinks as you move away from the equator toward the poles',
+      },
+      {
+        id: 'b',
+        text: 'The longitude scale is only printed on some charts',
+        whyWrong:
+          'Both scales are printed on virtually all nautical charts; the reason to prefer latitude is the fixed nautical-mile relationship, not availability.',
       },
     ],
     correctChoiceId: 'a',
@@ -2746,6 +2746,12 @@ export const QUESTIONS: Question[] = [
       'On this compass rose, the outer ring is referenced to true north and the inner "MAGNETIC" ring is offset from it by the local variation. What is magnetic variation?',
     choices: [
       {
+        id: 'd',
+        text: 'The difference between magnetic north this year and magnetic north a century ago',
+        whyWrong:
+          'Variation does slowly change over years (which is why charts print an annual-change note), but the term itself refers to the true-vs-magnetic angular offset at a location, not a change over time.',
+      },
+      {
         id: 'a',
         text: 'The angular difference at a given location between true north (the geographic North Pole) and magnetic north (the direction a compass needle points), caused by the Earth\'s magnetic field not aligning exactly with its axis of rotation',
       },
@@ -2761,12 +2767,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Variation is a magnetic/geographic phenomenon, unrelated to tides.',
       },
-      {
-        id: 'd',
-        text: 'The difference between magnetic north this year and magnetic north a century ago',
-        whyWrong:
-          'Variation does slowly change over years (which is why charts print an annual-change note), but the term itself refers to the true-vs-magnetic angular offset at a location, not a change over time.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2780,6 +2780,12 @@ export const QUESTIONS: Question[] = [
     prompt:
       'A chart\'s compass rose states "VAR 6°W." If you plot a true course of 090° (due east) on the chart, what magnetic course should you steer to follow that same track, ignoring deviation?',
     choices: [
+      {
+        id: 'd',
+        text: '180° magnetic',
+        whyWrong:
+          'That is unrelated to a 6° correction; it looks like an unrelated reversal rather than applying the stated variation.',
+      },
       {
         id: 'a',
         text: '096° magnetic (add westerly variation to a true course to get magnetic)',
@@ -2796,12 +2802,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'With 6° of westerly variation present, true and magnetic directions are not the same — you must apply the correction.',
       },
-      {
-        id: 'd',
-        text: '180° magnetic',
-        whyWrong:
-          'That is unrelated to a 6° correction; it looks like an unrelated reversal rather than applying the stated variation.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2817,16 +2817,6 @@ export const QUESTIONS: Question[] = [
       'This compass rose is annotated "VAR 4°15\'W (2018), ANNUAL CHANGE 8\'E" — meaning the westerly variation is decreasing by 8 minutes of arc each year. Roughly what would the variation be in 2026, eight years later?',
     choices: [
       {
-        id: 'a',
-        text: 'About 3°N/A — approximately 1° less westerly than in 2018, since 8 years × 8\' per year ≈ 64\', or just over 1°, decreasing the original 4°15\'W',
-      },
-      {
-        id: 'b',
-        text: 'Exactly the same, 4°15\'W, since variation never actually changes in practice',
-        whyWrong:
-          'The chart explicitly states an annual change rate — ignoring it defeats the purpose of that printed note, especially on an older chart edition.',
-      },
-      {
         id: 'c',
         text: 'About 4°15\'W plus another full 8° added on top',
         whyWrong:
@@ -2837,6 +2827,16 @@ export const QUESTIONS: Question[] = [
         text: 'It becomes easterly variation of over 60°',
         whyWrong:
           'That wildly overstates an 8 years × 8\'/year change, which totals about 1°, not tens of degrees.',
+      },
+      {
+        id: 'a',
+        text: 'About 3°N/A — approximately 1° less westerly than in 2018, since 8 years × 8\' per year ≈ 64\', or just over 1°, decreasing the original 4°15\'W',
+      },
+      {
+        id: 'b',
+        text: 'Exactly the same, 4°15\'W, since variation never actually changes in practice',
+        whyWrong:
+          'The chart explicitly states an annual change rate — ignoring it defeats the purpose of that printed note, especially on an older chart edition.',
       },
     ],
     correctChoiceId: 'a',
@@ -2852,16 +2852,6 @@ export const QUESTIONS: Question[] = [
       'Besides variation, a boat\'s steering compass can be affected by "deviation." How does deviation differ from variation?',
     choices: [
       {
-        id: 'a',
-        text: 'Deviation is an error specific to an individual vessel, caused by the boat\'s own metal, electronics, and magnetic fields, and it changes with the boat\'s heading — unlike variation, which depends only on geographic location',
-      },
-      {
-        id: 'b',
-        text: 'Deviation and variation are two names for the exact same error',
-        whyWrong:
-          'They are distinct: variation comes from Earth\'s geography, deviation comes from the individual vessel\'s onboard magnetic influences — and a compass correction table must account for both separately.',
-      },
-      {
         id: 'c',
         text: 'Deviation only matters for GPS units, not magnetic compasses',
         whyWrong:
@@ -2872,6 +2862,16 @@ export const QUESTIONS: Question[] = [
         text: 'Deviation is caused by the moon\'s gravitational pull',
         whyWrong:
           'Deviation is caused by the vessel\'s own metal and electrical/magnetic equipment, not celestial gravity.',
+      },
+      {
+        id: 'a',
+        text: 'Deviation is an error specific to an individual vessel, caused by the boat\'s own metal, electronics, and magnetic fields, and it changes with the boat\'s heading — unlike variation, which depends only on geographic location',
+      },
+      {
+        id: 'b',
+        text: 'Deviation and variation are two names for the exact same error',
+        whyWrong:
+          'They are distinct: variation comes from Earth\'s geography, deviation comes from the individual vessel\'s onboard magnetic influences — and a compass correction table must account for both separately.',
       },
     ],
     correctChoiceId: 'a',
@@ -2888,6 +2888,12 @@ export const QUESTIONS: Question[] = [
       'In this diagram, dividers have been walked from Point A to Point B, then transferred to the latitude border scale, spanning three of the labeled 1-minute tick marks. About how far apart are Points A and B?',
     choices: [
       {
+        id: 'd',
+        text: '0.3 nautical miles',
+        whyWrong:
+          'That divides by 10 instead of reading the span directly — three whole 1-minute ticks span 3 nm, not 0.3 nm.',
+      },
+      {
         id: 'a',
         text: '3 nautical miles',
       },
@@ -2903,12 +2909,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'That would be the span for 30 minutes of latitude, ten times wider than the 3-minute span actually shown.',
       },
-      {
-        id: 'd',
-        text: '0.3 nautical miles',
-        whyWrong:
-          'That divides by 10 instead of reading the span directly — three whole 1-minute ticks span 3 nm, not 0.3 nm.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -2923,16 +2923,6 @@ export const QUESTIONS: Question[] = [
       'Approximately how many feet are in one nautical mile, and how does a nautical mile compare to a statute (land) mile?',
     choices: [
       {
-        id: 'a',
-        text: 'About 6,076 feet — roughly 1.15 statute miles, making a nautical mile longer than a statute mile',
-      },
-      {
-        id: 'b',
-        text: 'About 5,280 feet, exactly the same as a statute mile',
-        whyWrong:
-          '5,280 feet is the definition of a statute mile; a nautical mile is a different, longer unit (about 6,076 feet).',
-      },
-      {
         id: 'c',
         text: 'About 1,000 feet, much shorter than a statute mile',
         whyWrong:
@@ -2943,6 +2933,16 @@ export const QUESTIONS: Question[] = [
         text: 'About 10,000 feet, roughly double a statute mile',
         whyWrong:
           'A nautical mile is only modestly longer than a statute mile (about 15% longer), not double.',
+      },
+      {
+        id: 'a',
+        text: 'About 6,076 feet — roughly 1.15 statute miles, making a nautical mile longer than a statute mile',
+      },
+      {
+        id: 'b',
+        text: 'About 5,280 feet, exactly the same as a statute mile',
+        whyWrong:
+          '5,280 feet is the definition of a statute mile; a nautical mile is a different, longer unit (about 6,076 feet).',
       },
     ],
     correctChoiceId: 'a',
@@ -2958,16 +2958,6 @@ export const QUESTIONS: Question[] = [
       'You need to measure the distance along a curving track between two points on a chart that is longer than a single span of your dividers. What is the standard technique?',
     choices: [
       {
-        id: 'a',
-        text: '"Walk" the dividers end over end along the track, counting each full step, then add any partial final step, and total the steps against the latitude scale',
-      },
-      {
-        id: 'b',
-        text: 'Estimate the distance by eye and skip the dividers entirely',
-        whyWrong:
-          'Estimating by eye defeats the purpose of having a precise measuring tool — dividers exist specifically to make this measurement accurate and repeatable.',
-      },
-      {
         id: 'c',
         text: 'Use only the compass rose to estimate distance',
         whyWrong:
@@ -2978,6 +2968,16 @@ export const QUESTIONS: Question[] = [
         text: 'Distances longer than one divider span cannot be measured on paper charts',
         whyWrong:
           'Walking the dividers step by step handles any length of track, however long, on a paper chart.',
+      },
+      {
+        id: 'a',
+        text: '"Walk" the dividers end over end along the track, counting each full step, then add any partial final step, and total the steps against the latitude scale',
+      },
+      {
+        id: 'b',
+        text: 'Estimate the distance by eye and skip the dividers entirely',
+        whyWrong:
+          'Estimating by eye defeats the purpose of having a precise measuring tool — dividers exist specifically to make this measurement accurate and repeatable.',
       },
     ],
     correctChoiceId: 'a',
@@ -2994,16 +2994,6 @@ export const QUESTIONS: Question[] = [
       'In this diagram, a steering compass\'s needle is pulled off true north by nearby items. What two everyday items shown are the likely cause?',
     choices: [
       {
-        id: 'a',
-        text: 'A steel toolbox and a handheld radio placed close to the compass',
-      },
-      {
-        id: 'b',
-        text: 'Sunlight and fresh water',
-        whyWrong:
-          'Neither sunlight nor fresh water affects a magnetic compass; the deflection shown is caused by nearby ferrous metal and electronics.',
-      },
-      {
         id: 'c',
         text: 'The color of the boat\'s hull',
         whyWrong:
@@ -3014,6 +3004,16 @@ export const QUESTIONS: Question[] = [
         text: 'The crew\'s clothing',
         whyWrong:
           'Ordinary clothing is not a magnetic material and would not deflect a compass needle.',
+      },
+      {
+        id: 'a',
+        text: 'A steel toolbox and a handheld radio placed close to the compass',
+      },
+      {
+        id: 'b',
+        text: 'Sunlight and fresh water',
+        whyWrong:
+          'Neither sunlight nor fresh water affects a magnetic compass; the deflection shown is caused by nearby ferrous metal and electronics.',
       },
     ],
     correctChoiceId: 'a',
@@ -3065,16 +3065,6 @@ export const QUESTIONS: Question[] = [
       'In this diagram, wind blows from open water directly toward a rocky shoreline where a boat is anchored close in. What is this kind of shoreline called relative to the wind, and why is a boat\'s position there risky?',
     choices: [
       {
-        id: 'a',
-        text: 'It is a lee shore — a shoreline the wind is blowing onto — and if the anchor drags or the engine fails, the wind will push the boat directly onto the rocks with no room to recover',
-      },
-      {
-        id: 'b',
-        text: 'It is a windward shore, and the boat is perfectly safe there in any wind strength',
-        whyWrong:
-          'A shore the wind blows onto is called a lee shore, not a windward shore, and it is one of the more hazardous places to be anchored or becalmed.',
-      },
-      {
         id: 'c',
         text: 'It is called a "weather shore," and it offers the best possible shelter from wind and waves',
         whyWrong:
@@ -3085,6 +3075,16 @@ export const QUESTIONS: Question[] = [
         text: 'The term only applies to ocean coastlines, not bays or rivers',
         whyWrong:
           'A lee shore is any shoreline downwind of a vessel — the concept applies just as much on a lake, bay, or river as on the open coast.',
+      },
+      {
+        id: 'a',
+        text: 'It is a lee shore — a shoreline the wind is blowing onto — and if the anchor drags or the engine fails, the wind will push the boat directly onto the rocks with no room to recover',
+      },
+      {
+        id: 'b',
+        text: 'It is a windward shore, and the boat is perfectly safe there in any wind strength',
+        whyWrong:
+          'A shore the wind blows onto is called a lee shore, not a windward shore, and it is one of the more hazardous places to be anchored or becalmed.',
       },
     ],
     correctChoiceId: 'a',
@@ -3100,6 +3100,12 @@ export const QUESTIONS: Question[] = [
       'Forecast weather calls for the wind to build and shift so that your current anchorage will become a lee shore overnight. What is the seamanlike response?',
     choices: [
       {
+        id: 'd',
+        text: 'Move even closer to shore for better shelter from the waves',
+        whyWrong:
+          'Moving closer to a shoreline the wind is blowing onto increases risk rather than reducing it — there is less room to react if the anchor drags.',
+      },
+      {
         id: 'a',
         text: 'Relocate before the shift to a better-protected anchorage, or leave early enough to have sea room and options if conditions deteriorate',
       },
@@ -3114,12 +3120,6 @@ export const QUESTIONS: Question[] = [
         text: 'Shut down all instruments and wait it out below decks',
         whyWrong:
           'Passively waiting without a plan ignores the developing hazard; a lee-shore forecast calls for proactive repositioning or preparedness, not simply hoping for the best.',
-      },
-      {
-        id: 'd',
-        text: 'Move even closer to shore for better shelter from the waves',
-        whyWrong:
-          'Moving closer to a shoreline the wind is blowing onto increases risk rather than reducing it — there is less room to react if the anchor drags.',
       },
     ],
     correctChoiceId: 'a',
@@ -3176,6 +3176,12 @@ export const QUESTIONS: Question[] = [
       'This claw-shaped, one-piece anchor (a Bruce-type or similar claw anchor) has no moving parts and no hinge. What is it particularly known for?',
     choices: [
       {
+        id: 'd',
+        text: 'Folding flat for compact storage',
+        whyWrong:
+          'Unlike a folding grapnel, a claw anchor is a rigid, one-piece casting with no folding mechanism.',
+      },
+      {
         id: 'a',
         text: 'Resetting quickly and reliably when wind or current shifts direction, thanks to its scoop-like claw shape',
       },
@@ -3190,12 +3196,6 @@ export const QUESTIONS: Question[] = [
         text: 'Being used only as a stern anchor, never on the bow',
         whyWrong:
           'Claw anchors are commonly used as a primary bow (working) anchor, not restricted to stern use.',
-      },
-      {
-        id: 'd',
-        text: 'Folding flat for compact storage',
-        whyWrong:
-          'Unlike a folding grapnel, a claw anchor is a rigid, one-piece casting with no folding mechanism.',
       },
     ],
     correctChoiceId: 'a',
@@ -3212,6 +3212,12 @@ export const QUESTIONS: Question[] = [
       'This lightweight anchor, with two flat, sharp-edged flukes that pivot open from a stock, is a Danforth-style (fluke) anchor. In which bottom conditions does it typically hold best, and where does it perform poorly?',
     choices: [
       {
+        id: 'd',
+        text: 'It is designed to never touch the bottom, holding purely by its own weight in the water column',
+        whyWrong:
+          'A fluke anchor must dig into the seabed to hold; it does not work by weight alone while suspended in the water.',
+      },
+      {
         id: 'a',
         text: 'It holds very well in soft sand and mud, where its flat flukes dig in and bury deeply, but it performs poorly in rock, grass, or heavy kelp, where the flukes cannot get a bite',
       },
@@ -3227,12 +3233,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'A fluke anchor is meant to be set on the bottom while the boat is stopped, not towed while underway.',
       },
-      {
-        id: 'd',
-        text: 'It is designed to never touch the bottom, holding purely by its own weight in the water column',
-        whyWrong:
-          'A fluke anchor must dig into the seabed to hold; it does not work by weight alone while suspended in the water.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -3247,10 +3247,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'This heavy, inverted-bowl-shaped anchor is a mushroom anchor. What is it primarily used for, and why is it a poor choice as a boat\'s primary working anchor?',
     choices: [
-      {
-        id: 'a',
-        text: 'It is mainly used for permanent moorings in soft mud, where it slowly settles and buries over time for great holding — but as a working anchor it holds poorly at first set and does not grip well under a sudden load',
-      },
       {
         id: 'b',
         text: 'It is the best all-around choice for a cruising sailboat\'s primary bow anchor',
@@ -3269,6 +3265,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Mushroom anchors are comparatively heavy, relying largely on weight and gradual burial rather than being a lightweight option.',
       },
+      {
+        id: 'a',
+        text: 'It is mainly used for permanent moorings in soft mud, where it slowly settles and buries over time for great holding — but as a working anchor it holds poorly at first set and does not grip well under a sudden load',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -3283,16 +3283,6 @@ export const QUESTIONS: Question[] = [
       'Beyond the anchor\'s design, what other factors most affect how well a given anchor actually holds?',
     choices: [
       {
-        id: 'a',
-        text: 'The type of bottom (sand, mud, rock, grass), the anchor\'s weight and size relative to the boat, and the scope and type of rode used',
-      },
-      {
-        id: 'b',
-        text: 'Only the anchor\'s purchase price',
-        whyWrong:
-          'Price does not determine holding power — bottom type, sizing, and scope/rode are the factors that actually govern performance.',
-      },
-      {
         id: 'c',
         text: 'Only the color of the anchor',
         whyWrong:
@@ -3303,6 +3293,16 @@ export const QUESTIONS: Question[] = [
         text: 'Only the time of day the anchor is set',
         whyWrong:
           'Time of day itself does not affect holding; the physical factors of bottom, sizing, and scope do.',
+      },
+      {
+        id: 'a',
+        text: 'The type of bottom (sand, mud, rock, grass), the anchor\'s weight and size relative to the boat, and the scope and type of rode used',
+      },
+      {
+        id: 'b',
+        text: 'Only the anchor\'s purchase price',
+        whyWrong:
+          'Price does not determine holding power — bottom type, sizing, and scope/rode are the factors that actually govern performance.',
       },
     ],
     correctChoiceId: 'a',
@@ -3354,6 +3354,12 @@ export const QUESTIONS: Question[] = [
       'In this bay, the wind is blowing from the top of the chart. Spot A sits in the open near the bay mouth, fully exposed to the wind and fetch; Spot B is tucked in the lee of a point of land. Given the forecast wind, which spot is the better anchorage choice, and why?',
     choices: [
       {
+        id: 'd',
+        text: 'Spot A, because it is closer to the bay mouth for a faster departure',
+        whyWrong:
+          'Convenience of departure is a minor factor compared to actually being protected from wind and wave action overnight.',
+      },
+      {
         id: 'a',
         text: 'Spot B, because the point of land blocks the wind and the fetch (wave-building distance) is much shorter there, giving a calmer, more protected anchorage',
       },
@@ -3369,12 +3375,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Being in the same general bay does not mean equal protection — local shelter from a point of land makes a substantial difference in wind and sea conditions.',
       },
-      {
-        id: 'd',
-        text: 'Spot A, because it is closer to the bay mouth for a faster departure',
-        whyWrong:
-          'Convenience of departure is a minor factor compared to actually being protected from wind and wave action overnight.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -3388,10 +3388,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'Before dropping anchor, why must you consider how much other traffic and moored boats surround your intended spot, not just the spot itself?',
     choices: [
-      {
-        id: 'a',
-        text: 'Your boat will swing around its anchor through a full circle as wind and current shift, so you need enough clear room for that entire swing circle without touching other boats, shoals, or the shore',
-      },
       {
         id: 'b',
         text: 'Other boats will always move out of your way automatically',
@@ -3409,6 +3405,10 @@ export const QUESTIONS: Question[] = [
         text: 'Swing room is irrelevant if your anchor is heavy enough',
         whyWrong:
           'Anchor weight affects holding power, not the geometry of how far your boat will swing on its rode — even a very heavy anchor does not reduce a boat\'s swing circle.',
+      },
+      {
+        id: 'a',
+        text: 'Your boat will swing around its anchor through a full circle as wind and current shift, so you need enough clear room for that entire swing circle without touching other boats, shoals, or the shore',
       },
     ],
     correctChoiceId: 'a',
@@ -3459,6 +3459,12 @@ export const QUESTIONS: Question[] = [
       'While scouting an anchorage, you notice a charted submerged wreck symbol just inside where your swing circle would reach. What should this change about your plan?',
     choices: [
       {
+        id: 'd',
+        text: 'Only worry about it if the wreck is marked with a light',
+        whyWrong:
+          'An unlit, submerged hazard is still a real danger to an anchored or swinging boat; the presence or absence of a light does not change the underlying risk.',
+      },
+      {
         id: 'a',
         text: 'Either move to a spot where the wreck (and your full swing circle) stays well clear, or shorten scope and reposition so the wreck cannot be reached even at the extremes of the swing',
       },
@@ -3474,12 +3480,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Deliberately anchoring on or near a wreck risks fouling your anchor or rode on the wreckage and possibly damaging your hull — it is a hazard to avoid, not a holding feature to exploit.',
       },
-      {
-        id: 'd',
-        text: 'Only worry about it if the wreck is marked with a light',
-        whyWrong:
-          'An unlit, submerged hazard is still a real danger to an anchored or swinging boat; the presence or absence of a light does not change the underlying risk.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -3493,10 +3493,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'You arrive at an anchorage that already has several boats anchored. What is the seamanlike way to choose where to drop your own anchor?',
     choices: [
-      {
-        id: 'a',
-        text: 'Observe how the existing boats are lying (which shows the prevailing wind/current effect and each boat\'s likely swing), then choose a spot with enough clearance that your swing circle will not overlap theirs',
-      },
       {
         id: 'b',
         text: 'Anchor as close as possible to another boat for safety in numbers',
@@ -3515,6 +3511,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Different boats can have different rode lengths, scope, and windage, so their swing circles are not guaranteed to match — you must actually assess the situation rather than assume uniform swinging.',
       },
+      {
+        id: 'a',
+        text: 'Observe how the existing boats are lying (which shows the prevailing wind/current effect and each boat\'s likely swing), then choose a spot with enough clearance that your swing circle will not overlap theirs',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -3530,16 +3530,6 @@ export const QUESTIONS: Question[] = [
       'In this side-view diagram, a boat is anchored with the depth of water (D) and the height of the bow above the water (H) both marked, along with the length of rode (L) running down to the anchor. How is anchor "scope" defined?',
     choices: [
       {
-        id: 'a',
-        text: 'Scope = the length of rode paid out, divided by the total vertical distance from the bow chock down to the seabed (depth plus bow height above the water)',
-      },
-      {
-        id: 'b',
-        text: 'Scope = the length of rode paid out, divided by the boat\'s overall length',
-        whyWrong:
-          'Scope is defined relative to the vertical distance from the bow to the bottom (depth plus bow height), not relative to the boat\'s length.',
-      },
-      {
         id: 'c',
         text: 'Scope = the depth of water alone, with no reference to rode length',
         whyWrong:
@@ -3550,6 +3540,16 @@ export const QUESTIONS: Question[] = [
         text: 'Scope = the weight of the anchor divided by the weight of the boat',
         whyWrong:
           'Scope is a ratio of rode length to water depth (plus freeboard), not a ratio of weights.',
+      },
+      {
+        id: 'a',
+        text: 'Scope = the length of rode paid out, divided by the total vertical distance from the bow chock down to the seabed (depth plus bow height above the water)',
+      },
+      {
+        id: 'b',
+        text: 'Scope = the length of rode paid out, divided by the boat\'s overall length',
+        whyWrong:
+          'Scope is defined relative to the vertical distance from the bow to the bottom (depth plus bow height), not relative to the boat\'s length.',
       },
     ],
     correctChoiceId: 'a',
@@ -3564,10 +3564,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'You are anchoring in 10 feet of water, and your bow is 2 feet above the water. Using a scope of 7:1, how much rode should you pay out?',
     choices: [
-      {
-        id: 'a',
-        text: '84 feet (7 × (10 + 2))',
-      },
       {
         id: 'b',
         text: '70 feet (7 × 10, ignoring bow height)',
@@ -3586,6 +3582,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'That does not correspond to the correct multiplication of the 7:1 ratio by the vertical distance of 12 feet — the correct rode length is 7 × 12 = 84 feet.',
       },
+      {
+        id: 'a',
+        text: '84 feet (7 × (10 + 2))',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -3600,16 +3600,6 @@ export const QUESTIONS: Question[] = [
       'Forecast conditions are worsening, so you decide to increase your scope to 10:1 for extra holding power. You are anchored in 15 feet of water with a bow height of 3 feet. How much rode should be out at 10:1 scope?',
     choices: [
       {
-        id: 'a',
-        text: '180 feet (10 × (15 + 3))',
-      },
-      {
-        id: 'b',
-        text: '150 feet (10 × 15, ignoring bow height)',
-        whyWrong:
-          'Leaving out the 3 feet of bow height understates the vertical distance — the correct total is 15 + 3 = 18 feet, times 10, equals 180 feet.',
-      },
-      {
         id: 'c',
         text: '18 feet (just the vertical distance, with no scope multiplier)',
         whyWrong:
@@ -3620,6 +3610,16 @@ export const QUESTIONS: Question[] = [
         text: '30 feet (10 × 3, using only the bow height)',
         whyWrong:
           'That uses only the bow height and ignores the water depth entirely — the vertical distance must include both depth and bow height.',
+      },
+      {
+        id: 'a',
+        text: '180 feet (10 × (15 + 3))',
+      },
+      {
+        id: 'b',
+        text: '150 feet (10 × 15, ignoring bow height)',
+        whyWrong:
+          'Leaving out the 3 feet of bow height understates the vertical distance — the correct total is 15 + 3 = 18 feet, times 10, equals 180 feet.',
       },
     ],
     correctChoiceId: 'a',
@@ -3670,10 +3670,6 @@ export const QUESTIONS: Question[] = [
       'A crowded anchorage forces you to use less scope than you would prefer, to keep your swing circle from overlapping other boats. What is the tradeoff you are accepting by shortening scope?',
     choices: [
       {
-        id: 'a',
-        text: 'Less scope reduces your swing circle and helps you fit into a tight anchorage, but it also steepens the angle of pull on the anchor and generally reduces its holding power',
-      },
-      {
         id: 'b',
         text: 'Less scope has no downside at all — it is always better to use the shortest scope possible',
         whyWrong:
@@ -3691,6 +3687,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Swing-circle radius is directly tied to how much rode is out — shorter scope produces a smaller swing circle, which is exactly why crowded anchorages often force shorter scope.',
       },
+      {
+        id: 'a',
+        text: 'Less scope reduces your swing circle and helps you fit into a tight anchorage, but it also steepens the angle of pull on the anchor and generally reduces its holding power',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -3705,16 +3705,6 @@ export const QUESTIONS: Question[] = [
       'You anchor at low tide in 8 feet of water with a scope of 7:1, but the tide in your area rises 4 feet to high tide. What should you account for when setting your scope?',
     choices: [
       {
-        id: 'a',
-        text: 'The scope ratio should be based on the depth expected at high tide (not just the depth when you anchored), since the same rode length gives a lower scope ratio as the water deepens',
-      },
-      {
-        id: 'b',
-        text: 'Nothing — scope only needs to be calculated once, at whatever depth you happen to anchor in',
-        whyWrong:
-          'If you only account for the depth at the moment of anchoring, rising tide will silently reduce your effective scope and holding power exactly when you are not watching — the smart approach is to plan for the depth you will actually see.',
-      },
-      {
         id: 'c',
         text: 'Tide has no effect on scope, only on how far you can see the bottom',
         whyWrong:
@@ -3725,6 +3715,16 @@ export const QUESTIONS: Question[] = [
         text: 'You should always assume the tide will fall, never rise, when anchoring',
         whyWrong:
           'Tides both rise and fall over a tidal cycle; assuming only a fall would leave you unprepared for a rising tide reducing your scope, as in this scenario.',
+      },
+      {
+        id: 'a',
+        text: 'The scope ratio should be based on the depth expected at high tide (not just the depth when you anchored), since the same rode length gives a lower scope ratio as the water deepens',
+      },
+      {
+        id: 'b',
+        text: 'Nothing — scope only needs to be calculated once, at whatever depth you happen to anchor in',
+        whyWrong:
+          'If you only account for the depth at the moment of anchoring, rising tide will silently reduce your effective scope and holding power exactly when you are not watching — the smart approach is to plan for the depth you will actually see.',
       },
     ],
     correctChoiceId: 'a',
@@ -3775,6 +3775,12 @@ export const QUESTIONS: Question[] = [
       'What is the recommended procedure for setting an anchor, once you have chosen your spot and let out the correct scope?',
     choices: [
       {
+        id: 'd',
+        text: 'Motor forward over the anchor immediately after dropping it',
+        whyWrong:
+          'Motoring forward over your own anchor and rode risks fouling the rode in the propeller or dragging the anchor before it can dig in — the correct motion is backing away to lay out and set the rode.',
+      },
+      {
         id: 'a',
         text: 'Snub the rode and back down slowly and steadily under light-to-moderate reverse power, letting the anchor dig in gradually, while watching for signs it is holding (the bow settling head-to-wind/current, no further drift)',
       },
@@ -3790,12 +3796,6 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Backing down under gentle engine power is a standard, reliable way to confirm the anchor has actually set, rather than hoping wind alone will do it.',
       },
-      {
-        id: 'd',
-        text: 'Motor forward over the anchor immediately after dropping it',
-        whyWrong:
-          'Motoring forward over your own anchor and rode risks fouling the rode in the propeller or dragging the anchor before it can dig in — the correct motion is backing away to lay out and set the rode.',
-      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -3810,16 +3810,6 @@ export const QUESTIONS: Question[] = [
       'Why is it important to increase reverse power gradually, rather than all at once, while setting an anchor?',
     choices: [
       {
-        id: 'a',
-        text: 'A gradual, building load lets the anchor dig progressively deeper into the bottom, whereas a sudden hard jerk can pull it out before it has buried, or shock-load and damage ground tackle',
-      },
-      {
-        id: 'b',
-        text: 'Gradual power saves fuel, which is the only reason for doing it this way',
-        whyWrong:
-          'Fuel economy is a minor side benefit at best — the real reason is giving the anchor a controlled, building load so it can dig in properly rather than being yanked loose.',
-      },
-      {
         id: 'c',
         text: 'Sudden hard reverse power is actually the preferred, faster way to set an anchor',
         whyWrong:
@@ -3830,6 +3820,16 @@ export const QUESTIONS: Question[] = [
         text: 'Engine power has no effect on how well an anchor sets',
         whyWrong:
           'Backing down under power is specifically how you set and test an anchor\'s hold — engine use is central to the technique, not irrelevant to it.',
+      },
+      {
+        id: 'a',
+        text: 'A gradual, building load lets the anchor dig progressively deeper into the bottom, whereas a sudden hard jerk can pull it out before it has buried, or shock-load and damage ground tackle',
+      },
+      {
+        id: 'b',
+        text: 'Gradual power saves fuel, which is the only reason for doing it this way',
+        whyWrong:
+          'Fuel economy is a minor side benefit at best — the real reason is giving the anchor a controlled, building load so it can dig in properly rather than being yanked loose.',
       },
     ],
     correctChoiceId: 'a',
@@ -3880,16 +3880,6 @@ export const QUESTIONS: Question[] = [
       'What are reliable ways to detect that your anchor is dragging, especially overnight?',
     choices: [
       {
-        id: 'a',
-        text: 'Set a GPS anchor-drag alarm, and periodically check bearings or ranges on two or more fixed shore objects — if they change beyond your expected swing, you are dragging',
-      },
-      {
-        id: 'b',
-        text: 'Trust that a properly set anchor can never drag once it has held for a few minutes',
-        whyWrong:
-          'No anchor set is guaranteed permanent — wind shifts, gusts, and changing loads can break even a well-set anchor free hours later, which is exactly why ongoing monitoring matters.',
-      },
-      {
         id: 'c',
         text: 'Dragging cannot be detected until the boat actually runs aground',
         whyWrong:
@@ -3900,6 +3890,16 @@ export const QUESTIONS: Question[] = [
         text: 'Only worry about dragging if you can feel the boat moving underfoot',
         whyWrong:
           'Slow dragging is often imperceptible by feel alone, especially at night or while asleep — that is why instrumented and visual position checks are recommended rather than relying on feel.',
+      },
+      {
+        id: 'a',
+        text: 'Set a GPS anchor-drag alarm, and periodically check bearings or ranges on two or more fixed shore objects — if they change beyond your expected swing, you are dragging',
+      },
+      {
+        id: 'b',
+        text: 'Trust that a properly set anchor can never drag once it has held for a few minutes',
+        whyWrong:
+          'No anchor set is guaranteed permanent — wind shifts, gusts, and changing loads can break even a well-set anchor free hours later, which is exactly why ongoing monitoring matters.',
       },
     ],
     correctChoiceId: 'a',
@@ -3915,10 +3915,6 @@ export const QUESTIONS: Question[] = [
     prompt:
       'In this diagram, the dashed circle represents your boat\'s full swing radius around the anchor. A neighboring boat lies within that circle, and a charted rock lies just outside it. What does this picture tell you about your anchoring choice?',
     choices: [
-      {
-        id: 'a',
-        text: 'Your swing circle currently reaches the neighboring boat, which is too close for safety — you should re-anchor with less scope, move to a different spot, or otherwise increase the separation',
-      },
       {
         id: 'b',
         text: 'Everything shown is perfectly safe as long as the anchor itself is holding well',
@@ -3937,6 +3933,10 @@ export const QUESTIONS: Question[] = [
         whyWrong:
           'Swing circles are a very practical, everyday planning tool — this exact scenario, a boat encroaching on your swing radius, is precisely the kind of real conflict checking your swing circle is meant to catch.',
       },
+      {
+        id: 'a',
+        text: 'Your swing circle currently reaches the neighboring boat, which is too close for safety — you should re-anchor with less scope, move to a different spot, or otherwise increase the separation',
+      },
     ],
     correctChoiceId: 'a',
     explanation:
@@ -3950,6 +3950,12 @@ export const QUESTIONS: Question[] = [
     prompt:
       'How does picking up a permanent mooring differ from anchoring your own boat, in terms of the ground tackle involved?',
     choices: [
+      {
+        id: 'd',
+        text: 'A mooring pendant is attached directly to your anchor rode',
+        whyWrong:
+          'A mooring pendant attaches to the boat\'s bow cleat or bow chock, not to your own separate ground tackle — picking up a mooring means you are not deploying your anchor and rode at all.',
+      },
       {
         id: 'a',
         text: 'A permanent mooring uses heavy, purpose-built ground tackle — often a large mushroom anchor or a heavy sinker, chain, and a mooring buoy/pendant — left in place long-term, rather than the lighter working anchor and rode you carry and set yourself',
@@ -3965,12 +3971,6 @@ export const QUESTIONS: Question[] = [
         text: 'Moorings never need to be inspected once installed',
         whyWrong:
           'Mooring tackle is subject to wear, chafe, and corrosion over time and needs periodic inspection and maintenance, just as your own ground tackle does.',
-      },
-      {
-        id: 'd',
-        text: 'A mooring pendant is attached directly to your anchor rode',
-        whyWrong:
-          'A mooring pendant attaches to the boat\'s bow cleat or bow chock, not to your own separate ground tackle — picking up a mooring means you are not deploying your anchor and rode at all.',
       },
     ],
     correctChoiceId: 'a',
@@ -3988,10 +3988,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-turnbuckle',
   prompt: "What is the fitting shown between the wire shroud and the chainplate, and what is its purpose?",
   choices: [
-    { id: 'a', text: "A turnbuckle — it lets you adjust and set the tension in the standing rigging" },
-    { id: 'b', text: "A winch — it lets you haul in a sheet under load", whyWrong: "A winch is a rotating drum used to trim lines under load; it isn't an inline threaded rigging fitting." },
     { id: 'c', text: "A cleat — it lets you make a line fast", whyWrong: "A cleat secures a line by wrapping, not by threaded adjustment of a standing-rigging wire." },
     { id: 'd', text: "A fairlead — it changes the angle of a line without adding friction", whyWrong: "A fairlead redirects a line's lead; it doesn't tension standing rigging." },
+    { id: 'a', text: "A turnbuckle — it lets you adjust and set the tension in the standing rigging" },
+    { id: 'b', text: "A winch — it lets you haul in a sheet under load", whyWrong: "A winch is a rotating drum used to trim lines under load; it isn't an inline threaded rigging fitting." },
   ],
   correctChoiceId: 'a',
   explanation: "A turnbuckle (bottlescrew) threads onto the lower end of a shroud or stay and onto a chainplate. Rotating the barrel body draws the two threaded studs together or apart, letting you tighten or slacken that piece of standing rigging to tune the mast.",
@@ -4019,10 +4019,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'photo-chainplate',
   prompt: "What is the metal fitting shown bolted through the deck/hull, and what does it do?",
   choices: [
-    { id: 'a', text: "A chainplate — it anchors a shroud or stay to the hull to support the mast" },
     { id: 'b', text: "A stanchion base — it supports the lifelines", whyWrong: "A stanchion base is a separate deck fitting for the lifeline system, mounted differently and not carrying rig loads." },
     { id: 'c', text: "A cleat — it secures a dock line", whyWrong: "A cleat is used for belaying lines, not for carrying standing rigging loads." },
     { id: 'd', text: "A through-hull fitting — it lets water in for a raw-water system", whyWrong: "Through-hulls penetrate the hull below the waterline for plumbing; this fitting is a structural rigging anchor." },
+    { id: 'a', text: "A chainplate — it anchors a shroud or stay to the hull to support the mast" },
   ],
   correctChoiceId: 'a',
   explanation: "A chainplate is a strong metal plate through-bolted to the hull or deck structure. A turnbuckle connects the shroud or stay to it, transferring the rig's loads into the hull. Chainplates and their bedding are a common area to inspect for leaks and corrosion.",
@@ -4034,10 +4034,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why do surveyors and owners pay close attention to chainplates and the area around them?",
   choices: [
-    { id: 'a', text: "They carry the full load of the standing rigging into the hull, and leaks around them can cause hidden structural damage" },
-    { id: 'b', text: "They control the boat's electrical grounding system", whyWrong: "Chainplates are structural rig fittings, not part of the electrical grounding/bonding system." },
     { id: 'c', text: "They regulate engine cooling water flow", whyWrong: "Chainplates have nothing to do with the engine's cooling system." },
     { id: 'd', text: "They are purely decorative trim pieces", whyWrong: "Chainplates are structural, load-bearing fittings, not decoration." },
+    { id: 'a', text: "They carry the full load of the standing rigging into the hull, and leaks around them can cause hidden structural damage" },
+    { id: 'b', text: "They control the boat's electrical grounding system", whyWrong: "Chainplates are structural rig fittings, not part of the electrical grounding/bonding system." },
   ],
   correctChoiceId: 'a',
   explanation: "Chainplates carry the entire tension of the standing rigging into the hull structure. Because they penetrate the deck, water intrusion around a poorly bedded chainplate can rot core material or corrode the plate itself over time, weakening a highly loaded structural point.",
@@ -4050,10 +4050,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-stemhead-bow-roller',
   prompt: "What is the fitting at the very top of the bow called, and what is its purpose?",
   choices: [
-    { id: 'a', text: "The stemhead fitting with a bow roller — it supports the headstay and lets the anchor rode run smoothly over the bow" },
-    { id: 'b', text: "The rudder post — it transfers helm input to the rudder blade", whyWrong: "The rudder post is at the stern, not the bow, and steers the boat." },
     { id: 'c', text: "The transom — it is the flat surface at the back of the boat", whyWrong: "The transom is the aft-most part of the hull, opposite the bow." },
     { id: 'd', text: "The binnacle — it houses the steering compass", whyWrong: "A binnacle is a cockpit fitting for the compass, unrelated to the bow." },
+    { id: 'a', text: "The stemhead fitting with a bow roller — it supports the headstay and lets the anchor rode run smoothly over the bow" },
+    { id: 'b', text: "The rudder post — it transfers helm input to the rudder blade", whyWrong: "The rudder post is at the stern, not the bow, and steers the boat." },
   ],
   correctChoiceId: 'a',
   explanation: "The stemhead fitting caps the top of the bow, typically anchoring the headstay and providing a bow roller so the anchor and its rode can be deployed and retrieved without chafing on the hull.",
@@ -4065,10 +4065,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Where would you find a boat's rudder post, and what does it do?",
   choices: [
-    { id: 'a', text: "It runs up from the rudder blade through the hull near the stern, transmitting steering input from the wheel or tiller to the rudder" },
     { id: 'b', text: "It runs from the bow to support the headstay", whyWrong: "That describes the stemhead fitting/forestay, not the rudder post." },
     { id: 'c', text: "It is located inside the keel and carries no steering load", whyWrong: "The rudder post is a load-bearing steering shaft, not an inert keel component." },
     { id: 'd', text: "It connects the engine to the propeller shaft", whyWrong: "That connection is the propeller shaft/coupling, a separate system from the rudder." },
+    { id: 'a', text: "It runs up from the rudder blade through the hull near the stern, transmitting steering input from the wheel or tiller to the rudder" },
   ],
   correctChoiceId: 'a',
   explanation: "The rudder post is the shaft that passes through the hull (usually near the stern) connecting the rudder blade below the waterline to the steering system (wheel or tiller) above. Its head is what an emergency tiller fits onto if normal steering fails.",
@@ -4080,10 +4080,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is the \"transom\" of a boat?",
   choices: [
+    { id: 'd', text: "The horizontal bar the mainsail boom attaches to", whyWrong: "That is the gooseneck or boom, part of the rig, not the hull." },
     { id: 'a', text: "The flat or curved surface that forms the stern (back) of the hull" },
     { id: 'b', text: "The forward-most point of the bow", whyWrong: "That is the stem or bow, the opposite end of the boat." },
     { id: 'c', text: "The centerline structural member running the length of the keel", whyWrong: "That describes a keelson, an internal structural member, not the transom." },
-    { id: 'd', text: "The horizontal bar the mainsail boom attaches to", whyWrong: "That is the gooseneck or boom, part of the rig, not the hull." },
   ],
   correctChoiceId: 'a',
   explanation: "The transom is the aft-most surface of the hull, closing off the stern. It's a common mounting point for the outboard motor bracket, swim ladder, and stern navigation light.",
@@ -4096,10 +4096,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-binnacle-compass',
   prompt: "What is the pedestal-mounted assembly shown, and what instrument sits on top of it?",
   choices: [
-    { id: 'a', text: "A binnacle supporting the steering wheel, with a magnetic compass mounted on top" },
     { id: 'b', text: "A windlass with a chain gypsy on top", whyWrong: "A windlass is a deck-mounted anchor-handling machine on the foredeck, not a cockpit steering pedestal." },
     { id: 'c', text: "A winch with a sheet lead on top", whyWrong: "A winch is used to trim lines under load and doesn't carry a compass." },
     { id: 'd', text: "An emergency tiller fitted over the rudder post", whyWrong: "An emergency tiller is a removable steering bar, not a fixed pedestal with a compass." },
+    { id: 'a', text: "A binnacle supporting the steering wheel, with a magnetic compass mounted on top" },
   ],
   correctChoiceId: 'a',
   explanation: "A binnacle is the pedestal housing that supports the wheel and typically carries the boat's steering (magnetic) compass where the helmsman can see it, aligned with a lubber line that marks the boat's heading.",
@@ -4111,10 +4111,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is the primary purpose of the steering compass at the helm?",
   choices: [
+    { id: 'd', text: "To measure water depth under the keel", whyWrong: "Depth is measured by a depth sounder, not a compass." },
     { id: 'a', text: "To show the boat's magnetic heading so the helmsman can steer a course" },
     { id: 'b', text: "To measure boat speed through the water", whyWrong: "Speed is measured by a knotmeter/paddlewheel log, not a compass." },
     { id: 'c', text: "To measure wind speed and direction", whyWrong: "Wind instruments (anemometer/wind vane) measure that, not a compass." },
-    { id: 'd', text: "To measure water depth under the keel", whyWrong: "Depth is measured by a depth sounder, not a compass." },
   ],
   correctChoiceId: 'a',
   explanation: "The steering compass shows magnetic heading via a card that stays aligned with magnetic north while the boat (and lubber line) rotates around it, letting the helmsman hold or change a course.",
@@ -4126,10 +4126,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why should you avoid stowing a handheld electronic device or metal tool right next to the steering compass?",
   choices: [
-    { id: 'a', text: "Nearby magnetic or ferrous items can deflect the compass and cause it to read an inaccurate heading (deviation)" },
-    { id: 'b', text: "It will drain the compass's internal battery", whyWrong: "A simple magnetic steering compass has no battery to drain." },
     { id: 'c', text: "It will void the boat's insurance", whyWrong: "Not a navigation/seamanship consideration; insurance is unrelated to compass placement." },
     { id: 'd', text: "It has no effect; compasses are unaffected by nearby objects", whyWrong: "Magnetic and ferrous materials near a compass are a well-known source of deviation error." },
+    { id: 'a', text: "Nearby magnetic or ferrous items can deflect the compass and cause it to read an inaccurate heading (deviation)" },
+    { id: 'b', text: "It will drain the compass's internal battery", whyWrong: "A simple magnetic steering compass has no battery to drain." },
   ],
   correctChoiceId: 'a',
   explanation: "A magnetic compass reacts to any nearby magnetic field or ferrous metal, producing deviation — an error specific to that heading and that item's placement. Keep phones, speakers, tools, and other magnetic items away from the compass.",
@@ -4141,10 +4141,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is a cockpit locker typically used for on a cruising sailboat?",
   choices: [
-    { id: 'a', text: "Stowing gear such as fenders, dock lines, the emergency tiller, and safety equipment, often with access to the lazarette or steering gear" },
     { id: 'b', text: "Housing the boat's batteries exclusively", whyWrong: "Batteries are commonly in a dedicated compartment, not defined by the term 'cockpit locker.'" },
     { id: 'c', text: "Serving as the primary freshwater tank", whyWrong: "Freshwater tanks are separate, sealed tanks, not cockpit lockers." },
     { id: 'd', text: "Storing the mainsail when not hoisted", whyWrong: "Mainsails are typically flaked on the boom or stowed in a sail locker forward, not in a cockpit locker." },
+    { id: 'a', text: "Stowing gear such as fenders, dock lines, the emergency tiller, and safety equipment, often with access to the lazarette or steering gear" },
   ],
   correctChoiceId: 'a',
   explanation: "Cockpit lockers are general stowage compartments built into the cockpit seating, commonly holding fenders, lines, safety gear, and tools, and on many boats providing access to the rudder post/steering gear for fitting an emergency tiller.",
@@ -4187,10 +4187,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is the \"companionway\" on a sailboat?",
   choices: [
-    { id: 'a', text: "The steps and opening that lead from the cockpit down into the cabin" },
-    { id: 'b', text: "A storage compartment forward of the mast", whyWrong: "That describes a sail or chain locker, not the companionway." },
     { id: 'c', text: "The rail running along each side deck", whyWrong: "That describes the toe rail or lifelines, not the companionway." },
     { id: 'd', text: "The hinge connecting the boom to the mast", whyWrong: "That is the gooseneck fitting, part of the rig." },
+    { id: 'a', text: "The steps and opening that lead from the cockpit down into the cabin" },
+    { id: 'b', text: "A storage compartment forward of the mast", whyWrong: "That describes a sail or chain locker, not the companionway." },
   ],
   correctChoiceId: 'a',
   explanation: "The companionway is the main entry point between the cockpit and the cabin below, typically with steps (a \"companionway ladder\") and removable washboards or a hatch to close it off.",
@@ -4203,10 +4203,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-cabin-layout',
   prompt: "In the cabin layout shown, which labeled space is the saloon, and what is it used for?",
   choices: [
+    { id: 'd', text: "The steps up to the cockpit", whyWrong: "That is the companionway, the access point, not the saloon." },
     { id: 'a', text: "The amidships area with settees and a table — the main living/dining space belowdecks" },
     { id: 'b', text: "The forward triangular berth", whyWrong: "That labeled space is the V-berth, the forward sleeping area." },
     { id: 'c', text: "The galley area to starboard", whyWrong: "The galley is the boat's kitchen area, separate from the saloon." },
-    { id: 'd', text: "The steps up to the cockpit", whyWrong: "That is the companionway, the access point, not the saloon." },
   ],
   correctChoiceId: 'a',
   explanation: "The saloon (or salon) is the main cabin — typically amidships, with settees along the sides and a table — used for dining, navigation, and general living space while aboard.",
@@ -4218,10 +4218,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is the \"galley\" on a cruising boat?",
   choices: [
-    { id: 'a', text: "The boat's kitchen area, typically with a stove, sink, and food stowage" },
     { id: 'b', text: "The boat's bathroom", whyWrong: "That is the \"head,\" a different compartment entirely." },
     { id: 'c', text: "The engine compartment", whyWrong: "That is the engine room/compartment, unrelated to cooking." },
     { id: 'd', text: "The forward sleeping berth", whyWrong: "That is the V-berth, a sleeping area, not the kitchen." },
+    { id: 'a', text: "The boat's kitchen area, typically with a stove, sink, and food stowage" },
   ],
   correctChoiceId: 'a',
   explanation: "The galley is the cooking area aboard, generally fitted with a stove (often gimbaled to stay level while sailing), a sink, and stowage for food and cookware.",
@@ -4234,10 +4234,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-cabin-layout',
   prompt: "Which labeled space in the cabin layout is the V-berth, and where is it located?",
   choices: [
+    { id: 'd', text: "The galley counter to starboard", whyWrong: "The galley is the cooking area, a separate space from the V-berth." },
     { id: 'a', text: "The forward, wedge-shaped sleeping area in the bow, named for its V shape" },
     { id: 'b', text: "The settee area amidships", whyWrong: "That labeled space is the saloon, not the V-berth." },
     { id: 'c', text: "The aft cabin near the companionway", whyWrong: "This layout shows no separate aft cabin — the V-berth is specifically forward." },
-    { id: 'd', text: "The galley counter to starboard", whyWrong: "The galley is the cooking area, a separate space from the V-berth." },
   ],
   correctChoiceId: 'a',
   explanation: "The V-berth occupies the forward-most cabin, following the boat's narrowing bow shape — hence the \"V.\" It's usually the primary or largest sleeping berth on smaller cruising boats.",
@@ -4311,10 +4311,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "A hose attached to a through-hull fitting below the waterline bursts while underway. Why does it matter whether the seacock for that fitting was closed or open?",
   choices: [
-    { id: 'a', text: "If the seacock is closed, the hull opening is sealed off and the burst hose cannot flood the boat; if it's open, water floods in through the through-hull unchecked" },
-    { id: 'b', text: "It makes no difference — water floods in at the same rate either way", whyWrong: "The seacock's whole purpose is to isolate the through-hull, so its position directly controls whether water can enter through a failed hose." },
     { id: 'c', text: "The seacock only affects water pressure, not flooding", whyWrong: "The seacock is a shutoff valve for the hull opening itself, not a pressure regulator." },
     { id: 'd', text: "Seacocks only matter when the boat is at the dock", whyWrong: "Seacocks matter at all times the through-hull is below the waterline, underway or docked." },
+    { id: 'a', text: "If the seacock is closed, the hull opening is sealed off and the burst hose cannot flood the boat; if it's open, water floods in through the through-hull unchecked" },
+    { id: 'b', text: "It makes no difference — water floods in at the same rate either way", whyWrong: "The seacock's whole purpose is to isolate the through-hull, so its position directly controls whether water can enter through a failed hose." },
   ],
   correctChoiceId: 'a',
   explanation: "This is exactly why crews are taught to know the location of every seacock aboard: a hose can fail (chafe, a bad clamp, age) at any time, but a through-hull is only a flooding risk if its seacock is left open. Knowing how to quickly find and close the correct seacock can be the difference between a wet bilge and a sinking.",
@@ -4326,10 +4326,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Which of these is an example of a system that typically uses a through-hull fitting?",
   choices: [
-    { id: 'a', text: "Engine raw-water cooling intake" },
-    { id: 'b', text: "The masthead navigation light wiring", whyWrong: "Masthead wiring runs up the mast, well above the waterline, with no through-hull involved." },
     { id: 'c', text: "The mainsail halyard", whyWrong: "A halyard is a line that hoists the sail; it has no connection to hull penetrations." },
     { id: 'd', text: "The anchor windlass motor", whyWrong: "A windlass motor is a deck-mounted electrical device, not a below-waterline plumbing fitting." },
+    { id: 'a', text: "Engine raw-water cooling intake" },
+    { id: 'b', text: "The masthead navigation light wiring", whyWrong: "Masthead wiring runs up the mast, well above the waterline, with no through-hull involved." },
   ],
   correctChoiceId: 'a',
   explanation: "Systems needing to move water into or out of the hull below the waterline — engine raw-water cooling intake, sink and head drains, bilge pump discharge — use through-hull fittings, each normally paired with a seacock for shutoff.",
@@ -4358,10 +4358,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-windlass-deck',
   prompt: "What is the deck machine shown, and what does it do?",
   choices: [
-    { id: 'a', text: "An anchor windlass — it mechanically raises and lowers the anchor rode, reducing the physical effort of hauling ground tackle by hand" },
     { id: 'b', text: "A primary winch — it trims the jib sheet under load", whyWrong: "A primary winch is a cockpit/side-deck fitting for sail control lines, not for anchor rode." },
     { id: 'c', text: "A capstan used to hoist the mainsail", whyWrong: "Halyards are usually led to a winch near the mast or cockpit, not the foredeck windlass." },
     { id: 'd', text: "A fuel-fill deck plate", whyWrong: "A deck fill is a small flush fitting for fueling/watering, not a powered mechanism with a gypsy wheel." },
+    { id: 'a', text: "An anchor windlass — it mechanically raises and lowers the anchor rode, reducing the physical effort of hauling ground tackle by hand" },
   ],
   correctChoiceId: 'a',
   explanation: "A windlass is mounted on the foredeck and uses a gypsy (chain wheel) to grip and haul in the anchor chain (and/or rope rode), driven electrically or manually. It makes handling heavy ground tackle practical on boats where hauling it entirely by hand would be exhausting.",
@@ -4373,10 +4373,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Even with a working windlass, why are ASA-trained sailors taught not to rely on it to pull the boat up to the anchor?",
   choices: [
+    { id: 'd', text: "It has no effect on the windlass either way", whyWrong: "Loading a windlass to drag the boat's mass forward, rather than just recovering slack rode, is a recognized way to damage the unit or its deck mounting." },
     { id: 'a', text: "A windlass is designed to retrieve rode, not to winch a heavy boat forward against resistance; using it that way can overload and damage the windlass or its mount" },
     { id: 'b', text: "Windlasses are not strong enough to lift the anchor itself", whyWrong: "Windlasses are specifically sized to lift the anchor and rode; that is their core job." },
     { id: 'c', text: "Using the windlass this way is illegal under COLREGS", whyWrong: "This is a mechanical/seamanship best practice, not a navigation-rules issue." },
-    { id: 'd', text: "It has no effect on the windlass either way", whyWrong: "Loading a windlass to drag the boat's mass forward, rather than just recovering slack rode, is a recognized way to damage the unit or its deck mounting." },
   ],
   correctChoiceId: 'a',
   explanation: "The proper technique is to motor the boat up toward the anchor using the engine while the windlass takes in the resulting slack rode, not to use the windlass motor to haul the boat's full weight forward. Doing the latter risks overloading the windlass motor, gearbox, or its deck mounting.",
@@ -4388,10 +4388,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is the main function of deck hatches on a cruising boat?",
   choices: [
+    { id: 'd', text: "To regulate engine cooling water temperature", whyWrong: "Engine cooling is handled by the raw-water system, unrelated to deck hatches." },
     { id: 'a', text: "To provide ventilation and natural light belowdecks, and to allow entry/exit at points other than the companionway" },
     { id: 'b', text: "To serve as the primary structural support for the mast", whyWrong: "Mast support comes from the step, partners, and rigging, not deck hatches." },
     { id: 'c', text: "To house the boat's batteries", whyWrong: "Batteries are stowed in a dedicated compartment, not inside a hatch." },
-    { id: 'd', text: "To regulate engine cooling water temperature", whyWrong: "Engine cooling is handled by the raw-water system, unrelated to deck hatches." },
   ],
   correctChoiceId: 'a',
   explanation: "Hatches let light and air into the cabin and provide additional access points. They must be properly dogged (closed and latched) before getting underway in a seaway, since an open hatch is a common source of down-flooding.",
@@ -4403,10 +4403,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why do most cruising sailboats carry separate \"house\" and \"starting\" battery banks?",
   choices: [
-    { id: 'a', text: "So that running lights, instruments, and accessories can draw down the house bank without risking a dead battery when it's time to start the engine" },
     { id: 'b', text: "Because it is required by COLREGS", whyWrong: "COLREGS govern navigation rules and lighting, not internal electrical-system design." },
     { id: 'c', text: "Because a single battery cannot legally power both systems", whyWrong: "There's no such legal restriction; it's a practical reliability choice, not a legal one." },
     { id: 'd', text: "To reduce the boat's total weight", whyWrong: "Adding a second battery bank increases weight; the reason is reliability, not weight savings." },
+    { id: 'a', text: "So that running lights, instruments, and accessories can draw down the house bank without risking a dead battery when it's time to start the engine" },
   ],
   correctChoiceId: 'a',
   explanation: "Separating house loads (lights, refrigeration, electronics) from the engine-starting battery protects your ability to start the engine even if the house bank is depleted from a day (or night) of use. A battery switch typically lets you combine banks in an emergency.",
@@ -4418,10 +4418,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is the purpose of the circuit breakers on a boat's DC electrical panel?",
   choices: [
+    { id: 'd', text: "To regulate engine RPM", whyWrong: "Engine RPM is controlled by the throttle, not the DC panel." },
     { id: 'a', text: "To protect each circuit from overload/short-circuit and let you switch individual circuits on or off" },
     { id: 'b', text: "To convert AC shore power to DC", whyWrong: "That conversion is done by a battery charger, not a breaker panel." },
     { id: 'c', text: "To desalinate seawater for drinking", whyWrong: "That's the function of a watermaker, unrelated to the electrical panel." },
-    { id: 'd', text: "To regulate engine RPM", whyWrong: "Engine RPM is controlled by the throttle, not the DC panel." },
   ],
   correctChoiceId: 'a',
   explanation: "Each circuit (lights, bilge pump, instruments, etc.) is normally protected by its own breaker, which trips if the circuit draws too much current, and doubles as an on/off switch for that circuit.",
@@ -4437,10 +4437,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Under federal law, how many wearable PFDs (life jackets) must a recreational boat carry?",
   choices: [
+    { id: 'd', text: "PFDs are recommended but not legally required on any recreational boat", whyWrong: "Carrying one appropriately sized, USCG-approved wearable PFD per person is a federal legal requirement, not merely a recommendation." },
     { id: 'a', text: "One U.S. Coast Guard-approved wearable PFD of appropriate size for each person aboard" },
     { id: 'b', text: "One PFD total, regardless of how many people are aboard", whyWrong: "Federal law requires one appropriately sized wearable PFD per person aboard, not just one for the whole boat." },
     { id: 'c', text: "PFDs are only legally required for children", whyWrong: "Federal law requires a wearable PFD for every person aboard, adults included, though states often add specific wear-it rules for children." },
-    { id: 'd', text: "PFDs are recommended but not legally required on any recreational boat", whyWrong: "Carrying one appropriately sized, USCG-approved wearable PFD per person is a federal legal requirement, not merely a recommendation." },
   ],
   correctChoiceId: 'a',
   explanation: "Federal regulations require every recreational vessel to carry one USCG-approved wearable PFD, sized appropriately, for each person aboard. This is a legal minimum — many prudent boaters also carry spares.",
@@ -4452,10 +4452,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "At what vessel length does federal law also require a throwable flotation device (e.g., a ring buoy or buoyant cushion) in addition to wearable PFDs?",
   choices: [
-    { id: 'a', text: "16 feet and longer" },
     { id: 'b', text: "Any vessel, regardless of length", whyWrong: "The throwable-device requirement applies specifically to vessels 16 feet and longer, not to every recreational boat." },
     { id: 'c', text: "40 feet and longer only", whyWrong: "The threshold is 16 feet, well below 40 feet." },
     { id: 'd', text: "Only vessels carrying passengers for hire", whyWrong: "This is a general recreational-boating requirement tied to vessel length, not limited to for-hire vessels." },
+    { id: 'a', text: "16 feet and longer" },
   ],
   correctChoiceId: 'a',
   explanation: "Recreational vessels 16 feet and longer must carry at least one throwable Type IV device, immediately accessible, in addition to a wearable PFD for each person aboard.",
@@ -4468,10 +4468,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-visual-distress-flare',
   prompt: "A boat 20 feet long operates on coastal waters. What visual distress signal equipment is legally required?",
   choices: [
-    { id: 'a', text: "USCG-approved day and night visual distress signals (e.g., approved flares, an electric distress light for night, and/or an orange distress flag for day)" },
     { id: 'b', text: "No visual distress signals are required for any recreational vessel", whyWrong: "Vessels operating on coastal waters, the Great Lakes, or territorial seas are required to carry both day and night visual distress signals." },
     { id: 'c', text: "Only a nighttime signal is required; daytime signals are optional", whyWrong: "Both day-usable and night-usable visual distress signals are required for coastal operation." },
     { id: 'd', text: "A cell phone satisfies the visual distress signal requirement", whyWrong: "A cell phone is not a USCG-approved visual distress signal device and does not meet this requirement on its own." },
+    { id: 'a', text: "USCG-approved day and night visual distress signals (e.g., approved flares, an electric distress light for night, and/or an orange distress flag for day)" },
   ],
   correctChoiceId: 'a',
   explanation: "Vessels operating on coastal waters, the Great Lakes, or territorial seas must carry USCG-approved visual distress signals usable by day and by night (a common combination is a set of approved flares plus an orange distress flag, or an electric distress light for night use). Confirm expiration dates — most pyrotechnic flares expire and must be replaced periodically.",
@@ -4529,10 +4529,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Which statement about navigation lights and the federal equipment requirements is accurate?",
   choices: [
+    { id: 'd', text: "A single all-round white light satisfies every vessel's requirement regardless of size", whyWrong: "The specific light configuration required depends on vessel length and type; a single all-round white light only satisfies the smallest-vessel exception, not every vessel." },
     { id: 'a', text: "Recreational vessels must be equipped with functioning navigation lights that meet the Navigation Rules and must display them during periods of restricted visibility and from sunset to sunrise" },
     { id: 'b', text: "Navigation lights are only required if the boat is over 65 feet long", whyWrong: "Navigation light requirements apply across recreational vessel sizes (with lighting configurations that vary by length), not only to very large vessels." },
     { id: 'c', text: "Navigation lights are optional equipment left to the owner's discretion", whyWrong: "Proper, functioning navigation lights and their required display at night/restricted visibility are a legal requirement, not optional." },
-    { id: 'd', text: "A single all-round white light satisfies every vessel's requirement regardless of size", whyWrong: "The specific light configuration required depends on vessel length and type; a single all-round white light only satisfies the smallest-vessel exception, not every vessel." },
   ],
   correctChoiceId: 'a',
   explanation: "Federal law and the Navigation Rules require recreational vessels to carry navigation lights appropriate to their size and type and to display them from sunset to sunrise and during restricted visibility, so other vessels can identify them at night.",
@@ -4545,10 +4545,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-pfd-wearable-throwable',
   prompt: "The diagram shows two categories of flotation device. What is the key functional difference between them?",
   choices: [
-    { id: 'a', text: "A wearable PFD is worn on the body before an emergency happens; a throwable device is tossed to a person already in the water" },
-    { id: 'b', text: "Both are designed to be worn continuously by every crew member", whyWrong: "Throwable devices (ring buoys, cushions) are not designed to be worn; they are thrown to someone in the water." },
     { id: 'c', text: "There is no functional difference; both satisfy identical requirements", whyWrong: "They serve different roles and are counted as separate required-equipment categories (Type III/wearable vs. Type IV/throwable) under federal rules." },
     { id: 'd', text: "The throwable device is only for use by children", whyWrong: "Throwable devices are general man-overboard rescue equipment, not restricted to children." },
+    { id: 'a', text: "A wearable PFD is worn on the body before an emergency happens; a throwable device is tossed to a person already in the water" },
+    { id: 'b', text: "Both are designed to be worn continuously by every crew member", whyWrong: "Throwable devices (ring buoys, cushions) are not designed to be worn; they are thrown to someone in the water." },
   ],
   correctChoiceId: 'a',
   explanation: "A wearable PFD (like a Type III vest) is meant to be worn before you go in the water, keeping you afloat immediately. A throwable device (Type IV, like a ring buoy or buoyant cushion) is meant to be thrown to someone already in the water — a distinct and separately required category of safety equipment.",
@@ -4575,10 +4575,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Federal requirements state wearable PFDs must be \"readily accessible.\" What does that mean in practice?",
   choices: [
+    { id: 'd', text: "They only need to be accessible while docked, not underway", whyWrong: "Readily accessible applies whenever the PFDs are required aboard, underway included — arguably when it matters most." },
     { id: 'a', text: "They must be easy to reach quickly, not stowed in a locked or hard-to-open compartment or buried under other gear" },
     { id: 'b', text: "They must be worn by every person aboard at all times", whyWrong: "Federal law requires PFDs to be carried and readily accessible; continuous wear is generally a recommendation or a state/child-specific rule, not the general federal accessibility requirement itself." },
     { id: 'c', text: "They can be stored in a sealed, locked compartment as long as a key exists somewhere aboard", whyWrong: "A locked compartment defeats \"readily accessible\" — PFDs need to be reachable quickly in an emergency without hunting for a key." },
-    { id: 'd', text: "They only need to be accessible while docked, not underway", whyWrong: "Readily accessible applies whenever the PFDs are required aboard, underway included — arguably when it matters most." },
   ],
   correctChoiceId: 'a',
   explanation: "\"Readily accessible\" means PFDs must be quickly reachable in an emergency — not sealed in a locked or latched compartment, not buried under gear, and not still in their original shrink-wrap packaging.",
@@ -4590,10 +4590,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is a well-established prudent practice regarding children and PFDs, beyond the base federal carriage requirement?",
   choices: [
-    { id: 'a', text: "Many states require children under a certain age to wear a properly fitted PFD at all times while underway on an open deck — check the specific state rule for the waters you're on" },
     { id: 'b', text: "Children are exempt from PFD requirements entirely", whyWrong: "Children are not exempt — if anything, many jurisdictions impose stricter wear requirements for young children than for adults." },
     { id: 'c', text: "Any adult-sized PFD is acceptable for a child as long as one is aboard", whyWrong: "PFDs must be sized appropriately for the wearer; an adult PFD will not hold a small child's head above water correctly." },
     { id: 'd', text: "PFD wear rules for children are identical nationwide with no state variation", whyWrong: "Age thresholds and specific wear requirements for children vary by state, so it's important to check the applicable rule for your location." },
+    { id: 'a', text: "Many states require children under a certain age to wear a properly fitted PFD at all times while underway on an open deck — check the specific state rule for the waters you're on" },
   ],
   correctChoiceId: 'a',
   explanation: "While federal law sets the baseline (one appropriately sized wearable PFD per person aboard), many states go further and require young children to actually wear a PFD whenever underway on deck. Rules vary by state, so check locally — and in any case, a correctly sized PFD (not an adult unit) is essential for a child.",
@@ -4620,10 +4620,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Is a first-aid kit federally required aboard a recreational boat?",
   choices: [
-    { id: 'a', text: "No — it is not on the federal required-equipment list, but it is a widely recommended, prudent item for any cruising boat" },
-    { id: 'b', text: "Yes, it is a federal carriage requirement for all recreational vessels", whyWrong: "A first-aid kit is not on the federal list of required equipment; it's a recommended/prudent addition, distinct from the legally mandated items." },
     { id: 'c', text: "Only vessels over 65 feet must carry one", whyWrong: "There is no such federal size threshold for first-aid kits on recreational vessels; it simply isn't a federal requirement at any size." },
     { id: 'd', text: "It is required only during federally declared emergencies", whyWrong: "There's no such conditional federal requirement; a first-aid kit remains a recommended item, not a legal requirement, under normal or emergency conditions alike." },
+    { id: 'a', text: "No — it is not on the federal required-equipment list, but it is a widely recommended, prudent item for any cruising boat" },
+    { id: 'b', text: "Yes, it is a federal carriage requirement for all recreational vessels", whyWrong: "A first-aid kit is not on the federal list of required equipment; it's a recommended/prudent addition, distinct from the legally mandated items." },
   ],
   correctChoiceId: 'a',
   explanation: "A first-aid kit does not appear on the USCG's federal required-equipment list for recreational boats. It is, however, strongly recommended by ASA and prudent seamanship — don't confuse \"recommended\" with \"required.\"",
@@ -4650,10 +4650,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why do ASA courses recommend carrying a handheld VHF radio in addition to a fixed-mount VHF?",
   choices: [
-    { id: 'a', text: "It provides a backup means of communication if the boat loses electrical power or the fixed unit fails, and it can go with the crew in a life raft or dinghy" },
-    { id: 'b', text: "It is required by federal law on all recreational vessels", whyWrong: "VHF radio carriage is generally not a blanket federal requirement for recreational vessels; a handheld backup is a prudent recommendation, not a legal mandate." },
     { id: 'c', text: "It replaces the need for any visual distress signals", whyWrong: "A handheld VHF is a communication device and does not substitute for the required visual distress signals." },
     { id: 'd', text: "It is only useful for listening to music", whyWrong: "A VHF radio is a marine communication and emergency-calling device, not an entertainment radio." },
+    { id: 'a', text: "It provides a backup means of communication if the boat loses electrical power or the fixed unit fails, and it can go with the crew in a life raft or dinghy" },
+    { id: 'b', text: "It is required by federal law on all recreational vessels", whyWrong: "VHF radio carriage is generally not a blanket federal requirement for recreational vessels; a handheld backup is a prudent recommendation, not a legal mandate." },
   ],
   correctChoiceId: 'a',
   explanation: "A handheld VHF, independent of the boat's electrical system and fixed antenna, gives you a redundant way to call for help if the primary radio or ship's power fails, and it's portable enough to take into a life raft or dinghy in an abandon-ship scenario.",
@@ -4665,10 +4665,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why is a basic tool kit and a set of spare parts (impeller, fuses, hose clamps, filters) considered prudent gear for a cruising boat?",
   choices: [
-    { id: 'a', text: "It lets the crew make minor repairs underway or at anchor, rather than being stranded by a small, otherwise fixable failure" },
-    { id: 'b', text: "It is legally required by the USCG for offshore passages", whyWrong: "There's no federal mandate specifying a tool kit and spares list; this is prudent-seamanship guidance, not a legal requirement." },
     { id: 'c', text: "It replaces the need for any safety equipment", whyWrong: "Tools and spares support minor repairs; they don't substitute for PFDs, distress signals, or other required safety gear." },
     { id: 'd', text: "It is only useful for haul-out maintenance ashore", whyWrong: "The value is specifically for underway/at-anchor self-sufficiency, addressing failures far from a boatyard, not just shoreside maintenance." },
+    { id: 'a', text: "It lets the crew make minor repairs underway or at anchor, rather than being stranded by a small, otherwise fixable failure" },
+    { id: 'b', text: "It is legally required by the USCG for offshore passages", whyWrong: "There's no federal mandate specifying a tool kit and spares list; this is prudent-seamanship guidance, not a legal requirement." },
   ],
   correctChoiceId: 'a',
   explanation: "A modest set of tools and common spares means a failed impeller, blown fuse, or leaking hose clamp doesn't turn into a full emergency — the crew can often fix it on the spot rather than calling for a tow or being stuck at anchor.",
@@ -4695,10 +4695,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Before heading offshore in a building sea, why is it important to secure all loose gear belowdecks and on deck?",
   choices: [
+    { id: 'd', text: "It is only a concern in calm conditions", whyWrong: "The risk from loose gear becomes serious specifically as sea state builds and the boat moves more, not in calm conditions." },
     { id: 'a', text: "Loose gear can become a dangerous projectile or trip/injury hazard as the boat heels and pitches, and can also damage itself or the boat" },
     { id: 'b', text: "It is purely a matter of tidiness with no safety implication", whyWrong: "Unsecured gear is a genuine safety hazard in a seaway, not just a cosmetic housekeeping issue." },
     { id: 'c', text: "Loose gear improves the boat's stability", whyWrong: "Loose, unsecured gear does not improve stability; securing it is about preventing hazards, not enhancing stability." },
-    { id: 'd', text: "It is only a concern in calm conditions", whyWrong: "The risk from loose gear becomes serious specifically as sea state builds and the boat moves more, not in calm conditions." },
   ],
   correctChoiceId: 'a',
   explanation: "As the boat heels and works in a seaway, anything not secured (cans, tools, batteries, cabin sole boards) can fly across the cabin, injure crew, jam steering or bilge access, or damage itself. \"Stow it or lose it\" is a basic pre-departure discipline.",
@@ -4710,10 +4710,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is a specific, recommended stowage practice for galley items before getting underway in a seaway?",
   choices: [
-    { id: 'a', text: "Secure cabinet latches, wedge or strap loose pots/pans, and confirm the stove is gimbaled and locked appropriately for the conditions" },
-    { id: 'b', text: "Leave cabinet doors open for ventilation", whyWrong: "Open cabinet doors let contents spill as the boat heels; latches should be secured before getting underway." },
     { id: 'c', text: "Remove the stove entirely before any passage", whyWrong: "Removing the stove is unnecessary and impractical; the stove is typically gimbaled and secured appropriately, not removed." },
     { id: 'd', text: "Galley stowage has no bearing on safety underway", whyWrong: "An unsecured galley is a real hazard source (falling pots, spilled hot liquids, jammed drawers), so it does bear on safety." },
+    { id: 'a', text: "Secure cabinet latches, wedge or strap loose pots/pans, and confirm the stove is gimbaled and locked appropriately for the conditions" },
+    { id: 'b', text: "Leave cabinet doors open for ventilation", whyWrong: "Open cabinet doors let contents spill as the boat heels; latches should be secured before getting underway." },
   ],
   correctChoiceId: 'a',
   explanation: "Galley cabinets should be positively latched (not just closed), loose cookware secured or stowed, and the gimbaled stove checked so it swings freely but won't fling hot contents in a seaway — a routine but important part of securing for sea.",
@@ -4726,10 +4726,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-harness-tether-jackline',
   prompt: "What does this deck arrangement show, and what is its purpose?",
   choices: [
+    { id: 'd', text: "Anchor rode laid out on deck before deployment", whyWrong: "Anchor rode runs from the bow roller to the anchor, not fore-and-aft along the side decks as a crew attachment point." },
     { id: 'a', text: "Jacklines running fore-and-aft with a crew member's harness tether clipped to one — this lets crew move along the deck while staying clipped on, reducing the risk of going overboard" },
     { id: 'b', text: "Lifelines used purely as a handhold with no connection to a harness", whyWrong: "The lines shown are jacklines specifically meant for tether attachment, not the boat's fixed lifelines." },
     { id: 'c', text: "Dock lines used for tying up at a marina", whyWrong: "Dock lines secure the boat to a dock; jacklines are a deck safety system for crew, a different purpose entirely." },
-    { id: 'd', text: "Anchor rode laid out on deck before deployment", whyWrong: "Anchor rode runs from the bow roller to the anchor, not fore-and-aft along the side decks as a crew attachment point." },
   ],
   correctChoiceId: 'a',
   explanation: "Jacklines are webbing or line rigged fore-and-aft along the deck. A crew member wearing a safety harness clips a tether to the jackline, allowing movement along the deck while remaining attached to the boat — a core practice for offshore or heavy-weather sailing.",
@@ -4741,10 +4741,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "In what conditions is it considered good practice to wear a harness and clip in with a tether?",
   choices: [
-    { id: 'a', text: "At night, in heavy weather, when short-handed, or any time the risk of going overboard is elevated" },
     { id: 'b', text: "Only when the boat is anchored", whyWrong: "A harness/tether is about preventing a fall overboard while moving on deck underway — it has little purpose while safely anchored and not moving about the deck underway." },
     { id: 'c', text: "Only in flat calm daytime conditions", whyWrong: "The greatest value of a harness and tether is precisely when conditions are worse — night, heavy weather, or reduced crew — not calm daylight." },
     { id: 'd', text: "Harnesses are never necessary if a PFD is worn", whyWrong: "A PFD keeps you afloat if you go overboard; a harness/tether is meant to prevent going overboard in the first place — they serve complementary, not interchangeable, purposes." },
+    { id: 'a', text: "At night, in heavy weather, when short-handed, or any time the risk of going overboard is elevated" },
   ],
   correctChoiceId: 'a',
   explanation: "Common prudent practice is to wear a harness and stay clipped in during night watches, heavy weather, short-handed sailing, or foredeck work — situations where a fall overboard is both more likely and harder for the rest of the crew to notice and recover from.",
@@ -4756,10 +4756,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "When clipping a tether onto the boat, what is the recommended attachment point?",
   choices: [
-    { id: 'a', text: "A dedicated jackline or a strong padeye/attachment point, kept inboard where possible rather than on the lifelines" },
-    { id: 'b', text: "The lifelines, since they run the full length of the deck", whyWrong: "Lifelines are generally not rated or intended as tether attachment points and can fail under a sudden overboard load — jacklines or dedicated padeyes are the recommended points." },
     { id: 'c', text: "Any convenient line on deck, such as a sheet or halyard", whyWrong: "Sheets and halyards are working lines, not fixed structural attachment points, and can be released or shift unexpectedly." },
     { id: 'd', text: "It does not matter where you clip in, as long as you are clipped to something", whyWrong: "The attachment point matters a great deal — a weak or outboard point can fail or let a person go over the side, defeating the purpose of clipping in." },
+    { id: 'a', text: "A dedicated jackline or a strong padeye/attachment point, kept inboard where possible rather than on the lifelines" },
+    { id: 'b', text: "The lifelines, since they run the full length of the deck", whyWrong: "Lifelines are generally not rated or intended as tether attachment points and can fail under a sudden overboard load — jacklines or dedicated padeyes are the recommended points." },
   ],
   correctChoiceId: 'a',
   explanation: "Tethers should clip to purpose-built jacklines or strong, dedicated attachment points (padeyes), kept as far inboard as practical. Lifelines are not designed to take a sudden overboard shock load and are not a recommended clip-in point.",
@@ -4772,10 +4772,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-fueling-gas-diesel',
   prompt: "Comparing the two fueling procedures shown, what is the key extra step required specifically before starting a gasoline engine after fueling, that is not required for diesel?",
   choices: [
+    { id: 'd', text: "Nothing — gasoline and diesel fueling procedures are identical", whyWrong: "They are not identical: gasoline's more volatile, heavier-than-air vapors require the ventilation/blower step that diesel does not." },
     { id: 'a', text: "Running the engine compartment blower for several minutes to clear any gasoline vapors before starting the engine" },
     { id: 'b', text: "Closing the fuel fill cap", whyWrong: "Closing the fill cap is common to both gasoline and diesel fueling; it isn't the gasoline-specific extra step." },
     { id: 'c', text: "Turning off all electronics", whyWrong: "This isn't the specific, defining extra step that distinguishes gasoline procedure from diesel procedure." },
-    { id: 'd', text: "Nothing — gasoline and diesel fueling procedures are identical", whyWrong: "They are not identical: gasoline's more volatile, heavier-than-air vapors require the ventilation/blower step that diesel does not." },
   ],
   correctChoiceId: 'a',
   explanation: "Gasoline vapors are heavier than air, sink into the bilge, and are far more explosive than diesel fumes. That's why gasoline-powered boats require running the engine compartment blower for several minutes after fueling and before starting the engine — a step not required for diesel, whose vapors are much less volatile.",
@@ -4787,10 +4787,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is the specific purpose of running the engine compartment blower before starting a gasoline inboard engine?",
   choices: [
+    { id: 'd', text: "To improve fuel economy", whyWrong: "The blower's purpose is safety ventilation, not fuel efficiency." },
     { id: 'a', text: "To exhaust any accumulated gasoline vapor from the bilge/engine compartment before an ignition source (the starter) is engaged" },
     { id: 'b', text: "To cool the engine before starting", whyWrong: "Engine cooling is handled by the raw-water cooling system once running, not by the ventilation blower." },
     { id: 'c', text: "To charge the batteries faster", whyWrong: "The blower is a ventilation fan; it has no role in battery charging." },
-    { id: 'd', text: "To improve fuel economy", whyWrong: "The blower's purpose is safety ventilation, not fuel efficiency." },
   ],
   correctChoiceId: 'a',
   explanation: "Gasoline vapors are explosive and, being heavier than air, pool in the bilge and engine compartment. The blower clears that space of accumulated vapor before you engage the starter (a spark source), reducing the risk of an explosion.",
@@ -4802,10 +4802,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Before fueling at the dock, what should be shut off or extinguished aboard?",
   choices: [
-    { id: 'a', text: "The engine, all electrical equipment that could spark, open flames, and any smoking materials" },
     { id: 'b', text: "Only the engine; everything else can remain on", whyWrong: "Electrical switches and open flames can also provide an ignition source for fuel vapor and should be off/out as well, not just the engine." },
     { id: 'c', text: "Nothing needs to be shut off during fueling", whyWrong: "Shutting off ignition sources before fueling is a basic, standard safety step, not an unnecessary one." },
     { id: 'd', text: "Only the stove, since the engine is already off while docked", whyWrong: "The engine should be positively shut off (not just assumed off), along with other spark/flame sources — the stove alone isn't the full list." },
+    { id: 'a', text: "The engine, all electrical equipment that could spark, open flames, and any smoking materials" },
   ],
   correctChoiceId: 'a',
   explanation: "Before fueling, shut down the engine, turn off electrical switches and appliances that could spark, extinguish any open flames, and put out smoking materials — fuel vapor near any ignition source is a fire/explosion risk.",
@@ -4817,10 +4817,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "If fuel is accidentally spilled into the water while fueling, what is the boater's obligation?",
   choices: [
-    { id: 'a', text: "Stop fueling immediately, and it must be reported — a fuel/oil spill that leaves a sheen on the water is a reportable pollution incident" },
     { id: 'b', text: "No action is required for small spills", whyWrong: "Even a small spill that produces a visible sheen on the water is a reportable event under federal pollution law, not something to ignore." },
     { id: 'c', text: "Continue fueling and clean it up afterward", whyWrong: "Fueling should stop immediately when a spill occurs, not continue while fuel is actively going into the water." },
     { id: 'd', text: "Only spills over 50 gallons need to be reported", whyWrong: "There's no minimum-volume exemption — any spill that produces a sheen on the water is reportable, regardless of quantity." },
+    { id: 'a', text: "Stop fueling immediately, and it must be reported — a fuel/oil spill that leaves a sheen on the water is a reportable pollution incident" },
   ],
   correctChoiceId: 'a',
   explanation: "Federal law prohibits discharging oil or fuel that causes a visible sheen on the water, and such an incident must be reported to the National Response Center. Stop fueling immediately if a spill occurs and follow the marina's/authority's spill procedure.",
@@ -4832,10 +4832,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "After fueling and before starting the engine, why is it recommended to open hatches and sniff the bilge (or use a vapor detector) in addition to running the blower?",
   choices: [
-    { id: 'a', text: "Gasoline vapor is heavier than air and can pool in low spots even after the blower runs, so a direct check adds a second layer of confirmation before starting" },
-    { id: 'b', text: "It has nothing to do with fuel vapor and is only a general housekeeping step", whyWrong: "This check is specifically aimed at confirming no residual gasoline vapor remains before starting, not general housekeeping." },
     { id: 'c', text: "It is required only for diesel engines", whyWrong: "This vapor check is specifically relevant to gasoline (whose vapor is heavier-than-air and explosive), not a diesel-specific step." },
     { id: 'd', text: "It replaces the need to run the blower at all", whyWrong: "The sniff/vapor check is an additional confirmation step, not a substitute for running the blower." },
+    { id: 'a', text: "Gasoline vapor is heavier than air and can pool in low spots even after the blower runs, so a direct check adds a second layer of confirmation before starting" },
+    { id: 'b', text: "It has nothing to do with fuel vapor and is only a general housekeeping step", whyWrong: "This check is specifically aimed at confirming no residual gasoline vapor remains before starting, not general housekeeping." },
   ],
   correctChoiceId: 'a',
   explanation: "Because gasoline vapor is heavier than air, it can linger in low pockets of the bilge even after a blower cycle. A quick visual/smell check (or an electronic vapor detector, where fitted) adds a second confirmation that it's safe to start the engine.",
@@ -4852,10 +4852,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'photo-outboard-engine',
   prompt: "The photo shows one common type of small-boat auxiliary engine. What are the two main auxiliary engine arrangements found on cruising boats?",
   choices: [
-    { id: 'a', text: "Outboard motors (mounted on the transom or a bracket, as shown) and inboard engines (mounted inside the hull, driving a fixed propeller shaft)" },
     { id: 'b', text: "Gasoline and jet-drive only, with no other arrangements in use", whyWrong: "This omits inboard shaft-drive diesels, one of the two main arrangements actually taught at this level." },
     { id: 'c', text: "Sail-drive is the only arrangement used on cruising boats", whyWrong: "Sail-drives are one inboard variant, but outboards and traditional shaft-drive inboards are the two main categories covered." },
     { id: 'd', text: "There is only one type of auxiliary engine used on cruising boats", whyWrong: "Cruising boats commonly use either outboard or inboard auxiliary power, not a single universal arrangement." },
+    { id: 'a', text: "Outboard motors (mounted on the transom or a bracket, as shown) and inboard engines (mounted inside the hull, driving a fixed propeller shaft)" },
   ],
   correctChoiceId: 'a',
   explanation: "Small cruising boats are commonly powered by either a transom/bracket-mounted outboard motor (as pictured) or an inboard engine (often diesel) turning a fixed propeller shaft or sail-drive leg. Which type is aboard affects pre-start checks, control layout, and maintenance access.",
@@ -4867,10 +4867,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "As part of a pre-start check on an inboard engine, what should you look for when opening the engine compartment?",
   choices: [
+    { id: 'd', text: "Only the engine's serial number", whyWrong: "The serial number has no bearing on a functional pre-start safety check." },
     { id: 'a', text: "Signs of fuel, oil, or water leaks, loose belts or clamps, and any unusual smell before starting" },
     { id: 'b', text: "Only whether the engine paint looks fresh", whyWrong: "Cosmetic appearance is not a meaningful pre-start safety check; leaks, loose fittings, and odors are." },
     { id: 'c', text: "Nothing — the compartment does not need to be checked before starting", whyWrong: "A visual pre-start check of the engine compartment is a standard, recommended step, not something to skip." },
-    { id: 'd', text: "Only the engine's serial number", whyWrong: "The serial number has no bearing on a functional pre-start safety check." },
   ],
   correctChoiceId: 'a',
   explanation: "A quick look before starting — checking for fresh leaks, loose or worn belts, secured clamps, and any fuel or gas smell — catches many problems while they're still minor and before the engine is running.",
@@ -4882,10 +4882,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Which fluid levels are part of a basic ASA 103-level pre-start check on a diesel auxiliary?",
   choices: [
-    { id: 'a', text: "Engine oil level and coolant level (if freshwater cooled), checked before starting" },
     { id: 'b', text: "Only the freshwater tank for the sink", whyWrong: "The domestic freshwater tank has nothing to do with engine pre-start checks; engine oil and coolant are the relevant fluids." },
     { id: 'c', text: "Only the holding tank level", whyWrong: "The holding tank is a sanitation system, unrelated to engine pre-start checks." },
     { id: 'd', text: "Fluid levels are not part of a pre-start check", whyWrong: "Checking oil (and coolant, if applicable) before starting is a standard, basic pre-start step." },
+    { id: 'a', text: "Engine oil level and coolant level (if freshwater cooled), checked before starting" },
   ],
   correctChoiceId: 'a',
   explanation: "At the ASA 103 level, a basic pre-start check includes confirming engine oil is at the proper level on the dipstick and, on freshwater-cooled engines, that coolant is adequate — quick checks that catch a low-oil or low-coolant condition before it becomes engine damage.",
@@ -4912,10 +4912,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why should you confirm the transmission/shift control is in neutral before starting the engine?",
   choices: [
-    { id: 'a', text: "Starting in gear could cause the boat to lurch forward or backward unexpectedly, which is a safety hazard at the dock or in a slip" },
-    { id: 'b', text: "It has no effect either way", whyWrong: "Starting in gear can and does cause unexpected boat movement, so it does have an effect." },
     { id: 'c', text: "It is only a concern for outboard engines, not inboards", whyWrong: "Confirming neutral before starting applies to inboard and outboard installations alike." },
     { id: 'd', text: "It only matters after the engine has already been running for a while", whyWrong: "The concern is specifically at start-up, when an unexpected lurch into gear could catch the crew and dock lines off guard." },
+    { id: 'a', text: "Starting in gear could cause the boat to lurch forward or backward unexpectedly, which is a safety hazard at the dock or in a slip" },
+    { id: 'b', text: "It has no effect either way", whyWrong: "Starting in gear can and does cause unexpected boat movement, so it does have an effect." },
   ],
   correctChoiceId: 'a',
   explanation: "Many engines are designed with a safety neutral-start switch, but it's still standard practice to confirm the shift lever is in neutral before hitting the starter — an inadvertent start in gear can move the boat suddenly, damaging the dock, another boat, or injuring crew.",
@@ -4942,10 +4942,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Which sequence best reflects a basic, correct auxiliary engine starting procedure?",
   choices: [
+    { id: 'd', text: "There is no meaningful order; any sequence works equally well", whyWrong: "A specific order matters here — several of these checks exist precisely to prevent engine damage if skipped or done out of order." },
     { id: 'a', text: "Confirm neutral, confirm seacock (if applicable) is open, open fuel supply, start engine, confirm cooling water flow" },
     { id: 'b', text: "Start engine first, then check everything else afterward", whyWrong: "Checks like neutral, open seacock, and fuel supply should be confirmed before starting, not as an afterthought." },
     { id: 'c', text: "Close the raw-water seacock, then start the engine", whyWrong: "The raw-water seacock must be open, not closed, before starting — closing it starves the engine of cooling water." },
-    { id: 'd', text: "There is no meaningful order; any sequence works equally well", whyWrong: "A specific order matters here — several of these checks exist precisely to prevent engine damage if skipped or done out of order." },
   ],
   correctChoiceId: 'a',
   explanation: "A sound basic sequence is: confirm the shift is in neutral, confirm the raw-water intake seacock is open, confirm fuel supply is on, start the engine, then immediately confirm cooling water is flowing from the exhaust. Skipping or reordering these steps risks damaging the engine or an unexpected boat movement.",
@@ -4958,10 +4958,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-prop-walk',
   prompt: "The diagram shows a boat backing under power with a right-hand propeller. What effect is illustrated, and why does it happen?",
   choices: [
-    { id: 'a', text: "Prop walk — the spinning propeller's asymmetric thrust pushes the stern sideways (to port for a right-hand prop in reverse) in addition to moving the boat astern" },
     { id: 'b', text: "Prop wash over the rudder, unrelated to which way the stern moves", whyWrong: "Prop wash is the stream of water pushed by the propeller across the rudder; the sideways stern movement shown is specifically prop walk." },
     { id: 'c', text: "A steering failure requiring the emergency tiller", whyWrong: "This is a normal, predictable propeller effect, not a mechanical steering failure." },
     { id: 'd', text: "The effect only happens when going forward, never in reverse", whyWrong: "Prop walk is typically most noticeable in reverse, which is exactly what the diagram shows." },
+    { id: 'a', text: "Prop walk — the spinning propeller's asymmetric thrust pushes the stern sideways (to port for a right-hand prop in reverse) in addition to moving the boat astern" },
   ],
   correctChoiceId: 'a',
   explanation: "Prop walk (paddle-wheel effect) results from the propeller blades biting unevenly into the water at different depths and angles as they rotate. For a common right-hand propeller, this pushes the stern to port when backing down, meaning the boat doesn't back straight — a predictable effect skippers learn to use to their advantage when docking.",
@@ -4973,10 +4973,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why does a boat typically steer more effectively at low speed with a burst of forward throttle, even if boat speed barely changes?",
   choices: [
-    { id: 'a', text: "The propeller's wash flows directly over the rudder, increasing the water flow across it and improving steering response independent of the boat's speed through the water" },
-    { id: 'b', text: "It has no effect on steering at all", whyWrong: "A throttle burst does improve rudder effectiveness via prop wash, so it isn't without effect." },
     { id: 'c', text: "It only works when the boat is already moving fast", whyWrong: "This technique is specifically useful at low speed, when the rudder alone doesn't have much flow across it yet." },
     { id: 'd', text: "It works by increasing the boat's displacement", whyWrong: "Throttle bursts don't change displacement; the mechanism is increased water flow (prop wash) across the rudder." },
+    { id: 'a', text: "The propeller's wash flows directly over the rudder, increasing the water flow across it and improving steering response independent of the boat's speed through the water" },
+    { id: 'b', text: "It has no effect on steering at all", whyWrong: "A throttle burst does improve rudder effectiveness via prop wash, so it isn't without effect." },
   ],
   correctChoiceId: 'a',
   explanation: "A rudder needs water flowing across it to be effective. At low boat speed there isn't much flow from the boat's own motion, but a short burst of throttle drives prop wash directly over the rudder, giving an immediate boost in steering response — a technique often used in tight-quarters maneuvering.",
@@ -4988,10 +4988,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Compared to forward gear, why is steering control generally less effective in reverse?",
   choices: [
-    { id: 'a', text: "In reverse, prop wash from the propeller does not flow directly over the rudder the way it does going forward, and prop walk becomes more pronounced, both reducing rudder effectiveness" },
-    { id: 'b', text: "The rudder physically cannot move while in reverse gear", whyWrong: "The rudder remains fully operable in reverse; the issue is reduced effectiveness, not the rudder being locked." },
     { id: 'c', text: "Reverse gear disables the steering system entirely", whyWrong: "Steering is not disabled in reverse — it is simply less responsive due to reduced prop wash over the rudder and more pronounced prop walk." },
     { id: 'd', text: "There is no difference between forward and reverse steering response", whyWrong: "There is a real, well-known difference — reverse steering is generally less crisp, which is why boats are often described as backing down less predictably than they go forward." },
+    { id: 'a', text: "In reverse, prop wash from the propeller does not flow directly over the rudder the way it does going forward, and prop walk becomes more pronounced, both reducing rudder effectiveness" },
+    { id: 'b', text: "The rudder physically cannot move while in reverse gear", whyWrong: "The rudder remains fully operable in reverse; the issue is reduced effectiveness, not the rudder being locked." },
   ],
   correctChoiceId: 'a',
   explanation: "Going forward, the propeller's wash is thrown directly aft across the rudder, sharpening its bite. In reverse, that wash is drawn away from the rudder rather than pushed over it, so steering response is duller, and prop walk's sideways stern effect becomes comparatively more noticeable.",
@@ -5003,10 +5003,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "A boat with a right-hand propeller (stern walks to port in reverse) needs to back into a slip to port. How can the skipper use prop walk to advantage?",
   choices: [
-    { id: 'a', text: "Use short bursts of reverse to let prop walk help swing the stern to port, working with the boat's natural tendency rather than fighting it" },
-    { id: 'b', text: "Prop walk cannot be used to advantage in any docking situation", whyWrong: "Skilled use of prop walk is a standard, taught docking technique, not something with no practical application." },
     { id: 'c', text: "Switch to forward gear only, since prop walk never occurs going forward", whyWrong: "Reverse gear is what's needed to back into the slip, and it's specifically in reverse that this boat's prop walk pushes the stern to port — useful here, not something to avoid." },
     { id: 'd', text: "Prop walk only matters for outboard motors", whyWrong: "Prop walk is a property of the propeller and gear (rotation direction), and applies to inboard installations as much as outboards." },
+    { id: 'a', text: "Use short bursts of reverse to let prop walk help swing the stern to port, working with the boat's natural tendency rather than fighting it" },
+    { id: 'b', text: "Prop walk cannot be used to advantage in any docking situation", whyWrong: "Skilled use of prop walk is a standard, taught docking technique, not something with no practical application." },
   ],
   correctChoiceId: 'a',
   explanation: "Since this boat's prop walk pushes the stern to port in reverse, backing into a slip that also requires the stern to swing to port works with the boat's natural tendency — short bursts of reverse can help rotate the stern in the desired direction with less need for large rudder corrections.",
@@ -5018,10 +5018,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why do displacement sailboats generally need more room to stop than a car covering the same speed would suggest?",
   choices: [
+    { id: 'd', text: "Stopping distance is not affected by the boat's weight or speed", whyWrong: "Stopping distance is very much affected by the boat's mass and speed — heavier, faster boats carry way longer." },
     { id: 'a', text: "A boat has no brakes and significant momentum in the water, so it continues moving (carrying way) for some distance after the throttle is cut or reversed" },
     { id: 'b', text: "Boats stop instantly once the throttle is released", whyWrong: "Boats continue moving under their own momentum after the throttle is cut — they do not stop instantly." },
     { id: 'c', text: "Water provides more resistance than air, so boats always stop faster than cars", whyWrong: "Despite water resistance, the lack of brakes and significant momentum generally mean boats need more room to stop than intuition based on cars would suggest." },
-    { id: 'd', text: "Stopping distance is not affected by the boat's weight or speed", whyWrong: "Stopping distance is very much affected by the boat's mass and speed — heavier, faster boats carry way longer." },
   ],
   correctChoiceId: 'a',
   explanation: "Boats don't have brakes. Cutting the throttle to neutral, or even reversing, doesn't stop the boat immediately — it continues to carry way and glide for a distance that depends on its speed, weight, and hull shape. Planning stops (and approaches to a dock or mooring) needs to account for this.",
@@ -5033,10 +5033,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What does \"steerage way\" mean, and why does it matter when backing down?",
   choices: [
+    { id: 'd', text: "It only applies when going forward, never in reverse", whyWrong: "Steerage way applies to reverse as much as forward — with too little speed astern, the rudder loses effect just as it does going too slowly ahead." },
     { id: 'a', text: "Steerage way is the minimum speed through the water needed for the rudder to have effect; without it, the boat won't answer the helm even in reverse" },
     { id: 'b', text: "It refers to which side of the channel a vessel must keep to", whyWrong: "That describes narrow-channel navigation rules, not steerage way, which is about minimum speed for rudder control." },
     { id: 'c', text: "It is the maximum speed a boat is permitted to travel", whyWrong: "Steerage way is about a minimum speed needed for control, not a maximum speed limit." },
-    { id: 'd', text: "It only applies when going forward, never in reverse", whyWrong: "Steerage way applies to reverse as much as forward — with too little speed astern, the rudder loses effect just as it does going too slowly ahead." },
   ],
   correctChoiceId: 'a',
   explanation: "A rudder only works if water is flowing across it. Steerage way is the minimum boat speed at which that flow is enough for the rudder to actually change the boat's heading. Backing down too slowly means the rudder has little or no effect, and prop walk or wind/current can dominate instead.",
@@ -5048,10 +5048,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "In a tight space, what technique lets a single-engine boat turn in a notably shorter radius than steady forward power and full rudder alone?",
   choices: [
-    { id: 'a', text: "Alternating short bursts of forward and reverse power (sometimes called \"walking\" or \"backing and filling\") combined with the rudder to pivot the boat" },
     { id: 'b', text: "Increasing forward throttle continuously with no rudder input", whyWrong: "Full throttle with no rudder does not tighten the turning radius the way alternating forward/reverse bursts with rudder input does." },
     { id: 'c', text: "Shutting the engine off entirely", whyWrong: "An engine that's off provides no thrust to help pivot the boat; this technique relies on active use of forward and reverse bursts." },
     { id: 'd', text: "This cannot be done on a single-engine boat", whyWrong: "Backing and filling is a standard single-engine technique specifically because most cruising boats have only one engine." },
+    { id: 'a', text: "Alternating short bursts of forward and reverse power (sometimes called \"walking\" or \"backing and filling\") combined with the rudder to pivot the boat" },
   ],
   correctChoiceId: 'a',
   explanation: "\"Backing and filling\" — alternating short bursts of forward power with rudder over one way, then reverse power, walks the bow and stern back and forth to rotate the boat almost in place, achieving a much tighter turn than holding one direction of thrust with rudder alone.",
@@ -5079,10 +5079,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-engine-panel-throttle',
   prompt: "On the engine panel and control shown, what does the single lever typically control?",
   choices: [
+    { id: 'd', text: "Only the bilge pump, unrelated to the engine", whyWrong: "The bilge pump is switched separately; this lever is the engine's combined throttle/shift control." },
     { id: 'a', text: "Both throttle (engine speed) and gear shift (forward/neutral/reverse) in one combined lever" },
     { id: 'b', text: "Only the ignition key function, with no other role", whyWrong: "The ignition/key switch is a separate control on the panel; the lever shown combines throttle and shift, a different function." },
     { id: 'c', text: "Only the steering, with no connection to the engine", whyWrong: "This lever is an engine control (throttle/shift), not part of the steering system." },
-    { id: 'd', text: "Only the bilge pump, unrelated to the engine", whyWrong: "The bilge pump is switched separately; this lever is the engine's combined throttle/shift control." },
   ],
   correctChoiceId: 'a',
   explanation: "Many cruising boats use a single-lever control: pushing it forward from the neutral detent both engages forward gear and increases throttle as you push further; pulling it back does the same for reverse. The neutral position (usually a felt detent in the middle) disengages the transmission while still allowing you to rev the engine if needed.",
@@ -5095,10 +5095,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-docking-wind',
   prompt: "With the wind blowing directly onto the dock as shown, what is the recommended approach technique?",
   choices: [
+    { id: 'd', text: "Wind direction makes no difference to the approach", whyWrong: "Wind direction relative to the dock is one of the central factors in planning any docking approach." },
     { id: 'a', text: "Approach at a shallow angle and use light, controlled power to hold position, letting the wind help push the boat the last bit onto the dock" },
     { id: 'b', text: "Approach at high speed perpendicular to the dock", whyWrong: "A fast, perpendicular approach with wind pushing onto the dock gives little margin to slow down or correct, and is not the recommended technique." },
     { id: 'c', text: "Approach from directly downwind of the dock", whyWrong: "Approaching downwind of (i.e., beyond) the dock with wind blowing onto it would push the boat away from, not toward, a controlled approach; a shallow-angle approach is preferred." },
-    { id: 'd', text: "Wind direction makes no difference to the approach", whyWrong: "Wind direction relative to the dock is one of the central factors in planning any docking approach." },
   ],
   correctChoiceId: 'a',
   explanation: "When wind blows onto the dock, it will naturally push the boat toward the dock during the final approach, so a shallow angle with light, controlled power lets the wind do some of the work while you retain control — rather than fighting a strong perpendicular approach that's hard to check in time.",
@@ -5156,10 +5156,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is a spring line used for once the boat is alongside a dock?",
   choices: [
-    { id: 'a', text: "Running diagonally fore-and-aft, it restricts the boat's forward or backward movement along the dock and can be used with the engine to hold or ease the boat into position" },
     { id: 'b', text: "It is used exclusively to hoist the mainsail", whyWrong: "Halyards hoist sails; a spring line is a dock line, an entirely different piece of equipment." },
     { id: 'c', text: "It replaces the need for both bow and stern lines", whyWrong: "A spring line supplements, rather than replaces, bow and stern lines — together they control the boat fully alongside a dock." },
     { id: 'd', text: "It is only used while anchoring, never while docking", whyWrong: "A spring line is specifically a docking/mooring-alongside line, not an anchoring line." },
+    { id: 'a', text: "Running diagonally fore-and-aft, it restricts the boat's forward or backward movement along the dock and can be used with the engine to hold or ease the boat into position" },
   ],
   correctChoiceId: 'a',
   explanation: "A spring line runs diagonally between a point on the boat and a point on the dock, resisting fore-and-aft movement. Skippers also use a spring line actively, with the engine turning against it, to pivot the boat into or away from a dock in a controlled way — a useful technique in tight slips.",
@@ -5171,10 +5171,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Midway through a docking approach, the boat is clearly being pushed off line by a gust and won't make a safe landing at the intended spot. What is the appropriate response?",
   choices: [
-    { id: 'a', text: "Abort the approach, power away to a safe distance, reassess, and try again rather than forcing a bad approach" },
     { id: 'b', text: "Continue committing to the original approach regardless of drift", whyWrong: "Forcing a compromised approach increases the risk of hitting the dock or another boat; aborting and re-approaching is the safer, standard response." },
     { id: 'c', text: "Cut the engine and let the boat drift to wherever the wind takes it", whyWrong: "Cutting power and drifting removes your ability to control the outcome, which is worse than a controlled abort and go-around." },
     { id: 'd', text: "Jump to the dock to physically catch the boat", whyWrong: "This is unsafe for the crew and does not address controlling a boat that's already off line; aborting the approach under power is the correct response." },
+    { id: 'a', text: "Abort the approach, power away to a safe distance, reassess, and try again rather than forcing a bad approach" },
   ],
   correctChoiceId: 'a',
   explanation: "A core docking principle is that it's always acceptable, and usually wise, to abort a deteriorating approach: add power, clear away to open water, reassess the wind/current situation, and set up for another attempt rather than forcing contact with the dock.",
@@ -5187,10 +5187,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-mooring-approach',
   prompt: "The diagram shows a boat approaching a mooring ball. Why does the boat approach slowly, head to wind?",
   choices: [
-    { id: 'a', text: "Approaching head to wind lets the boat stop close alongside the mooring under control, giving the crew at the bow time to reach the pendant with a boat hook" },
-    { id: 'b', text: "Approaching downwind is always preferred for moorings", whyWrong: "Approaching downwind (with the wind pushing from behind) makes it hard to stop precisely at the mooring; head-to-wind is the standard, controllable approach." },
     { id: 'c', text: "Speed should be kept high to counteract the wind", whyWrong: "A fast approach to a mooring risks overshooting or striking the mooring ball/other boats; a slow, controlled approach is correct." },
     { id: 'd', text: "Wind direction is irrelevant to a mooring approach", whyWrong: "Wind direction is central to planning a controlled mooring approach, just as it is for docking." },
+    { id: 'a', text: "Approaching head to wind lets the boat stop close alongside the mooring under control, giving the crew at the bow time to reach the pendant with a boat hook" },
+    { id: 'b', text: "Approaching downwind is always preferred for moorings", whyWrong: "Approaching downwind (with the wind pushing from behind) makes it hard to stop precisely at the mooring; head-to-wind is the standard, controllable approach." },
   ],
   correctChoiceId: 'a',
   explanation: "Approaching a mooring head to wind (or head to current, whichever is stronger) lets the wind's resistance help kill the boat's speed right where you want to stop, rather than overshoot or drift off sideways. A slow, controlled approach gives the crew at the bow time to hook and secure the mooring pendant.",
@@ -5217,10 +5217,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Once the boat has stopped alongside the mooring ball, what is the immediate next step for the crew at the bow?",
   choices: [
-    { id: 'a', text: "Use a boat hook to retrieve the mooring pendant and secure it to the bow cleat before the boat drifts away" },
-    { id: 'b', text: "Immediately shut off the engine before securing anything", whyWrong: "Securing the pendant first is the priority — shutting off the engine too early risks losing position before the boat is actually attached to the mooring." },
     { id: 'c', text: "Deploy the boat's own anchor as well", whyWrong: "Picking up a mooring means using the mooring's ground tackle, not deploying your own separate anchor at the same time." },
     { id: 'd', text: "Wait for the wind to push the boat directly over the mooring with no action needed", whyWrong: "Passive waiting risks drifting off the mooring; the crew needs to actively retrieve and secure the pendant while the boat is in position." },
+    { id: 'a', text: "Use a boat hook to retrieve the mooring pendant and secure it to the bow cleat before the boat drifts away" },
+    { id: 'b', text: "Immediately shut off the engine before securing anything", whyWrong: "Securing the pendant first is the priority — shutting off the engine too early risks losing position before the boat is actually attached to the mooring." },
   ],
   correctChoiceId: 'a',
   explanation: "With the boat stopped close alongside, the bow crew reaches the pendant with a boat hook and secures it to a bow cleat promptly, before wind or current can carry the boat off the mooring again. Only once secured is the engine typically shut down.",
@@ -5262,10 +5262,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "For a boat sailing within about 20 nautical miles of shore, which NWS marine forecast product is most directly relevant?",
   choices: [
+    { id: 'd', text: "A forecast for an inland lake in another state", whyWrong: "An unrelated inland forecast has no bearing on the boat's actual coastal location." },
     { id: 'a', text: "The Coastal Waters Forecast (or Nearshore Marine Forecast, where issued), covering nearby coastal and nearshore waters" },
     { id: 'b', text: "The Offshore Forecast for waters hundreds of miles out", whyWrong: "Offshore forecasts cover deep-water zones well beyond a coastal daysailor's typical range and aren't the most directly relevant product close to shore." },
     { id: 'c', text: "The aviation terminal forecast for the nearest airport", whyWrong: "Aviation forecasts are built for aircraft operations, not marine wind/sea conditions." },
-    { id: 'd', text: "A forecast for an inland lake in another state", whyWrong: "An unrelated inland forecast has no bearing on the boat's actual coastal location." },
   ],
   correctChoiceId: 'a',
   explanation: "NWS marine forecasts are zoned by distance from shore. Coastal Waters/Nearshore products cover the waters closest to shore where most ASA 103-level coastal cruising happens, while Offshore and High Seas forecasts cover progressively more distant waters.",
@@ -5277,10 +5277,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "How does NOAA Weather Radio deliver marine forecasts to a boat underway?",
   choices: [
+    { id: 'd', text: "Only through a paid satellite subscription", whyWrong: "NOAA Weather Radio is a free, continuous VHF broadcast; no subscription is required to receive it." },
     { id: 'a', text: "As a continuous, repeating broadcast on dedicated VHF weather channels, separate from the hailing and working channels used for boat-to-boat calls" },
     { id: 'b', text: "Only as a one-time broadcast at 6 a.m. each day", whyWrong: "NOAA Weather Radio broadcasts continuously on a repeating cycle, not as a single daily announcement." },
     { id: 'c', text: "On the same channel used to hail other vessels", whyWrong: "Weather broadcasts run on dedicated VHF weather (WX) channels, kept separate from the calling/hailing channels used to talk to other vessels." },
-    { id: 'd', text: "Only through a paid satellite subscription", whyWrong: "NOAA Weather Radio is a free, continuous VHF broadcast; no subscription is required to receive it." },
   ],
   correctChoiceId: 'a',
   explanation: "A VHF radio's WX channels tune to NOAA Weather Radio, which cycles continuously through the current marine forecast, observations, and any active warnings. It's separate from the channels used for hailing or working traffic between vessels.",
@@ -5292,10 +5292,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why is it good practice to check the marine forecast again right before casting off, even if you checked it the night before?",
   choices: [
-    { id: 'a', text: "Forecasts are updated regularly and conditions can change meaningfully within a day, so the most current version is the one to plan around" },
-    { id: 'b', text: "It isn't necessary — a forecast from the night before is always still accurate", whyWrong: "Marine forecasts are updated multiple times a day precisely because conditions and confidence can change; treating an old forecast as still current risks missing a real change." },
     { id: 'c', text: "Checking twice is only a legal requirement, not a safety one", whyWrong: "There's no such legal-only framing — the practical safety reason is that forecasts change, not a paperwork requirement." },
     { id: 'd', text: "The forecast never changes once issued", whyWrong: "Forecasts are reissued and revised on a regular schedule as new data comes in; they do change." },
+    { id: 'a', text: "Forecasts are updated regularly and conditions can change meaningfully within a day, so the most current version is the one to plan around" },
+    { id: 'b', text: "It isn't necessary — a forecast from the night before is always still accurate", whyWrong: "Marine forecasts are updated multiple times a day precisely because conditions and confidence can change; treating an old forecast as still current risks missing a real change." },
   ],
   correctChoiceId: 'a',
   explanation: "NWS marine forecasts are reissued multiple times per day. A forecast checked the night before may already be stale by departure time, so a final check just before getting underway gives the best available picture of what's actually expected.",
@@ -5322,10 +5322,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "A forecast reads 'winds 12 to 15 knots, gusts to 22 knots.' Which number should most influence how much sail area you carry?",
   choices: [
-    { id: 'a', text: "The higher gust value, since the boat and crew need to be able to handle the peak wind, not just the average" },
     { id: 'b', text: "The lower sustained value only, ignoring the gust figure entirely", whyWrong: "Ignoring the gust figure risks being caught overpowered when a gust actually hits, even though the sustained wind seemed moderate." },
     { id: 'c', text: "Neither number matters for sail selection", whyWrong: "Both matter, but planning around the gust figure is the more conservative and appropriate choice for what the boat must be able to handle." },
     { id: 'd', text: "The average of the two numbers, rounded down", whyWrong: "There's no standard practice of averaging and rounding down; the prudent approach is to plan for the higher gust value." },
+    { id: 'a', text: "The higher gust value, since the boat and crew need to be able to handle the peak wind, not just the average" },
   ],
   correctChoiceId: 'a',
   explanation: "Gusts represent brief spikes above the sustained wind speed. A boat carrying sail sized only for the sustained wind can be knocked down or overpowered when a gust hits. Prudent sail selection accounts for the gust figure, not just the average.",
@@ -5337,10 +5337,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "The forecast for the next few hours mentions visibility decreasing to one mile or less in patchy fog. What should this change in your preparation?",
   choices: [
+    { id: 'd', text: "Turn off all lights to avoid being seen by other vessels", whyWrong: "Turning off lights in reduced visibility makes the boat harder for others to detect, increasing risk rather than reducing it." },
     { id: 'a', text: "Be ready to use sound signals for restricted visibility, slow down, post a lookout, and confirm any radar reflector or navigation aids are ready" },
     { id: 'b', text: "Nothing changes — visibility forecasts don't affect small-boat operations", whyWrong: "Reduced visibility directly affects collision avoidance and navigation; it requires real changes in how the boat is operated, including sound signals and lookout." },
     { id: 'c', text: "Increase speed to get through the foggy area as quickly as possible", whyWrong: "Increasing speed in reduced visibility increases collision risk rather than reducing it; the Navigation Rules call for a safe speed appropriate to the conditions." },
-    { id: 'd', text: "Turn off all lights to avoid being seen by other vessels", whyWrong: "Turning off lights in reduced visibility makes the boat harder for others to detect, increasing risk rather than reducing it." },
   ],
   correctChoiceId: 'a',
   explanation: "A forecast for decreasing visibility is a cue to prepare navigation-rules-compliant responses: fog signals, a safe (typically reduced) speed, an attentive lookout, and confirming any equipment that helps other vessels detect you, such as a radar reflector.",
@@ -5352,10 +5352,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "You notice the barometer has been dropping steadily over the past several hours. What does this generally suggest?",
   choices: [
-    { id: 'a', text: "Deteriorating weather may be approaching, often associated with an approaching low-pressure system or front" },
     { id: 'b', text: "Improving weather is guaranteed", whyWrong: "A falling barometer is generally associated with approaching unsettled or deteriorating weather, not guaranteed improvement." },
     { id: 'c', text: "The barometer reading has no relationship to weather changes", whyWrong: "Barometric pressure trends are a classic, long-used indicator of approaching weather systems." },
     { id: 'd', text: "It means the wind will immediately stop entirely", whyWrong: "A falling barometer more often precedes increasing wind associated with an approaching system, not a sudden calm." },
+    { id: 'a', text: "Deteriorating weather may be approaching, often associated with an approaching low-pressure system or front" },
   ],
   correctChoiceId: 'a',
   explanation: "A steadily falling barometer is a classic sign that a low-pressure system or front is approaching, which is often accompanied by increasing wind, cloudiness, and a chance of precipitation. It's a useful supplementary cue alongside the official forecast.",
@@ -5367,10 +5367,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "You're underway and the actual wind is noticeably stronger than what this morning's forecast called for. What is the appropriate response?",
   choices: [
+    { id: 'd', text: "Report the discrepancy to the Coast Guard immediately and abandon the outing", whyWrong: "A forecast being off isn't itself an emergency requiring a Coast Guard report; the appropriate response is prudent onboard reassessment, such as reducing sail." },
     { id: 'a', text: "Reassess the situation using current conditions rather than the stale forecast, and be ready to reduce sail or alter the plan" },
     { id: 'b', text: "Continue exactly as planned since the forecast is always right", whyWrong: "A forecast is a prediction, not a guarantee; when actual observed conditions diverge from it, the observed conditions should drive the decision." },
     { id: 'c', text: "Assume the wind will decrease back to the forecast value shortly and take no action", whyWrong: "Assuming conditions will match a stale forecast, without acting on what's actually happening, risks being caught unprepared if the stronger wind persists or builds further." },
-    { id: 'd', text: "Report the discrepancy to the Coast Guard immediately and abandon the outing", whyWrong: "A forecast being off isn't itself an emergency requiring a Coast Guard report; the appropriate response is prudent onboard reassessment, such as reducing sail." },
   ],
   correctChoiceId: 'a',
   explanation: "Forecasts are the best available prediction, not a guarantee. A prudent skipper continuously compares actual conditions to the forecast and adjusts — reducing sail, changing course, or heading in — when reality is worse than predicted.",
@@ -5398,10 +5398,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "You're three hours from the harbor and an updated forecast now calls for increasing wind and building seas over the next six hours, worse than expected earlier. What is the prudent decision?",
   choices: [
-    { id: 'a', text: "Reassess the route and timing now, and consider heading to the nearest safe harbor rather than continuing toward the original, more distant destination" },
     { id: 'b', text: "Continue exactly as originally planned regardless of the update", whyWrong: "Ignoring a meaningful forecast update and continuing unchanged removes the safety margin the update was meant to provide." },
     { id: 'c', text: "Speed up to try to beat the worsening weather to the original destination no matter the distance", whyWrong: "Committing to reach a distant destination ahead of worsening weather, rather than choosing the nearest safe option, needlessly increases risk." },
     { id: 'd', text: "Wait until conditions actually deteriorate before making any decision", whyWrong: "Waiting for conditions to worsen before deciding removes the option of a calm, early course change and forces a decision under worse conditions." },
+    { id: 'a', text: "Reassess the route and timing now, and consider heading to the nearest safe harbor rather than continuing toward the original, more distant destination" },
   ],
   correctChoiceId: 'a',
   explanation: "When new information shows conditions deteriorating faster or more than expected, the prudent move is to reassess early — heading for the nearest safe harbor rather than pressing on toward a more distant original destination — while there's still a comfortable safety margin.",
@@ -5414,10 +5414,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'photo-cumulonimbus',
   prompt: "What cloud type is shown in this photograph, and what does it signal for a boat on the water?",
   choices: [
-    { id: 'a', text: "Cumulonimbus — a towering, dense cloud associated with thunderstorms, gusty squalls, heavy rain, and lightning" },
     { id: 'b', text: "Cirrus — a thin, wispy high-altitude cloud with no near-term weather significance", whyWrong: "Cirrus clouds are thin and wispy at high altitude; the tall, dense, towering cloud shown is characteristic of cumulonimbus, not cirrus." },
     { id: 'c', text: "Stratus — a flat, featureless low layer with steady light precipitation at most", whyWrong: "Stratus is a flat, low, featureless layer, not the towering vertical development shown in the photo." },
     { id: 'd', text: "This cloud type has no bearing on marine safety", whyWrong: "Cumulonimbus clouds are directly tied to some of the most hazardous near-term marine weather: sudden gusts, lightning, and heavy rain." },
+    { id: 'a', text: "Cumulonimbus — a towering, dense cloud associated with thunderstorms, gusty squalls, heavy rain, and lightning" },
   ],
   correctChoiceId: 'a',
   explanation: "The tall, dense, vertically-developed cloud in the photo is a cumulonimbus — the thunderstorm cloud. Its approach warns of possible sudden wind shifts and gusts, lightning, heavy rain, and reduced visibility, all significant hazards for a small boat.",
@@ -5444,10 +5444,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Which visual signs suggest a cumulonimbus cell is intensifying or about to hit your position?",
   choices: [
-    { id: 'a', text: "A darkening, lowering cloud base, an anvil-shaped top, and a sudden cooling or gusty shift in the wind" },
-    { id: 'b', text: "A cloud that stays bright white and flat with no vertical growth", whyWrong: "A flat, non-growing cloud with no vertical development isn't the profile of an intensifying thunderstorm cell." },
     { id: 'c', text: "Clear blue sky directly overhead with no clouds at all", whyWrong: "Clear sky with no clouds present shows no thunderstorm activity at all, not intensification." },
     { id: 'd', text: "A steady, unchanging wind from the same direction all afternoon", whyWrong: "A steady, unchanging wind is the opposite of the sudden shift typically associated with an approaching thunderstorm's outflow." },
+    { id: 'a', text: "A darkening, lowering cloud base, an anvil-shaped top, and a sudden cooling or gusty shift in the wind" },
+    { id: 'b', text: "A cloud that stays bright white and flat with no vertical growth", whyWrong: "A flat, non-growing cloud with no vertical development isn't the profile of an intensifying thunderstorm cell." },
   ],
   correctChoiceId: 'a',
   explanation: "A darkening and lowering cloud base, a flattened anvil top on an otherwise towering cloud, and a sudden cooler, gustier wind (the storm's outflow) are classic warning signs that a cell is intensifying and approaching.",
@@ -5459,10 +5459,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "You see a thunderstorm cell developing and likely to reach your position. What is the prudent response while there's still time?",
   choices: [
-    { id: 'a', text: "Reduce sail early, secure loose gear, close hatches, get crew into PFDs, and head for the nearest safe harbor or shelter if time allows" },
-    { id: 'b', text: "Keep full sail up to try to outrun the storm", whyWrong: "Carrying full sail into a strengthening gust front risks being overpowered or knocked down; reducing sail early is the safer response." },
     { id: 'c', text: "Anchor immediately regardless of location or holding ground", whyWrong: "Anchoring without regard to holding ground or surrounding hazards can create new risks; heading for shelter or a suitable safe area is the better general response." },
     { id: 'd', text: "Wait until the storm arrives before taking any preparatory action", whyWrong: "Waiting until the storm has already arrived removes the opportunity to reduce sail and secure the boat calmly, before conditions make it harder to do safely." },
+    { id: 'a', text: "Reduce sail early, secure loose gear, close hatches, get crew into PFDs, and head for the nearest safe harbor or shelter if time allows" },
+    { id: 'b', text: "Keep full sail up to try to outrun the storm", whyWrong: "Carrying full sail into a strengthening gust front risks being overpowered or knocked down; reducing sail early is the safer response." },
   ],
   correctChoiceId: 'a',
   explanation: "Prudent thunderstorm response starts before the storm arrives: reduce sail, stow and secure loose items, close up the boat, get crew into PFDs, and, if time and location allow, head toward shelter rather than waiting for conditions to deteriorate first.",
@@ -5474,10 +5474,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Compared to a broad area of steady bad weather from a large low-pressure system, an individual thunderstorm cell typically is:",
   choices: [
+    { id: 'd', text: "Identical in size and duration to a large frontal system", whyWrong: "A single cumulonimbus cell is much smaller and shorter-lived than the broad area covered by a frontal system." },
     { id: 'a', text: "Shorter-lived and localized, but capable of intense wind, rain, and lightning while it lasts" },
     { id: 'b', text: "Always longer-lasting than a large-scale storm system", whyWrong: "Individual thunderstorm cells are typically much shorter-lived than a broad, slow-moving low-pressure system, even though they can be locally intense." },
     { id: 'c', text: "Never associated with strong wind", whyWrong: "Thunderstorm cells are well known for producing strong, sudden gusts, sometimes stronger than the surrounding steady weather pattern." },
-    { id: 'd', text: "Identical in size and duration to a large frontal system", whyWrong: "A single cumulonimbus cell is much smaller and shorter-lived than the broad area covered by a frontal system." },
   ],
   correctChoiceId: 'a',
   explanation: "An individual cumulonimbus cell is typically localized and relatively short-lived (often passing within an hour or so), unlike the broader, longer-duration weather from a large frontal system — but its wind, rain, and lightning can be intense while the cell is overhead.",
@@ -5489,10 +5489,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "In practical terms, what does a Small Craft Advisory tell a sailor?",
   choices: [
-    { id: 'a', text: "Conditions are expected that could be hazardous to small vessels, so the decision to go out (or stay in) should be made with extra caution" },
-    { id: 'b', text: "All boats, regardless of size or type, are legally barred from leaving the dock", whyWrong: "A Small Craft Advisory is a hazard advisory, not a legal prohibition on departing; it signals conditions warranting caution for smaller or less capable vessels." },
     { id: 'c', text: "It only applies to personal watercraft, never to sailboats", whyWrong: "A Small Craft Advisory applies broadly to vessels that could be adversely affected by the conditions, not to one specific vessel type." },
     { id: 'd', text: "It guarantees calm conditions for the next 24 hours", whyWrong: "A Small Craft Advisory signals the opposite — hazardous conditions are expected, not calm ones." },
+    { id: 'a', text: "Conditions are expected that could be hazardous to small vessels, so the decision to go out (or stay in) should be made with extra caution" },
+    { id: 'b', text: "All boats, regardless of size or type, are legally barred from leaving the dock", whyWrong: "A Small Craft Advisory is a hazard advisory, not a legal prohibition on departing; it signals conditions warranting caution for smaller or less capable vessels." },
   ],
   correctChoiceId: 'a',
   explanation: "A Small Craft Advisory means the National Weather Service expects conditions (wind and/or seas) that could be hazardous to smaller or less seaworthy vessels. It's a heads-up for extra caution and careful judgment, not an automatic ban on all boating.",
@@ -5504,10 +5504,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Is there a single, universal wind speed that triggers a Small Craft Advisory everywhere in the United States?",
   choices: [
-    { id: 'a', text: "No — the exact wind and sea criteria are set locally by each coastal or Great Lakes Weather Forecast Office based on regional conditions" },
-    { id: 'b', text: "Yes, every NWS office nationwide uses exactly the same fixed wind-speed number", whyWrong: "Small Craft Advisory criteria are regionally defined; local Weather Forecast Offices set thresholds appropriate to their waters, so there is no single number that applies everywhere." },
     { id: 'c', text: "Yes, but only for the Great Lakes, and nowhere else", whyWrong: "Both coastal and Great Lakes offices set their own local criteria — the point is that thresholds vary regionally, not that only one region has locally-set criteria." },
     { id: 'd', text: "No advisory criteria exist anywhere; it is entirely subjective", whyWrong: "Each local Weather Forecast Office does define specific criteria for its area — the thresholds simply aren't identical from region to region." },
+    { id: 'a', text: "No — the exact wind and sea criteria are set locally by each coastal or Great Lakes Weather Forecast Office based on regional conditions" },
+    { id: 'b', text: "Yes, every NWS office nationwide uses exactly the same fixed wind-speed number", whyWrong: "Small Craft Advisory criteria are regionally defined; local Weather Forecast Offices set thresholds appropriate to their waters, so there is no single number that applies everywhere." },
   ],
   correctChoiceId: 'a',
   explanation: "Small Craft Advisory criteria are set locally: each coastal or Great Lakes Weather Forecast Office establishes wind and/or sea thresholds appropriate to typical conditions and vessel traffic in its own area. A sailor should check the specific criteria used by the local office rather than assume one number applies everywhere.",
@@ -5520,10 +5520,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'nws-gale-pennant',
   prompt: "This daytime coastal warning-display signal (two red pennants stacked) means a Gale Warning is in effect. What does a Gale Warning specifically indicate?",
   choices: [
+    { id: 'd', text: "A local advisory with a different definition at every Weather Forecast Office", whyWrong: "Unlike the regionally-set Small Craft Advisory, the Gale Warning wind range is a nationally defined category." },
     { id: 'a', text: "Sustained surface winds, or frequent gusts, in the range of roughly 34 to 47 knots, predicted or occurring" },
     { id: 'b', text: "Winds of less than 10 knots with calm seas", whyWrong: "That description is essentially the opposite of gale conditions, which involve strong sustained wind well above 10 knots." },
     { id: 'c', text: "A guarantee of hurricane-force wind", whyWrong: "Gale-force wind is a defined, lower range than hurricane-force wind; a Gale Warning does not itself indicate hurricane conditions." },
-    { id: 'd', text: "A local advisory with a different definition at every Weather Forecast Office", whyWrong: "Unlike the regionally-set Small Craft Advisory, the Gale Warning wind range is a nationally defined category." },
   ],
   correctChoiceId: 'a',
   explanation: "A Gale Warning is a nationally defined category for sustained winds, or frequent gusts, in the range of about 34 to 47 knots. It represents a step up in severity from a Small Craft Advisory and calls for serious caution.",
@@ -5551,10 +5551,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "A Small Craft Advisory is in effect for your area as you're planning a coastal daysail on a 30-foot sailboat with a novice crew. What is the prudent approach?",
   choices: [
-    { id: 'a', text: "Treat it as a serious caution: consider postponing, or if you go, plan for a reduced-sail, conservative outing with an easy retreat to safe harbor" },
-    { id: 'b', text: "Ignore the advisory since it technically only applies to very small boats like kayaks", whyWrong: "A Small Craft Advisory isn't limited to a narrow vessel category — a less experienced crew on a modestly sized sailboat can be exactly the kind of vessel it's meant to caution." },
     { id: 'c', text: "Treat it as guaranteeing conditions will actually be calm", whyWrong: "The advisory signals expected hazardous conditions, the opposite of a guarantee of calm weather." },
     { id: 'd', text: "Automatically cancel any boating for a full week", whyWrong: "A Small Craft Advisory is tied to specific expected conditions over a defined period, not an automatic week-long restriction." },
+    { id: 'a', text: "Treat it as a serious caution: consider postponing, or if you go, plan for a reduced-sail, conservative outing with an easy retreat to safe harbor" },
+    { id: 'b', text: "Ignore the advisory since it technically only applies to very small boats like kayaks", whyWrong: "A Small Craft Advisory isn't limited to a narrow vessel category — a less experienced crew on a modestly sized sailboat can be exactly the kind of vessel it's meant to caution." },
   ],
   correctChoiceId: 'a',
   explanation: "A Small Craft Advisory means expected conditions could be hazardous to smaller or less capable vessels. With a novice crew, the prudent response is real caution: consider not going, or plan conservatively with reduced sail and an easy bailout to safe harbor if conditions build.",
@@ -5566,10 +5566,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "You're anchored for lunch and notice the wind is building and blowing directly onto the nearby shore. Why does this matter?",
   choices: [
-    { id: 'a', text: "A lee shore situation means that if the anchor drags or the boat loses power, wind and waves will push it toward danger rather than away from it" },
     { id: 'b', text: "It doesn't matter, since wind direction relative to shore has no effect on anchoring safety", whyWrong: "Wind direction relative to the shore is central to anchoring risk — an onshore wind removes your safety margin if you drag or lose power." },
     { id: 'c', text: "An onshore wind always means calmer water near the beach", whyWrong: "An onshore wind builds waves and chop against the shoreline rather than calming the water there." },
     { id: 'd', text: "Lee shore conditions only matter for vessels under sail, never under power", whyWrong: "A lee shore is a hazard regardless of whether the boat is under sail or power, since either can lose the ability to hold position." },
+    { id: 'a', text: "A lee shore situation means that if the anchor drags or the boat loses power, wind and waves will push it toward danger rather than away from it" },
   ],
   correctChoiceId: 'a',
   explanation: "With wind blowing onto the shore (a lee shore), any drag, engine failure, or loss of control tends to push the boat toward the shore rather than away from it, sharply reducing the margin for error. Building wind onto a lee shore is a strong cue to reposition or leave.",
@@ -5581,10 +5581,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "As wind and seas build through the afternoon, your safety margin for handling an unexpected problem (gear failure, injury, navigation error) generally:",
   choices: [
+    { id: 'd', text: "Is unrelated to weather and depends only on crew mood", whyWrong: "While crew state matters, deteriorating weather itself measurably reduces the room for error, independent of morale." },
     { id: 'a', text: "Shrinks, since deteriorating conditions leave less room to safely absorb an additional problem" },
     { id: 'b', text: "Grows, since rougher conditions make problems easier to manage", whyWrong: "Rougher conditions generally make any additional problem harder, not easier, to manage safely." },
     { id: 'c', text: "Stays exactly the same regardless of weather", whyWrong: "Weather conditions directly affect how much spare capacity the crew and boat have to handle an unplanned problem, so the margin does change." },
-    { id: 'd', text: "Is unrelated to weather and depends only on crew mood", whyWrong: "While crew state matters, deteriorating weather itself measurably reduces the room for error, independent of morale." },
   ],
   correctChoiceId: 'a',
   explanation: "As conditions worsen, the boat and crew have less spare capacity to absorb an unexpected complication on top of the weather itself. Recognizing this shrinking margin is a key reason to make conservative decisions — like turning back — earlier rather than later.",
@@ -5611,10 +5611,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Midway through a passage, an updated forecast shows conditions will be considerably worse than expected by the time you'd reach your original destination. What is the appropriate response?",
   choices: [
-    { id: 'a', text: "Reevaluate the plan and consider diverting to a closer, safe alternative rather than pressing on to the original destination" },
     { id: 'b', text: "Continue to the original destination no matter what, since changing plans reflects poorly on the skipper", whyWrong: "Rigidly continuing toward a destination despite new information about worsening conditions puts pride ahead of safety, which is exactly the wrong priority." },
     { id: 'c', text: "Assume forecast updates mid-passage are never worth acting on", whyWrong: "A forecast update is exactly the kind of new information a prudent skipper should act on, not dismiss." },
     { id: 'd', text: "Immediately call for a Coast Guard rescue as a precaution", whyWrong: "A worsening forecast on its own isn't a distress situation requiring rescue; the appropriate response is proactively altering the plan, not calling for help prematurely." },
+    { id: 'a', text: "Reevaluate the plan and consider diverting to a closer, safe alternative rather than pressing on to the original destination" },
   ],
   correctChoiceId: 'a',
   explanation: "Good passage planning is adaptive. When new forecast information shows conditions will be worse than planned for, altering course toward the nearest safe alternative — rather than committing to the original destination out of habit — is the mark of good seamanship.",
@@ -5626,10 +5626,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "In light air (roughly 5 knots true wind or less), what sail plan generally makes the most sense?",
   choices: [
-    { id: 'a', text: "Full mainsail and full genoa (or largest headsail available), to capture as much of the light wind as possible" },
     { id: 'b', text: "A deeply reefed mainsail with a small headsail", whyWrong: "Reducing sail area is a response to too much wind, not too little; in light air a boat needs more sail area to develop power, not less." },
     { id: 'c', text: "No headsail at all, mainsail only", whyWrong: "Dropping the headsail in light air removes usable sail area exactly when the boat needs all the power it can get." },
     { id: 'd', text: "It makes no difference what sail plan is used in light air", whyWrong: "Sail plan matters a great deal in light air — insufficient sail area means the boat struggles to develop any power at all." },
+    { id: 'a', text: "Full mainsail and full genoa (or largest headsail available), to capture as much of the light wind as possible" },
   ],
   correctChoiceId: 'a',
   explanation: "In light air, the priority is maximizing usable sail area to generate power from what little wind is available, so full main and full headsail is the standard light-air plan.",
@@ -5641,10 +5641,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "In a moderate breeze (roughly 10 to 15 knots) with a comfortable, controllable heel angle, what is the typical sail plan?",
   choices: [
-    { id: 'a', text: "Full mainsail and full headsail, trimmed for the conditions, with no need to reef yet" },
     { id: 'b', text: "The mainsail should already be reefed at this wind speed on every boat", whyWrong: "Reefing needs vary by boat and crew, but a moderate breeze with comfortable heel typically doesn't require reefing yet; full sail is the usual plan at this stage." },
     { id: 'c', text: "All sail should be dropped and the engine used instead", whyWrong: "A moderate, comfortable breeze is good sailing wind — there's no reason to drop sail and motor instead." },
     { id: 'd', text: "Only the headsail should be used, with the mainsail furled away", whyWrong: "Sailing on headsail alone in a comfortable moderate breeze discards usable power and balance the mainsail provides; full sail plan is appropriate." },
+    { id: 'a', text: "Full mainsail and full headsail, trimmed for the conditions, with no need to reef yet" },
   ],
   correctChoiceId: 'a',
   explanation: "In a moderate breeze producing comfortable, controllable heel, most cruising boats sail well under full main and full headsail. Reefing becomes appropriate as wind builds further or heel/control starts to suffer.",
@@ -5671,10 +5671,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Which combination of signs on board suggests it's time to reduce sail?",
   choices: [
+    { id: 'd', text: "A clear sky with no clouds", whyWrong: "Sky condition isn't a direct indicator of whether the boat is currently overpowered." },
     { id: 'a', text: "Increasing heel angle, rounding up or fighting the helm (weather helm), frequent spray over the bow, and a generally uneasy motion" },
     { id: 'b', text: "The boat sailing flat with light, easy helm and a comfortable motion", whyWrong: "That description is exactly what a well-matched sail plan looks like — it's a sign sail area is currently appropriate, not a sign to reduce it." },
     { id: 'c', text: "The GPS showing a steady speed over ground", whyWrong: "Steady speed over ground on its own doesn't indicate anything about heel, helm balance, or crew comfort — it isn't the relevant signal here." },
-    { id: 'd', text: "A clear sky with no clouds", whyWrong: "Sky condition isn't a direct indicator of whether the boat is currently overpowered." },
   ],
   correctChoiceId: 'a',
   explanation: "Increasing heel, a heavy or hard-to-hold helm (excess weather helm), spray coming aboard, and an uneasy motion are all signs the boat is carrying more sail than the conditions call for, and it's time to reduce.",
@@ -5687,10 +5687,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-sail-wind-strength',
   prompt: "The diagram shows sail plans for three wind strengths. What is the general pattern from left to right?",
   choices: [
+    { id: 'd', text: "Sail choice has no relationship to wind strength", whyWrong: "Sail choice is directly driven by wind strength — that relationship is the whole point of the diagram." },
     { id: 'a', text: "As wind strength increases, sail area is progressively reduced (full sail in light air, to a reefed main and smaller headsail in strong wind)" },
     { id: 'b', text: "Sail area should increase as wind strength increases", whyWrong: "That's backwards — as wind strength increases, sail area is reduced, not increased, to keep the boat manageable." },
     { id: 'c', text: "Heel angle stays exactly the same across all three wind strengths", whyWrong: "The diagram shows heel changing as sail plan and wind strength change, not staying constant." },
-    { id: 'd', text: "Sail choice has no relationship to wind strength", whyWrong: "Sail choice is directly driven by wind strength — that relationship is the whole point of the diagram." },
   ],
   correctChoiceId: 'a',
   explanation: "The diagram illustrates the basic progression: full main and genoa in light air, the same full plan carried comfortably in moderate wind, then a reefed main with a smaller headsail as wind strength increases further to keep heel and control manageable.",
@@ -5702,10 +5702,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "As wind builds through the day, why might a skipper switch from a large genoa to a smaller working jib (if the boat has that option)?",
   choices: [
-    { id: 'a', text: "A smaller headsail reduces overall sail area and heeling force, keeping the boat more manageable in stronger wind" },
-    { id: 'b', text: "A smaller headsail always produces more power than a larger one", whyWrong: "A smaller sail generally produces less power, not more, for a given wind speed — that reduction is exactly why it suits stronger wind." },
     { id: 'c', text: "Headsail size has no effect on heel or helm balance", whyWrong: "Headsail size directly affects how much heeling force and drive the boat generates, and can affect helm balance as well." },
     { id: 'd', text: "Switching headsails is done purely for cosmetic reasons", whyWrong: "Headsail choice is a functional decision about matching sail area to conditions, not a cosmetic one." },
+    { id: 'a', text: "A smaller headsail reduces overall sail area and heeling force, keeping the boat more manageable in stronger wind" },
+    { id: 'b', text: "A smaller headsail always produces more power than a larger one", whyWrong: "A smaller sail generally produces less power, not more, for a given wind speed — that reduction is exactly why it suits stronger wind." },
   ],
   correctChoiceId: 'a',
   explanation: "A smaller working jib carries less sail area than a large genoa, which reduces heeling force and keeps the boat easier to control as wind increases — the same reasoning behind reefing the mainsail.",
@@ -5717,10 +5717,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "In heavy air, what combination of sail area is generally appropriate for a cruising sailboat?",
   choices: [
-    { id: 'a', text: "A reefed mainsail paired with a smaller headsail (or partially furled genoa), reducing overall sail area to match the wind" },
-    { id: 'b', text: "Full main and full genoa, since more sail always sails faster", whyWrong: "In heavy air, carrying full sail area typically overpowers the boat rather than sailing it faster or safer; reduced sail area is the appropriate response." },
     { id: 'c', text: "No sail at all, motoring exclusively regardless of conditions", whyWrong: "Dropping all sail is one option in extreme conditions, but the general heavy-air answer at ASA 103 level is reducing (not eliminating) sail area to a manageable combination." },
     { id: 'd', text: "Mainsail dropped entirely with the headsail left at full size", whyWrong: "Losing the mainsail while keeping a full headsail up removes the balancing sail and can leave the boat harder, not easier, to control." },
+    { id: 'a', text: "A reefed mainsail paired with a smaller headsail (or partially furled genoa), reducing overall sail area to match the wind" },
+    { id: 'b', text: "Full main and full genoa, since more sail always sails faster", whyWrong: "In heavy air, carrying full sail area typically overpowers the boat rather than sailing it faster or safer; reduced sail area is the appropriate response." },
   ],
   correctChoiceId: 'a',
   explanation: "The standard heavy-air combination is a reduced (reefed) mainsail together with a smaller headsail, matching total sail area to the wind so the boat stays balanced and controllable rather than overpowered.",
@@ -5748,10 +5748,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'photo-furled-headsail',
   prompt: "The photo shows a roller-furling drum at the base of a genoa's headstay. What is this system primarily used for?",
   choices: [
-    { id: 'a', text: "Rolling the headsail up around the headstay to reduce its exposed area (or stow it entirely) without leaving the cockpit" },
-    { id: 'b', text: "Hoisting the mainsail up the mast", whyWrong: "This is a headsail furling system on the headstay, unrelated to hoisting the mainsail on the mast." },
     { id: 'c', text: "Controlling the boat's rudder", whyWrong: "This hardware is sail-handling gear for the headsail, not part of the steering system." },
     { id: 'd', text: "Adjusting the anchor rode", whyWrong: "This is rigging for the headsail, not ground tackle for anchoring." },
+    { id: 'a', text: "Rolling the headsail up around the headstay to reduce its exposed area (or stow it entirely) without leaving the cockpit" },
+    { id: 'b', text: "Hoisting the mainsail up the mast", whyWrong: "This is a headsail furling system on the headstay, unrelated to hoisting the mainsail on the mast." },
   ],
   correctChoiceId: 'a',
   explanation: "A roller-furling headsail rolls up around the headstay via the drum at its base, letting the crew reduce (or fully stow) headsail area from the cockpit without going forward to douse and flake a hanked-on sail.",
@@ -5763,10 +5763,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "When a roller-furling genoa is partially rolled up to reduce its area, what typically happens to its shape?",
   choices: [
-    { id: 'a', text: "The sail tends to become baggier and less efficient than its designed shape, especially when furled a lot" },
     { id: 'b', text: "The sail shape becomes more efficient the more it is furled", whyWrong: "Partial furling generally distorts the sail's designed shape and makes it progressively baggier, the opposite of more efficient." },
     { id: 'c', text: "Furling has no effect on sail shape at all", whyWrong: "Rolling a headsail around the headstay changes its draft and shape; it isn't shape-neutral." },
     { id: 'd', text: "The sail automatically flattens itself into a perfect shape regardless of how much is rolled", whyWrong: "There's no automatic self-flattening; a heavily furled genoa typically becomes distorted rather than optimally shaped." },
+    { id: 'a', text: "The sail tends to become baggier and less efficient than its designed shape, especially when furled a lot" },
   ],
   correctChoiceId: 'a',
   explanation: "Standard roller-furling headsails aren't purpose-built reefing sails; as more area is rolled away, the remaining shape tends to get baggier and less efficient, which is part of why deeply furling isn't the same as a proper reef.",
@@ -5778,10 +5778,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is a key practical advantage of a roller-furling headsail in building wind?",
   choices: [
+    { id: 'd', text: "It eliminates any need to watch wind conditions", whyWrong: "Roller furling is a tool for responding to wind, not a substitute for monitoring conditions in the first place." },
     { id: 'a', text: "The crew can quickly reduce headsail area from the cockpit without going forward on a moving, possibly wet deck" },
     { id: 'b', text: "It permanently improves the sail's efficiency compared to a hanked-on sail", whyWrong: "The advantage is convenience and control from the cockpit, not improved aerodynamic efficiency compared to a well-set hanked sail." },
     { id: 'c', text: "It removes the need to ever change headsail size again", whyWrong: "Furling reduces area on the same sail; it doesn't replace the value of a properly sized sail for very different conditions." },
-    { id: 'd', text: "It eliminates any need to watch wind conditions", whyWrong: "Roller furling is a tool for responding to wind, not a substitute for monitoring conditions in the first place." },
   ],
   correctChoiceId: 'a',
   explanation: "The main practical benefit of roller furling is being able to reduce headsail area (or douse it entirely) quickly and safely from the cockpit, without sending crew forward onto a pitching foredeck.",
@@ -5808,10 +5808,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is the correct technique when furling a headsail in a fresh breeze?",
   choices: [
+    { id: 'd', text: "The sheet is irrelevant to the furling process", whyWrong: "The sheet is actively eased and controlled during furling; it plays a direct role in how cleanly the sail rolls up." },
     { id: 'a', text: "Ease the sheet in a controlled manner while pulling in the furling line, keeping tension so the sail rolls up smoothly rather than flogging" },
     { id: 'b', text: "Release the sheet completely and let it run free before furling", whyWrong: "Letting the sheet run completely free allows the sail to flog uncontrolled, which is exactly what controlled furling technique avoids." },
     { id: 'c', text: "Furl as fast as possible with no attention to the sheet", whyWrong: "Furling quickly without managing the sheet risks an uneven, loose roll and unnecessary flogging or chafe." },
-    { id: 'd', text: "The sheet is irrelevant to the furling process", whyWrong: "The sheet is actively eased and controlled during furling; it plays a direct role in how cleanly the sail rolls up." },
   ],
   correctChoiceId: 'a',
   explanation: "Controlled furling means easing the sheet in step with pulling the furling line, keeping enough tension on the sail so it rolls up tightly and evenly rather than flogging loose and wearing on the rig.",
@@ -5838,10 +5838,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What effect does reefing the mainsail have on the boat's heel and control?",
   choices: [
-    { id: 'a', text: "It reduces heeling force and generally makes the helm lighter and more balanced, improving control" },
-    { id: 'b', text: "It always increases heel angle", whyWrong: "Reducing sail area reduces the heeling force the sail generates, so heel typically decreases, not increases, after reefing." },
     { id: 'c', text: "It has no effect on the helm at all", whyWrong: "Reducing mainsail area, and the heel that comes with it, typically changes helm balance, often reducing excess weather helm." },
     { id: 'd', text: "It makes the boat completely uncontrollable", whyWrong: "Reefing is done specifically to improve control in strong wind, not to make the boat uncontrollable." },
+    { id: 'a', text: "It reduces heeling force and generally makes the helm lighter and more balanced, improving control" },
+    { id: 'b', text: "It always increases heel angle", whyWrong: "Reducing sail area reduces the heeling force the sail generates, so heel typically decreases, not increases, after reefing." },
   ],
   correctChoiceId: 'a',
   explanation: "By reducing the mainsail's exposed area, reefing lowers the heeling force it generates, which typically flattens the boat, lightens the helm, and restores a more balanced, controllable feel in building wind.",
@@ -5869,10 +5869,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "At a conceptual level, what is the basic sequence of tying in a reef?",
   choices: [
-    { id: 'a', text: "Ease the halyard and main sheet, bring the sail down to the reef point, secure the new tack and clew, then re-tension the halyard and leech" },
-    { id: 'b', text: "Tighten the halyard further without lowering the sail at all", whyWrong: "Reefing requires lowering the sail to the reef point first, not simply adding more halyard tension to the fully-hoisted sail." },
     { id: 'c', text: "Remove the mainsail from the mast entirely and reattach a smaller one", whyWrong: "Reefing works with the sail's built-in reef points on the same sail; it doesn't require removing and replacing the sail." },
     { id: 'd', text: "There is no general sequence — it varies with no common pattern across boats", whyWrong: "While specific hardware differs by boat, the basic sequence of easing, lowering to the reef point, securing tack/clew, and re-tensioning is broadly common." },
+    { id: 'a', text: "Ease the halyard and main sheet, bring the sail down to the reef point, secure the new tack and clew, then re-tension the halyard and leech" },
+    { id: 'b', text: "Tighten the halyard further without lowering the sail at all", whyWrong: "Reefing requires lowering the sail to the reef point first, not simply adding more halyard tension to the fully-hoisted sail." },
   ],
   correctChoiceId: 'a',
   explanation: "At the concept level (independent of a specific boat's hardware), reefing follows a common pattern: ease the halyard and sheet, lower the sail to the reef points, secure the new tack and clew at the boom, then re-tension the halyard and flatten the new foot/leech.",
@@ -5899,10 +5899,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What is the main purpose of heaving-to?",
   choices: [
-    { id: 'a', text: "To bring the boat to a relatively stable, slow-moving state — useful for resting the crew, riding out weather, or handling a task like reefing or a repair" },
     { id: 'b', text: "To make the boat sail as fast as possible", whyWrong: "Heaving-to is meant to slow the boat and stabilize its motion, not to maximize speed." },
     { id: 'c', text: "To permanently anchor the boat without ground tackle", whyWrong: "Heaving-to doesn't fix the boat in place like anchoring; it still drifts slowly, just in a relatively controlled, stable way." },
     { id: 'd', text: "It serves no practical purpose on a cruising sailboat", whyWrong: "Heaving-to is a genuinely useful cruising technique for rest, weather, or on-deck tasks, not a purposeless maneuver." },
+    { id: 'a', text: "To bring the boat to a relatively stable, slow-moving state — useful for resting the crew, riding out weather, or handling a task like reefing or a repair" },
   ],
   correctChoiceId: 'a',
   explanation: "Heaving-to balances the sails and rudder so the boat settles into a relatively stable, slow-drifting state. It's commonly used to rest the crew, ride out a squall or heavy weather, or free hands for a task like reefing, navigating, or a minor repair.",
@@ -5915,10 +5915,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-heaving-to',
   prompt: "The diagram shows a boat hove-to. What combination of sail and rudder produces this state?",
   choices: [
-    { id: 'a', text: "The jib backed to windward, the mainsail sheeted in, and the rudder/helm turned to windward" },
-    { id: 'b', text: "Both the jib and mainsail let out completely with the rudder centered", whyWrong: "Fully easing both sails with a centered rudder doesn't produce the balanced, stable hove-to state shown; heaving-to relies on the backed jib and helm to windward." },
     { id: 'c', text: "No sails set at all, under bare poles with the engine running", whyWrong: "Heaving-to as shown uses a backed jib and sheeted main, not bare poles under engine power." },
     { id: 'd', text: "The mainsail dropped completely with only the jib flying free", whyWrong: "The diagram shows the mainsail sheeted in, not dropped, working together with the backed jib and helm." },
+    { id: 'a', text: "The jib backed to windward, the mainsail sheeted in, and the rudder/helm turned to windward" },
+    { id: 'b', text: "Both the jib and mainsail let out completely with the rudder centered", whyWrong: "Fully easing both sails with a centered rudder doesn't produce the balanced, stable hove-to state shown; heaving-to relies on the backed jib and helm to windward." },
   ],
   correctChoiceId: 'a',
   explanation: "The classic hove-to setup backs the jib to windward (sheeted to the \"wrong\" side), sheets the mainsail in relatively tight, and turns the helm to windward. The opposing forces largely cancel, leaving the boat nearly stationary and drifting slowly to leeward.",
@@ -5930,10 +5930,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Once properly hove-to, how does the boat typically behave?",
   choices: [
+    { id: 'd', text: "It immediately capsizes", whyWrong: "Heaving-to is a recognized technique specifically because it tends to produce a stable, safer motion, not a capsize." },
     { id: 'a', text: "It settles into a relatively stable attitude, making little forward progress while slowly drifting to leeward, with an eased, quieter motion" },
     { id: 'b', text: "It continues sailing at nearly full speed on its original course", whyWrong: "Heaving-to is specifically meant to stop most forward progress, not maintain near-full sailing speed on course." },
     { id: 'c', text: "It becomes completely fixed in place with zero drift", whyWrong: "A hove-to boat still drifts slowly to leeward; it isn't fixed in place like an anchored boat." },
-    { id: 'd', text: "It immediately capsizes", whyWrong: "Heaving-to is a recognized technique specifically because it tends to produce a stable, safer motion, not a capsize." },
   ],
   correctChoiceId: 'a',
   explanation: "A well hove-to boat settles into a relatively steady angle, making little or no forward progress while slowly drifting to leeward (sometimes called \"making a slick\"), with a notably eased, less violent motion than sailing actively through the same conditions.",
@@ -5945,10 +5945,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Which situation is heaving-to well suited for?",
   choices: [
+    { id: 'd', text: "Permanently replacing anchoring in a harbor overnight", whyWrong: "Heaving-to still involves slow drift and isn't a substitute for anchoring securely overnight in a harbor." },
     { id: 'a', text: "Pausing to rest a tired crew, ride out a squall, or free hands to reef, navigate, or handle an on-deck problem" },
     { id: 'b', text: "Racing to the finish line as fast as possible", whyWrong: "Heaving-to intentionally slows the boat down; it's not a racing-speed technique." },
     { id: 'c', text: "Docking directly alongside a pier", whyWrong: "Heaving-to is an open-water technique for pausing offshore, not a docking maneuver alongside a pier." },
-    { id: 'd', text: "Permanently replacing anchoring in a harbor overnight", whyWrong: "Heaving-to still involves slow drift and isn't a substitute for anchoring securely overnight in a harbor." },
   ],
   correctChoiceId: 'a',
   explanation: "Heaving-to is a practical tool anytime the crew needs a pause without needing to reach shore or drop anchor — resting, waiting out a squall or fog, taking a break for a meal, or freeing up hands to reef, navigate, or fix something.",
@@ -5976,10 +5976,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'custom-heel-trim',
   prompt: "The diagram compares two boats in the same gust. What likely caused the difference in heel angle between them?",
   choices: [
+    { id: 'd', text: "Heel angle cannot be influenced by trim at all", whyWrong: "Heel angle is directly influenced by trim choices like sheet tension and traveler position, which is exactly what the diagram illustrates." },
     { id: 'a', text: "The boat on the right eased the mainsheet or dropped the traveler down, spilling excess power and reducing heel" },
     { id: 'b', text: "The boat on the right added more sail area", whyWrong: "Adding more sail area would tend to increase heel in a gust, not reduce it as shown." },
     { id: 'c', text: "The boat on the right is simply a different, unrelated design", whyWrong: "The comparison is about trim response to the same gust on comparable boats, not different hull designs." },
-    { id: 'd', text: "Heel angle cannot be influenced by trim at all", whyWrong: "Heel angle is directly influenced by trim choices like sheet tension and traveler position, which is exactly what the diagram illustrates." },
   ],
   correctChoiceId: 'a',
   explanation: "Easing the mainsheet, or dropping the traveler to leeward, lets the top of the sail twist off and spills excess power in a gust, which reduces heeling force and flattens the boat — the technique illustrated by the less-heeled boat on the right.",
@@ -5991,10 +5991,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "In a sudden gust, what is a quick, effective way to reduce excess heel without reefing?",
   choices: [
-    { id: 'a', text: "Ease the mainsheet (or traveler) to spill some power from the top of the sail" },
     { id: 'b', text: "Sheet the mainsail in even harder", whyWrong: "Sheeting in harder increases power and typically increases heel further, the opposite of the desired effect in a gust." },
     { id: 'c', text: "Head further downwind toward a dead run", whyWrong: "Bearing away downwind changes apparent wind angle and can help in some cases, but the immediate, direct control for spilling power from the mainsail is easing the sheet or traveler, not necessarily changing course." },
     { id: 'd', text: "Do nothing and wait for the gust to pass on its own", whyWrong: "Passively waiting through a gust that's overpowering the boat ignores an immediate, simple control (easing the sheet) available to the helmsman or trimmer." },
+    { id: 'a', text: "Ease the mainsheet (or traveler) to spill some power from the top of the sail" },
   ],
   correctChoiceId: 'a',
   explanation: "Easing the mainsheet or dropping the traveler to leeward lets the upper part of the sail twist off and depower quickly, reducing heel in a gust without needing to physically reef — a fast, temporary response crews use constantly while sailing.",
@@ -6006,10 +6006,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "At a basic level, what does the mainsail traveler control?",
   choices: [
-    { id: 'a', text: "The athwartships (side-to-side) position of the mainsheet's lower attachment point, which affects mainsail angle and power without changing sheet tension as much" },
     { id: 'b', text: "The boat's compass heading directly", whyWrong: "The traveler adjusts mainsail trim; it isn't a steering device and doesn't directly set the boat's heading." },
     { id: 'c', text: "The depth of water under the keel", whyWrong: "Depth under the keel is unrelated to the traveler, which is a sail-trim control." },
     { id: 'd', text: "The anchor rode length", whyWrong: "The traveler has nothing to do with ground tackle or anchor rode; it's part of the mainsheet system." },
+    { id: 'a', text: "The athwartships (side-to-side) position of the mainsheet's lower attachment point, which affects mainsail angle and power without changing sheet tension as much" },
   ],
   correctChoiceId: 'a',
   explanation: "The traveler lets the mainsheet's attachment point slide side to side across a track, adjusting the boom's angle and the sail's power/heel characteristics somewhat independently of how hard the sheet itself is pulled in.",
@@ -6021,10 +6021,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "The boat is heeling heavily and the helm feels like it wants to round up into the wind constantly. What is the likely connection, and the fix?",
   choices: [
-    { id: 'a', text: "Excess heel is producing excess weather helm; reducing heel (easing sheet/traveler, or reefing) will typically lighten and balance the helm" },
     { id: 'b', text: "Heel angle and helm feel are completely unrelated on a sailboat", whyWrong: "Heel and helm balance are closely linked on most sailboats — increasing heel commonly increases weather helm, so they are directly related." },
     { id: 'c', text: "The only fix is to add more sail area", whyWrong: "Adding sail area would tend to increase heel and worsen the heavy weather helm, not fix it." },
     { id: 'd', text: "A heavy, rounding-up helm means the rudder is broken", whyWrong: "A heavy weather helm at excess heel is a normal trim/balance effect, not necessarily a sign of mechanical rudder failure." },
+    { id: 'a', text: "Excess heel is producing excess weather helm; reducing heel (easing sheet/traveler, or reefing) will typically lighten and balance the helm" },
   ],
   correctChoiceId: 'a',
   explanation: "As heel increases beyond a certain point, the underwater shape of the hull and the sail's center of effort shift in a way that increases weather helm (the tendency to round up). Reducing heel — by easing sheet/traveler or reefing — typically restores a lighter, more balanced helm.",
@@ -6036,10 +6036,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "The boat is heeled well past a comfortable angle, gear is sliding, and a crew member is having trouble staying seated. What should the skipper do?",
   choices: [
-    { id: 'a', text: "Reduce heel immediately — ease the sheet/traveler and reduce sail area if the condition persists — rather than accept it as normal" },
-    { id: 'b', text: "Treat heavy heel as simply part of sailing and take no action", whyWrong: "Excessive heel that's making gear slide and crew unable to stay seated is a real control and safety issue, not something to simply accept." },
     { id: 'c', text: "Sheet the sails in tighter to try to point higher", whyWrong: "Sheeting in tighter in this situation would tend to increase heel further rather than address the excess heel already causing problems." },
     { id: 'd', text: "Ask the crew to hold onto sliding gear rather than adjust the boat", whyWrong: "Asking crew to manage the symptom (sliding gear) instead of fixing the cause (excess heel) leaves an avoidable safety issue unaddressed." },
+    { id: 'a', text: "Reduce heel immediately — ease the sheet/traveler and reduce sail area if the condition persists — rather than accept it as normal" },
+    { id: 'b', text: "Treat heavy heel as simply part of sailing and take no action", whyWrong: "Excessive heel that's making gear slide and crew unable to stay seated is a real control and safety issue, not something to simply accept." },
   ],
   correctChoiceId: 'a',
   explanation: "Excessive heel that's causing gear to slide and crew to struggle to stay seated is a real signal to act: ease the sheet or traveler for immediate relief, and reduce sail area (reef, smaller headsail, or both) if the condition continues.",
@@ -6051,10 +6051,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Who holds ultimate responsibility for the safety of the vessel and crew, regardless of how tasks are delegated?",
   choices: [
+    { id: 'd', text: "The most experienced guest aboard, regardless of who is actually in charge", whyWrong: "An experienced guest may be a valuable resource, but that doesn't transfer the skipper's underlying responsibility to them." },
     { id: 'a', text: "The skipper, even when specific tasks are assigned to other crew members" },
     { id: 'b', text: "Whichever crew member is physically at the helm at any given moment, with no ongoing role for the skipper", whyWrong: "While the person at the helm has an immediate role, overall responsibility for the vessel and crew's safety remains with the skipper, not whoever happens to be steering." },
     { id: 'c', text: "No one — responsibility is not really assigned on a small sailboat", whyWrong: "Responsibility is clearly assigned in standard seamanship practice; the skipper carries it." },
-    { id: 'd', text: "The most experienced guest aboard, regardless of who is actually in charge", whyWrong: "An experienced guest may be a valuable resource, but that doesn't transfer the skipper's underlying responsibility to them." },
   ],
   correctChoiceId: 'a',
   explanation: "Delegating specific tasks (trimming, navigating, lookout) doesn't transfer overall responsibility — the skipper remains accountable for the safety of the vessel and everyone aboard.",
@@ -6066,10 +6066,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "What should a pre-departure crew briefing typically cover?",
   choices: [
+    { id: 'd', text: "A detailed history of the boat's manufacturer", whyWrong: "Manufacturer history isn't relevant to crew safety preparation for the outing." },
     { id: 'a', text: "Where safety gear is stowed, basic man-overboard procedure, and each crew member's assigned role for the outing" },
     { id: 'b', text: "Only the lunch menu for the trip", whyWrong: "A pre-departure safety briefing focuses on safety information and roles, not meal planning." },
     { id: 'c', text: "Nothing — briefings are unnecessary if the crew has sailed together before", whyWrong: "Even a familiar crew benefits from a quick briefing, especially since gear location, roles, or conditions may differ trip to trip; skipping it removes a basic safety step." },
-    { id: 'd', text: "A detailed history of the boat's manufacturer", whyWrong: "Manufacturer history isn't relevant to crew safety preparation for the outing." },
   ],
   correctChoiceId: 'a',
   explanation: "A good pre-departure briefing orients the crew to essentials: where PFDs and safety gear are stowed, the basics of the man-overboard response, and who's doing what, so everyone starts the trip on the same page.",
@@ -6081,10 +6081,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Should situational awareness (watching traffic, weather, and hazards) be treated as only the skipper's job?",
   choices: [
-    { id: 'a', text: "No — every crew member should stay alert and speak up about anything they notice, even though the skipper has final responsibility" },
-    { id: 'b', text: "Yes, other crew members should never mention anything they observe", whyWrong: "Discouraging crew from speaking up about hazards they notice removes a valuable extra set of eyes and ears from the safety picture." },
     { id: 'c', text: "Only the crew member assigned as lookout should ever pay attention to surroundings", whyWrong: "A designated lookout has a formal role, but that doesn't mean other crew should tune out — general awareness benefits from everyone paying attention." },
     { id: 'd', text: "Situational awareness only matters once a problem has already occurred", whyWrong: "The value of situational awareness is in noticing developing hazards early, before they become full-blown problems." },
+    { id: 'a', text: "No — every crew member should stay alert and speak up about anything they notice, even though the skipper has final responsibility" },
+    { id: 'b', text: "Yes, other crew members should never mention anything they observe", whyWrong: "Discouraging crew from speaking up about hazards they notice removes a valuable extra set of eyes and ears from the safety picture." },
   ],
   correctChoiceId: 'a',
   explanation: "While the skipper carries ultimate responsibility, good practice encourages every crew member to stay alert and communicate what they notice — extra eyes on traffic, weather, and hazards make the whole boat safer.",
@@ -6096,10 +6096,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "The skipper assigns the navigation role to an experienced crew member for the day. What does this delegation mean for the skipper's overall responsibility?",
   choices: [
-    { id: 'a', text: "The skipper still holds overall responsibility for the vessel's safety, even though a specific task has been delegated" },
     { id: 'b', text: "The skipper is now completely free of responsibility for navigation decisions", whyWrong: "Delegating a task doesn't erase the skipper's underlying accountability for the vessel's overall safety, including navigation outcomes." },
     { id: 'c', text: "Responsibility automatically transfers permanently to that crew member for all future trips", whyWrong: "A single day's task assignment doesn't create a permanent transfer of the skipper's role or responsibility." },
     { id: 'd', text: "Delegation is not a normal or appropriate practice on a sailboat", whyWrong: "Assigning specific roles to capable crew is normal, sound practice — it just doesn't remove the skipper's overall responsibility." },
+    { id: 'a', text: "The skipper still holds overall responsibility for the vessel's safety, even though a specific task has been delegated" },
   ],
   correctChoiceId: 'a',
   explanation: "Delegating a role like navigation is normal and often wise, but it distributes tasks, not ultimate accountability — the skipper remains responsible for the vessel and crew's overall safety.",
@@ -6126,10 +6126,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "When is it appropriate to transmit a Mayday call over VHF?",
   choices: [
-    { id: 'a', text: "When there is grave and imminent danger to a person or vessel requiring immediate assistance" },
-    { id: 'b', text: "Any time you simply want to ask another boat a routine question", whyWrong: "A routine question isn't an emergency and doesn't warrant a Mayday call, which is reserved for grave, imminent danger." },
     { id: 'c', text: "Whenever you want a radio check without contacting anyone specific", whyWrong: "A radio check is not an emergency situation and should not use a distress call." },
     { id: 'd', text: "Only after a problem has been resolved, as an after-the-fact report", whyWrong: "A Mayday call is for an ongoing, immediate emergency, not a report made after the situation is already resolved." },
+    { id: 'a', text: "When there is grave and imminent danger to a person or vessel requiring immediate assistance" },
+    { id: 'b', text: "Any time you simply want to ask another boat a routine question", whyWrong: "A routine question isn't an emergency and doesn't warrant a Mayday call, which is reserved for grave, imminent danger." },
   ],
   correctChoiceId: 'a',
   explanation: "Mayday is reserved for situations of grave and imminent danger to life or vessel — fire, sinking, a person overboard whose life is in danger, and similar emergencies requiring immediate outside help.",
@@ -6141,10 +6141,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why should VHF radio transmissions on a shared channel be kept brief and to the point?",
   choices: [
-    { id: 'a', text: "The channel is shared by many vessels, and long, unnecessary transmissions can block others, including genuine emergency traffic" },
-    { id: 'b', text: "Radios can only transmit for a fixed number of seconds per day", whyWrong: "There's no such daily time limit on VHF transmissions; the real reason to be concise is that the channel is shared and long chatter can block others." },
     { id: 'c', text: "Longer transmissions damage the radio equipment", whyWrong: "Transmission length doesn't damage the equipment; the concern is courteous, effective use of a shared communication channel." },
     { id: 'd', text: "There is no real reason to keep transmissions short", whyWrong: "Keeping transmissions concise is a real, practical courtesy and safety consideration on a shared channel." },
+    { id: 'a', text: "The channel is shared by many vessels, and long, unnecessary transmissions can block others, including genuine emergency traffic" },
+    { id: 'b', text: "Radios can only transmit for a fixed number of seconds per day", whyWrong: "There's no such daily time limit on VHF transmissions; the real reason to be concise is that the channel is shared and long chatter can block others." },
   ],
   correctChoiceId: 'a',
   explanation: "VHF channels are shared by everyone in range. Tying up a channel with unnecessarily long chatter can prevent others — including a vessel with a real emergency — from getting through, so concise, purposeful transmissions are the expected norm.",
@@ -6156,10 +6156,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "After making initial contact with another vessel on Channel 16, what should you do next?",
   choices: [
-    { id: 'a', text: "Agree on a working channel and switch the conversation there, freeing Channel 16 for calling and safety traffic" },
-    { id: 'b', text: "Continue the entire conversation on Channel 16", whyWrong: "Staying on Channel 16 for an extended conversation ties up the calling/distress channel, which should be kept clear once contact is made." },
     { id: 'c', text: "End all radio contact immediately with no further conversation allowed", whyWrong: "Moving the conversation to a working channel is the normal next step, not ending contact altogether." },
     { id: 'd', text: "Repeat the same message on Channel 16 indefinitely", whyWrong: "Repeating on the calling channel instead of switching to a working channel is the opposite of correct radio practice." },
+    { id: 'a', text: "Agree on a working channel and switch the conversation there, freeing Channel 16 for calling and safety traffic" },
+    { id: 'b', text: "Continue the entire conversation on Channel 16", whyWrong: "Staying on Channel 16 for an extended conversation ties up the calling/distress channel, which should be kept clear once contact is made." },
   ],
   correctChoiceId: 'a',
   explanation: "Standard VHF practice is to use Channel 16 briefly to make contact, then agree on a working channel and move the actual conversation there — keeping 16 open for other vessels' hailing and any distress calls.",
@@ -6171,10 +6171,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why should you never wrap a loaded line around your hand?",
   choices: [
-    { id: 'a', text: "If the line suddenly loads up or surges, a wrap around the hand can trap and seriously injure it" },
     { id: 'b', text: "It has no safety implications, only aesthetic ones", whyWrong: "Wrapping a line around the hand is a genuine injury hazard, not merely a matter of appearance." },
     { id: 'c', text: "It makes the line grip more securely with no downside", whyWrong: "Any perceived grip benefit is outweighed by the serious injury risk if the line suddenly loads or surges." },
     { id: 'd', text: "It's only a concern for very thick lines, never for thin ones", whyWrong: "The hand-trapping hazard applies to loaded lines generally, not only to particularly thick ones." },
+    { id: 'a', text: "If the line suddenly loads up or surges, a wrap around the hand can trap and seriously injure it" },
   ],
   correctChoiceId: 'a',
   explanation: "A line that suddenly comes under load — a gust filling a sail, a boat surging against a dock line — can tighten instantly. A hand wrapped in the line can be trapped, crushed, or worse, which is why proper technique never wraps a line around the hand.",
@@ -6186,10 +6186,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Why is it important to take the correct number of wraps around a winch before loading a line?",
   choices: [
+    { id: 'd', text: "Wraps are only relevant for halyards, never for sheets", whyWrong: "Correct winch wraps matter for sheets and other loaded lines on a winch, not exclusively for halyards." },
     { id: 'a', text: "Too few wraps can let the line slip under load; the right number gives control while tailing and eases the load safely" },
     { id: 'b', text: "The number of wraps has no effect on control or safety", whyWrong: "Wrap count directly affects both grip on the winch drum and the crew's ability to control the load, so it does matter." },
     { id: 'c', text: "More wraps than needed always makes the line safer with no downside", whyWrong: "Excess wraps can override or jam on the drum, which creates its own handling problem rather than simply adding safety." },
-    { id: 'd', text: "Wraps are only relevant for halyards, never for sheets", whyWrong: "Correct winch wraps matter for sheets and other loaded lines on a winch, not exclusively for halyards." },
   ],
   correctChoiceId: 'a',
   explanation: "The friction from wraps around a winch drum lets a crew member hold and control a heavily loaded line. Too few wraps risks the line slipping through the hand; using the appropriate number keeps the load controlled while easing or trimming.",
@@ -6216,10 +6216,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Before releasing or easing a heavily loaded dock line or sheet, what should crew do?",
   choices: [
-    { id: 'a', text: "Make sure hands, feet, and bystanders are clear of the line's path and any coils it will run through" },
     { id: 'b', text: "Stand directly on top of the coiled line for better footing", whyWrong: "Standing on a coil that's about to run is a classic way to get caught in it as it pays out — the opposite of safe positioning." },
     { id: 'c', text: "There is no need to check anyone's position before releasing a loaded line", whyWrong: "Checking that people and body parts are clear before releasing a loaded line is a core safety step, not an unnecessary one." },
     { id: 'd', text: "Loop the free end around an ankle for a secure hold", whyWrong: "Attaching any part of a loaded line to your body (an ankle, a hand) creates a serious entanglement hazard if the line runs." },
+    { id: 'a', text: "Make sure hands, feet, and bystanders are clear of the line's path and any coils it will run through" },
   ],
   correctChoiceId: 'a',
   explanation: "Before easing or releasing a loaded line, check that hands, feet, and anyone nearby are clear of where the line and any coil will run — a line paying out under load can move fast and catch anything in its path.",
@@ -6232,10 +6232,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'photo-bowline',
   prompt: "This knot is a bowline. What is it primarily used for?",
   choices: [
-    { id: 'a', text: "Forming a fixed loop at the end of a line that won't slip or jam, even after being loaded, and unties easily afterward" },
-    { id: 'b', text: "Joining the middle of two separate lines together permanently", whyWrong: "A bowline forms a loop at the end of a single line; joining two separate lines is more the role of a bend such as a sheet bend, not the bowline." },
     { id: 'c', text: "Preventing a line's end from running out through a block", whyWrong: "That's the role of a stopper knot like a figure-eight; a bowline's purpose is a secure, non-slipping loop, not blocking a line from running through a fairlead." },
     { id: 'd', text: "Permanently splicing two lines end to end", whyWrong: "The bowline is a knot, not a splice, and it forms a loop rather than joining two lines end to end." },
+    { id: 'a', text: "Forming a fixed loop at the end of a line that won't slip or jam, even after being loaded, and unties easily afterward" },
+    { id: 'b', text: "Joining the middle of two separate lines together permanently", whyWrong: "A bowline forms a loop at the end of a single line; joining two separate lines is more the role of a bend such as a sheet bend, not the bowline." },
   ],
   correctChoiceId: 'a',
   explanation: "The bowline creates a reliable fixed loop that holds securely under load yet, unlike many knots, remains relatively easy to untie afterward — a classic use is a mooring or towing loop, or a loop to clip a harness tether into.",
@@ -6248,10 +6248,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'photo-cleat-hitch',
   prompt: "This is a line secured to a dock cleat. What makes this a correct cleat hitch?",
   choices: [
+    { id: 'd', text: "Gluing or permanently fastening the line to the cleat", whyWrong: "A cleat hitch is a quick-release technique using wraps and a locking hitch, not a permanent fastening." },
     { id: 'a', text: "A full turn around the base of the cleat followed by figure-eight wraps around the horns, finished with a locking hitch, so it holds securely but releases easily" },
     { id: 'b', text: "Simply wrapping the line around the cleat once with no crossing pattern", whyWrong: "A single wrap with no figure-eight crossing pattern tends to slip and doesn't provide the secure, quick-release hold of a proper cleat hitch." },
     { id: 'c', text: "Tying the line in a fixed loop and dropping the loop over the cleat", whyWrong: "That describes using a loop knot like a bowline over the cleat, not the standard figure-eight cleat hitch technique." },
-    { id: 'd', text: "Gluing or permanently fastening the line to the cleat", whyWrong: "A cleat hitch is a quick-release technique using wraps and a locking hitch, not a permanent fastening." },
   ],
   correctChoiceId: 'a',
   explanation: "A proper cleat hitch starts with a full turn around the base, crosses in a figure-eight pattern over the horns, and finishes with a locking half-hitch. This grips securely under load but can still be released quickly when needed.",
@@ -6264,10 +6264,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'photo-clove-hitch',
   prompt: "This is a clove hitch tied around a post. What is an important limitation to keep in mind when using it?",
   choices: [
+    { id: 'd', text: "It has no practical marine use at all", whyWrong: "The clove hitch is a genuinely useful, commonly taught knot for quick, temporary fastening to a post or rail." },
     { id: 'a', text: "It can slip or work loose under varying or intermittent load, so it's best for temporary fastening rather than a critical, long-term hold" },
     { id: 'b', text: "It is the strongest, most secure knot for any long-term mooring situation", whyWrong: "The clove hitch is convenient for quick, temporary fastening, but it's not considered the most secure choice for critical long-term loads because it can work loose." },
     { id: 'c', text: "It cannot be untied once loaded", whyWrong: "A clove hitch is actually relatively easy to adjust or release; its limitation is a tendency to loosen under changing load, not being impossible to untie." },
-    { id: 'd', text: "It has no practical marine use at all", whyWrong: "The clove hitch is a genuinely useful, commonly taught knot for quick, temporary fastening to a post or rail." },
   ],
   correctChoiceId: 'a',
   explanation: "The clove hitch is quick to tie and adjust around a post or rail, making it handy for temporary fastenings like a fender line, but it can slip or loosen if the load varies or comes and goes, so it isn't the best choice for a critical long-term hold.",
@@ -6312,10 +6312,10 @@ export const QUESTIONS: Question[] = [
   assetId: 'photo-rolling-hitch',
   prompt: "This sequence shows a rolling hitch being tied. What makes this knot useful compared to a simple clove hitch?",
   choices: [
-    { id: 'a', text: "It grips securely along the length of a rod, rail, or another line under load in one direction, without slipping, which a plain clove hitch can do less reliably" },
     { id: 'b', text: "It is used exclusively to join two lines of the same diameter", whyWrong: "The rolling hitch is typically tied around a rod, rail, or another line to grip and hold in one direction, not primarily used as a same-diameter joining knot." },
     { id: 'c', text: "It cannot be tied around another line at all", whyWrong: "One of the rolling hitch's classic uses is being tied onto another line (for example, to relieve load), so it can absolutely be tied around a line." },
     { id: 'd', text: "It is weaker than a simple clove hitch in every situation", whyWrong: "The rolling hitch is specifically valued for holding more securely against slipping in the direction it's designed for, compared to a plain clove hitch." },
+    { id: 'a', text: "It grips securely along the length of a rod, rail, or another line under load in one direction, without slipping, which a plain clove hitch can do less reliably" },
   ],
   correctChoiceId: 'a',
   explanation: "The rolling hitch adds extra riding turns that bite into the load, letting it grip securely along a rod, rail, or another line and resist slipping in one direction — useful, for example, to take load off a jammed sheet or secure a fender to a rail.",
@@ -6342,10 +6342,10 @@ export const QUESTIONS: Question[] = [
   format: 'text',
   prompt: "Shortly after clearing the dock and getting into open water, what should be done with the dock lines and fenders?",
   choices: [
-    { id: 'a', text: "Coil and stow the dock lines and bring the fenders aboard, clearing the deck for sailing" },
     { id: 'b', text: "Leave the fenders hanging over the side for the entire outing", whyWrong: "Fenders left hanging while underway serve no purpose once away from the dock and can drag or catch on things; they're normally brought aboard." },
     { id: 'c', text: "Throw the dock lines overboard since they're no longer needed", whyWrong: "Dock lines are still needed for the next landing and shouldn't be discarded; they're coiled and stowed, not thrown away." },
     { id: 'd', text: "Leave everything exactly where it landed on deck with no further action", whyWrong: "Leaving lines and fenders scattered on deck creates a trip hazard and clutter; proper practice is to stow them promptly." },
+    { id: 'a', text: "Coil and stow the dock lines and bring the fenders aboard, clearing the deck for sailing" },
   ],
   correctChoiceId: 'a',
   explanation: "Once clear of the dock, dock lines are typically coiled and stowed and fenders brought aboard, both to reduce clutter and trip hazards on deck and because they'll be needed again, properly stowed and ready, at the next landing.",
