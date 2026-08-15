@@ -1,13 +1,23 @@
 import { expect, test } from '@playwright/test';
-import { EMERGENCIES, NAV_LIGHTS, RIGHT_OF_WAY, correctText, wrongChoice } from './helpers';
+import {
+  SEED,
+  correctText,
+  seeded,
+  seededPracticeOrder,
+  wrongChoice,
+} from './helpers';
 
-// First question in the Emergencies practice session — no need to skip ahead.
+// Order is randomized per session; `?seed=` pins it so the spec can name the
+// question it expects to be shown first.
+const EMERGENCIES = seededPracticeOrder('emergencies', SEED);
+const RIGHT_OF_WAY = seededPracticeOrder('right-of-way', SEED);
+const NAV_LIGHTS_ORDER = seededPracticeOrder('nav-lights', SEED);
 const emerQ = EMERGENCIES[0];
 
 test('emergency review flow: wrong answer lands in Missed Questions, retry clears it', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto(seeded());
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Emergencies' })
@@ -16,7 +26,7 @@ test('emergency review flow: wrong answer lands in Missed Questions, retry clear
   await expect(page.getByText(emerQ.prompt)).toBeVisible();
 
   const wrong = wrongChoice(emerQ);
-  await page.getByRole('radio', { name: wrong.text }).check();
+  await page.getByRole('radio', { name: wrong.text, exact: true }).check();
   await page.getByRole('button', { name: 'Submit' }).click();
   await expect(page.getByText('Incorrect', { exact: true })).toBeVisible();
   await expect(page.getByText(emerQ.explanation)).toBeVisible();
@@ -32,7 +42,7 @@ test('emergency review flow: wrong answer lands in Missed Questions, retry clear
     .getByRole('button', { name: 'Review', exact: true })
     .click();
   await expect(page.getByText(emerQ.prompt)).toBeVisible();
-  await page.getByRole('radio', { name: correctText(emerQ) }).check();
+  await page.getByRole('radio', { name: correctText(emerQ), exact: true }).check();
   await page.getByRole('button', { name: 'Submit' }).click();
   await expect(page.getByText('Correct', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Finish session' }).click();
@@ -43,7 +53,7 @@ test('emergency review flow: wrong answer lands in Missed Questions, retry clear
 test('adaptive recommendation favors a weak topic built through real study history', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto(seeded());
 
   // Fresh state: recommendation copy explains why (nothing studied yet).
   await expect(page.getByText('Recommended next')).toBeVisible();
@@ -56,9 +66,9 @@ test('adaptive recommendation favors a weak topic built through real study histo
     .getByRole('button', { name: 'Practice' })
     .click();
   for (let i = 0; i < 3; i++) {
-    const q = NAV_LIGHTS[i];
+    const q = NAV_LIGHTS_ORDER[i];
     const wrong = wrongChoice(q);
-    await page.getByRole('radio', { name: wrong.text }).check();
+    await page.getByRole('radio', { name: wrong.text, exact: true }).check();
     await page.getByRole('button', { name: 'Submit' }).click();
     await page.getByRole('button', { name: /Next question|Finish session/ }).click();
   }
@@ -74,7 +84,7 @@ test('adaptive recommendation favors a weak topic built through real study histo
     .click();
   for (let i = 0; i < 3; i++) {
     const q = RIGHT_OF_WAY[i];
-    await page.getByRole('radio', { name: correctText(q) }).check();
+    await page.getByRole('radio', { name: correctText(q), exact: true }).check();
     await page.getByRole('button', { name: 'Submit' }).click();
     await page.getByRole('button', { name: /Next question|Finish session/ }).click();
   }
@@ -98,9 +108,9 @@ test('adaptive recommendation favors a weak topic built through real study histo
     if (finishVisible) break;
     const promptLocator = page.locator('.prompt').first();
     const promptText = (await promptLocator.textContent()) ?? '';
-    const q = NAV_LIGHTS.find((x) => x.prompt === promptText.trim());
+    const q = NAV_LIGHTS_ORDER.find((x) => x.prompt === promptText.trim());
     if (q) {
-      await page.getByRole('radio', { name: correctText(q) }).check();
+      await page.getByRole('radio', { name: correctText(q), exact: true }).check();
       await page.getByRole('button', { name: 'Submit' }).click();
     }
     await page.getByRole('button', { name: /Next question|Finish session/ }).click();

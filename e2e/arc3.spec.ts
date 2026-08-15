@@ -1,5 +1,13 @@
 import { expect, test } from '@playwright/test';
-import { ANCHORING, CHART_NAV, correctText, question, wrongChoice } from './helpers';
+import {
+  ANCHORING,
+  CHART_NAV,
+  correctText,
+  question,
+  seeded,
+  skipToPrompt,
+  wrongChoice,
+} from './helpers';
 
 const chartQ = question('chart-nav-tools-dividers');
 const scopeQ = question('anchor-scope-calc-basic');
@@ -7,14 +15,15 @@ const scopeQ = question('anchor-scope-calc-basic');
 test('chart question: image loads, stays readable, answering works, explanation shows', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto(seeded());
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Coastal Navigation & Charts' })
     .getByRole('button', { name: 'Practice' })
     .click();
   await expect(page.getByText(`Question 1 of ${CHART_NAV.length}`)).toBeVisible();
-  await expect(page.getByText(chartQ.prompt)).toBeVisible();
+  // Session order is randomized; move to the question this spec is about.
+  await skipToPrompt(page, chartQ.prompt);
 
   // The figure image loads and renders at a real, non-zero size.
   const img = page.locator('.question-figure img');
@@ -26,7 +35,7 @@ test('chart question: image loads, stays readable, answering works, explanation 
   expect(box?.width ?? 0).toBeGreaterThan(50);
 
   const wrong = wrongChoice(chartQ);
-  await page.getByRole('radio', { name: wrong.text }).check();
+  await page.getByRole('radio', { name: wrong.text, exact: true }).check();
   await page.getByRole('button', { name: 'Submit' }).click();
   await expect(page.getByText('Incorrect', { exact: true })).toBeVisible();
   await expect(page.getByText(`Correct answer: ${correctText(chartQ)}`)).toBeVisible();
@@ -35,13 +44,13 @@ test('chart question: image loads, stays readable, answering works, explanation 
 });
 
 test('chart figure enlarges on click and closes on Escape', async ({ page }) => {
-  await page.goto('/');
+  await page.goto(seeded());
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Coastal Navigation & Charts' })
     .getByRole('button', { name: 'Practice' })
     .click();
-  await expect(page.getByText(chartQ.prompt)).toBeVisible();
+  await skipToPrompt(page, chartQ.prompt);
 
   await page.getByRole('button', { name: /Enlarge figure/ }).click();
   const lightboxImg = page.locator('.lightbox-img');
@@ -52,7 +61,7 @@ test('chart figure enlarges on click and closes on Escape', async ({ page }) => 
 });
 
 test('anchoring scope calculation: answer, scoring, and explanation', async ({ page }) => {
-  await page.goto('/');
+  await page.goto(seeded());
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Anchoring & Mooring' })
@@ -61,13 +70,10 @@ test('anchoring scope calculation: answer, scoring, and explanation', async ({ p
   await expect(page.getByText(`Question 1 of ${ANCHORING.length}`)).toBeVisible();
 
   // Skip forward to the scope-calculation question.
-  for (let i = 0; i < ANCHORING.length; i++) {
-    if (await page.getByText(scopeQ.prompt).isVisible().catch(() => false)) break;
-    await page.getByRole('button', { name: 'Skip' }).click();
-  }
+  await skipToPrompt(page, scopeQ.prompt);
   await expect(page.getByText(scopeQ.prompt)).toBeVisible();
 
-  await page.getByRole('radio', { name: correctText(scopeQ) }).check();
+  await page.getByRole('radio', { name: correctText(scopeQ), exact: true }).check();
   await page.getByRole('button', { name: 'Submit' }).click();
   await expect(page.getByText('Correct', { exact: true })).toBeVisible();
   await expect(page.getByText(scopeQ.explanation)).toBeVisible();

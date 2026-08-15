@@ -449,8 +449,38 @@ button.large {
   border-color: var(--color-accent);
 }
 
-.mode-buttons .spacer {
+.mode-buttons .spacer,
+.actions .spacer {
   flex: 1;
+}
+
+/* Mock-exam topic breakdown: a topic that fell below the weak-area threshold. */
+.chip-weak {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  border-color: var(--color-error-border);
+}
+
+.weak-areas {
+  margin: var(--space-3) 0 var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  font-size: 0.92rem;
+}
+
+/* Exam-mode "you have not answered this one yet" hint. Carries no correctness
+   information — it only reflects whether a choice has been selected. */
+.unanswered-flag {
+  margin: var(--space-3) 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+}
+
+.exam-progress-caption {
+  margin: var(--space-2) 0 0;
+  font-size: 0.82rem;
 }
 
 /* ---------------------------------------------------------------------

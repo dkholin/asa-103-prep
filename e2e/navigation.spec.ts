@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
-import { NAV_LIGHTS, correctText } from './helpers';
+import { SEED, correctText, seeded, seededPracticeOrder } from './helpers';
 
 test('every navigation control reaches the expected screen', async ({ page }) => {
-  await page.goto('/');
+  await page.goto(seeded());
 
   // Topic practice buttons open the matching session, Back returns.
   for (const topic of [
@@ -31,7 +31,7 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
 
   // Mock exam and abandon.
   await page.getByRole('button', { name: 'Mock exam' }).click();
-  await expect(page.getByRole('heading', { name: 'Mock exam' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Practice Mock Exam' })).toBeVisible();
   await page.getByRole('button', { name: 'Abandon exam' }).click();
   await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
 
@@ -42,7 +42,9 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
 
   // Reset progress clears saved state (confirm dialog accepted).
   await page.getByRole('button', { name: 'Continue studying' }).click();
-  await page.getByRole('radio', { name: correctText(NAV_LIGHTS[0]) }).check();
+  await page
+    .getByRole('radio', { name: correctText(seededPracticeOrder('nav-lights', SEED)[0]), exact: true })
+    .check();
   await page.getByRole('button', { name: 'Submit' }).click();
   await page.getByRole('button', { name: 'Back to dashboard' }).click();
   await expect(page.getByTestId('overall-readiness')).toContainText('1 of');

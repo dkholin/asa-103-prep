@@ -1,5 +1,6 @@
-import type { Question } from './types';
+import type { Question, TopicId } from './types';
 import { TOPIC_IDS } from './topics';
+import { shuffle } from '../lib/shuffle';
 
 /**
  * Arc 1 question bank: Navigation Rules / Lights (ASA 103 scope).
@@ -6823,20 +6824,92 @@ export const QUESTIONS: Question[] = [
 ];
 
 /**
- * Dynamic mock-exam selection: draws a fixed number of questions from each
- * topic present in the bank, so new topics (and their questions) automatically
- * participate without anyone having to maintain a hardcoded id list. Selection
- * within a topic is deterministic (first N in bank order) so the exam content
- * doesn't shuffle between runs. A full 100-question exam is out of scope for
- * this project.
+ * Length of the full practice mock exam. This is OUR study format, not a
+ * statement about the official ASA 103 exam — see the mock-exam UI copy.
+ * Change this one constant to change the exam length everywhere.
  */
-export function selectMockQuestions(perTopic = 2): string[] {
-  const ids: string[] = [];
+export const MOCK_EXAM_SIZE = 100;
+
+/** Study target used to frame mock results. Internal prep goal, not a certification threshold. */
+export const MOCK_STUDY_TARGET_PCT = 85;
+
+/**
+ * How many questions each topic contributes to an exam of `size`.
+ *
+ * Every topic gets at least one question so nothing can be shut out, and the
+ * rest is a plain proportional (largest-remainder) allocation against each
+ * topic's share of the bank. Allocations are capped at what a topic actually
+ * has, and any leftover is handed to topics that still have spare questions.
+ */
+export function mockTopicAllocation(
+  size = MOCK_EXAM_SIZE,
+  questions: Question[] = QUESTIONS,
+): Map<TopicId, number> {
+  const pools = new Map<TopicId, number>();
   for (const topicId of TOPIC_IDS) {
-    const topicQuestionIds = QUESTIONS.filter((q) => q.topic === topicId)
-      .slice(0, perTopic)
-      .map((q) => q.id);
-    ids.push(...topicQuestionIds);
+    pools.set(topicId, questions.filter((q) => q.topic === topicId).length);
   }
-  return ids;
+  const topics = TOPIC_IDS.filter((t) => (pools.get(t) ?? 0) > 0);
+  const bankTotal = topics.reduce((n, t) => n + (pools.get(t) ?? 0), 0);
+  const target = Math.min(size, bankTotal);
+
+  const alloc = new Map<TopicId, number>();
+  const remainder = new Map<TopicId, number>();
+  for (const t of topics) {
+    const quota = (target * (pools.get(t) ?? 0)) / bankTotal;
+    const base = Math.min(Math.max(1, Math.floor(quota)), pools.get(t) ?? 0);
+    alloc.set(t, base);
+    remainder.set(t, quota - Math.floor(quota));
+  }
+
+  const capacityOrder = (a: TopicId, b: TopicId) => (remainder.get(b) ?? 0) - (remainder.get(a) ?? 0);
+  let assigned = topics.reduce((n, t) => n + (alloc.get(t) ?? 0), 0);
+
+  // Hand out the remaining seats by largest fractional remainder.
+  const byRemainder = topics.slice().sort(capacityOrder);
+  while (assigned < target) {
+    const before = assigned;
+    for (const t of byRemainder) {
+      if (assigned >= target) break;
+      if ((alloc.get(t) ?? 0) < (pools.get(t) ?? 0)) {
+        alloc.set(t, (alloc.get(t) ?? 0) + 1);
+        assigned += 1;
+      }
+    }
+    if (assigned === before) break; // bank exhausted
+  }
+  // The min-one floor can overshoot on tiny exams; trim the largest allocations.
+  while (assigned > target) {
+    const trimmable = topics.filter((t) => (alloc.get(t) ?? 0) > 1).sort(
+      (a, b) => (alloc.get(b) ?? 0) - (alloc.get(a) ?? 0),
+    );
+    if (trimmable.length === 0) break;
+    const t = trimmable[0];
+    alloc.set(t, (alloc.get(t) ?? 0) - 1);
+    assigned -= 1;
+  }
+  return alloc;
+}
+
+/**
+ * Pick the question ids for one mock-exam attempt.
+ *
+ * Guarantees: exactly `size` unique ids (or the whole bank if it is smaller),
+ * every topic represented, per-topic counts roughly proportional to the bank,
+ * and a different draw and order on every attempt. `rng` is injectable so
+ * tests and the `?seed=` debug seam can make a run reproducible.
+ */
+export function selectMockQuestions(
+  size = MOCK_EXAM_SIZE,
+  rng: () => number = Math.random,
+): string[] {
+  const alloc = mockTopicAllocation(size);
+  const picked: string[] = [];
+  for (const topicId of TOPIC_IDS) {
+    const want = alloc.get(topicId) ?? 0;
+    if (want <= 0) continue;
+    const pool = QUESTIONS.filter((q) => q.topic === topicId).map((q) => q.id);
+    picked.push(...shuffle(pool, rng).slice(0, want));
+  }
+  return shuffle(picked, rng);
 }

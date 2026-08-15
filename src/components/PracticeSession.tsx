@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { QUESTIONS } from '../content/questions';
 import type { Question } from '../content/types';
 import { recordAnswer, recordSkip, type Progress } from '../lib/progress';
+import { createRng, prepareAttempt } from '../lib/shuffle';
 import { ChoiceList, Feedback, ProgressBar, QuestionLayout } from './shared';
 
 const questionById = new Map(QUESTIONS.map((q) => [q.id, q]));
@@ -13,9 +14,18 @@ export function PracticeSession(props: {
   updateProgress: (p: Progress) => void;
   onExit: () => void;
 }) {
-  const questions = props.questionIds
-    .map((id) => questionById.get(id))
-    .filter((q): q is Question => q !== undefined);
+  // Question order and each question's displayed choice order are randomized
+  // once, when the session starts (App remounts this component per session via
+  // its `key`), and then held in state — so nothing reshuffles on rerender and
+  // the order stays stable for the whole session.
+  const [questions] = useState<Question[]>(() =>
+    prepareAttempt(
+      props.questionIds
+        .map((id) => questionById.get(id))
+        .filter((q): q is Question => q !== undefined),
+      createRng(),
+    ),
+  );
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState<string | null>(null);
