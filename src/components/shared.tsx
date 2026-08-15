@@ -8,12 +8,15 @@ function AssetCredit({
   licenseUrl,
   sourcePage,
   attributionText,
+  modificationNote,
 }: {
   creator: string;
   license: string;
   licenseUrl?: string;
   sourcePage: string;
   attributionText?: string;
+  /** CC BY / BY-SA require that changes to the work be indicated alongside the credit. */
+  modificationNote?: string;
 }) {
   return (
     <span className="asset-credit-text">
@@ -21,6 +24,7 @@ function AssetCredit({
       <a href={sourcePage} target="_blank" rel="noreferrer">Image source</a>
       {' · '}
       {licenseUrl ? <a href={licenseUrl} target="_blank" rel="noreferrer">{license}</a> : license}
+      {modificationNote && ` · ${modificationNote}`}
     </span>
   );
 }
@@ -77,6 +81,7 @@ export function QuestionFigure({ question }: { question: Question }) {
       licenseUrl={asset.licenseUrl}
       sourcePage={asset.sourcePage}
       attributionText={asset.attributionText}
+      modificationNote={asset.modified ? asset.modificationNote : undefined}
     />
   ) : null;
   return (

@@ -6,7 +6,7 @@
   <rect width="420" height="260" fill="#edf6fa"/>
   <rect x="25" y="61" width="370" height="22" rx="3" fill="#8a6d4c"/><path d="M25 86H395" stroke="#5e4934" stroke-width="3"/>
   <text x="210" y="51" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#5e4934">DOCK</text>
-  <text x="335" y="115" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#52697c">WIND</text>
+  <text x="340" y="145" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#52697c">WIND</text>
   <g stroke="#52697c" stroke-width="3" marker-end="url(#wind-head)"><path d="M310 124 275 88"/><path d="M345 124 310 88"/><path d="M380 124 345 88"/></g>
   <g transform="translate(145 181) rotate(-90)" color="#1d5c94"><use href="#powerboat" x="-20" y="-38" width="40" height="76"/></g>
   <rect x="91" y="221" width="108" height="24" rx="12" fill="#fff" stroke="#cbdbe6"/><text x="145" y="238" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#133f68">Your vessel</text>
