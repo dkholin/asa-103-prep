@@ -1,28 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 320" role="img" aria-label="Bird's-eye view of a boat at anchor with a dashed circle showing the full swing radius equal to the scoped rode length, a moored boat encroaching on the edge of that circle, and a charted rock just outside it" >
-  <rect width="420" height="320" fill="#dcebf5"/>
-  <!-- swing circle -->
-  <circle cx="210" cy="160" r="110" fill="#cfe4f2" opacity="0.6" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="6 5"/>
-  <!-- anchor at center -->
-  <g transform="translate(210 160)">
-    <circle cx="0" cy="0" r="4" fill="#333"/>
-    <line x1="0" y1="4" x2="0" y2="18" stroke="#333" stroke-width="2"/>
-    <path d="M-9 18 Q0 27 9 18" fill="none" stroke="#333" stroke-width="2"/>
-  </g>
-  <text x="210" y="145" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Anchor</text>
-  <!-- own boat near edge of circle, drifting with wind/current -->
-  <g transform="translate(210 70)">
-    <path d="M-16 0 L16 0 L11 16 L-11 16 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-  </g>
-  <text x="210" y="50" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">Your boat</text>
-  <text x="210" y="105" font-family="sans-serif" font-size="11" fill="#1a3d5c" text-anchor="middle">radius = scope × (depth + bow height)</text>
-  <!-- another moored boat, well within the circle's outer edge -->
-  <g transform="translate(298 188)">
-    <path d="M-14 0 L14 0 L10 14 L-10 14 Z" fill="#c05621" stroke="#8a3c12" stroke-width="2"/>
-  </g>
-  <text x="298" y="221" font-family="sans-serif" font-size="12" fill="#6b3410" text-anchor="middle">Neighboring boat</text>
-  <!-- charted rock just outside the swing circle -->
-  <g transform="translate(70 260)">
-    <polygon points="0,-8 8,4 -8,4" fill="#5a4a35"/>
-  </g>
-  <text x="70" y="283" font-family="sans-serif" font-size="12" fill="#5a4a35" text-anchor="middle">Charted rock</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 320" role="img" aria-label="Overhead anchoring diagram with a dashed limit, another boat, and a charted rock.">
+  <defs>
+    <symbol id="sailboat" viewBox="-25 -42 50 84"><path d="M0-35 14-12 12 24Q0 33-12 24L-14-12Z" fill="currentColor" stroke="#133f68" stroke-width="2"/><path d="M0-24V21M0-19-16 10 0 15ZM2-17 15 8 2 13Z" fill="#fff" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="powerboat" viewBox="-20 -38 40 76"><path d="M0-34 15-13 14 22Q0 32-14 22L-15-13Z" fill="currentColor" stroke="#133f68" stroke-width="2"/><path d="M-8-8H8V12H-8Z" fill="#fff" opacity=".78"/></symbol>
+  </defs>
+  <rect width="420" height="320" fill="#edf6fa"/>
+  <circle cx="205" cy="164" r="112" fill="#cfe5f1" fill-opacity=".42" stroke="#1d5c94" stroke-width="2.5" stroke-dasharray="8 6"/>
+  <rect x="134" y="52" width="142" height="24" rx="12" fill="#fff" stroke="#cbdbe6"/><text x="205" y="69" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#133f68">expected swing limit</text>
+  <g transform="translate(205 164)" stroke="#384956" stroke-width="2" fill="none"><circle cy="-10" r="3" fill="#384956"/><path d="M0-7V8M-9 5Q0 16 9 5M-9 5l-4-5M9 5l4-5"/></g>
+  <text x="205" y="195" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#384956">anchor</text>
+  <g transform="translate(205 92)" color="#1d5c94"><use href="#sailboat" x="-25" y="-42" width="50" height="84"/></g>
+  <g transform="translate(287 201) rotate(35)" color="#b85f24"><use href="#powerboat" x="-20" y="-38" width="40" height="76"/></g>
+  <rect x="249" y="250" width="118" height="24" rx="12" fill="#fff" stroke="#cbdbe6"/><text x="308" y="267" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#7c3f18">neighboring boat</text>
+  <path d="M55 272 65 253 75 272Z" fill="#756342" stroke="#55472e" stroke-width="2"/>
+  <text x="65" y="293" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#5f5037">charted rock</text>
 </svg>

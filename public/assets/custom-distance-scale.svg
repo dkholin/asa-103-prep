@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 320" role="img" aria-label="Chart latitude border used as a distance scale, with a pair of dividers spanning a distance between two charted points equal to three minutes of latitude">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 320" role="img" aria-label="Chart-border scale with points A and B and a transferred divider span.">
   <rect width="460" height="320" fill="#eef5fa"/>
-  <text x="230" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a3d5c" text-anchor="middle">Latitude (side) border scale — each minute of latitude = 1 nautical mile</text>
+  <text x="230" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a3d5c" text-anchor="middle">CHART BORDER AND DIVIDER SPAN</text>
   <!-- vertical latitude border with 1-minute ticks -->
   <g transform="translate(70 55)">
     <line x1="0" y1="0" x2="0" y2="240" stroke="#1a3d5c" stroke-width="2"/>
@@ -17,7 +17,6 @@
     <text x="-14" y="84" font-family="sans-serif" font-size="12" text-anchor="end" fill="#1a3d5c">41°25'N</text>
     <text x="-14" y="164" font-family="sans-serif" font-size="12" text-anchor="end" fill="#1a3d5c">41°23'N</text>
     <text x="-14" y="244" font-family="sans-serif" font-size="12" text-anchor="end" fill="#1a3d5c">41°21'N</text>
-    <text x="10" y="24" font-family="sans-serif" font-size="10" fill="#52697c">1' = 1 nm</text>
   </g>
   <!-- two charted points with a divider span equal to 3 minutes (80px per 2 min => 40px per min, so 3 min = 120px) -->
   <g>
@@ -29,7 +28,6 @@
     <path d="M250 95 l10 -8 l10 8" fill="none" stroke="#456" stroke-width="1.5"/>
     <path d="M250 215 l10 8 l10 -8" fill="none" stroke="#456" stroke-width="1.5"/>
     <text x="330" y="160" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">Divider span walked</text>
-    <text x="330" y="178" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">off on the latitude</text>
-    <text x="330" y="196" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">border = 3 minutes</text>
+    <text x="330" y="178" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">to the latitude border</text>
   </g>
 </svg>

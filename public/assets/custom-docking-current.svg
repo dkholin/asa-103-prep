@@ -1,18 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Bird's-eye view of a dock with current running parallel to it, showing a boat approaching bow-first into the current so the current itself helps slow the boat during the approach">
-  <rect width="420" height="260" fill="#dcebf5"/>
-  <rect x="30" y="60" width="18" height="180" fill="#8a6d4c"/>
-  <text x="70" y="55" font-family="sans-serif" font-size="12" fill="#333">Dock</text>
-  <g transform="translate(150 170) rotate(90)">
-    <path d="M-70 -18 L60 -18 L80 0 L60 18 L-70 18 Z" fill="#c9c2b0" stroke="#333" stroke-width="2"/>
-  </g>
-  <path d="M340 80 L340 220" stroke="#2b6cb0" stroke-width="3" marker-end="url(#c1)"/>
-  <path d="M300 80 L300 220" stroke="#2b6cb0" stroke-width="3" marker-end="url(#c1)"/>
-  <text x="360" y="70" font-family="sans-serif" font-size="12" fill="#1a4a7a" text-anchor="middle">Current running</text>
-  <text x="360" y="240" font-family="sans-serif" font-size="12" fill="#1a4a7a" text-anchor="middle">along the dock</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Overhead diagram with a dock, a parallel current, and an approaching vessel.">
   <defs>
-    <marker id="c1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#2b6cb0"/>
-    </marker>
+    <symbol id="powerboat" viewBox="-20 -38 40 76"><path d="M0-34 15-13 14 22Q0 32-14 22L-15-13Z" fill="currentColor" stroke="#133f68" stroke-width="2"/><path d="M-8-8H8V12H-8Z" fill="#fff" opacity=".78"/></symbol>
+    <marker id="current-head" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#167d94"/></marker>
+    <marker id="course-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#1d5c94"/></marker>
   </defs>
-  <text x="150" y="240" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Bow into the current, let current help hold position</text>
+  <rect width="420" height="260" fill="#edf6fa"/>
+  <rect x="34" y="24" width="24" height="212" rx="3" fill="#8a6d4c"/><path d="M62 24V236" stroke="#5e4934" stroke-width="3"/>
+  <text x="27" y="19" font-family="sans-serif" font-size="12" font-weight="600" fill="#5e4934">DOCK</text>
+  <text x="318" y="32" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#167d94">CURRENT</text>
+  <g fill="none" stroke="#167d94" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#current-head)"><path d="M302 51Q314 75 302 99T302 147"/><path d="M350 51Q362 75 350 99T350 147"/></g>
+  <path d="M170 210V104" stroke="#1d5c94" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#course-head)"/>
+  <use href="#powerboat" x="150" y="173" width="40" height="76" color="#1d5c94"/>
+  <rect x="96" y="224" width="148" height="24" rx="12" fill="#fff" stroke="#cbdbe6"/><text x="170" y="241" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#133f68">approaching vessel</text>
 </svg>

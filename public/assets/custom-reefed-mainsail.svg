@@ -1,14 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Side-by-side diagram of a full mainsail versus the same mainsail reefed, with the reefed sail's foot brought down to a reef point on the boom and reduced sail area shaded" >
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Side-by-side views of the same mainsail configuration labeled A and B." >
   <rect width="420" height="300" fill="#eef5fa"/>
-  <text x="105" y="24" font-family="sans-serif" font-size="14" fill="#1a3d5c" text-anchor="middle" font-weight="bold">Full mainsail</text>
-  <text x="315" y="24" font-family="sans-serif" font-size="14" fill="#1a3d5c" text-anchor="middle" font-weight="bold">First reef tied in</text>
+  <text x="105" y="24" font-family="sans-serif" font-size="14" fill="#1a3d5c" text-anchor="middle" font-weight="bold">A</text>
+  <text x="315" y="24" font-family="sans-serif" font-size="14" fill="#1a3d5c" text-anchor="middle" font-weight="bold">B</text>
   <line x1="210" y1="10" x2="210" y2="290" stroke="#bbb" stroke-width="1" stroke-dasharray="4 4"/>
 
   <!-- full sail -->
   <line x1="70" y1="260" x2="70" y2="40" stroke="#555" stroke-width="5"/>
   <line x1="70" y1="260" x2="170" y2="260" stroke="#555" stroke-width="5"/>
   <path d="M70 40 L70 258 Q135 250 168 258 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="2"/>
-  <text x="120" y="150" font-family="sans-serif" font-size="11" fill="#1a3d5c" text-anchor="middle">Full area</text>
 
   <!-- reefed sail -->
   <line x1="280" y1="260" x2="280" y2="40" stroke="#555" stroke-width="5"/>
@@ -19,7 +18,4 @@
   <circle cx="280" cy="130" r="3" fill="#c05621"/>
   <circle cx="324" cy="128" r="3" fill="#c05621"/>
   <circle cx="368" cy="130" r="3" fill="#c05621"/>
-  <text x="330" y="118" font-family="sans-serif" font-size="11" fill="#c05621" text-anchor="middle">Reef line / cringles</text>
-  <text x="325" y="200" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle">Reduced area</text>
-  <text x="325" y="80" font-family="sans-serif" font-size="10" fill="#888" text-anchor="middle">(area removed)</text>
 </svg>

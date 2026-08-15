@@ -1,17 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Bird's-eye view of a dock with wind blowing directly onto the dock, showing a boat approaching at a shallow angle into the wind to stay in control while docking" >
-  <rect width="420" height="260" fill="#dcebf5"/>
-  <rect x="30" y="120" width="360" height="18" fill="#8a6d4c"/>
-  <text x="210" y="115" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Dock</text>
-  <g transform="translate(260 200) rotate(-25)">
-    <path d="M-70 -18 L60 -18 L80 0 L60 18 L-70 18 Z" fill="#c9c2b0" stroke="#333" stroke-width="2"/>
-  </g>
-  <path d="M330 40 L280 100" stroke="#2b6cb0" stroke-width="3" marker-end="url(#w1)"/>
-  <path d="M300 40 L250 100" stroke="#2b6cb0" stroke-width="3" marker-end="url(#w1)"/>
-  <text x="330" y="35" font-family="sans-serif" font-size="12" fill="#1a4a7a">Wind onto dock</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Overhead diagram with a dock, wind arrows directed toward it, and your vessel nearby.">
   <defs>
-    <marker id="w1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#2b6cb0"/>
-    </marker>
+    <symbol id="powerboat" viewBox="-20 -38 40 76"><path d="M0-34 15-13 14 22Q0 32-14 22L-15-13Z" fill="currentColor" stroke="#133f68" stroke-width="2"/><path d="M-8-8H8V12H-8Z" fill="#fff" opacity=".78"/></symbol>
+    <marker id="wind-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#52697c"/></marker>
   </defs>
-  <text x="210" y="240" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Approach at a shallow angle, hold against the wind</text>
+  <rect width="420" height="260" fill="#edf6fa"/>
+  <rect x="25" y="61" width="370" height="22" rx="3" fill="#8a6d4c"/><path d="M25 86H395" stroke="#5e4934" stroke-width="3"/>
+  <text x="210" y="51" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#5e4934">DOCK</text>
+  <text x="335" y="115" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#52697c">WIND</text>
+  <g stroke="#52697c" stroke-width="3" marker-end="url(#wind-head)"><path d="M310 124 275 88"/><path d="M345 124 310 88"/><path d="M380 124 345 88"/></g>
+  <g transform="translate(145 181) rotate(-90)" color="#1d5c94"><use href="#powerboat" x="-20" y="-38" width="40" height="76"/></g>
+  <rect x="91" y="221" width="108" height="24" rx="12" fill="#fff" stroke="#cbdbe6"/><text x="145" y="238" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#133f68">Your vessel</text>
 </svg>

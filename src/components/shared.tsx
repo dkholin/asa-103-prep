@@ -2,13 +2,46 @@ import { useEffect, useState, type ReactNode } from 'react';
 import type { Question } from '../content/types';
 import { assetById, assetUrl } from '../lib/assets';
 
+function AssetCredit({
+  creator,
+  license,
+  licenseUrl,
+  sourcePage,
+  attributionText,
+}: {
+  creator: string;
+  license: string;
+  licenseUrl?: string;
+  sourcePage: string;
+  attributionText?: string;
+}) {
+  return (
+    <span className="asset-credit-text">
+      Photo: {attributionText ?? creator} ·{' '}
+      <a href={sourcePage} target="_blank" rel="noreferrer">Image source</a>
+      {' · '}
+      {licenseUrl ? <a href={licenseUrl} target="_blank" rel="noreferrer">{license}</a> : license}
+    </span>
+  );
+}
+
 /**
  * Full-screen click-to-enlarge overlay for a figure image. Several sourced
  * references (NOAA chart-symbol tables, buoyage diagrams) carry small print
  * that isn't legible at the figure column's fixed width, so every figure is
  * enlargeable on click/Enter; Escape or clicking the backdrop closes it.
  */
-function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+function Lightbox({
+  src,
+  alt,
+  credit,
+  onClose,
+}: {
+  src: string;
+  alt: string;
+  credit?: ReactNode;
+  onClose: () => void;
+}) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -21,7 +54,10 @@ function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: ()
       <button className="lightbox-close" onClick={onClose} aria-label="Close enlarged figure">
         &times;
       </button>
-      <img className="lightbox-img" src={src} alt={alt} onClick={(e) => e.stopPropagation()} />
+      <figure className="lightbox-figure" onClick={(e) => e.stopPropagation()}>
+        <img className="lightbox-img" src={src} alt={alt} />
+        {credit && <figcaption className="lightbox-credit">{credit}</figcaption>}
+      </figure>
     </div>
   );
 }
@@ -33,18 +69,29 @@ export function QuestionFigure({ question }: { question: Question }) {
   if (!asset) return null;
   const dark = asset.theme === 'dark';
   const src = assetUrl(question.assetId);
+  const alt = asset.altText;
+  const credit = asset.attributionRequired ? (
+    <AssetCredit
+      creator={asset.creator}
+      license={asset.license}
+      licenseUrl={asset.licenseUrl}
+      sourcePage={asset.sourcePage}
+      attributionText={asset.attributionText}
+    />
+  ) : null;
   return (
     <figure className={`question-figure ${dark ? 'theme-dark' : ''}`}>
       <button
         type="button"
         className="figure-zoom-trigger"
         onClick={() => setOpen(true)}
-        aria-label={`Enlarge figure: ${asset.description}`}
+        aria-label={`Enlarge figure: ${alt}`}
       >
-        <img src={src} alt={asset.description} />
+        <img src={src} alt={alt} />
         <span className="figure-zoom-hint">Click to enlarge</span>
       </button>
-      {open && <Lightbox src={src} alt={asset.description} onClose={() => setOpen(false)} />}
+      {credit && <figcaption className="asset-credit">{credit}</figcaption>}
+      {open && <Lightbox src={src} alt={alt} credit={credit} onClose={() => setOpen(false)} />}
     </figure>
   );
 }

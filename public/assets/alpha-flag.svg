@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="International Code of Signals flag Alpha: a blue and white swallowtail burgee, blue at the hoist and white at the fly">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Blue-and-white swallowtail signal flag shown without identifying text.">
   <rect width="420" height="300" fill="#f4f8fb"/>
   <line x1="120" y1="50" x2="120" y2="250" stroke="#5c6b78" stroke-width="6"/>
   <path d="M120 70 L300 110 L250 150 L300 190 L120 230 Z" fill="#f4f8fb" stroke="#1a4a7a" stroke-width="2"/>
   <path d="M120 70 L220 92 L220 208 L120 230 Z" fill="#1d5c94"/>
-  <text x="210" y="270" font-family="sans-serif" font-size="15" fill="#1a3d5c" text-anchor="middle">Code flag Alpha</text>
 </svg>

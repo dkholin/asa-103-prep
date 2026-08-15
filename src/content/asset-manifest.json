@@ -3,6 +3,7 @@
     {
       "id": "uscg-rule23a-power-under-50m",
       "filename": "Nr_Rule23aPDV-U-u50.gif",
+      "altText": "Animated day/night vessel-lighting reference used for this navigation-rules scenario.",
       "description": "USCG Navigation Rules illustration: lights of a power-driven vessel under 50 m underway (Rule 23(a)); animated day/night figure",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule23aPDV-U-u50.gif",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Nr_Rule23aPDV-U-u50.gif",
@@ -17,6 +18,7 @@
     {
       "id": "uscg-rule25a-sailing",
       "filename": "Nr_Rule25a.gif",
+      "altText": "Animated day/night vessel-lighting reference used for this navigation-rules scenario.",
       "description": "USCG Navigation Rules illustration: lights of a sailing vessel underway (Rule 25(a)); animated day/night figure",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule25a.gif",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Nr_Rule25a.gif",
@@ -31,7 +33,8 @@
     {
       "id": "uscg-rule26b-trawling",
       "filename": "Nr_Rule26b1.gif",
-      "description": "USCG Navigation Rules illustration: vessel engaged in trawling (Rule 26(b)) \u2014 green over white all-round lights and day shape; animated figure",
+      "altText": "Animated day/night vessel-lighting reference used for this navigation-rules scenario.",
+      "description": "USCG Navigation Rules illustration: vessel engaged in trawling (Rule 26(b)) — green over white all-round lights and day shape; animated figure",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule26b1.gif",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Nr_Rule26b1.gif",
       "creator": "US Coast Guard (Navigation Rules online handbook, navcen.uscg.gov)",
@@ -45,6 +48,7 @@
     {
       "id": "uscg-rule30b-anchored",
       "filename": "Nr_Rule30b.gif",
+      "altText": "Animated day/night vessel-lighting reference used for this navigation-rules scenario.",
       "description": "USCG Navigation Rules illustration: vessel at anchor showing the all-round white anchor light and ball day shape (Rule 30); animated figure",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule30b.gif",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Nr_Rule30b.gif",
@@ -59,6 +63,7 @@
     {
       "id": "custom-night-green-only",
       "filename": "night-green-only.svg",
+      "altText": "Night-water scene with one low green light visible.",
       "description": "Purpose-built night scene: a single green light visible low over the water with no white light above it",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -74,6 +79,7 @@
     {
       "id": "custom-night-headon",
       "filename": "night-headon.svg",
+      "altText": "Night-water scene with one white light above a green and red light.",
       "description": "Purpose-built night scene: white masthead light with green light lower-left and red light lower-right, seen dead ahead",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -89,6 +95,7 @@
     {
       "id": "custom-crossing",
       "filename": "crossing-give-way.svg",
+      "altText": "Overhead encounter diagram with your vessel and another vessel on crossing tracks.",
       "description": "Purpose-built bird's-eye diagram: power-driven vessel approaching from your starboard bow on a crossing course",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -103,6 +110,7 @@
     {
       "id": "custom-overtaking",
       "filename": "overtaking.svg",
+      "altText": "Overhead encounter diagram with your sailboat approaching another vessel from astern.",
       "description": "Purpose-built bird's-eye diagram: your faster vessel coming up on a slower vessel from well abaft its beam",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -117,6 +125,7 @@
     {
       "id": "custom-sail-opposite-tacks",
       "filename": "sail-opposite-tacks.svg",
+      "altText": "Overhead diagram of two converging sailboats and a marked wind direction.",
       "description": "Purpose-built diagram: two converging sailing vessels with wind from the top; boat A wind on port side, boat B wind on starboard side",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -131,6 +140,7 @@
     {
       "id": "custom-sail-same-tack",
       "filename": "sail-same-tack.svg",
+      "altText": "Overhead diagram of two converging sailboats and a marked wind direction.",
       "description": "Purpose-built diagram: two sailing vessels on the same tack, wind from the left; boat A windward, boat B leeward",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -145,6 +155,7 @@
     {
       "id": "custom-headon-bowview",
       "filename": "headon-bowview.svg",
+      "altText": "Overhead diagram of two powerboats approaching on opposing tracks.",
       "description": "Purpose-built bird's-eye diagram: two power-driven vessels approaching each other on reciprocal courses, each dead ahead of the other",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -159,6 +170,7 @@
     {
       "id": "custom-crossing-standon",
       "filename": "crossing-stand-on.svg",
+      "altText": "Overhead encounter diagram with another vessel crossing ahead from the port side.",
       "description": "Purpose-built bird's-eye diagram: power-driven vessel approaching from your port bow on a crossing course, mirroring the give-way diagram",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -173,6 +185,7 @@
     {
       "id": "custom-alpha-flag",
       "filename": "alpha-flag.svg",
+      "altText": "Blue-and-white swallowtail signal flag shown without identifying text.",
       "description": "Purpose-built illustration of International Code of Signals flag Alpha (blue and white swallowtail)",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -187,6 +200,7 @@
     {
       "id": "custom-diver-down-flag",
       "filename": "diver-down-flag.svg",
+      "altText": "Red signal flag with a white diagonal stripe shown on a float.",
       "description": "Purpose-built illustration of the red diver-down flag with white diagonal stripe on a small float",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -201,7 +215,8 @@
     {
       "id": "noaa-compass-rose",
       "filename": "noaa-compass-rose.png",
-      "description": "NOAA U.S. Chart No. 1 illustration: a normal-pattern compass rose with outer true ring and inner magnetic ring, showing a magnetic variation example (VAR 4\u00b015'W (2018), annual change 8'E)",
+      "altText": "NOAA compass-rose reference excerpt used for the chart-navigation scenario.",
+      "description": "NOAA U.S. Chart No. 1 illustration: a normal-pattern compass rose with outer true ring and inner magnetic ring, showing a magnetic variation example (VAR 4°15'W (2018), annual change 8'E)",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
       "creator": "NOAA Office of Coast Survey / National Geospatial-Intelligence Agency (U.S. Chart No. 1)",
@@ -217,6 +232,7 @@
     {
       "id": "noaa-soundings-basic",
       "filename": "noaa-soundings-basic.png",
+      "altText": "NOAA sounding-symbol reference excerpt used for the chart-navigation scenario.",
       "description": "NOAA U.S. Chart No. 1 excerpt: sounding-symbol examples including sounding in true position, sounding out of position, and least depth in a narrow channel",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
@@ -233,6 +249,7 @@
     {
       "id": "noaa-depth-contours",
       "filename": "noaa-depth-contours.png",
+      "altText": "NOAA depth-band reference excerpt used for the chart-navigation scenario.",
       "description": "NOAA U.S. Chart No. 1 excerpt: ECDIS depth-contour shading bands from foreshore through shallow, safety-contour, and deep depth",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
@@ -247,6 +264,7 @@
     {
       "id": "noaa-rocks-general",
       "filename": "noaa-rocks-general.png",
+      "altText": "NOAA chart-symbol reference excerpt with a highlighted boundary around a shaded area.",
       "description": "NOAA U.S. Chart No. 1 excerpt: general rock/wreck/obstruction section showing the danger-line symbol used to outline a hazardous area",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
@@ -261,6 +279,7 @@
     {
       "id": "noaa-rock-covers",
       "filename": "noaa-rock-covers.png",
+      "altText": "NOAA rock-symbol reference excerpt used for the chart-navigation scenario.",
       "description": "NOAA U.S. Chart No. 1 excerpt: rock (islet) that does not cover, and a rock which covers and uncovers with the level of tide, with height/depth notation",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
@@ -275,6 +294,7 @@
     {
       "id": "noaa-wreck-symbols",
       "filename": "noaa-wreck-symbols.png",
+      "altText": "NOAA wreck-symbol reference excerpt used for the chart-navigation scenario.",
       "description": "NOAA U.S. Chart No. 1 excerpt: submerged wreck symbols with depth known and depth unknown, including the ECDIS danger-color versions",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
@@ -291,6 +311,7 @@
     {
       "id": "noaa-obstruction-foul",
       "filename": "noaa-obstruction-foul.png",
+      "altText": "NOAA seabed and obstruction-symbol reference excerpt used for the chart-navigation scenario.",
       "description": "NOAA U.S. Chart No. 1 excerpt: foul ground symbol (safe for navigation but not for anchoring/trawling) and obstruction-of-unknown-depth symbols",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
@@ -305,6 +326,7 @@
     {
       "id": "noaa-buoy-beacon-basic",
       "filename": "noaa-buoy-beacon-basic.png",
+      "altText": "NOAA aid-to-navigation symbol reference excerpt used for the chart-navigation scenario.",
       "description": "NOAA U.S. Chart No. 1 excerpt: the default buoy and beacon symbols used when no other defining attribution is charted",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
@@ -320,7 +342,8 @@
     {
       "id": "noaa-iala-region-b",
       "filename": "noaa-iala-region-b.png",
-      "description": "NOAA U.S. Chart No. 1, Appendix 1: IALA Maritime Buoyage System Region B (used in the United States) lateral marks \u2014 port-hand (green) and starboard-hand (red) buoy shapes, colors, and topmarks",
+      "altText": "NOAA Region B lateral-mark reference excerpt used for the chart-navigation scenario.",
+      "description": "NOAA U.S. Chart No. 1, Appendix 1: IALA Maritime Buoyage System Region B (used in the United States) lateral marks — port-hand (green) and starboard-hand (red) buoy shapes, colors, and topmarks",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
       "creator": "NOAA Office of Coast Survey / National Geospatial-Intelligence Agency (U.S. Chart No. 1)",
@@ -336,6 +359,7 @@
     {
       "id": "noaa-chart-schematic",
       "filename": "noaa-chart-schematic.jpg",
+      "altText": "Schematic nautical-chart layout used for the chart-parts scenario.",
       "description": "NOAA U.S. Chart No. 1 excerpt: schematic layout of a nautical chart showing the border scale, title block, scale, compass rose, and cautionary notes",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
@@ -350,6 +374,7 @@
     {
       "id": "noaa-light-characters",
       "filename": "noaa-light-characters.png",
+      "altText": "NOAA light-character reference excerpt used for the aid-to-navigation scenario.",
       "description": "NOAA U.S. Chart No. 1 excerpt: light-character illustrations (Fixed, Occulting, Isophase, Flashing, Quick) showing how each light period is drawn and abbreviated",
       "sourcePage": "https://nauticalcharts.noaa.gov/publications/us-chart-1.html",
       "originalUrl": "https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf",
@@ -365,6 +390,7 @@
     {
       "id": "photo-plotting-tools",
       "filename": "photo-plotting-tools.jpg",
+      "altText": "Photograph of students working over a paper chart with several plotting tools.",
       "description": "U.S. Coast Guard photo: students plotting coordinates on a nautical chart with dividers and parallel rules during a Coast Guard Auxiliary navigation course",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Plotting_coordinates_DVIDS1090327.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Plotting_coordinates_DVIDS1090327.jpg",
@@ -379,11 +405,13 @@
     {
       "id": "photo-parallel-rule",
       "filename": "photo-parallel-rule.jpg",
+      "altText": "Photograph of two clear rulers joined by pivoting arms.",
       "description": "Photo of a pair of parallel rules (walking parallel rulers) used to transfer a course line to a chart's compass rose",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Parallel-rule.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/Parallel-rule.jpg",
       "creator": "Michael Daly",
       "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attributionRequired": true,
       "modified": false,
       "usedByQuestions": [
@@ -393,11 +421,13 @@
     {
       "id": "photo-cqr-anchor",
       "filename": "photo-cqr-anchor.jpg",
+      "altText": "Close photograph of the anchor shown in the question.",
       "description": "Photo of a CQR-style plow anchor, a hinged single-fluke plow-shaped anchor commonly used on cruising sailboats",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:CQR_Anchor.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/CQR_Anchor.jpg",
       "creator": "Pratishkhedekar",
       "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attributionRequired": true,
       "modified": true,
       "usedByQuestions": [
@@ -407,11 +437,13 @@
     {
       "id": "photo-bruce-anchor",
       "filename": "photo-bruce-anchor.jpg",
+      "altText": "Close photograph of the anchor shown in the question.",
       "description": "Photo of a Bruce-style (claw) anchor, a one-piece claw-shaped anchor known for resetting quickly after a wind or current shift",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Bruce_anchor_in_Gdansk.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Bruce_anchor_in_Gdansk.jpg",
       "creator": "LukaszKatlewa",
       "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "attributionRequired": true,
       "modified": false,
       "usedByQuestions": [
@@ -421,11 +453,13 @@
     {
       "id": "photo-danforth-anchor",
       "filename": "photo-danforth-anchor.jpg",
+      "altText": "Photograph of an anchor and rode hardware at a sailboat bow.",
       "description": "Photo of a Danforth-style fluke anchor stowed on a sailboat's bow roller, showing its two flat pivoting flukes",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Ancla_tipo_Danforth,_Roquetas_de_Mar,_Espa%C3%B1a,_2010.JPG",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Ancla_tipo_Danforth%2C_Roquetas_de_Mar%2C_Espa%C3%B1a%2C_2010.JPG",
-      "creator": "Benjam\u00edn N\u00fa\u00f1ez Gonz\u00e1lez",
+      "creator": "Benjamín Núñez González",
       "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attributionRequired": true,
       "modified": false,
       "usedByQuestions": [
@@ -436,11 +470,13 @@
     {
       "id": "photo-mushroom-anchor",
       "filename": "photo-mushroom-anchor.jpg",
+      "altText": "Photograph of the heavy rounded anchor shown in the question.",
       "description": "Photo of a mushroom anchor, a heavy inverted-bowl-shaped anchor used mainly for permanent moorings on soft bottoms",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Mushroom_anchor_of_Lightvessel_Kemi_01.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Mushroom_anchor_of_Lightvessel_Kemi_01.jpg",
       "creator": "Htm",
       "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attributionRequired": true,
       "modified": false,
       "usedByQuestions": [
@@ -450,6 +486,7 @@
     {
       "id": "custom-lat-long-grid",
       "filename": "custom-lat-long-grid.svg",
+      "altText": "Chart-border grid with coordinates and one position marked X.",
       "description": "Purpose-built diagram: chart border excerpt with latitude tick marks on the side borders and longitude tick marks on the top/bottom borders, with a charted position marked",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -464,6 +501,7 @@
     {
       "id": "custom-distance-scale",
       "filename": "custom-distance-scale.svg",
+      "altText": "Chart-border scale with points A and B and a transferred divider span.",
       "description": "Purpose-built diagram: latitude border used as a distance scale, with two charted points spanned by a divider distance equal to three minutes of latitude",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -478,6 +516,7 @@
     {
       "id": "custom-compass-interference",
       "filename": "custom-compass-interference.svg",
+      "altText": "Compass scenario with two nearby objects labeled A and B.",
       "description": "Purpose-built diagram: a steering compass with its needle deflected off true north by a nearby steel toolbox and handheld radio",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -492,6 +531,7 @@
     {
       "id": "custom-lee-shore",
       "filename": "custom-lee-shore.svg",
+      "altText": "Overhead diagram of an anchored sailboat, wind arrows, and a nearby rocky shoreline.",
       "description": "Purpose-built diagram: a small sailboat anchored close to a rocky shoreline with wind blowing directly onshore and surf breaking along the beach",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -507,6 +547,7 @@
       "id": "custom-scope-geometry",
       "filename": "custom-scope-geometry.svg",
       "description": "Purpose-built diagram: side view of a boat at anchor showing water depth, bow height above the water, and the anchor rode running to the bottom, illustrating the scope ratio",
+      "altText": "Side-view diagram of an anchored boat with water depth D, bow height H, and rode length L marked.",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
@@ -520,6 +561,7 @@
     {
       "id": "custom-swing-circle",
       "filename": "custom-swing-circle.svg",
+      "altText": "Overhead anchoring diagram with a dashed limit, another boat, and a charted rock.",
       "description": "Purpose-built diagram: bird's-eye view of a boat at anchor with a dashed swing-circle radius, a neighboring boat within that circle, and a charted rock just outside it",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -535,6 +577,7 @@
       "id": "custom-anchorage-selection",
       "filename": "custom-anchorage-selection.svg",
       "description": "Purpose-built diagram: bird's-eye view of a small bay with wind blowing onshore, an exposed spot near the open bay mouth, and a sheltered spot tucked behind a point of land",
+      "altText": "Overhead diagram of a bay with wind arrows and two possible anchoring positions labeled A and B.",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
@@ -548,11 +591,13 @@
     {
       "id": "photo-chainplate",
       "filename": "photo-chainplate.jpg",
+      "altText": "Close photograph of deck-mounted standing-rigging hardware.",
       "description": "Photo of a stainless-steel chainplate on a Bavaria 35 Match sailboat, bolted through the deck/hull with a turnbuckle terminal attached",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Chainplate_on_a_Bavaria_35_Match_..jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Chainplate_on_a_Bavaria_35_Match_..jpg",
       "creator": "Prillen (Wikimedia Commons)",
       "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "attributionRequired": true,
       "modified": false,
       "usedByQuestions": [
@@ -562,11 +607,13 @@
     {
       "id": "photo-outboard-engine",
       "filename": "photo-outboard-engine.jpg",
+      "altText": "Photograph of two small-boat engines mounted at a transom.",
       "description": "Photo of outboard motors mounted on a boat transom, one of the two common auxiliary-engine types on cruising boats alongside inboard diesels",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Yamaha_Outboard_Motors_001.JPG",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Yamaha_Outboard_Motors_001.JPG",
       "creator": "Tennen-Gas (Wikimedia Commons)",
       "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "attributionRequired": true,
       "modified": false,
       "usedByQuestions": [
@@ -576,6 +623,7 @@
     {
       "id": "photo-fire-extinguisher-use",
       "filename": "photo-fire-extinguisher-use.jpg",
+      "altText": "Photograph of a person operating a handheld extinguisher in a demonstration.",
       "description": "Photo of a person demonstrating proper handheld fire extinguisher use, aiming at the base of a simulated fire",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:US_Navy_110520-N-ZK021-006_Sailors_learn_to_properly_use_a_fire_extinguisher_during_a_safety_fair_at_Naval_Air_Station_Whidbey_Island.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/US_Navy_110520-N-ZK021-006_Sailors_learn_to_properly_use_a_fire_extinguisher_during_a_safety_fair_at_Naval_Air_Station_Whidbey_Island.jpg",
@@ -588,14 +636,18 @@
       ]
     },
     {
-      "id": "custom-turnbuckle",
-      "filename": "custom-turnbuckle.svg",
-      "description": "Purpose-built diagram: a turnbuckle connecting a wire shroud above to a chainplate below, with the threaded barrel body and clevis pin labeled",
-      "sourcePage": "created in-repo",
-      "originalUrl": "",
-      "creator": "asa-103-prep project (original SVG)",
-      "license": "Project-original, free to use",
-      "attributionRequired": false,
+      "id": "photo-turnbuckle",
+      "filename": "photo-turnbuckle.jpg",
+      "description": "Photograph of two open-body turnbuckles attached to chainplates on the deck of a wooden sailboat",
+      "altText": "Open-body threaded metal fittings connecting wire shrouds to deck-mounted plates.",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:P%C3%BCtting_(Boot).jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/76/P%C3%BCtting_%28Boot%29.jpg",
+      "creator": "Sastognuti",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "attributionRequired": true,
+      "attributionText": "Pütting (Boot) · Sastognuti · Wikimedia Commons",
+      "modificationNote": "Unmodified original photograph; filename changed for local use",
       "modified": false,
       "usedByQuestions": [
         "sys-turnbuckle-id"
@@ -604,6 +656,7 @@
     {
       "id": "custom-stemhead-bow-roller",
       "filename": "custom-stemhead-bow-roller.svg",
+      "altText": "Side-view bow hardware scenario with a line running over a metal fitting near the top of the stem.",
       "description": "Purpose-built diagram: side view of a sailboat bow showing the stemhead fitting and bow roller with the anchor rode leading down to an anchor stowed on deck",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -618,6 +671,7 @@
     {
       "id": "custom-windlass-deck",
       "filename": "custom-windlass-deck.svg",
+      "altText": "Overhead foredeck scenario with a powered deck machine, chain, and nearby controls.",
       "description": "Purpose-built diagram: top-down view of a foredeck windlass with a gypsy wheel, control switch, and chain leading to the bow roller and chain locker",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -632,6 +686,7 @@
     {
       "id": "custom-binnacle-compass",
       "filename": "custom-binnacle-compass.svg",
+      "altText": "Cockpit steering pedestal scenario with a circular directional instrument above the wheel.",
       "description": "Purpose-built diagram: a cockpit binnacle with steering wheel and mounted magnetic compass, labeling the compass card and lubber line",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -646,6 +701,7 @@
     {
       "id": "custom-seacock-throughhull",
       "filename": "custom-seacock-throughhull.svg",
+      "altText": "Hull cross-section with a below-waterline opening, interior valve body, and connected hose.",
       "description": "Purpose-built diagram: cross-section of a hull below the waterline showing a through-hull fitting, seacock valve, and hose leading to a drain",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -660,6 +716,7 @@
     {
       "id": "custom-bilge-pump",
       "filename": "custom-bilge-pump.svg",
+      "altText": "Bilge cross-section with electric and manual water-removal equipment.",
       "description": "Purpose-built diagram: a bilge with an electric submersible pump wired to a float switch and battery, plus a manual diaphragm backup pump handle",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -674,6 +731,7 @@
     {
       "id": "custom-emergency-tiller",
       "filename": "custom-emergency-tiller.svg",
+      "altText": "Cockpit access scenario with a removable lever fitted to a steering post.",
       "description": "Purpose-built diagram: the emergency tiller fitted onto the exposed rudder post head through a cockpit locker access hatch, bypassing wheel steering",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -688,6 +746,7 @@
     {
       "id": "custom-cabin-layout",
       "filename": "custom-cabin-layout.svg",
+      "altText": "Labeled overhead cabin layout with forward and amidships spaces.",
       "description": "Purpose-built diagram: top-down floor plan of a small cruising sailboat interior with V-berth, head, saloon, galley, and companionway labeled",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -703,6 +762,7 @@
     {
       "id": "custom-pfd-wearable-throwable",
       "filename": "custom-pfd-wearable-throwable.svg",
+      "altText": "Two different flotation-device forms shown side by side as A and B.",
       "description": "Purpose-built diagram: side-by-side comparison of a wearable Type III PFD vest and a throwable Type IV horseshoe buoy with attached line",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -717,6 +777,7 @@
     {
       "id": "custom-visual-distress-flare",
       "filename": "custom-visual-distress-flare.svg",
+      "altText": "Two visual signaling devices shown side by side as A and B.",
       "description": "Purpose-built diagram: a hand-held red flare (night signal) beside an orange distress flag with black square and ball (day signal)",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -732,6 +793,7 @@
     {
       "id": "custom-harness-tether-jackline",
       "filename": "custom-harness-tether-jackline.svg",
+      "altText": "Overhead deck-safety arrangement with a crew figure, deck lines, and a connecting line.",
       "description": "Purpose-built diagram: overhead view of a deck with jacklines running fore and aft, a crew member's harness clipped to a jackline with a tether, kept inboard",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -746,6 +808,7 @@
     {
       "id": "custom-fueling-gas-diesel",
       "filename": "custom-fueling-gas-diesel.svg",
+      "altText": "Side-by-side gasoline and diesel fueling scenarios with fill nozzles and enclosed engine compartments.",
       "description": "Purpose-built diagram: side-by-side comparison of gasoline fueling precautions (closed hatches, blower run before starting) and diesel fueling precautions",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -760,6 +823,7 @@
     {
       "id": "custom-engine-panel-throttle",
       "filename": "custom-engine-panel-throttle.svg",
+      "altText": "Engine station with an instrument panel and a separate single control lever.",
       "description": "Purpose-built diagram: a diesel engine instrument panel (key switch, oil pressure and temperature gauges, alarm light) beside a single-lever throttle/shift control",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -775,6 +839,7 @@
       "id": "custom-prop-walk",
       "filename": "custom-prop-walk.svg",
       "description": "Purpose-built diagram: bird's-eye view of a boat backing with a right-hand propeller in reverse, showing the stern walking to port while the boat moves astern",
+      "altText": "Overhead powerboat diagram with reverse motion shown in two components labeled A and B.",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
@@ -789,6 +854,7 @@
       "id": "custom-docking-wind",
       "filename": "custom-docking-wind.svg",
       "description": "Purpose-built diagram: bird's-eye view of a boat approaching a dock at a shallow angle with wind blowing directly onto the dock",
+      "altText": "Overhead diagram with a dock, wind arrows directed toward it, and your vessel nearby.",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
@@ -803,6 +869,7 @@
       "id": "custom-docking-current",
       "filename": "custom-docking-current.svg",
       "description": "Purpose-built diagram: bird's-eye view of a boat approaching a dock bow-first into a current running parallel to the dock",
+      "altText": "Overhead diagram with a dock, a parallel current, and an approaching vessel.",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
@@ -817,6 +884,7 @@
       "id": "custom-mooring-approach",
       "filename": "custom-mooring-approach.svg",
       "description": "Purpose-built diagram: bird's-eye view of a slow, head-to-wind approach to a mooring ball with crew ready at the bow to retrieve the pendant",
+      "altText": "Overhead diagram with a vessel, wind direction, an approach track, and a mooring ball.",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
@@ -830,6 +898,7 @@
     {
       "id": "photo-cumulonimbus",
       "filename": "photo-cumulonimbus.jpg",
+      "altText": "Photograph of a tall cloud with a broad flattened top over the horizon.",
       "description": "Photo of a mature cumulonimbus cloud with a classic flat, anvil-shaped top (cumulonimbus incus), photographed from a NOAA research aircraft",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Fly00890_-_Flickr_-_NOAA_Photo_Library.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/Fly00890_-_Flickr_-_NOAA_Photo_Library.jpg",
@@ -844,6 +913,7 @@
     {
       "id": "nws-smcraft-pennant",
       "filename": "nws-smcraft-pennant.gif",
+      "altText": "Daytime coastal-warning reference showing a single red pennant.",
       "description": "NWS Coastal Warning Display Program daytime signal: single red pennant flown to indicate a Small Craft Advisory is in effect",
       "sourcePage": "https://www.weather.gov/marine/cwd",
       "originalUrl": "https://www.weather.gov/images/marine/smcraft.gif",
@@ -858,6 +928,7 @@
     {
       "id": "nws-gale-pennant",
       "filename": "nws-gale-pennant.gif",
+      "altText": "Daytime coastal-warning reference showing two stacked red pennants.",
       "description": "NWS Coastal Warning Display Program daytime signal: two red pennants stacked, flown to indicate a Gale Warning is in effect",
       "sourcePage": "https://www.weather.gov/marine/cwd",
       "originalUrl": "https://www.weather.gov/images/marine/gale.gif",
@@ -872,6 +943,7 @@
     {
       "id": "custom-sea-state-diagram",
       "filename": "custom-sea-state-diagram.svg",
+      "altText": "Side-by-side small-boat views in two visibly different wave conditions labeled A and B.",
       "description": "Purpose-built diagram: side-by-side comparison of a calm/light-chop sea and a rough, building sea with steep closely-spaced waves and whitecaps, with approximate wave heights labeled",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -886,11 +958,13 @@
     {
       "id": "photo-furled-headsail",
       "filename": "photo-furled-headsail.jpg",
+      "altText": "Close photograph of sail and headstay hardware at the bow.",
       "description": "Photo of a genoa roller-furling drum at the base of the headstay, sail fully deployed",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Genoa_rollerfurler.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/39/Genoa_rollerfurler.jpg",
       "creator": "Robert Neff (Wikimedia Commons)",
       "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
       "attributionRequired": true,
       "modified": true,
       "usedByQuestions": [
@@ -900,6 +974,7 @@
     {
       "id": "custom-reefed-mainsail",
       "filename": "custom-reefed-mainsail.svg",
+      "altText": "Side-by-side views of the same mainsail configuration labeled A and B.",
       "description": "Purpose-built diagram: side-by-side comparison of a full mainsail and the same mainsail with a first reef tied in at the boom, showing the reduced sail area",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -914,6 +989,7 @@
     {
       "id": "custom-sail-wind-strength",
       "filename": "custom-sail-wind-strength.svg",
+      "altText": "Three sailboat views under light, moderate, and strong wind headings.",
       "description": "Purpose-built diagram: three boats shown under light, moderate, and strong wind, illustrating progressively reduced sail area and heel as wind strength increases",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -929,6 +1005,7 @@
       "id": "custom-heaving-to",
       "filename": "custom-heaving-to.svg",
       "description": "Purpose-built diagram: bird's-eye view of a boat hove-to, with the jib backed to windward, the mainsail sheeted in, and the helm turned to windward, slowly drifting to leeward",
+      "altText": "Overhead sailboat scenario with wind arrows, sail and rudder positions, and a slow sideways drift track.",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
@@ -942,6 +1019,7 @@
     {
       "id": "custom-heel-trim",
       "filename": "custom-heel-trim.svg",
+      "altText": "Front-view comparison of the same sailboat at two different heel angles labeled A and B.",
       "description": "Purpose-built diagram: front view comparing a sailboat heeled heavily with the sheet hard in against the same boat sailing flatter after easing the mainsheet/traveler",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -956,11 +1034,13 @@
     {
       "id": "photo-bowline",
       "filename": "photo-bowline.jpg",
+      "altText": "Close photograph of a knot forming a loop in red rope.",
       "description": "Photo of a bowline knot tied in red rope, forming a fixed, non-slipping loop",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Knot-bowline-ABoK_1010-USCG.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/78/Knot-bowline-ABoK_1010-USCG.jpg",
       "creator": "USCG PTC Developer",
       "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attributionRequired": true,
       "modified": true,
       "usedByQuestions": [
@@ -970,6 +1050,7 @@
     {
       "id": "photo-clove-hitch",
       "filename": "photo-clove-hitch.jpg",
+      "altText": "Close photograph of a knot tied around a wooden post.",
       "description": "Photo of a clove hitch tied in blue rope around a wooden post",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Clove_Hitch_-_ABoK_11_-_USCG.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Clove_Hitch_-_ABoK_11_-_USCG.jpg",
@@ -984,11 +1065,13 @@
     {
       "id": "photo-cleat-hitch",
       "filename": "photo-cleat-hitch.jpg",
+      "altText": "Close photograph of a dock line secured around a cleat.",
       "description": "Photo of a dock line secured to a cleat with a proper figure-eight cleat hitch",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Tied_cleat.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Tied_cleat.jpg",
       "creator": "BenFrantzDale (Wikimedia Commons)",
       "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "attributionRequired": true,
       "modified": true,
       "usedByQuestions": [
@@ -998,11 +1081,13 @@
     {
       "id": "photo-rolling-hitch",
       "filename": "photo-rolling-hitch.jpg",
+      "altText": "Photographic sequence showing a knot being tied around another line.",
       "description": "Photo sequence showing the four steps of tying a rolling hitch (ABoK #1735)",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:RollingHitch-ABOK-1735.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/RollingHitch-ABOK-1735.jpg",
       "creator": "David J. Fred (Wikimedia Commons)",
       "license": "CC BY-SA 2.5",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
       "attributionRequired": true,
       "modified": true,
       "usedByQuestions": [
@@ -1012,6 +1097,7 @@
     {
       "id": "custom-figure8-stopper",
       "filename": "custom-figure8-stopper.svg",
+      "altText": "Line drawing of the knot named in the question.",
       "description": "Purpose-built diagram: a figure-eight stopper knot tied near the bitter end of a line",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -1026,6 +1112,7 @@
     {
       "id": "custom-round-turn-two-half-hitches",
       "filename": "custom-round-turn-two-half-hitches.svg",
+      "altText": "Line drawing of the knot named in the question tied around a post.",
       "description": "Purpose-built diagram: a line tied with a round turn and two half hitches around a piling",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -1040,6 +1127,7 @@
     {
       "id": "photo-grounded-boat",
       "filename": "photo-grounded-boat.jpg",
+      "altText": "Photograph of a recreational boat resting on a harbor breakwall.",
       "description": "USCG photo: a 38-foot recreational pleasure craft aground atop a breakwall in Conneaut Harbor, Ohio",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:38-foot_pleasure_craft_on_break_wall_in_Lake_Erie_near_Conneaut,_Ohio_140723-G-ZZ999-001.jpg",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/38-foot_pleasure_craft_on_break_wall_in_Lake_Erie_near_Conneaut%2C_Ohio_140723-G-ZZ999-001.jpg",
@@ -1054,11 +1142,13 @@
     {
       "id": "photo-fire-extinguisher-marine",
       "filename": "photo-fire-extinguisher-marine.jpg",
+      "altText": "Photograph of the marine extinguisher shown in the question.",
       "description": "Photo of a hand-portable marine-type AFFF fire extinguisher",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:USCG_AFFF.JPG",
       "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/USCG_AFFF.JPG",
       "creator": "Firetech117 (Wikimedia Commons contributor)",
       "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "attributionRequired": true,
       "modified": false,
       "usedByQuestions": [
@@ -1068,6 +1158,7 @@
     {
       "id": "custom-cold-water-1101",
       "filename": "custom-cold-water-1101.svg",
+      "altText": "Three-point cold-water timeline marked at about 1 minute, 10 minutes, and 1 hour.",
       "description": "Purpose-built diagram: the 1-10-1 cold water immersion timeline (1 minute cold shock, 10 minutes meaningful movement, 1 hour to unconsciousness)",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -1083,6 +1174,7 @@
       "id": "custom-mob-recovery-approach",
       "filename": "custom-mob-recovery-approach.svg",
       "description": "Purpose-built diagram: overhead view of a boat's curved return path back to a crew-overboard victim, approaching slowly from leeward with the victim kept in sight",
+      "altText": "Overhead diagram of a sailboat following a curved return track toward a person in the water, with wind direction shown.",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
@@ -1096,6 +1188,7 @@
     {
       "id": "custom-flooding-seacock",
       "filename": "custom-flooding-seacock.svg",
+      "altText": "Hull cutaway with a below-waterline leak and nearby emergency equipment.",
       "description": "Purpose-built diagram: a cutaway of a hull below the waterline showing a through-hull fitting and seacock with water spraying in at a loose hose clamp, with a tapered bung and bucket nearby",
       "sourcePage": "created in-repo",
       "originalUrl": "",
@@ -1110,6 +1203,7 @@
     {
       "id": "custom-dragging-anchor",
       "filename": "custom-dragging-anchor.svg",
+      "altText": "Chart-style view with an original boat position, a later position, a dashed limit, and two shore marks.",
       "description": "Purpose-built diagram: overhead chart view showing a boat's position drifting past its expected swing circle and two shore transit landmarks, indicating a dragging anchor",
       "sourcePage": "created in-repo",
       "originalUrl": "",

@@ -1,17 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Bird's-eye view of a mooring ball approach with wind from the upper right, showing a boat approaching slowly head to wind so the crew can retrieve the mooring pendant at the bow" >
-  <rect width="420" height="260" fill="#dcebf5"/>
-  <circle cx="230" cy="150" r="10" fill="#e0403a" stroke="#333" stroke-width="1.5"/>
-  <text x="230" y="130" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Mooring ball</text>
-  <g transform="translate(230 230)">
-    <path d="M-16 0 L16 0 L11 -55 L-11 -55 Z" fill="#c9c2b0" stroke="#333" stroke-width="2"/>
-  </g>
-  <text x="270" y="230" font-family="sans-serif" font-size="12" fill="#333">Approach slowly</text>
-  <path d="M310 60 L260 105" stroke="#2b6cb0" stroke-width="3" marker-end="url(#m1)"/>
-  <text x="330" y="55" font-family="sans-serif" font-size="12" fill="#1a4a7a">Wind</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Overhead diagram with a vessel, wind direction, an approach track, and a mooring ball.">
   <defs>
-    <marker id="m1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#2b6cb0"/>
-    </marker>
+    <symbol id="powerboat" viewBox="-20 -38 40 76"><path d="M0-34 15-13 14 22Q0 32-14 22L-15-13Z" fill="currentColor" stroke="#133f68" stroke-width="2"/><path d="M-8-8H8V12H-8Z" fill="#fff" opacity=".78"/></symbol>
+    <marker id="wind-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#52697c"/></marker>
+    <marker id="course-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#1d5c94"/></marker>
   </defs>
-  <text x="230" y="250" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Head to wind, crew ready at the bow</text>
+  <rect width="420" height="260" fill="#edf6fa"/>
+  <text x="324" y="25" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#52697c">WIND</text>
+  <g stroke="#52697c" stroke-width="3" marker-end="url(#wind-head)"><path d="M370 38 324 84"/><path d="M338 38 292 84"/></g>
+  <circle cx="254" cy="109" r="13" fill="#b85f24" stroke="#7c3f18" stroke-width="2"/><path d="M254 122v18" stroke="#7c3f18" stroke-width="2"/><path d="M238 140h32" stroke="#7c3f18" stroke-width="3"/>
+  <rect x="194" y="68" width="120" height="24" rx="12" fill="#fff" stroke="#cbdbe6"/><text x="254" y="85" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#7c3f18">mooring ball</text>
+  <path d="M138 217 218 139" stroke="#1d5c94" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#course-head)"/>
+  <g transform="translate(132 218) rotate(45)" color="#1d5c94"><use href="#powerboat" x="-20" y="-38" width="40" height="76"/></g>
+  <rect x="58" y="226" width="148" height="24" rx="12" fill="#fff" stroke="#cbdbe6"/><text x="132" y="243" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#133f68">approaching vessel</text>
 </svg>

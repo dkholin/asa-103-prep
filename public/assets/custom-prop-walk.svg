@@ -1,20 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Bird's-eye view of a boat backing down with a right-hand propeller in reverse, showing the stern walking to port while the boat moves astern">
-  <rect width="420" height="260" fill="#dcebf5"/>
-  <g transform="translate(230 150)">
-    <path d="M-70 -18 L60 -18 L80 0 L60 18 L-70 18 Z" fill="#c9c2b0" stroke="#333" stroke-width="2"/>
-  </g>
-  <text x="300" y="130" font-family="sans-serif" font-size="12" fill="#333">Bow</text>
-  <path d="M160 132 Q100 90 60 90" stroke="#2b6cb0" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
-  <text x="60" y="80" font-family="sans-serif" font-size="12" fill="#1a4a7a">Stern walks to port</text>
-  <path d="M230 150 L120 150" stroke="#333" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow2)"/>
-  <text x="125" y="190" font-family="sans-serif" font-size="12" fill="#333">Boat moves astern</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Overhead powerboat diagram with reverse motion shown in two components labeled A and B.">
   <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#2b6cb0"/>
-    </marker>
-    <marker id="arrow2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#333"/>
-    </marker>
+    <symbol id="powerboat" viewBox="-20 -38 40 76"><path d="M0-34 15-13 14 22Q0 32-14 22L-15-13Z" fill="currentColor" stroke="#133f68" stroke-width="2"/><path d="M-8-8H8V12H-8Z" fill="#fff" opacity=".78"/></symbol>
+    <marker id="course-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#1d5c94"/></marker>
+    <marker id="effect-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#b85f24"/></marker>
   </defs>
-  <text x="210" y="230" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Right-hand prop, reverse gear (prop walk)</text>
+  <rect width="420" height="260" fill="#edf6fa"/>
+  <g transform="translate(245 126) rotate(90)" color="#1d5c94"><use href="#powerboat" x="-29" y="-55" width="58" height="110"/></g>
+  <text x="318" y="130" font-family="sans-serif" font-size="12" font-weight="600" fill="#133f68">bow</text>
+  <path d="M208 126H102" stroke="#1d5c94" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#course-head)"/>
+  <rect x="77" y="145" width="112" height="24" rx="12" fill="#fff" stroke="#cbdbe6"/><text x="133" y="162" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#133f68">motion A</text>
+  <path d="M218 126Q195 73 134 73" fill="none" stroke="#b85f24" stroke-width="4" marker-end="url(#effect-head)"/>
+  <rect x="78" y="36" width="146" height="24" rx="12" fill="#fff" stroke="#e2b994"/><text x="151" y="53" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#7c3f18">motion B</text>
+  <text x="210" y="232" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#52697c">right-hand propeller · reverse gear</text>
 </svg>

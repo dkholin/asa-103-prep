@@ -1,18 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Bird's-eye view: your faster vessel approaching another vessel from well abaft its beam, both heading up the page">
-  <rect width="420" height="300" fill="#dcebf5"/>
-  <!-- slower vessel ahead -->
-  <g transform="translate(210 90)">
-    <path d="M0 -34 L14 -10 L14 30 L-14 30 L-14 -10 Z" fill="#2f855a" stroke="#1d5c3d" stroke-width="2"/>
-    <line x1="0" y1="-40" x2="0" y2="-64" stroke="#2f855a" stroke-width="3"/>
-    <path d="M0 -72 l-7 14 h14 z" fill="#2f855a"/>
-    <text x="70" y="4" font-family="sans-serif" font-size="14" fill="#194d33">Slower vessel</text>
-  </g>
-  <!-- your vessel astern, faster -->
-  <g transform="translate(210 235)">
-    <path d="M0 -34 L14 -10 L14 30 L-14 30 L-14 -10 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-    <line x1="0" y1="-40" x2="0" y2="-86" stroke="#2b6cb0" stroke-width="3"/>
-    <path d="M0 -94 l-7 14 h14 z" fill="#2b6cb0"/>
-    <text x="70" y="4" font-family="sans-serif" font-size="14" fill="#1a3d5c">Your vessel</text>
-    <text x="70" y="22" font-family="sans-serif" font-size="12" fill="#1a3d5c">(faster, coming up astern)</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Overhead encounter diagram with your sailboat approaching another vessel from astern.">
+  <defs>
+    <symbol id="powerboat" viewBox="-20 -38 40 76"><path d="M0-34 15-13 14 22Q0 32-14 22L-15-13Z" fill="currentColor" stroke="#133f68" stroke-width="2"/><path d="M-8-8H8V12H-8Z" fill="#fff" opacity=".78"/></symbol>
+    <symbol id="sailboat" viewBox="-25 -42 50 84"><path d="M0-35 14-12 12 24Q0 33-12 24L-14-12Z" fill="currentColor" stroke="#133f68" stroke-width="2"/><path d="M0-24V21M0-19-16 10 0 15ZM2-17 15 8 2 13Z" fill="#fff" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <marker id="blue-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#1d5c94"/></marker>
+    <marker id="amber-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#b85f24"/></marker>
+  </defs>
+  <rect width="420" height="300" fill="#edf6fa"/>
+  <path d="M210 92V43" stroke="#b85f24" stroke-width="3" marker-end="url(#amber-head)"/>
+  <use href="#powerboat" x="190" y="95" width="40" height="76" color="#b85f24"/>
+  <rect x="248" y="83" width="130" height="24" rx="12" fill="#fff" stroke="#cbdbe6"/>
+  <text x="313" y="100" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#7c3f18">Slower powerboat</text>
+  <path d="M210 230V145" stroke="#1d5c94" stroke-width="3" marker-end="url(#blue-head)"/>
+  <use href="#sailboat" x="185" y="220" width="50" height="84" color="#1d5c94"/>
+  <rect x="248" y="226" width="124" height="24" rx="12" fill="#fff" stroke="#cbdbe6"/>
+  <text x="310" y="243" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#133f68">Your sailboat</text>
+  <path d="M155 196Q121 165 145 127" fill="none" stroke="#8297a8" stroke-width="2" stroke-dasharray="5 5"/>
+  <text x="68" y="176" font-family="sans-serif" font-size="12" fill="#52697c">approaching from astern</text>
 </svg>

@@ -4,11 +4,15 @@ export interface AssetRecord {
   id: string;
   filename: string;
   description: string;
+  altText: string;
   sourcePage: string;
   originalUrl: string;
   creator: string;
   license: string;
+  licenseUrl?: string;
   attributionRequired: boolean;
+  attributionText?: string;
+  modificationNote?: string;
   modified: boolean;
   usedByQuestions: string[];
   /** Visual assets rendered on a dark background (e.g. night scenes) should stay on dark. */

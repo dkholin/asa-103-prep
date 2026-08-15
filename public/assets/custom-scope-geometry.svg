@@ -1,31 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 320" role="img" aria-label="Side view of a boat at anchor showing water depth of 10 feet, bow height above the water of 4 feet, and the anchor rode running at a shallow angle down to the anchor on the bottom">
-  <rect width="460" height="320" fill="#eef5fa"/>
-  <!-- water -->
-  <rect x="0" y="150" width="460" height="120" fill="#cfe4f2"/>
-  <line x1="0" y1="150" x2="460" y2="150" stroke="#2b6cb0" stroke-width="2"/>
-  <!-- bottom -->
-  <rect x="0" y="270" width="460" height="20" fill="#d8cba3"/>
-  <!-- boat hull at bow, on the right -->
-  <g transform="translate(370 150)">
-    <path d="M-30 0 L30 0 L22 24 L-22 24 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-    <line x1="-20" y1="0" x2="-20" y2="-70" stroke="#456" stroke-width="1.5" stroke-dasharray="4 3"/>
-    <line x1="-20" y1="-70" x2="0" y2="-70" stroke="#456" stroke-width="1.5" stroke-dasharray="4 3"/>
-    <text x="-40" y="-30" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">Bow height</text>
-    <text x="-40" y="-12" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3d5c" text-anchor="middle">H = 4 ft</text>
-  </g>
-  <!-- depth marker -->
-  <line x1="60" y1="150" x2="60" y2="270" stroke="#456" stroke-width="1.5" stroke-dasharray="4 3"/>
-  <text x="30" y="200" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">Depth</text>
-  <text x="30" y="218" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3d5c" text-anchor="middle">D = 10 ft</text>
-  <!-- rode from bow chock down to anchor on bottom -->
-  <line x1="350" y1="130" x2="90" y2="272" stroke="#c05621" stroke-width="3"/>
-  <text x="230" y="150" font-family="sans-serif" font-size="14" font-weight="bold" fill="#8a3c12" text-anchor="middle">Rode length = L</text>
-  <!-- anchor symbol -->
-  <g transform="translate(90 278)">
-    <circle cx="0" cy="-14" r="4" fill="#333"/>
-    <line x1="0" y1="-10" x2="0" y2="6" stroke="#333" stroke-width="2.5"/>
-    <path d="M-10 6 Q0 16 10 6" fill="none" stroke="#333" stroke-width="2.5"/>
-    <path d="M-10 6 l-4 -6 M10 6 l4 -6" stroke="#333" stroke-width="2.5"/>
-  </g>
-  <text x="230" y="300" font-family="sans-serif" font-size="12" fill="#52697c" text-anchor="middle">Scope = rode length ÷ (depth + bow height) = L ÷ (D + H)</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 320" role="img" aria-label="Side-view diagram of an anchored boat with water depth D, bow height H, and rode length L marked.">
+  <defs><marker id="measure-head" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0 3.5 7 0v7Z" fill="#52697c"/></marker></defs>
+  <rect width="460" height="320" fill="#edf6fa"/>
+  <rect y="141" width="460" height="129" fill="#cfe5f1"/>
+  <path d="M0 141H460" stroke="#1d5c94" stroke-width="2"/>
+  <rect y="270" width="460" height="26" fill="#d8cba3"/>
+  <path d="M345 89h76l-11 52h-54Z" fill="#1d5c94" stroke="#133f68" stroke-width="2"/>
+  <path d="M356 89h20" stroke="#133f68" stroke-width="4"/>
+  <circle cx="356" cy="89" r="4" fill="#b85f24"/>
+  <path d="M70 270 356 89" stroke="#b85f24" stroke-width="4"/>
+  <rect x="188" y="176" width="84" height="24" rx="12" fill="#fff" stroke="#e2b994"/><text x="230" y="193" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#7c3f18">rode L</text>
+  <path d="M48 145V266" stroke="#52697c" stroke-width="2" marker-start="url(#measure-head)" marker-end="url(#measure-head)"/>
+  <rect x="15" y="191" width="66" height="32" rx="8" fill="#fff" stroke="#cbdbe6"/><text x="48" y="204" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#52697c">depth</text><text x="48" y="218" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#133f68">D = 10 ft</text>
+  <path d="M399 137V93" stroke="#52697c" stroke-width="2" marker-start="url(#measure-head)" marker-end="url(#measure-head)"/>
+  <rect x="360" y="99" width="78" height="36" rx="8" fill="#fff" stroke="#cbdbe6"/><text x="399" y="113" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#52697c">bow height</text><text x="399" y="129" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#133f68">H = 4 ft</text>
+  <g transform="translate(69 278)" stroke="#384956" stroke-width="2.5" fill="none"><circle cy="-14" r="4" fill="#384956"/><path d="M0-10V7M-10 4Q0 16 10 4M-10 4l-4-6M10 4l4-6"/></g>
+  <text x="230" y="314" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#52697c">measure rode from bow chock to anchor</text>
 </svg>

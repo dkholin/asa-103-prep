@@ -1,31 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 320" role="img" aria-label="Bird's-eye view of a small bay with wind blowing from the top of the chart, an open exposed spot near the bay mouth marked Spot A, and a protected spot tucked behind a point of land with good holding marked Spot B" >
-  <rect width="460" height="320" fill="#cfe4f2"/>
-  <!-- land forming the bay, on left and bottom -->
-  <path d="M0 0 L140 0 Q100 90 130 160 Q150 230 90 300 L0 300 Z" fill="#d8cba3" stroke="#a68f5c" stroke-width="2"/>
-  <path d="M0 300 L0 320 L460 320 L460 260 Q380 240 300 260 Q220 280 150 260 Q100 248 90 300 Z" fill="#d8cba3" stroke="#a68f5c" stroke-width="2"/>
-  <!-- wind arrows from top -->
-  <g stroke="#456" stroke-width="3" fill="#456">
-    <line x1="330" y1="20" x2="330" y2="90"/>
-    <path d="M330 90 l-8 -14 h16 z"/>
-    <line x1="380" y1="20" x2="380" y2="90"/>
-    <path d="M380 90 l-8 -14 h16 z"/>
-    <line x1="280" y1="20" x2="280" y2="90"/>
-    <path d="M280 90 l-8 -14 h16 z"/>
-  </g>
-  <text x="330" y="16" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle">Wind</text>
-  <!-- Spot A: exposed, near open bay mouth, downwind fetch -->
-  <circle cx="330" cy="130" r="9" fill="#c0392b" stroke="#7a2318" stroke-width="2"/>
-  <text x="330" y="115" font-family="sans-serif" font-size="13" font-weight="bold" fill="#7a2318" text-anchor="middle">Spot A</text>
-  <text x="330" y="158" font-family="sans-serif" font-size="11" fill="#7a2318" text-anchor="middle">open to wind and fetch</text>
-  <!-- point of land creating shelter -->
-  <path d="M150 160 Q190 140 220 180 Q200 210 160 210 Z" fill="#c9bb8e" stroke="#a68f5c" stroke-width="2"/>
-  <!-- Spot B: tucked behind point, sheltered -->
-  <circle cx="185" cy="230" r="9" fill="#1d6b3d" stroke="#0f4526" stroke-width="2"/>
-  <text x="185" y="255" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f4526" text-anchor="middle">Spot B</text>
-  <text x="185" y="272" font-family="sans-serif" font-size="11" fill="#0f4526" text-anchor="middle">sheltered lee of the point</text>
-  <!-- another anchored boat for room-to-swing context -->
-  <g transform="translate(260 200)">
-    <path d="M-10 0 L10 0 L7 10 L-7 10 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="1.5"/>
-  </g>
-  <text x="270" y="182" font-family="sans-serif" font-size="10" fill="#1a3d5c" text-anchor="middle">Anchored boat</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 320" role="img" aria-label="Overhead diagram of a bay with wind arrows and two possible anchoring positions labeled A and B.">
+  <defs><marker id="wind-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#52697c"/></marker></defs>
+  <rect width="460" height="320" fill="#edf6fa"/>
+  <path d="M0 0H145Q102 83 129 151q17 49-1 89Q111 276 76 320H0Z" fill="#d8cba3" stroke="#a68f5c" stroke-width="2"/>
+  <path d="M0 278q92-44 167-18t134 5q80-27 159 7v48H0Z" fill="#d8cba3" stroke="#a68f5c" stroke-width="2"/>
+  <path d="M128 154q41-21 83 22-9 35-66 42" fill="#d8cba3" stroke="#a68f5c" stroke-width="2"/>
+  <text x="330" y="18" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#52697c">WIND</text>
+  <g stroke="#52697c" stroke-width="3" marker-end="url(#wind-head)"><path d="M280 27V91"/><path d="M330 27V91"/><path d="M380 27V91"/></g>
+  <circle cx="330" cy="132" r="11" fill="#b85f24" stroke="#7c3f18" stroke-width="2"/><text x="330" y="136" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">A</text>
+  <circle cx="181" cy="234" r="11" fill="#1d5c94" stroke="#133f68" stroke-width="2"/><text x="181" y="238" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">B</text>
+  <path d="M207 174q32 7 54 31" fill="none" stroke="#91a9ba" stroke-width="2" stroke-dasharray="5 5"/>
+  <text x="230" y="301" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6f5c36">land and point forming the bay</text>
 </svg>

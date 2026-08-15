@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 380" role="img" aria-label="Chart border excerpt showing latitude tick marks on the side borders and longitude tick marks on the top and bottom borders, with a charted position marked by a small circle">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 380" role="img" aria-label="Chart-border grid with coordinates and one position marked X.">
   <rect width="460" height="380" fill="#eef5fa"/>
   <!-- chart interior -->
   <rect x="70" y="50" width="330" height="280" fill="#f7fbfd" stroke="#1a3d5c" stroke-width="2"/>

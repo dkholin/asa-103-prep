@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Steering compass mounted near a metal toolbox and a handheld radio, with the compass needle deflected away from north toward the metal and electronics">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Compass scenario with two nearby objects labeled A and B.">
   <rect width="420" height="300" fill="#eef5fa"/>
   <!-- compass housing -->
   <circle cx="170" cy="150" r="80" fill="#fbfefe" stroke="#1a3d5c" stroke-width="3"/>
@@ -14,13 +14,13 @@
     <path d="M170 150 L170 84 L164 96 L176 96 Z" fill="#c0392b"/>
     <path d="M170 150 L170 210 L164 200 L176 200 Z" fill="#456"/>
   </g>
-  <text x="170" y="255" font-family="sans-serif" font-size="12" fill="#7a2318" text-anchor="middle">Needle deflected off true north</text>
+  <text x="170" y="255" font-family="sans-serif" font-size="12" fill="#7a2318" text-anchor="middle">observed compass indication</text>
   <!-- metal toolbox -->
   <rect x="300" y="120" width="70" height="50" rx="4" fill="#8a94a0" stroke="#4a525c" stroke-width="2"/>
   <rect x="322" y="112" width="26" height="10" fill="#4a525c"/>
-  <text x="335" y="188" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Steel toolbox</text>
-  <!-- handheld radio -->
+  <text x="335" y="188" font-family="sans-serif" font-size="12" font-weight="700" fill="#333" text-anchor="middle">A</text>
+  <!-- object B -->
   <rect x="300" y="200" width="26" height="52" rx="4" fill="#37474f" stroke="#1b262b" stroke-width="2"/>
   <line x1="313" y1="200" x2="313" y2="182" stroke="#1b262b" stroke-width="3"/>
-  <text x="313" y="270" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Handheld radio</text>
+  <text x="313" y="270" font-family="sans-serif" font-size="12" font-weight="700" fill="#333" text-anchor="middle">B</text>
 </svg>

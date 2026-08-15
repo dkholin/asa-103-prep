@@ -3985,7 +3985,7 @@ export const QUESTIONS: Question[] = [
   id: 'sys-turnbuckle-id',
   topic: 'cruising-systems',
   format: 'visual',
-  assetId: 'custom-turnbuckle',
+  assetId: 'photo-turnbuckle',
   prompt: "What is the fitting shown between the wire shroud and the chainplate, and what is its purpose?",
   choices: [
     { id: 'c', text: "A cleat — it lets you make a line fast", whyWrong: "A cleat secures a line by wrapping, not by threaded adjustment of a standing-rigging wire." },

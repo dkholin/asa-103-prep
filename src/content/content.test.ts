@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import manifest from './asset-manifest.json';
@@ -89,12 +89,28 @@ describe('asset manifest integrity', () => {
       expect(a.description.trim(), `description of ${a.id}`).not.toBe('');
       expect(a.creator.trim(), `creator of ${a.id}`).not.toBe('');
       expect(a.license.trim(), `license of ${a.id}`).not.toBe('');
+      expect(a.altText?.trim(), `neutral altText of ${a.id}`).not.toBe('');
       const isCustom = a.sourcePage === 'created in-repo';
       if (!isCustom) {
         expect(a.sourcePage, `sourcePage of ${a.id}`).toMatch(/^https?:\/\//);
         expect(a.originalUrl, `originalUrl of ${a.id}`).toMatch(/^https?:\/\//);
       }
+      if (a.attributionRequired) {
+        expect(a.creator.trim(), `attribution creator of ${a.id}`).not.toBe('');
+        expect(a.sourcePage, `attribution source of ${a.id}`).toMatch(/^https?:\/\//);
+        if ('licenseUrl' in a) {
+          expect(a.licenseUrl, `licenseUrl of ${a.id}`).toMatch(/^https?:\/\//);
+        }
+      }
     }
+
+    const turnbuckle = manifest.assets.find((asset) => asset.id === 'photo-turnbuckle');
+    expect(turnbuckle?.attributionText).toBe('Pütting (Boot) · Sastognuti · Wikimedia Commons');
+    expect(turnbuckle?.altText).toBe(
+      'Open-body threaded metal fittings connecting wire shrouds to deck-mounted plates.',
+    );
+    expect(turnbuckle?.license).toBe('CC BY-SA 3.0');
+    expect(turnbuckle?.licenseUrl).toBe('https://creativecommons.org/licenses/by-sa/3.0/');
   });
 
   it('cross-references questions correctly', () => {
@@ -104,6 +120,45 @@ describe('asset manifest integrity', () => {
         expect(idSet, `asset ${a.id} references unknown question ${qid}`).toContain(qid);
         const q = QUESTIONS.find((x) => x.id === qid)!;
         expect(q.assetId, `question ${qid} should use asset ${a.id}`).toBe(a.id);
+      }
+    }
+  });
+
+  it('keeps known answer-bearing phrases out of visible custom SVG labels', () => {
+    const prohibited = [
+      'stemhead fitting',
+      'bow roller',
+      'binnacle pedestal',
+      'compass card',
+      'lubber line',
+      'emergency tiller',
+      'rudder post head',
+      'through-hull fitting',
+      'seacock (shutoff valve)',
+      'wearable pfd',
+      'throwable device',
+      'run blower',
+      'engine-blower',
+      'single-lever throttle/shift',
+      'cold incapacitation',
+      'meaningful movement',
+      'overpowered — sheeted hard',
+      'eased sheet / traveler',
+      'smaller heel angle',
+      'steel toolbox',
+      'handheld radio',
+      "1' = 1 nm",
+    ];
+
+    for (const asset of manifest.assets.filter((item) => item.filename.endsWith('.svg'))) {
+      const svg = readFileSync(join(process.cwd(), 'public', 'assets', asset.filename), 'utf8');
+      expect(svg, `${asset.id} internal SVG alternative`).toContain(`aria-label="${asset.altText}"`);
+      const visibleText = [...svg.matchAll(/<text\b[^>]*>([^<]*)<\/text>/gi)]
+        .map((match) => match[1])
+        .join(' ')
+        .toLowerCase();
+      for (const phrase of prohibited) {
+        expect(visibleText, `${asset.id} visibly contains "${phrase}"`).not.toContain(phrase);
       }
     }
   });

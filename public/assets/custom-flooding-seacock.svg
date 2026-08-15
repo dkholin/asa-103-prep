@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 240" role="img" aria-label="Cutaway diagram of a boat hull below the waterline showing a through-hull fitting with a seacock valve on a hose, with water spraying in around a loose hose clamp, and a wooden bung/plug and a bucket shown nearby as emergency response items" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 240" role="img" aria-label="Hull cutaway with a below-waterline leak and nearby emergency equipment." fill="none">
   <rect width="460" height="240" fill="#eef5fa"/>
-  <text x="230" y="24" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a3d5c" text-anchor="middle">Below the waterline: a leaking through-hull fitting</text>
+  <text x="230" y="24" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a3d5c" text-anchor="middle">BELOW-WATERLINE LEAK SCENARIO</text>
 
   <!-- hull cutaway -->
   <path d="M20 60 L440 60 L440 200 Q230 230 20 200 Z" fill="#f7f2e7" stroke="#5a4632" stroke-width="3"/>
@@ -12,9 +12,7 @@
   <g transform="translate(210 150)">
     <rect x="-10" y="-10" width="20" height="20" fill="#777" stroke="#333" stroke-width="1.5"/>
     <rect x="-45" y="-6" width="35" height="12" fill="#666" stroke="#333" stroke-width="1.5"/>
-    <text x="-27" y="-14" font-family="sans-serif" font-size="9" fill="#333" text-anchor="middle">Seacock</text>
     <rect x="10" y="-6" width="55" height="12" fill="#b08968" stroke="#5a4632" stroke-width="1.5"/>
-    <text x="37" y="-14" font-family="sans-serif" font-size="9" fill="#333" text-anchor="middle">Hose</text>
     <!-- clamp -->
     <rect x="55" y="-9" width="6" height="18" fill="#999" stroke="#333" stroke-width="1"/>
     <!-- spray -->
@@ -30,10 +28,8 @@
   <!-- bung and bucket -->
   <g transform="translate(340 175)">
     <polygon points="0,0 18,0 13,18 5,18" fill="#8a5a2e" stroke="#4a3018" stroke-width="1.5"/>
-    <text x="9" y="32" font-family="sans-serif" font-size="9" fill="#333" text-anchor="middle">Tapered bung</text>
   </g>
   <g transform="translate(90 170)">
     <path d="M0 0 L28 0 L24 26 L4 26 Z" fill="#ccc" stroke="#333" stroke-width="1.5"/>
-    <text x="14" y="40" font-family="sans-serif" font-size="9" fill="#333" text-anchor="middle">Bucket to bail</text>
   </g>
 </svg>

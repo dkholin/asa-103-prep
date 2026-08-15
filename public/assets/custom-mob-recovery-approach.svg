@@ -1,31 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" role="img" aria-label="Overhead diagram of a sailboat's curved return path back to a crew-overboard victim in the water, approaching slowly from downwind/leeward with the victim kept on the helmsman's windward side for visual contact and a controlled final approach">
-  <rect width="480" height="280" fill="#eef5fa"/>
-  <text x="240" y="24" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a3d5c" text-anchor="middle">Overhead view: return path to crew overboard</text>
-
-  <!-- wind arrow -->
-  <g transform="translate(60,50)">
-    <line x1="0" y1="0" x2="0" y2="35" stroke="#555" stroke-width="3"/>
-    <path d="M-8 24 L0 35 L8 24" fill="none" stroke="#555" stroke-width="3"/>
-    <text x="0" y="-6" font-family="sans-serif" font-size="11" fill="#555" text-anchor="middle">Wind</text>
-  </g>
-
-  <!-- victim in water -->
-  <circle cx="380" cy="150" r="9" fill="#c0392b"/>
-  <text x="380" y="175" font-family="sans-serif" font-size="11" fill="#7a1f1f" text-anchor="middle">Person in water</text>
-
-  <!-- curved return track -->
-  <path d="M90 90 C 220 60, 300 90, 340 140 C 355 158, 362 168, 372 150" fill="none" stroke="#2b6cb0" stroke-width="3" stroke-dasharray="0"/>
-  <g transform="translate(90 90) rotate(20)">
-    <path d="M-14 8 L14 8 L0 -18 Z" fill="#1a4a7a"/>
-  </g>
-  <text x="150" y="55" font-family="sans-serif" font-size="11" fill="#1a3d5c">Curved return, boat under control</text>
-
-  <!-- final approach arrow -->
-  <line x1="372" y1="150" x2="389" y2="150" stroke="#7a1f1f" stroke-width="2"/>
-  <text x="410" y="130" font-family="sans-serif" font-size="10" fill="#333" text-anchor="middle">Final approach:</text>
-  <text x="410" y="205" font-family="sans-serif" font-size="10" fill="#333" text-anchor="middle">slow, victim to</text>
-  <text x="410" y="218" font-family="sans-serif" font-size="10" fill="#333" text-anchor="middle">leeward side</text>
-
-  <text x="240" y="248" font-family="sans-serif" font-size="10" fill="#1a3d5c" text-anchor="middle">Priorities throughout: keep the victim in sight, assign a dedicated spotter,</text>
-  <text x="240" y="264" font-family="sans-serif" font-size="10" fill="#1a3d5c" text-anchor="middle">and stop the boat alongside without running them down</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" role="img" aria-label="Overhead diagram of a sailboat following a curved return track toward a person in the water, with wind direction shown.">
+  <defs>
+    <symbol id="sailboat" viewBox="-25 -42 50 84"><path d="M0-35 14-12 12 24Q0 33-12 24L-14-12Z" fill="currentColor" stroke="#133f68" stroke-width="2"/><path d="M0-24V21M0-19-16 10 0 15ZM2-17 15 8 2 13Z" fill="#fff" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <marker id="wind-head" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#52697c"/></marker>
+  </defs>
+  <rect width="480" height="280" fill="#edf6fa"/>
+  <text x="38" y="25" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#52697c">WIND</text>
+  <g stroke="#52697c" stroke-width="3" marker-end="url(#wind-head)"><path d="M35 39V91"/><path d="M67 39V91"/></g>
+  <circle cx="393" cy="154" r="10" fill="#b85f24" stroke="#7c3f18" stroke-width="2"/><circle cx="393" cy="154" r="22" fill="none" stroke="#b85f24" stroke-width="2" stroke-dasharray="4 4"/>
+  <rect x="331" y="187" width="124" height="24" rx="12" fill="#fff" stroke="#e2b994"/><text x="393" y="204" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#7c3f18">person in water</text>
+  <path d="M104 89C194 50 276 58 318 91C333 103 336 126 350 126" fill="none" stroke="#1d5c94" stroke-width="4" stroke-dasharray="9 6"/>
+  <g transform="translate(104 89) rotate(70)" color="#1d5c94" opacity=".72"><use href="#sailboat" x="-25" y="-42" width="50" height="84"/></g>
+  <g transform="translate(350 126) rotate(90)" color="#1d5c94"><use href="#sailboat" x="-20" y="-34" width="40" height="68"/></g>
 </svg>
