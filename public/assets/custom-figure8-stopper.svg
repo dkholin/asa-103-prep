@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 220" role="img" aria-label="Diagram of a figure-eight stopper knot tied near the end of a line, forming a figure-8 shape that prevents the line's end from slipping through a block or fairlead">
+  <rect width="300" height="220" fill="#f5f0e6"/>
+  <path d="M40 40 C 90 40 90 100 150 100 C 210 100 210 40 260 40" fill="none" stroke="#c05621" stroke-width="10" stroke-linecap="round"/>
+  <path d="M150 100 C 110 100 110 160 150 160 C 190 160 190 100 150 100" fill="none" stroke="#c05621" stroke-width="10" stroke-linecap="round"/>
+  <line x1="40" y1="40" x2="15" y2="40" stroke="#c05621" stroke-width="10" stroke-linecap="round"/>
+  <line x1="260" y1="40" x2="285" y2="40" stroke="#c05621" stroke-width="10" stroke-linecap="round"/>
+  <text x="150" y="195" font-family="sans-serif" font-size="13" fill="#333" text-anchor="middle">Figure-eight stopper knot</text>
+  <text x="150" y="20" font-family="sans-serif" font-size="12" fill="#555" text-anchor="middle">Tied near the bitter end of a sheet or halyard</text>
+</svg>

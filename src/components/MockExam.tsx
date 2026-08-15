@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { MOCK_QUESTION_IDS, QUESTIONS } from '../content/questions';
+import { QUESTIONS, selectMockQuestions } from '../content/questions';
 import type { Question } from '../content/types';
 import {
   gradeMock,
@@ -19,9 +19,9 @@ export function MockExam(props: {
 }) {
   const questions = useMemo(
     () =>
-      MOCK_QUESTION_IDS.map((id) => questionById.get(id)).filter(
-        (q): q is Question => q !== undefined,
-      ),
+      selectMockQuestions()
+        .map((id) => questionById.get(id))
+        .filter((q): q is Question => q !== undefined),
     [],
   );
   const [index, setIndex] = useState(0);

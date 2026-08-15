@@ -7,7 +7,11 @@ export type TopicId =
   | 'anchoring'
   | 'cruising-systems'
   | 'safety-equipment'
-  | 'engine-docking';
+  | 'engine-docking'
+  | 'marine-weather'
+  | 'sail-trim'
+  | 'seamanship-comms'
+  | 'emergencies';
 
 export interface Choice {
   id: string;

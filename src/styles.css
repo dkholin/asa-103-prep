@@ -291,6 +291,12 @@ button.large {
   margin-bottom: var(--space-2);
 }
 
+.hero-card .recommend-reason {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgb(255 255 255 / 75%);
+}
+
 .hero-card p {
   color: rgb(255 255 255 / 85%);
   margin: 0 0 var(--space-4);

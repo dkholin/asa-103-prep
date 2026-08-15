@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { QUESTIONS } from '../content/questions';
 import { TOPICS } from '../content/topics';
 import type { TopicId } from '../content/types';
-import { topicReadiness, type Progress } from '../lib/progress';
+import { recommendTopic, topicReadiness, type Progress } from '../lib/progress';
 import { ProgressBar, readinessChipClass, readinessLabel } from './shared';
 
 export function Dashboard(props: {
@@ -22,19 +22,28 @@ export function Dashboard(props: {
     }),
     { total: 0, mastered: 0, attempted: 0 },
   );
-  // Recommendation: the topic with the lowest mastered/total ratio.
-  const recommended = [...perTopic].sort(
-    (a, b) => a.mastered / a.total - b.mastered / b.total,
-  )[0];
-  const recommendedTopic = TOPICS.find((t) => t.id === recommended.topic)!;
+  const recommendation = useMemo(
+    () => recommendTopic(progress, QUESTIONS, perTopic),
+    [progress, perTopic],
+  );
+  const recommended = perTopic.find((t) => t.topic === recommendation.topic)!;
+  const recommendedTopic = TOPICS.find((t) => t.id === recommendation.topic)!;
   const lastMock = progress.mockResults.at(-1);
   const estMinutes = Math.max(3, Math.round(recommended.total * 1.3));
+  const recommendationReason =
+    recommendation.reason === 'review-queue'
+      ? `${recommendation.queueCount} missed question${recommendation.queueCount === 1 ? '' : 's'} to clear`
+      : recommendation.reason === 'unseen'
+        ? 'not yet studied'
+        : 'weakest topic';
 
   return (
     <section aria-label="Dashboard">
       <div className="hero-card">
         <p className="eyebrow">Recommended next</p>
-        <h2>{recommendedTopic.title}</h2>
+        <h2>
+          {recommendedTopic.title} — <span className="recommend-reason">{recommendationReason}</span>
+        </h2>
         <p>
           {recommendedTopic.blurb}. {recommended.total} questions · ~{estMinutes} min
           {recommended.attempted > 0 && ` · ${recommended.mastered}/${recommended.total} solid so far`}

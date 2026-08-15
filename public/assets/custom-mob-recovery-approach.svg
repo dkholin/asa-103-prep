@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" role="img" aria-label="Overhead diagram of a sailboat's curved return path back to a crew-overboard victim in the water, approaching slowly from downwind/leeward with the victim kept on the helmsman's windward side for visual contact and a controlled final approach">
+  <rect width="480" height="280" fill="#eef5fa"/>
+  <text x="240" y="24" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a3d5c" text-anchor="middle">Overhead view: return path to crew overboard</text>
+
+  <!-- wind arrow -->
+  <g transform="translate(60,50)">
+    <line x1="0" y1="0" x2="0" y2="35" stroke="#555" stroke-width="3"/>
+    <path d="M-8 24 L0 35 L8 24" fill="none" stroke="#555" stroke-width="3"/>
+    <text x="0" y="-6" font-family="sans-serif" font-size="11" fill="#555" text-anchor="middle">Wind</text>
+  </g>
+
+  <!-- victim in water -->
+  <circle cx="380" cy="150" r="9" fill="#c0392b"/>
+  <text x="380" y="175" font-family="sans-serif" font-size="11" fill="#7a1f1f" text-anchor="middle">Person in water</text>
+
+  <!-- curved return track -->
+  <path d="M90 90 C 220 60, 300 90, 340 140 C 355 158, 362 168, 372 150" fill="none" stroke="#2b6cb0" stroke-width="3" stroke-dasharray="0"/>
+  <g transform="translate(90 90) rotate(20)">
+    <path d="M-14 8 L14 8 L0 -18 Z" fill="#1a4a7a"/>
+  </g>
+  <text x="150" y="55" font-family="sans-serif" font-size="11" fill="#1a3d5c">Curved return, boat under control</text>
+
+  <!-- final approach arrow -->
+  <line x1="372" y1="150" x2="389" y2="150" stroke="#7a1f1f" stroke-width="2"/>
+  <text x="410" y="130" font-family="sans-serif" font-size="10" fill="#333" text-anchor="middle">Final approach:</text>
+  <text x="410" y="205" font-family="sans-serif" font-size="10" fill="#333" text-anchor="middle">slow, victim to</text>
+  <text x="410" y="218" font-family="sans-serif" font-size="10" fill="#333" text-anchor="middle">leeward side</text>
+
+  <text x="240" y="248" font-family="sans-serif" font-size="10" fill="#1a3d5c" text-anchor="middle">Priorities throughout: keep the victim in sight, assign a dedicated spotter,</text>
+  <text x="240" y="264" font-family="sans-serif" font-size="10" fill="#1a3d5c" text-anchor="middle">and stop the boat alongside without running them down</text>
+</svg>

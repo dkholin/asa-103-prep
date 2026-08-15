@@ -1,4 +1,4 @@
-import { MOCK_QUESTION_IDS, QUESTIONS } from '../src/content/questions';
+import { QUESTIONS, selectMockQuestions } from '../src/content/questions';
 import type { Question } from '../src/content/types';
 
 export function question(id: string): Question {
@@ -18,12 +18,18 @@ export function wrongChoice(q: Question) {
 /** Question order the app uses for the Navigation Lights practice session. */
 export const NAV_LIGHTS = QUESTIONS.filter((q) => q.topic === 'nav-lights');
 
+/** Question order the app uses for the Right of Way practice session. */
+export const RIGHT_OF_WAY = QUESTIONS.filter((q) => q.topic === 'right-of-way');
+
+/** Question order the app uses for the Emergencies practice session. */
+export const EMERGENCIES = QUESTIONS.filter((q) => q.topic === 'emergencies');
+
 /** Question order the app uses for the Coastal Navigation & Charts practice session. */
 export const CHART_NAV = QUESTIONS.filter((q) => q.topic === 'chart-nav');
 
 /** Question order the app uses for the Anchoring & Mooring practice session. */
 export const ANCHORING = QUESTIONS.filter((q) => q.topic === 'anchoring');
 
-export const MOCK_QUESTIONS = MOCK_QUESTION_IDS.map(question);
+export const MOCK_QUESTIONS = selectMockQuestions().map(question);
 
 export const QUESTIONS_TOTAL = QUESTIONS.length;

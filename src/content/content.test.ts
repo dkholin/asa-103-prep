@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import manifest from './asset-manifest.json';
-import { MOCK_QUESTION_IDS, QUESTIONS } from './questions';
+import { QUESTIONS, selectMockQuestions } from './questions';
 import { TOPIC_IDS } from './topics';
 
 const questionIds = QUESTIONS.map((q) => q.id);
@@ -49,9 +49,18 @@ describe('question bank integrity', () => {
   });
 
   it('selects valid, unique mock exam questions', () => {
-    expect(new Set(MOCK_QUESTION_IDS).size).toBe(MOCK_QUESTION_IDS.length);
-    for (const id of MOCK_QUESTION_IDS) {
+    const mockIds = selectMockQuestions();
+    expect(new Set(mockIds).size).toBe(mockIds.length);
+    for (const id of mockIds) {
       expect(questionIds).toContain(id);
+    }
+  });
+
+  it('dynamically includes every topic (including newly added ones) in the mock exam', () => {
+    const mockIds = selectMockQuestions();
+    const mockTopics = new Set(mockIds.map((id) => QUESTIONS.find((q) => q.id === id)!.topic));
+    for (const t of TOPIC_IDS) {
+      expect(mockTopics, `mock exam missing topic ${t}`).toContain(t);
     }
   });
 });

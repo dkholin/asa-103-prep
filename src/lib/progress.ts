@@ -112,6 +112,62 @@ export function topicReadiness(p: Progress, questions: Question[]): TopicReadine
   return [...byTopic.values()];
 }
 
+export interface TopicRecommendation {
+  topic: TopicId;
+  reason: 'unseen' | 'review-queue' | 'weak' | 'default';
+  /** Number of this topic's questions currently sitting in the review queue. */
+  queueCount: number;
+}
+
+/** A topic with no attempts yet counts as fully "weak" so it's never buried. */
+function weakness(r: TopicReadiness): number {
+  if (r.total === 0) return 0;
+  return r.attempted === 0 ? 1 : 1 - r.mastered / r.total;
+}
+
+/**
+ * Pick one topic to recommend next.
+ *
+ * One-sentence rule: score each topic by how unmastered it is (unseen topics
+ * count as fully unmastered) plus a small flat bump if it has unresolved
+ * review-queue items, and recommend the highest-scoring topic — so a topic
+ * that's overwhelmingly unmastered or entirely unseen always outranks a
+ * mostly-solid topic that merely has a couple of stale wrong answers, while
+ * any open review items still give a topic a nudge up the list.
+ */
+export function recommendTopic(
+  p: Progress,
+  questions: Question[],
+  readiness: TopicReadiness[] = topicReadiness(p, questions),
+): TopicRecommendation {
+  const queueCountByTopic = new Map<TopicId, number>();
+  for (const id of p.reviewQueue) {
+    const q = questions.find((x) => x.id === id);
+    if (!q) continue;
+    queueCountByTopic.set(q.topic, (queueCountByTopic.get(q.topic) ?? 0) + 1);
+  }
+
+  // A flat, capped bump for having review-queue items — enough to break ties
+  // and favor a topic with open review items, but never enough to outweigh
+  // a topic that's substantially less mastered overall.
+  const REVIEW_QUEUE_BUMP = 0.15;
+
+  const scored = readiness.map((r) => {
+    const queueCount = queueCountByTopic.get(r.topic) ?? 0;
+    const score = weakness(r) + (queueCount > 0 ? REVIEW_QUEUE_BUMP : 0);
+    return { r, queueCount, score };
+  });
+
+  if (scored.length === 0) {
+    return { topic: readiness[0]?.topic as TopicId, reason: 'default', queueCount: 0 };
+  }
+
+  const best = scored.reduce((a, b) => (b.score > a.score ? b : a));
+  const reason: TopicRecommendation['reason'] =
+    best.queueCount > 0 ? 'review-queue' : best.r.attempted === 0 ? 'unseen' : 'weak';
+  return { topic: best.r.topic, reason, queueCount: best.queueCount };
+}
+
 export function serialize(p: Progress): string {
   return JSON.stringify(p);
 }

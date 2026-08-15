@@ -6,10 +6,12 @@ import {
   recordAnswer,
   recordMockResult,
   recordSkip,
+  recommendTopic,
   serialize,
   topicReadiness,
 } from './progress';
 import { QUESTIONS } from '../content/questions';
+import { TOPIC_IDS } from '../content/topics';
 
 const q = (i: number) => QUESTIONS[i];
 
@@ -118,5 +120,69 @@ describe('topicReadiness', () => {
     const r = topicReadiness(emptyProgress(), QUESTIONS);
     const total = r.reduce((n, t) => n + t.total, 0);
     expect(total).toBe(QUESTIONS.length);
+  });
+});
+
+describe('recommendTopic', () => {
+  const byTopic = (t: string) => QUESTIONS.filter((q) => q.topic === t);
+
+  it('recommends an unseen topic on fresh/empty progress', () => {
+    const rec = recommendTopic(emptyProgress(), QUESTIONS);
+    expect(TOPIC_IDS).toContain(rec.topic);
+    expect(rec.reason).toBe('unseen');
+  });
+
+  it('favors a topic with several wrong answers over a topic answered correctly', () => {
+    let p = emptyProgress();
+    const weakTopicQs = byTopic('nav-lights').slice(0, 3);
+    const strongTopicQs = byTopic('right-of-way').slice(0, 3);
+    for (const q of weakTopicQs) p = recordAnswer(p, q.id, false);
+    for (const q of strongTopicQs) p = recordAnswer(p, q.id, true);
+    const rec = recommendTopic(p, QUESTIONS);
+    expect(rec.topic).toBe('nav-lights');
+  });
+
+  it('keeps a completely unmastered topic ranked above a mostly-mastered topic with only a couple stale wrong answers', () => {
+    let p = emptyProgress();
+    // Mark most of "emergencies" correct, but leave two wrong (stale review items).
+    const emerQs = byTopic('emergencies');
+    emerQs.forEach((q, i) => {
+      p = recordAnswer(p, q.id, i >= 2); // first two wrong, rest correct
+    });
+    // "flags" is left completely unseen.
+    const rec = recommendTopic(p, QUESTIONS);
+    expect(rec.topic).not.toBe('emergencies');
+    expect(rec.reason).toBe('unseen');
+  });
+
+  it('gives an unresolved review-queue item a boost, reflected in the reason and count', () => {
+    let p = emptyProgress();
+    const allTopics = TOPIC_IDS;
+    // Mark every topic's questions mostly-correct except one wrong answer in "anchoring".
+    for (const t of allTopics) {
+      const qs = byTopic(t);
+      qs.forEach((q, i) => {
+        p = recordAnswer(p, q.id, !(t === 'anchoring' && i === 0));
+      });
+    }
+    const rec = recommendTopic(p, QUESTIONS);
+    expect(rec.topic).toBe('anchoring');
+    expect(rec.reason).toBe('review-queue');
+    expect(rec.queueCount).toBe(1);
+  });
+
+  it('reflects a mock-exam miss (recorded via recordAnswer) in the recommendation', () => {
+    let p = emptyProgress();
+    // Simulate everything else being solid, then a single mock-exam miss in "flags".
+    for (const t of TOPIC_IDS) {
+      if (t === 'flags') continue;
+      for (const q of byTopic(t)) p = recordAnswer(p, q.id, true);
+    }
+    for (const q of byTopic('flags')) p = recordAnswer(p, q.id, true);
+    const missedFlag = byTopic('flags')[0];
+    p = recordAnswer(p, missedFlag.id, false); // mock-exam-style miss
+    const rec = recommendTopic(p, QUESTIONS);
+    expect(rec.topic).toBe('flags');
+    expect(rec.reason).toBe('review-queue');
   });
 });

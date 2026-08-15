@@ -46,6 +46,26 @@ export const TOPICS: { id: TopicId; title: string; blurb: string }[] = [
     title: 'Engine, Motoring & Docking',
     blurb: 'Pre-start checks, prop effects, stopping/turning, and docking',
   },
+  {
+    id: 'marine-weather',
+    title: 'Marine Weather',
+    blurb: 'Getting a forecast, reading the next 12 hours, and advisories',
+  },
+  {
+    id: 'sail-trim',
+    title: 'Sail Plan, Trim & Reefing',
+    blurb: 'Choosing sail area, furling, reefing, heaving-to, and trim',
+  },
+  {
+    id: 'seamanship-comms',
+    title: 'Seamanship, Communications & Lines',
+    blurb: 'Crew roles, VHF basics, line/winch safety, and core knots',
+  },
+  {
+    id: 'emergencies',
+    title: 'Emergencies',
+    blurb: 'Onboard emergency response: MOB, fire, flooding, and other crises',
+  },
 ];
 
 export const TOPIC_IDS: TopicId[] = TOPICS.map((t) => t.id);

@@ -826,6 +826,300 @@
       "usedByQuestions": [
         "eng-mooring-approach-id"
       ]
+    },
+    {
+      "id": "photo-cumulonimbus",
+      "filename": "photo-cumulonimbus.jpg",
+      "description": "Photo of a mature cumulonimbus cloud with a classic flat, anvil-shaped top (cumulonimbus incus), photographed from a NOAA research aircraft",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fly00890_-_Flickr_-_NOAA_Photo_Library.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/Fly00890_-_Flickr_-_NOAA_Photo_Library.jpg",
+      "creator": "NOAA/AOML/Hurricane Research Division",
+      "license": "CC BY 2.0 (also public domain as a US Government work)",
+      "attributionRequired": false,
+      "modified": true,
+      "usedByQuestions": [
+        "wx-cb-photo-id"
+      ]
+    },
+    {
+      "id": "nws-smcraft-pennant",
+      "filename": "nws-smcraft-pennant.gif",
+      "description": "NWS Coastal Warning Display Program daytime signal: single red pennant flown to indicate a Small Craft Advisory is in effect",
+      "sourcePage": "https://www.weather.gov/marine/cwd",
+      "originalUrl": "https://www.weather.gov/images/marine/smcraft.gif",
+      "creator": "National Weather Service (weather.gov)",
+      "license": "Public domain (US Government work)",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "wx-warning-display-pennant"
+      ]
+    },
+    {
+      "id": "nws-gale-pennant",
+      "filename": "nws-gale-pennant.gif",
+      "description": "NWS Coastal Warning Display Program daytime signal: two red pennants stacked, flown to indicate a Gale Warning is in effect",
+      "sourcePage": "https://www.weather.gov/marine/cwd",
+      "originalUrl": "https://www.weather.gov/images/marine/gale.gif",
+      "creator": "National Weather Service (weather.gov)",
+      "license": "Public domain (US Government work)",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "wx-gale-warning-definition"
+      ]
+    },
+    {
+      "id": "custom-sea-state-diagram",
+      "filename": "custom-sea-state-diagram.svg",
+      "description": "Purpose-built diagram: side-by-side comparison of a calm/light-chop sea and a rough, building sea with steep closely-spaced waves and whitecaps, with approximate wave heights labeled",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "wx-interp-sea-state-diagram"
+      ]
+    },
+    {
+      "id": "photo-furled-headsail",
+      "filename": "photo-furled-headsail.jpg",
+      "description": "Photo of a genoa roller-furling drum at the base of the headstay, sail fully deployed",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Genoa_rollerfurler.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/39/Genoa_rollerfurler.jpg",
+      "creator": "Robert Neff (Wikimedia Commons)",
+      "license": "CC BY 2.0",
+      "attributionRequired": true,
+      "modified": true,
+      "usedByQuestions": [
+        "sail-furl-photo-id"
+      ]
+    },
+    {
+      "id": "custom-reefed-mainsail",
+      "filename": "custom-reefed-mainsail.svg",
+      "description": "Purpose-built diagram: side-by-side comparison of a full mainsail and the same mainsail with a first reef tied in at the boom, showing the reduced sail area",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sail-reef-diagram"
+      ]
+    },
+    {
+      "id": "custom-sail-wind-strength",
+      "filename": "custom-sail-wind-strength.svg",
+      "description": "Purpose-built diagram: three boats shown under light, moderate, and strong wind, illustrating progressively reduced sail area and heel as wind strength increases",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sail-select-visual-diagram"
+      ]
+    },
+    {
+      "id": "custom-heaving-to",
+      "filename": "custom-heaving-to.svg",
+      "description": "Purpose-built diagram: bird's-eye view of a boat hove-to, with the jib backed to windward, the mainsail sheeted in, and the helm turned to windward, slowly drifting to leeward",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sail-heave-diagram"
+      ]
+    },
+    {
+      "id": "custom-heel-trim",
+      "filename": "custom-heel-trim.svg",
+      "description": "Purpose-built diagram: front view comparing a sailboat heeled heavily with the sheet hard in against the same boat sailing flatter after easing the mainsheet/traveler",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sail-trim-heel-diagram"
+      ]
+    },
+    {
+      "id": "photo-bowline",
+      "filename": "photo-bowline.jpg",
+      "description": "Photo of a bowline knot tied in red rope, forming a fixed, non-slipping loop",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Knot-bowline-ABoK_1010-USCG.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/78/Knot-bowline-ABoK_1010-USCG.jpg",
+      "creator": "USCG PTC Developer",
+      "license": "CC BY-SA 4.0",
+      "attributionRequired": true,
+      "modified": true,
+      "usedByQuestions": [
+        "sea-knot-bowline"
+      ]
+    },
+    {
+      "id": "photo-clove-hitch",
+      "filename": "photo-clove-hitch.jpg",
+      "description": "Photo of a clove hitch tied in blue rope around a wooden post",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Clove_Hitch_-_ABoK_11_-_USCG.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Clove_Hitch_-_ABoK_11_-_USCG.jpg",
+      "creator": "USCG PTC Developer",
+      "license": "CC0 1.0 Universal Public Domain Dedication",
+      "attributionRequired": false,
+      "modified": true,
+      "usedByQuestions": [
+        "sea-knot-clove-hitch"
+      ]
+    },
+    {
+      "id": "photo-cleat-hitch",
+      "filename": "photo-cleat-hitch.jpg",
+      "description": "Photo of a dock line secured to a cleat with a proper figure-eight cleat hitch",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tied_cleat.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Tied_cleat.jpg",
+      "creator": "BenFrantzDale (Wikimedia Commons)",
+      "license": "CC BY-SA 3.0",
+      "attributionRequired": true,
+      "modified": true,
+      "usedByQuestions": [
+        "sea-knot-cleat-hitch"
+      ]
+    },
+    {
+      "id": "photo-rolling-hitch",
+      "filename": "photo-rolling-hitch.jpg",
+      "description": "Photo sequence showing the four steps of tying a rolling hitch (ABoK #1735)",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RollingHitch-ABOK-1735.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/RollingHitch-ABOK-1735.jpg",
+      "creator": "David J. Fred (Wikimedia Commons)",
+      "license": "CC BY-SA 2.5",
+      "attributionRequired": true,
+      "modified": true,
+      "usedByQuestions": [
+        "sea-knot-rolling-hitch"
+      ]
+    },
+    {
+      "id": "custom-figure8-stopper",
+      "filename": "custom-figure8-stopper.svg",
+      "description": "Purpose-built diagram: a figure-eight stopper knot tied near the bitter end of a line",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sea-knot-figure8-stopper"
+      ]
+    },
+    {
+      "id": "custom-round-turn-two-half-hitches",
+      "filename": "custom-round-turn-two-half-hitches.svg",
+      "description": "Purpose-built diagram: a line tied with a round turn and two half hitches around a piling",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "sea-knot-round-turn-two-half-hitches"
+      ]
+    },
+    {
+      "id": "photo-grounded-boat",
+      "filename": "photo-grounded-boat.jpg",
+      "description": "USCG photo: a 38-foot recreational pleasure craft aground atop a breakwall in Conneaut Harbor, Ohio",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:38-foot_pleasure_craft_on_break_wall_in_Lake_Erie_near_Conneaut,_Ohio_140723-G-ZZ999-001.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/38-foot_pleasure_craft_on_break_wall_in_Lake_Erie_near_Conneaut%2C_Ohio_140723-G-ZZ999-001.jpg",
+      "creator": "U.S. Coast Guard photo by Petty Officer 3rd Class Lauren Laughlin, USCG District 9",
+      "license": "Public domain (US Government work)",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "emer-grounding-recognize"
+      ]
+    },
+    {
+      "id": "photo-fire-extinguisher-marine",
+      "filename": "photo-fire-extinguisher-marine.jpg",
+      "description": "Photo of a hand-portable marine-type AFFF fire extinguisher",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:USCG_AFFF.JPG",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/USCG_AFFF.JPG",
+      "creator": "Firetech117 (Wikimedia Commons contributor)",
+      "license": "CC BY-SA 3.0",
+      "attributionRequired": true,
+      "modified": false,
+      "usedByQuestions": [
+        "emer-fire-extinguisher-class-b"
+      ]
+    },
+    {
+      "id": "custom-cold-water-1101",
+      "filename": "custom-cold-water-1101.svg",
+      "description": "Purpose-built diagram: the 1-10-1 cold water immersion timeline (1 minute cold shock, 10 minutes meaningful movement, 1 hour to unconsciousness)",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "emer-hypothermia-1101-rule"
+      ]
+    },
+    {
+      "id": "custom-mob-recovery-approach",
+      "filename": "custom-mob-recovery-approach.svg",
+      "description": "Purpose-built diagram: overhead view of a boat's curved return path back to a crew-overboard victim, approaching slowly from leeward with the victim kept in sight",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "emer-mob-final-approach"
+      ]
+    },
+    {
+      "id": "custom-flooding-seacock",
+      "filename": "custom-flooding-seacock.svg",
+      "description": "Purpose-built diagram: a cutaway of a hull below the waterline showing a through-hull fitting and seacock with water spraying in at a loose hose clamp, with a tapered bung and bucket nearby",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "emer-flooding-seacock-response"
+      ]
+    },
+    {
+      "id": "custom-dragging-anchor",
+      "filename": "custom-dragging-anchor.svg",
+      "description": "Purpose-built diagram: overhead chart view showing a boat's position drifting past its expected swing circle and two shore transit landmarks, indicating a dragging anchor",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": [
+        "emer-anchor-dragging-recognize"
+      ]
     }
   ]
 }

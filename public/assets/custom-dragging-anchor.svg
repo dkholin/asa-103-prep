@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 260" role="img" aria-label="Overhead chart-style diagram showing a boat's swing position drifting steadily downwind past its original anchored position and two fixed transit landmarks on shore, indicating the anchor is dragging rather than the boat simply swinging on its scope" fill="none">
+  <rect width="460" height="260" fill="#eef5fa"/>
+  <text x="230" y="24" font-family="sans-serif" font-size="15" font-weight="bold" fill="#1a3d5c" text-anchor="middle">Overhead view: checking for a dragging anchor</text>
+
+  <!-- shore -->
+  <rect x="0" y="0" width="460" height="40" fill="#d8cdb0"/>
+  <text x="230" y="26" font-family="sans-serif" font-size="10" fill="#5a4632" text-anchor="middle">Shore</text>
+  <!-- two transit landmarks -->
+  <g fill="#5a4632">
+    <rect x="90" y="14" width="8" height="20"/>
+    <text x="94" y="12" font-family="sans-serif" font-size="9" text-anchor="middle">A</text>
+    <rect x="300" y="10" width="8" height="24"/>
+    <text x="304" y="8" font-family="sans-serif" font-size="9" text-anchor="middle">B</text>
+  </g>
+  <!-- transit line -->
+  <line x1="94" y1="34" x2="304" y2="34" stroke="#5a4632" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- water -->
+  <rect x="0" y="40" width="460" height="220" fill="#9fc2d9"/>
+
+  <!-- anchor position -->
+  <circle cx="230" cy="90" r="4" fill="#333"/>
+  <text x="230" y="80" font-family="sans-serif" font-size="9" fill="#1a3d5c" text-anchor="middle">Anchor set here</text>
+
+  <!-- original swing circle -->
+  <circle cx="230" cy="90" r="45" fill="none" stroke="#2b6cb0" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="230" y="150" font-family="sans-serif" font-size="9" fill="#1a3d5c" text-anchor="middle">Expected swing circle</text>
+
+  <!-- boat original position -->
+  <g transform="translate(230 100)">
+    <polygon points="0,-10 8,10 -8,10" fill="#2b6cb0"/>
+  </g>
+  <text x="230" y="130" font-family="sans-serif" font-size="9" fill="#1a3d5c" text-anchor="middle">Original position</text>
+
+  <!-- drift arrow to new position -->
+  <line x1="230" y1="90" x2="360" y2="210" stroke="#c0392b" stroke-width="2.5"/>
+  <path d="M348 200 L360 210 L346 214" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+
+  <!-- boat new position, well outside swing circle and off the transit -->
+  <g transform="translate(360 210)">
+    <polygon points="0,-10 8,10 -8,10" fill="#c0392b"/>
+  </g>
+  <text x="380" y="235" font-family="sans-serif" font-size="9" fill="#7a1f1f" text-anchor="middle">Now well outside the</text>
+  <text x="380" y="248" font-family="sans-serif" font-size="9" fill="#7a1f1f" text-anchor="middle">swing circle and transit</text>
+</svg>
