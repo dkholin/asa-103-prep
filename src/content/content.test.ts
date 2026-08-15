@@ -124,6 +124,22 @@ describe('asset manifest integrity', () => {
     }
   });
 
+  it('records the reverse mapping: every visual question is listed on the asset it uses', () => {
+    const byId = new Map(manifest.assets.map((a) => [a.id, a]));
+    for (const q of QUESTIONS) {
+      if (q.format !== 'visual' || !q.assetId) continue;
+      const asset = byId.get(q.assetId);
+      expect(asset, `question ${q.id} references unknown asset ${q.assetId}`).toBeTruthy();
+      expect(asset!.usedByQuestions, `asset ${q.assetId} does not list question ${q.id}`).toContain(q.id);
+    }
+  });
+
+  it('has no orphaned asset records', () => {
+    for (const a of manifest.assets) {
+      expect(a.usedByQuestions.length, `asset ${a.id} is not used by any question`).toBeGreaterThan(0);
+    }
+  });
+
   it('keeps known answer-bearing phrases out of visible custom SVG labels', () => {
     const prohibited = [
       'stemhead fitting',

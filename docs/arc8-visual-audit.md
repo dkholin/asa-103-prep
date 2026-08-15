@@ -145,10 +145,39 @@ Four defects were found live and fixed:
 - The credit line used the tertiary text token (#7c93a4, ~3.2:1 on white at 11.5px), below the WCAG
   AA floor for text that exists to satisfy a license. It now uses the secondary token (~5.7:1).
 
-Known remaining issues, both pre-dating Arc 8 and left unchanged:
+Known remaining issues:
 
-- Nineteen records set `modified: true` with an empty `modificationNote`. Six are CC BY / BY-SA works,
-  where indicating changes is a license condition. Recording what was changed needs facts this round
-  did not establish, so the gap is reported rather than guessed at.
 - `noaa-iala-region-b.png` is a source-side crop that cuts its final table row. The rows the question
   depends on are intact and the figure is enlargeable, so it was left as sourced.
+
+An earlier revision of this section reported nineteen records carrying `modified: true` with an empty
+`modificationNote`. That gap was closed by the Arc 8 closeout commit but the note was left behind; it
+is removed here. Every record that sets `modified: true` now carries a non-empty note.
+
+## Addendum — Arc 8 defect-remediation pass
+
+A follow-up pass corrected four defects found after the audit above was written. The classifications
+in this document describe the library as Arc 8 left it; the following records changed afterwards.
+
+- **Answer leak, four navigation-light questions.** `uscg-rule23a-power-under-50m`,
+  `uscg-rule25a-sailing`, `uscg-rule26b-trawling`, and `uscg-rule30b-anchored` each depicted the exact
+  light combination the learner was asked to name. All four records and their `Nr_Rule*.gif` files
+  were removed and replaced with daylight photographs of the same vessel type in the same situation
+  (`photo-power-vessel-underway`, `photo-sailing-vessel-underway`, `photo-vessel-at-anchor`,
+  `photo-trawler-gear-out`). The prompts now name the pictured vessel so the figure carries the
+  scenario rather than the answer. The KEEP list above is stale for those four ids.
+- **Unusable Danforth photograph.** `photo-danforth-anchor` was a wide marina scene in which the
+  flukes could not be identified. It was re-sourced to a deck-level photograph of a Danforth-pattern
+  fluke anchor with both flukes, the crown stock, the shank, and the chain rode visible.
+- **Under-carrying heaving-to diagram.** `custom-heaving-to` was redesigned: the rudder is now a
+  readable blade set against a dashed centreline reference, the backed headsail and the trimmed
+  mainsail sit on opposite sides of the hull, and the leeward drift is labelled. No label names any
+  part of the answer.
+- **Anchorage-selection palette.** `custom-anchorage-selection` drew its two candidate spots in the
+  vessel-identity colours (amber "other vessel", blue "your vessel") even though neither marker is a
+  vessel, and blue marked the correct answer. Both markers are now neutral slate. An unexplained
+  dashed arc with no legend or referent was removed.
+
+The mirrored north arrows on `crossing-give-way.svg` and `crossing-stand-on.svg` were re-checked and
+left unchanged: both arrows point up with the `N` label below in identical style, and only the corner
+placement differs, mirroring the scene itself.

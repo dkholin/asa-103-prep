@@ -11,9 +11,9 @@ export const QUESTIONS: Question[] = [
     id: 'lights-power-underway',
     topic: 'nav-lights',
     format: 'visual',
-    assetId: 'uscg-rule23a-power-under-50m',
+    assetId: 'photo-power-vessel-underway',
     prompt:
-      'Which navigation lights must a power-driven vessel less than 50 meters in length exhibit when underway at night?',
+      'The vessel shown is a power-driven vessel less than 50 meters in length. Which navigation lights must she exhibit when underway at night?',
     choices: [
       { id: 'a', text: 'Masthead light, sidelights, and a sternlight' },
       {
@@ -44,9 +44,9 @@ export const QUESTIONS: Question[] = [
     id: 'lights-sail-underway',
     topic: 'nav-lights',
     format: 'visual',
-    assetId: 'uscg-rule25a-sailing',
+    assetId: 'photo-sailing-vessel-underway',
     prompt:
-      'A sailing vessel underway (under sail alone) at night must exhibit which lights?',
+      'The boat shown is underway under sail alone. At night, which lights must a sailing vessel in this state exhibit?',
     choices: [
       {
         id: 'd',
@@ -77,9 +77,9 @@ export const QUESTIONS: Question[] = [
     id: 'lights-anchored',
     topic: 'nav-lights',
     format: 'visual',
-    assetId: 'uscg-rule30b-anchored',
+    assetId: 'photo-vessel-at-anchor',
     prompt:
-      'At night, a vessel less than 50 meters in length at anchor must exhibit:',
+      'The boat shown is lying at anchor. At night, a vessel less than 50 meters in length at anchor must exhibit:',
     choices: [
       {
         id: 'a',
@@ -110,9 +110,9 @@ export const QUESTIONS: Question[] = [
     id: 'lights-trawling',
     topic: 'nav-lights',
     format: 'visual',
-    assetId: 'uscg-rule26b-trawling',
+    assetId: 'photo-trawler-gear-out',
     prompt:
-      'A vessel engaged in trawling is identified at night by which all-round light combination?',
+      'The vessel shown is engaged in trawling. At night, which all-round light combination identifies her?',
     choices: [
       {
         id: 'c',

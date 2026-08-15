@@ -6,8 +6,7 @@
   <path d="M128 154q41-21 83 22-9 35-66 42" fill="#d8cba3" stroke="#a68f5c" stroke-width="2"/>
   <text x="330" y="18" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#52697c">WIND</text>
   <g stroke="#52697c" stroke-width="3" marker-end="url(#wind-head)"><path d="M280 27V91"/><path d="M330 27V91"/><path d="M380 27V91"/></g>
-  <circle cx="330" cy="132" r="11" fill="#b85f24" stroke="#7c3f18" stroke-width="2"/><text x="330" y="136" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">A</text>
-  <circle cx="181" cy="234" r="11" fill="#1d5c94" stroke="#133f68" stroke-width="2"/><text x="181" y="238" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">B</text>
-  <path d="M207 174q32 7 54 31" fill="none" stroke="#91a9ba" stroke-width="2" stroke-dasharray="5 5"/>
+  <circle cx="330" cy="132" r="11" fill="#52697c" stroke="#3a4b58" stroke-width="2"/><text x="330" y="136" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">A</text>
+  <circle cx="181" cy="234" r="11" fill="#52697c" stroke="#3a4b58" stroke-width="2"/><text x="181" y="238" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">B</text>
   <text x="230" y="301" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6f5c36">land and point forming the bay</text>
 </svg>

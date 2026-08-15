@@ -1,63 +1,70 @@
 {
   "assets": [
     {
-      "id": "uscg-rule23a-power-under-50m",
-      "filename": "Nr_Rule23aPDV-U-u50.gif",
-      "altText": "Animated day/night vessel-lighting reference used for this navigation-rules scenario.",
-      "description": "USCG Navigation Rules illustration: lights of a power-driven vessel under 50 m underway (Rule 23(a)); animated day/night figure",
-      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule23aPDV-U-u50.gif",
-      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Nr_Rule23aPDV-U-u50.gif",
-      "creator": "US Coast Guard (Navigation Rules online handbook, navcen.uscg.gov)",
-      "license": "Public domain (US Government work)",
-      "attributionRequired": false,
-      "modified": false,
+      "id": "photo-power-vessel-underway",
+      "filename": "photo-power-vessel-underway.jpg",
+      "altText": "Photograph of a motor yacht moving through open water in daylight.",
+      "description": "Daylight photograph of a power-driven motor yacht well under 50 m making way at sea, with a bow wave and wake",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:IMGP6520_(18618430358).jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/IMGP6520_%2818618430358%29.jpg",
+      "creator": "Grazia Fasano",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "attributionRequired": true,
+      "modified": true,
+      "modificationNote": "Cropped to the vessel and resized; colours unaltered.",
       "usedByQuestions": [
         "lights-power-underway"
       ]
     },
     {
-      "id": "uscg-rule25a-sailing",
-      "filename": "Nr_Rule25a.gif",
-      "altText": "Animated day/night vessel-lighting reference used for this navigation-rules scenario.",
-      "description": "USCG Navigation Rules illustration: lights of a sailing vessel underway (Rule 25(a)); animated day/night figure",
-      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule25a.gif",
-      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Nr_Rule25a.gif",
-      "creator": "US Coast Guard (Navigation Rules online handbook, navcen.uscg.gov)",
-      "license": "Public domain (US Government work)",
-      "attributionRequired": false,
-      "modified": false,
+      "id": "photo-sailing-vessel-underway",
+      "filename": "photo-sailing-vessel-underway.jpg",
+      "altText": "Photograph of a sloop sailing in daylight with mainsail and headsail set.",
+      "description": "Daylight photograph of a Bavaria 36 sloop sailing under mainsail and genoa alone, heeled and making way",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bavaria_36_Kroatien_2006.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Bavaria_36_Kroatien_2006.jpg",
+      "creator": "Michael Zimmermann",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "attributionRequired": true,
+      "modified": true,
+      "modificationNote": "Cropped to reduce empty sky and resized; colours unaltered.",
       "usedByQuestions": [
         "lights-sail-underway"
       ]
     },
     {
-      "id": "uscg-rule26b-trawling",
-      "filename": "Nr_Rule26b1.gif",
-      "altText": "Animated day/night vessel-lighting reference used for this navigation-rules scenario.",
-      "description": "USCG Navigation Rules illustration: vessel engaged in trawling (Rule 26(b)) — green over white all-round lights and day shape; animated figure",
-      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule26b1.gif",
-      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Nr_Rule26b1.gif",
-      "creator": "US Coast Guard (Navigation Rules online handbook, navcen.uscg.gov)",
-      "license": "Public domain (US Government work)",
-      "attributionRequired": false,
-      "modified": false,
-      "usedByQuestions": [
-        "lights-trawling"
-      ]
-    },
-    {
-      "id": "uscg-rule30b-anchored",
-      "filename": "Nr_Rule30b.gif",
-      "altText": "Animated day/night vessel-lighting reference used for this navigation-rules scenario.",
-      "description": "USCG Navigation Rules illustration: vessel at anchor showing the all-round white anchor light and ball day shape (Rule 30); animated figure",
-      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nr_Rule30b.gif",
-      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Nr_Rule30b.gif",
-      "creator": "US Coast Guard (Navigation Rules online handbook, navcen.uscg.gov)",
-      "license": "Public domain (US Government work)",
-      "attributionRequired": false,
+      "id": "photo-vessel-at-anchor",
+      "filename": "photo-vessel-at-anchor.jpg",
+      "altText": "Photograph of a sailboat lying at anchor in a sheltered cove in daylight.",
+      "description": "Daylight photograph of a sailing yacht lying to her anchor in Duck Harbor, Isle au Haut, Maine, with sails furled",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Sailing_yacht_anchored_in_Duck_Harbor_Maine_July_2012.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Sailing_yacht_anchored_in_Duck_Harbor_Maine_July_2012.jpg",
+      "creator": "HopsonRoad",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attributionRequired": true,
       "modified": false,
       "usedByQuestions": [
         "lights-anchored"
+      ]
+    },
+    {
+      "id": "photo-trawler-gear-out",
+      "filename": "photo-trawler-gear-out.jpg",
+      "altText": "Photograph of a fishing vessel at sea with its trawl gear deployed.",
+      "description": "Daylight photograph of a beam trawler working off Ameland, Netherlands, with both trawl booms lowered and nets streamed",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fischkutter_vor_Ameland.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/Fischkutter_vor_Ameland.jpg",
+      "creator": "Hartmut Schmidt Heidelberg (Foeniz)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attributionRequired": true,
+      "modified": true,
+      "modificationNote": "Cropped to the working vessel and resized; colours unaltered.",
+      "usedByQuestions": [
+        "lights-trawling"
       ]
     },
     {
@@ -467,16 +474,16 @@
     {
       "id": "photo-danforth-anchor",
       "filename": "photo-danforth-anchor.jpg",
-      "altText": "Photograph of an anchor and rode hardware at a sailboat bow.",
-      "description": "Photo of a Danforth-style fluke anchor stowed on a sailboat's bow roller, showing its two flat pivoting flukes",
-      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ancla_tipo_Danforth,_Roquetas_de_Mar,_Espa%C3%B1a,_2010.JPG",
-      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Ancla_tipo_Danforth%2C_Roquetas_de_Mar%2C_Espa%C3%B1a%2C_2010.JPG",
-      "creator": "Benjamín Núñez González",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "altText": "Photograph of an anchor stowed on a boat's deck.",
+      "description": "Photo of a Danforth-pattern fluke anchor stowed on the deck of the sail training ketch HMCS Oriole, showing both flat triangular flukes, the crown stock, the shank, and the attached chain rode",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:HMCS_Oriole_anchor.JPG",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d6/HMCS_Oriole_anchor.JPG",
+      "creator": "BrokenSphere",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "attributionRequired": true,
       "modified": true,
-      "modificationNote": "Resized from the original; not otherwise altered.",
+      "modificationNote": "Cropped to the anchor and resized; colours unaltered.",
       "usedByQuestions": [
         "anchor-type-danforth-fluke",
         "sys-ground-tackle-defn"
@@ -1022,8 +1029,8 @@
     {
       "id": "custom-heaving-to",
       "filename": "custom-heaving-to.svg",
-      "description": "Purpose-built diagram: bird's-eye view of a boat hove-to, with the jib backed to windward, the mainsail sheeted in, and the helm turned to windward, slowly drifting to leeward",
-      "altText": "Overhead sailboat scenario with wind arrows, sail and rudder positions, and a slow sideways drift track.",
+      "description": "Purpose-built diagram: bird's-eye view of a boat hove-to, with the headsail aback on the windward side, the mainsail trimmed near the centreline, the rudder deflected against the headsail, and a slow drift to leeward",
+      "altText": "Overhead sailboat scenario with wind direction, sail and rudder positions, and a slow drift track.",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
