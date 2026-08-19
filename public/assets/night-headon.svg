@@ -1,21 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Night-water scene with one white light above a green and red light.">
   <defs>
+    <!-- Canonical primitive: nav-light-white.svg (asa103-canonical-assets, approved) -->
+    <symbol id="nav-light-white" viewBox="741.27 364.91 59.36 59.36">
+      <path fill="#fbf4e0" d="M 766.283,369.343 C 780.318,366.747 793.776,376.097 796.241,390.156 C 798.706,404.215 789.231,417.586 775.15,419.92 C 761.254,422.223 748.097,412.899 745.664,399.024 C 743.231,385.149 752.432,371.905 766.283,369.343 Z"/>
+      <path fill="#0c0c0d" d="M 766.021,374.18 C 777.382,371.518 788.772,378.485 791.58,389.811 C 794.387,401.138 787.568,412.617 776.278,415.57 C 768.845,417.514 760.941,415.308 755.588,409.797 C 750.235,404.286 748.261,396.32 750.421,388.947 C 752.581,381.573 758.54,375.932 766.021,374.18 Z"/>
+      <path fill="#ffffff" d="M 770.621,375.369 C 781.329,375.25 790.146,383.756 790.409,394.461 C 790.673,405.167 782.286,414.097 771.586,414.505 C 764.535,414.774 757.885,411.227 754.18,405.221 C 750.476,399.216 750.29,391.681 753.694,385.5 C 757.098,379.319 763.566,375.448 770.621,375.369 Z"/>
+    </symbol>
+    <!-- Canonical primitive: nav-light-green.svg (asa103-canonical-assets, approved) -->
+    <symbol id="nav-light-green" viewBox="666.70 364.87 59.82 59.82">
+      <path fill="#dcdfe3" d="M 692.315,369.229 C 706.418,366.857 719.776,376.363 722.156,390.466 C 724.537,404.568 715.04,417.932 700.94,420.322 C 686.826,422.714 673.448,413.206 671.065,399.091 C 668.682,384.975 678.198,371.602 692.315,369.229 Z"/>
+      <path fill="#0c0c0d" d="M 693.599,373.609 C 705.205,371.874 716.044,379.806 717.902,391.393 C 719.759,402.98 711.944,413.903 700.377,415.884 C 692.786,417.184 685.08,414.306 680.2,408.346 C 675.321,402.386 674.018,394.265 676.79,387.078 C 679.562,379.891 685.981,374.748 693.599,373.609 Z"/>
+      <path fill="#50a56b" d="M 694.576,375.424 C 705.164,374.192 714.785,381.672 716.203,392.236 C 717.62,402.801 710.31,412.552 699.773,414.154 C 692.79,415.216 685.778,412.427 681.432,406.86 C 677.086,401.292 676.082,393.812 678.807,387.296 C 681.532,380.78 687.561,376.241 694.576,375.424 Z"/>
+    </symbol>
+    <!-- Canonical primitive: nav-light-red.svg (asa103-canonical-assets, approved) -->
+    <symbol id="nav-light-red" viewBox="592.85 365.00 59.91 59.92">
+      <path fill="#dcdfe3" d="M 617.582,369.536 C 631.647,366.643 645.387,375.721 648.244,389.794 C 651.1,403.866 641.986,417.584 627.907,420.404 C 613.879,423.213 600.224,414.14 597.378,400.119 C 594.532,386.098 603.569,372.419 617.582,369.536 Z"/>
+      <path fill="#0c0c0d" d="M 618.364,374.099 C 629.981,371.533 641.466,378.912 643.962,390.545 C 646.457,402.177 639.01,413.618 627.363,416.044 C 615.815,418.45 604.491,411.078 602.017,399.544 C 599.542,388.01 606.845,376.642 618.364,374.099 Z"/>
+      <path fill="#df6c68" d="M 618.47,375.952 C 629.035,373.39 639.662,379.935 642.13,390.523 C 644.597,401.111 637.958,411.68 627.348,414.053 C 616.872,416.395 606.466,409.857 604.029,399.402 C 601.593,388.948 608.037,378.482 618.47,375.952 Z"/>
+    </symbol>
+    <!-- Canonical primitive: water-surface.svg (asa103-canonical-assets, approved) -->
+    <symbol id="water-surface" viewBox="93.42 656.79 206.52 17.05">
+      <path fill="#353556" d="M 228.524,660.792 C 239.697,668.891 251.545,669.893 262.814,661.227 C 270.021,666.298 275.454,667.888 284.372,666.834 C 288.993,666.288 294.106,662.619 295.882,662.725 C 296.393,666.414 293.162,667.504 290.122,668.205 C 280.363,670.454 271.753,669.502 262.925,664.713 C 251.445,670.84 239.941,671.983 228.618,664.541 C 217.546,671.604 205.994,671.535 194.732,664.781 C 182.371,671.638 173.4,670.92 160.961,664.767 C 148.226,670.999 139.166,671.622 126.617,664.594 C 118.522,669.306 111.672,671.032 102.275,668.504 C 100.625,668.057 99.0025,667.515 97.4153,666.88 L 97.5468,664.096 C 107.098,668.631 118.572,668.759 126.406,660.863 C 137.144,669.511 149.724,669.319 160.832,661.341 C 166.465,665.863 173.674,667.941 180.849,667.11 C 185.983,666.53 190.826,664.43 194.758,661.08 C 205.401,668.901 218.307,670.185 228.524,660.792 Z"/>
+    </symbol>
+  </defs>
+  <defs>
     <radialGradient id="wGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="35%" stop-color="#e2e8f0"/>
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="35%" stop-color="#e2e8f0" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="gGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#4ade80"/>
-      <stop offset="35%" stop-color="#16a34a"/>
+      <stop offset="0%" stop-color="#4ade80" stop-opacity="0.55"/>
+      <stop offset="35%" stop-color="#16a34a" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="rGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#f87171"/>
-      <stop offset="35%" stop-color="#dc2626"/>
+      <stop offset="0%" stop-color="#f87171" stop-opacity="0.55"/>
+      <stop offset="35%" stop-color="#dc2626" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
     </radialGradient>
   </defs>
+
   <rect width="420" height="300" fill="#050a14"/>
   <g fill="#cbd5e1" opacity="0.5">
     <circle cx="70" cy="46" r="1.1"/><circle cx="170" cy="28" r="1"/><circle cx="260" cy="52" r="1.2"/>
@@ -23,14 +48,17 @@
   </g>
   <line x1="0" y1="195" x2="420" y2="195" stroke="#101b2e" stroke-width="2"/>
   <rect y="195" width="420" height="105" fill="#070e1c"/>
+  <use href="#water-surface" x="105" y="200" width="210" height="17.3" opacity="0.55"/>
+
   <!-- white masthead light above -->
-  <circle cx="210" cy="120" r="22" fill="url(#wGlow)"/>
-  <circle cx="210" cy="120" r="4.5" fill="#ffffff"/>
+  <circle cx="210" cy="120" r="24" fill="url(#wGlow)"/>
+  <use href="#nav-light-white" x="201" y="111" width="18" height="18"/>
+
   <!-- green sidelight (their starboard, appears on your left) -->
-  <circle cx="176" cy="172" r="20" fill="url(#gGlow)"/>
-  <circle cx="176" cy="172" r="4.5" fill="#86efac"/>
+  <circle cx="176" cy="172" r="22" fill="url(#gGlow)"/>
+  <use href="#nav-light-green" x="167" y="163" width="18" height="18"/>
+
   <!-- red sidelight (their port, appears on your right) -->
-  <circle cx="244" cy="172" r="20" fill="url(#rGlow)"/>
-  <circle cx="244" cy="172" r="4.5" fill="#fca5a5"/>
-  <ellipse cx="210" cy="208" rx="24" ry="4" fill="#1e293b" opacity="0.7"/>
+  <circle cx="244" cy="172" r="22" fill="url(#rGlow)"/>
+  <use href="#nav-light-red" x="235" y="163" width="18" height="18"/>
 </svg>
