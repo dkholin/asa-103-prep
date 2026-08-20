@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Canonical primitive: sailboat-top.svg
+  TRUE PLAN (bird's-eye) view sailboat VESSEL primitive. Hull, deck, rig and a
+  sail plan - no water, no wind arrow, no text, no labels, no answer cues.
+
+  Replaces the traced legacy asset, whose stern read as a view from BEHIND (a
+  rounded transom bulge with a visible topside face) and whose sails fanned
+  symmetrically to BOTH sides of the centreline, which no boat can do. Every
+  element below is drawn as it projects onto a horizontal plane seen from
+  directly overhead; nothing carries a side- or rear-view cue.
+
+  COORDINATE CONVENTIONS (consumers depend on these; do not change them)
+    viewBox            0 0 82 248
+    centreline         x = 44
+    stem head (bow)    (44, 6)
+    transom (stern)    y = 240,  x = 19 .. 69 (rounded corners)
+    LOA                234 units
+    max beam           71.3 units (x 8.3 .. 79.7) at y = 150
+    MAST STEP          (44, 100)   centreline, 40% of LOA aft of the stem
+    HEADSAIL TACK      (44, 11)    centreline at the stemhead fitting
+    PIVOT / ANCHOR     (44, 123)   centreline at mid-LOA
+
+  VIEWBOX EXTENTS (measured, stroke-inclusive)
+    x 0.83 .. 79.66, y 6 .. 240 inside the 82 x 248 box, so the margins are
+    0.8 to port, 2.3 to starboard, 6 forward and 8 aft. The box is NOT tight -
+    it is close on the port side (the sails are trimmed to port and overhang the
+    port rail) and looser everywhere else. Treat the port margin as spent: a
+    sail moved further outboard than the current clews will clip.
+
+    The box is also not centred on the hull, so the PIVOT (44, 123) is not the
+    centre of the viewBox (41, 124). The offset is small - 3.16 units, 1.35% of
+    LOA, worst case about 6.3 units of displacement at THETA = 180 - but it is a
+    systematic error that shows up as a wobble when several instances are laid
+    out on one panel, so still rotate about the PIVOT, not about the box centre.
+
+    ROTATED ENVELOPE: the farthest drawn point from the pivot is a transom
+    corner at ~119 units, so an instance free to take any heading sweeps roughly
+    240 x 240, not 82 x 248. Consumers composing rotated instances must budget
+    for the square envelope or the neighbours will collide.
+
+  CONSUMER TRANSFORM PATTERN
+    <g transform="translate(CX CY) rotate(THETA) scale(S) translate(-44 -123)"> ... </g>
+    (CX, CY) is where the vessel sits on the panel; THETA is its heading in
+    degrees clockwise from panel-up. At THETA = 0 the bow points up the panel.
+
+    This pattern assumes the paths above are INLINED into the consumer. Every
+    current consumer instead wraps the primitive in <symbol> + <use>, where the
+    trailing translate(-44 -123) is not expressible - <use x/y> shifts the
+    symbol's own viewport, not its content. In that form either inline the paths
+    or recompute x/y so the pivot still lands on (CX, CY); do not assume the
+    literal transform string above drops into a <use>.
+
+  SAIL SIDE AND TACK - READ BEFORE COMPOSING AN ENCOUNTER DIAGRAM
+    The sails are trimmed to PORT (left of the centreline as authored), which is
+    a STARBOARD TACK: wind over the starboard rail, sails eased to leeward. Both
+    mainsail and headsail are on the same side, as they must be.
+    To draw a PORT-TACK boat, mirror the WHOLE primitive about its centreline:
+      <g transform="translate(CX CY) rotate(THETA) scale(-S S) translate(-44 -123)">
+    The deck is symmetric, so mirroring breaks nothing else. Never mirror the
+    sails alone, and never mirror only the hull.
+
+    CONSEQUENCE FOR EVERY PANEL THAT ALSO DRAWS WIND: the sail side asserts a
+    tack, so the wind arrow must agree - wind from the STARBOARD side (from
+    panel-right at THETA = 0) for the unmirrored primitive. For panels where the
+    boat is not sailing (anchoring, swing circle, MOB, docking under power) use a
+    BARE-HULL instance: drop the two sail paths and the boom, keeping hull, deck,
+    centreline and mast. A sail plan on an anchored boat is a factual error, not
+    a style choice.
+
+  RIG GEOMETRY (this primitive's coordinate space, for consumers extending it)
+    forestay   collapses onto the centreline in plan, because the masthead sits
+               directly above the mast step. Geometrically it spans (44, 6) ..
+               (44, 100); the stroke that draws it starts at (44, 9), holding
+               back from the stem so the hull's point stays clean.
+    boom       (44, 100) .. (3, 159); length 72, eased 35 degrees off the
+               centreline - a close reach.
+    main clew  (3, 159)        headsail clew  (3, 90)  (working jib, not a
+               genoa: the leech ends at the masthead, so the sail does not
+               overlap the mast)
+
+    WHY THE HEADSAIL CLEW SITS AT x = 3
+    Same argument as the mainsail camber below: a sail that does not cross the
+    hull outline is not legible as a sail. The clew was at (12, 88), where the
+    port rail sits at x = 15.5 - only 3.5 units of clearance, 4.9% of beam. At
+    the sizes consumers actually render (42 .. 80 px tall) that is well under
+    one pixel, so the headsail read as a pale deck panel on the port bow and the
+    forward half of it lay inside the hull outline entirely. At (3, 90) the rail
+    is at x = 15.1, giving 12.1 units of clearance, and the cambered foot leaves
+    the rail from about y = 19, so the whole sail overhangs. That matches the
+    main clew's 41-unit offset from the centreline, which is what makes the two
+    sails read as one trimmed pair rather than as one sail plus a smudge.
+
+    WHY THE SAILS ARE DRAWN AS CAMBERED SLICES, NOT AS FLAT TRIANGLES
+    A flat mainsail has no plan area at all: its luff is vertical and projects to
+    a point at the mast, and its foot and leech both project onto the same
+    mast-to-clew segment. Only camber gives it area. So the mainsail here is the
+    region between the STRAIGHT boom (its foot) and a leeward curve cambered 18
+    units - that curve is the whole reason it reads as a sail rather than a
+    stick. 18 is deliberately more camber than a real sail carries: at true
+    camber the mainsail projects as a hairline and disappears next to the
+    headsail, which has genuine flat-projected area. The exaggeration is what
+    balances the two sails as a pair at diagram scale. The headsail does have real flat-projected area, because its luff runs
+    forward down the inclined forestay, so it is drawn as a triangle
+    tack-clew-masthead with a cambered foot.
+
+    The 35 degree ease is a readability floor, not a trim recommendation. Closer
+    trims were tried and rejected: close-hauled keeps both sails inside the hull
+    outline, where they read as deck markings rather than as sails. Wider eases
+    were also rejected: past about 45 degrees the sails swing far enough outboard
+    that the silhouette reads as a bird rather than as a boat at diagram scale.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 248">
+  <!-- HULL: fine entry at the stem, max beam just aft of amidships, a clean run
+       aft to a STRAIGHT transom. That straight aft edge is the single most
+       important plan-view cue - a rounded bulge there reads as a stern view. -->
+  <path fill="#282858" d="M44 6C56 30 72 74 78 118C80 134 80 150 79 164C77 197 74 222 70 236C69.6 238.5 69 240 66 240L22 240C19 240 18.4 238.5 18 236C14 222 11 197 9 164C8 150 8 134 10 118C16 74 32 30 44 6Z"/>
+
+  <!-- CABIN TRUNK: raised coachroof well forward of the transom, leaving side
+       decks. Its position is a second, independent bow/stern cue. -->
+  <path fill="#dcdfe3" d="M44 112C51 113 57 118 59 127L59.5 169C59.5 173 57.5 176 54 176L34 176C30.5 176 28.5 173 28.5 169L29 127C31 118 37 113 44 112Z"/>
+  <!-- Companionway at the aft end of the trunk -->
+  <path fill="#282858" d="M38 167h12v9h-12z"/>
+
+  <!-- COCKPIT: recessed working area aft of the trunk, forward of the transom -->
+  <path fill="#cacaca" d="M31 182L57 182C59 182 60 184 60 186L58 228C58 231 56 232 54 232L34 232C32 232 30 231 30 228L28 186C28 184 29 182 31 182Z"/>
+
+  <!-- HEADSAIL: luff on the forestay, foot cambered out across the port bow,
+       leech back to the masthead. The clew is sheeted well outboard of the port
+       rail so the sail crosses the hull outline instead of hiding inside it -->
+  <path fill="#dcdfe3" stroke="#282858" stroke-width="1.6" stroke-linejoin="round" d="M44 11C27 33 9 60 3 90C16 94 30 97 44 100Z"/>
+
+  <!-- MAINSAIL: straight foot along the boom, leech bowed to leeward (camber exaggerated - see header). The open
+       slot between the two sails is deliberate. -->
+  <path fill="#dcdfe3" stroke="#282858" stroke-width="1.6" stroke-linejoin="round" d="M44 100Q-6 108.9 3 159Z"/>
+  <!-- Boom, drawn over the sail foot, anchoring the rig visibly to the mast -->
+  <path stroke="#282858" stroke-width="3" stroke-linecap="round" d="M44 100L3 159"/>
+
+  <!-- FOREDECK CENTRELINE / forestay projection: heading axis and bow reference -->
+  <path stroke="#9b98ac" stroke-width="2" stroke-linecap="round" d="M44 9L44 100"/>
+
+  <!-- MAST at the step, on the centreline -->
+  <circle cx="44" cy="100" r="4.5" fill="#dcdfe3"/>
+  <circle cx="44" cy="100" r="2" fill="#282858"/>
+</svg>

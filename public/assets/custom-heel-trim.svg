@@ -1,22 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Front-view comparison of the same sailboat at two different heel angles labeled A and B." >
-  <rect width="420" height="260" fill="#eef5fa"/>
-  <line x1="210" y1="0" x2="210" y2="260" stroke="#ccc" stroke-width="1" stroke-dasharray="4 4"/>
-  <text x="100" y="24" font-family="sans-serif" font-size="13" fill="#7a1f1f" text-anchor="middle" font-weight="bold">A</text>
-  <text x="315" y="24" font-family="sans-serif" font-size="13" fill="#1a3d5c" text-anchor="middle" font-weight="bold">B</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Front-view comparison of the same sailboat at two different heel angles labeled A and B.">
+  <defs>
+    <!-- Canonical primitive: water-surface.svg (asa103-canonical-assets, approved) -->
+    <symbol id="water-surface" viewBox="93.42 656.79 206.52 17.05">
+      <path fill="#353556" d="M 228.524,660.792 C 239.697,668.891 251.545,669.893 262.814,661.227 C 270.021,666.298 275.454,667.888 284.372,666.834 C 288.993,666.288 294.106,662.619 295.882,662.725 C 296.393,666.414 293.162,667.504 290.122,668.205 C 280.363,670.454 271.753,669.502 262.925,664.713 C 251.445,670.84 239.941,671.983 228.618,664.541 C 217.546,671.604 205.994,671.535 194.732,664.781 C 182.371,671.638 173.4,670.92 160.961,664.767 C 148.226,670.999 139.166,671.622 126.617,664.594 C 118.522,669.306 111.672,671.032 102.275,668.504 C 100.625,668.057 99.0025,667.515 97.4153,666.88 L 97.5468,664.096 C 107.098,668.631 118.572,668.759 126.406,660.863 C 137.144,669.511 149.724,669.319 160.832,661.341 C 166.465,665.863 173.674,667.941 180.849,667.11 C 185.983,666.53 190.826,664.43 194.758,661.08 C 205.401,668.901 218.307,670.185 228.524,660.792 Z"/>
+    </symbol>
+    <!-- Canonical primitive: label-a.svg (asa103-canonical-assets, approved) -->
+    <symbol id="label-a" viewBox="342.07 93.52 61.94 61.94">
+      <path fill="#dcdfe3" d="M 368.105,97.9798 C 382.628,95.2757 396.623,104.761 399.493,119.253 C 402.363,133.744 393.038,147.848 378.581,150.883 C 369.08,152.877 359.241,149.611 352.819,142.331 C 346.397,135.052 344.383,124.882 347.547,115.704 C 350.71,106.526 358.562,99.7567 368.105,97.9798 Z"/>
+      <path fill="#0c0c0d" d="M 383.124,145.097 C 372.11,150.554 358.755,146.219 353.046,135.334 C 347.336,124.449 351.363,110.996 362.114,105.038 C 372.865,99.0806 386.406,102.797 392.609,113.409 C 398.812,124.02 395.408,137.644 384.942,144.089 C 384.217,144.57 383.9,144.711 383.124,145.097 Z"/>
+      <path fill="#ffffff" d="M 368.995,104.07 C 380.524,101.833 391.668,109.413 393.825,120.957 C 395.982,132.501 388.326,143.593 376.767,145.67 C 365.321,147.727 354.36,140.161 352.225,128.729 C 350.089,117.297 357.579,106.284 368.995,104.07 Z"/>
+      <path fill="#0c0c0d" d="M 372.879,115.578 C 376.458,117.378 378.951,128.724 380.38,132.388 C 381.49,135.236 376.415,131.887 377.275,129.82 C 377.482,129.323 376.092,128.475 375.282,128.318 C 368.408,128.611 370.769,127.692 368.124,133.283 C 367.823,133.918 366.002,133.407 366.522,131.906 L 367.262,129.751 C 368.81,125.345 370.169,119.079 372.879,115.578 Z"/>
+      <path fill="#ffffff" d="M 373.126,119.707 C 374.746,121.148 376.335,124.843 374.906,126.929 C 374.405,126.839 373.902,126.757 373.399,126.684 C 368.981,126.068 371.53,123.531 373.126,119.707 Z"/>
+    </symbol>
+    <!-- Canonical primitive: label-b.svg (asa103-canonical-assets, approved) -->
+    <symbol id="label-b" viewBox="592.07 494.46 61.75 61.75">
+      <path fill="#dcdfe3" d="M 623.205,498.457 C 637.957,498.599 649.836,510.607 649.82,525.36 C 649.803,540.113 637.896,552.094 623.144,552.203 C 608.214,552.312 596.057,540.23 596.074,525.299 C 596.091,510.368 608.275,498.314 623.205,498.457 Z"/>
+      <path fill="#0c0c0d" d="M 622.53,503.088 C 634.789,502.81 645.01,512.407 645.505,524.659 C 646.001,536.911 636.589,547.302 624.348,548.015 C 616.233,548.489 608.494,544.545 604.108,537.701 C 599.722,530.857 599.371,522.179 603.19,515.003 C 607.009,507.827 614.404,503.272 622.53,503.088 Z"/>
+      <path fill="#ffffff" d="M 618.656,504.932 C 626.095,503.369 633.8,505.93 638.823,511.635 C 643.846,517.34 645.411,525.307 642.918,532.489 C 640.426,539.67 634.262,544.955 626.784,546.321 C 615.433,548.395 604.522,540.961 602.298,529.638 C 600.074,518.314 607.363,507.305 618.656,504.932 Z"/>
+      <path fill="#0c0c0d" d="M 617.591,516.643 C 622.631,516.773 631.457,516.036 628.338,523.851 C 626.904,527.445 630.76,525.121 629.235,532.406 C 624.347,535.163 623.5,534.46 617.711,534.49 C 617.635,528.541 617.595,522.592 617.591,516.643 Z"/>
+      <path fill="#ffffff" d="M 620.024,526.255 C 624.882,525.988 629.218,525.164 626.681,531.722 C 619.088,534.056 620.041,532.636 620.024,526.255 Z"/>
+      <path fill="#ffffff" d="M 619.939,518.403 C 625.572,518.454 627.401,518.087 626.066,524.234 C 619.081,525.043 619.864,524.75 619.939,518.403 Z"/>
+    </symbol>
 
-  <!-- heeled boat -->
-  <g transform="translate(100 190) rotate(-32)">
-    <path d="M-40 0 L40 0 L28 22 L-28 22 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-    <path d="M0 0 L0 -95 L34 -8 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="1.5"/>
-    <line x1="0" y1="-95" x2="0" y2="0" stroke="#555" stroke-width="2"/>
-  </g>
-  <path d="M40 210 h130" stroke="#888" stroke-width="1" stroke-dasharray="2 3"/>
+    <!-- Canonical primitive: sailboat-bow.svg (asa103-canonical-assets, approved).
+         Inlined as a <g> rather than <use>d as a <symbol> because each panel needs
+         translate(CX CY) rotate(THETA) scale(S) translate(-60 -30) - an anchored
+         rotate+scale about the primitive's roll centre (60, 30), which
+         <use x y width height> cannot express.
+         The rig is added here in the primitive's own coordinate space, per the
+         primitive's documented RIG CONSTRUCTION: half-beam B = 48, mast step
+         (60, 12), masthead (60, 12 - 2.4*B) = (60, -103.2), mainsail clew
+         (60 + 0.86*B, 12 - 0.2*B) = (101.28, 2.4).
+         Both panels instantiate this SAME definition, so hull, rig and sail area
+         are identical by construction; the ONLY difference between the panels is
+         the heel angle in the transform. -->
+    <g id="vessel">
+      <g stroke="#133f68" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M50 42h20l-4 18h-12z" fill="#133f68"/>
+        <path d="M12 12C14 26 26 40 44 42H76C94 40 106 26 108 12Z" fill="#1d5c94"/>
+        <path d="M44 12h32l-4-9h-24z" fill="#cfe5f1"/>
+      </g>
+      <path d="M60 12V-103.2" stroke="#0e3350" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M60 12 60-103.2 101.28 2.4Z" fill="#fff" stroke="#0e3350" stroke-width="2" stroke-linejoin="round"/>
+    </g>
+  </defs>
 
-  <!-- flatter boat -->
-  <g transform="translate(310 195) rotate(-10)">
-    <path d="M-40 0 L40 0 L28 22 L-28 22 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-    <path d="M0 0 L0 -95 L34 -8 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="1.5"/>
-    <line x1="0" y1="-95" x2="0" y2="0" stroke="#555" stroke-width="2"/>
-  </g>
-  <path d="M250 214 h130" stroke="#888" stroke-width="1" stroke-dasharray="2 3"/>
+  <rect width="420" height="260" fill="#edf6fa"/>
+
+  <!-- Common waterline datum at y = 208, drawn once across the whole frame so both
+       panels sit on the identical water surface. -->
+  <rect y="208" width="420" height="52" fill="#cfe5f1"/>
+  <use href="#water-surface" x="0" y="203.67" width="105" height="8.67"/>
+  <use href="#water-surface" x="105" y="203.67" width="105" height="8.67"/>
+  <use href="#water-surface" x="210" y="203.67" width="105" height="8.67"/>
+  <use href="#water-surface" x="315" y="203.67" width="105" height="8.67"/>
+  <path d="M0 208H420" stroke="#1d5c94" stroke-width="2"/>
+
+  <!-- Neutral panel divider -->
+  <path d="M210 0V260" stroke="#a9c3d3" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Panel A: same vessel, heeled 20 degrees (just short of rail-down at 20.6) -->
+  <g transform="translate(105 208) rotate(20) scale(1.2) translate(-60 -30)"><use href="#vessel"/></g>
+
+  <!-- Panel B: same vessel, same scale, heeled 8 degrees -->
+  <g transform="translate(315 208) rotate(8) scale(1.2) translate(-60 -30)"><use href="#vessel"/></g>
+
+  <!-- Panel labels: identical primitive treatment, identical size, identical
+       panel-relative position. No emphasis distinguishes either panel. -->
+  <use href="#label-a" x="18" y="18" width="36" height="36"/>
+  <use href="#label-b" x="228" y="18" width="36" height="36"/>
 </svg>

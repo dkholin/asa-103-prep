@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Canonical primitive: sailboat-bow.svg
+  Front (bow / stern) view sailboat VESSEL primitive. Hull only - no rig, no water,
+  no text, no labels. Sail area and sail state are per-diagram question variables.
+
+  COORDINATE CONVENTIONS (consumers depend on these; do not change them)
+    viewBox            0 0 120 64
+    centreline         x = 60
+    deck / sheer       y = 12
+    designed waterline y = 30
+    canoe body bottom  y = 42
+    keel tip           y = 60
+    max beam           96 units (x 12 .. 108), half-beam B = 48
+    ANCHOR / ROLL CENTRE  (60, 30)   centreline at the designed waterline
+    MAST STEP             (60, 12)   centreline at deck level
+
+  CONSUMER TRANSFORM PATTERN
+    <g transform="translate(CX CY) rotate(THETA) scale(S) translate(-60 -30)"> ... </g>
+    with (CX, CY) placed ON the panel's drawn waterline. Positive THETA heels the
+    masthead to starboard (right); negative THETA heels it to port (left).
+
+  RIG CONSTRUCTION (drawn by the consumer, in this primitive's coordinate space)
+    full-rig masthead  (60, 12 - 2.4*B) = (60, -103.2)
+    mainsail, tack at (60, 12), head at the masthead, clew outboard to starboard:
+      M60 12 L60 (12-H) L(60+F) (12-f) Z
+      full plan H = 2.4*B = 115.2, F = 0.86*B = 41.28, f = 0.2*B = 9.6
+    f is the clew rise above the tack, and is pinned at 0.2*B: the legacy
+    hand-drawn rigs this primitive replaces used a clew rise of 8 against a
+    half-beam of 40, i.e. exactly 0.2*B.
+    The 2.4 mast-to-half-beam ratio is a rounded house value. The legacy rigs
+    sat at 2.375 and 2.333, so 2.4 stays close to both without matching either.
+
+  HEEL RANGE (for consumers illustrating heel)
+    The windward rail (12, 12) reaches the designed waterline y = 30 at
+    THETA = atan(18 / 48) = 20.6 degrees, so rail-down begins there.
+    Practical range for heel illustration: roughly 0 to +22 degrees. Beyond
+    that the silhouette reads as a knockdown or capsize rather than as heel.
+
+    SIGN RULE (a boat heels TO LEEWARD, toward its own sail). The mainsail
+    construction above puts the clew outboard to STARBOARD, so it must be
+    paired with POSITIVE THETA, which immerses the starboard rail. Pairing the
+    starboard-clew rig with negative THETA draws the boat heeled to windward,
+    away from its own sail, which is physically wrong. To heel to port instead,
+    mirror the rig (clew to 60 - 0.86*B) as well as negating THETA.
+
+  WHY CONSUMERS INLINE THIS AS A <g> RATHER THAN <use> A <symbol>
+    A heeled instance needs translate(CX CY) rotate(THETA) scale(S)
+    translate(-60 -30) - an anchored rotate plus scale. <use x y width height>
+    can only express a translate and a viewBox-fit uniform scale, so it cannot
+    express a rotation about (60, 30). Inline the geometry into a <g> and
+    transform that instead. (Clipping is not the reason; nothing is clipped.)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 64">
+  <g stroke="#133f68" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Fin keel: gives the silhouette a real roll axis below the waterline -->
+    <path d="M50 42h20l-4 18h-12z" fill="#133f68"/>
+    <!-- Hull cross-section: flared topsides, rounded bilge, flat-ish canoe body.
+         Implicit close from (108,12) to (12,12) is the deck line. -->
+    <path d="M12 12C14 26 26 40 44 42H76C94 40 106 26 108 12Z" fill="#1d5c94"/>
+    <!-- Low cabin trunk: "up" cue -->
+    <path d="M44 12h32l-4-9h-24z" fill="#cfe5f1"/>
+  </g>
+</svg>

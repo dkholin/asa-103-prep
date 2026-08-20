@@ -1,21 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Side-by-side views of the same mainsail configuration labeled A and B." >
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Side-by-side views of the same mainsail configuration labeled A and B.">
   <rect width="420" height="300" fill="#eef5fa"/>
   <text x="105" y="24" font-family="sans-serif" font-size="14" fill="#1a3d5c" text-anchor="middle" font-weight="bold">A</text>
   <text x="315" y="24" font-family="sans-serif" font-size="14" fill="#1a3d5c" text-anchor="middle" font-weight="bold">B</text>
   <line x1="210" y1="10" x2="210" y2="290" stroke="#bbb" stroke-width="1" stroke-dasharray="4 4"/>
 
-  <!-- full sail -->
+  <!-- panel A: mast and boom -->
   <line x1="70" y1="260" x2="70" y2="40" stroke="#555" stroke-width="5"/>
   <line x1="70" y1="260" x2="170" y2="260" stroke="#555" stroke-width="5"/>
-  <path d="M70 40 L70 258 Q135 250 168 258 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="2"/>
+  <!-- panel A: mainsail, head at masthead, foot on the boom -->
+  <path d="M70 40 L70 254 Q120 248 168 254 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="2"/>
 
-  <!-- reefed sail -->
+  <!-- panel B: identical mast and boom -->
   <line x1="280" y1="260" x2="280" y2="40" stroke="#555" stroke-width="5"/>
   <line x1="280" y1="260" x2="380" y2="260" stroke="#555" stroke-width="5"/>
-  <path d="M280 40 L280 130 Q325 122 358 130 Z" fill="#c9dcea" stroke="#888" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.6"/>
-  <path d="M280 130 L280 258 Q325 248 368 258 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-  <line x1="280" y1="130" x2="368" y2="130" stroke="#c05621" stroke-width="3" stroke-dasharray="6 3"/>
-  <circle cx="280" cy="130" r="3" fill="#c05621"/>
-  <circle cx="324" cy="128" r="3" fill="#c05621"/>
-  <circle cx="368" cy="130" r="3" fill="#c05621"/>
+  <!-- panel B: mainsail set with its head lower on the same mast -->
+  <path d="M280 100 L280 245 Q316 240 352 245 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="2"/>
+  <!-- panel B: loose cloth flaked along the boom -->
+  <path d="M282 246 L354 246 Q361 251 354 256 L282 256 Q278 251 282 246 Z" fill="#cbd8e2" stroke="#6b7f92" stroke-width="1.2"/>
+  <path d="M292 247 Q296 251 292 255" fill="none" stroke="#6b7f92" stroke-width="1"/>
+  <path d="M316 247 Q320 251 316 255" fill="none" stroke="#6b7f92" stroke-width="1"/>
+  <path d="M340 247 Q344 251 340 255" fill="none" stroke="#6b7f92" stroke-width="1"/>
+  <!-- panel B: row of cringles -->
+  <path d="M281 245 Q316 240 352 245" fill="none" stroke="#4a5568" stroke-width="1.2"/>
+  <circle cx="281" cy="245" r="3" fill="#eef5fa" stroke="#4a5568" stroke-width="1.6"/>
+  <circle cx="316" cy="242.5" r="3" fill="#eef5fa" stroke="#4a5568" stroke-width="1.6"/>
+  <circle cx="352" cy="245" r="3" fill="#eef5fa" stroke="#4a5568" stroke-width="1.6"/>
 </svg>

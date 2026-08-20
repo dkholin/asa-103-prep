@@ -1,34 +1,103 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 260" role="img" aria-label="Side-by-side small-boat views in two visibly different wave conditions labeled A and B.">
-  <rect width="460" height="260" fill="#eef5fa"/>
-  <text x="115" y="28" font-family="sans-serif" font-size="15" fill="#1a3d5c" text-anchor="middle" font-weight="bold">A</text>
-  <text x="345" y="28" font-family="sans-serif" font-size="15" fill="#7a1f1f" text-anchor="middle" font-weight="bold">B</text>
-  <line x1="230" y1="10" x2="230" y2="250" stroke="#bbb" stroke-width="1" stroke-dasharray="4 4"/>
+  <defs>
+    <!-- Canonical primitive: label-a.svg (asa103-canonical-assets, approved) -->
+    <symbol id="label-a" viewBox="342.07 93.52 61.94 61.94">
+      <path fill="#dcdfe3" d="M 368.105,97.9798 C 382.628,95.2757 396.623,104.761 399.493,119.253 C 402.363,133.744 393.038,147.848 378.581,150.883 C 369.08,152.877 359.241,149.611 352.819,142.331 C 346.397,135.052 344.383,124.882 347.547,115.704 C 350.71,106.526 358.562,99.7567 368.105,97.9798 Z"/>
+      <path fill="#0c0c0d" d="M 383.124,145.097 C 372.11,150.554 358.755,146.219 353.046,135.334 C 347.336,124.449 351.363,110.996 362.114,105.038 C 372.865,99.0806 386.406,102.797 392.609,113.409 C 398.812,124.02 395.408,137.644 384.942,144.089 C 384.217,144.57 383.9,144.711 383.124,145.097 Z"/>
+      <path fill="#ffffff" d="M 368.995,104.07 C 380.524,101.833 391.668,109.413 393.825,120.957 C 395.982,132.501 388.326,143.593 376.767,145.67 C 365.321,147.727 354.36,140.161 352.225,128.729 C 350.089,117.297 357.579,106.284 368.995,104.07 Z"/>
+      <path fill="#0c0c0d" d="M 372.879,115.578 C 376.458,117.378 378.951,128.724 380.38,132.388 C 381.49,135.236 376.415,131.887 377.275,129.82 C 377.482,129.323 376.092,128.475 375.282,128.318 C 368.408,128.611 370.769,127.692 368.124,133.283 C 367.823,133.918 366.002,133.407 366.522,131.906 L 367.262,129.751 C 368.81,125.345 370.169,119.079 372.879,115.578 Z"/>
+      <path fill="#ffffff" d="M 373.126,119.707 C 374.746,121.148 376.335,124.843 374.906,126.929 C 374.405,126.839 373.902,126.757 373.399,126.684 C 368.981,126.068 371.53,123.531 373.126,119.707 Z"/>
+    </symbol>
+    <!-- Canonical primitive: label-b.svg (asa103-canonical-assets, approved) -->
+    <symbol id="label-b" viewBox="592.07 494.46 61.75 61.75">
+      <path fill="#dcdfe3" d="M 623.205,498.457 C 637.957,498.599 649.836,510.607 649.82,525.36 C 649.803,540.113 637.896,552.094 623.144,552.203 C 608.214,552.312 596.057,540.23 596.074,525.299 C 596.091,510.368 608.275,498.314 623.205,498.457 Z"/>
+      <path fill="#0c0c0d" d="M 622.53,503.088 C 634.789,502.81 645.01,512.407 645.505,524.659 C 646.001,536.911 636.589,547.302 624.348,548.015 C 616.233,548.489 608.494,544.545 604.108,537.701 C 599.722,530.857 599.371,522.179 603.19,515.003 C 607.009,507.827 614.404,503.272 622.53,503.088 Z"/>
+      <path fill="#ffffff" d="M 618.656,504.932 C 626.095,503.369 633.8,505.93 638.823,511.635 C 643.846,517.34 645.411,525.307 642.918,532.489 C 640.426,539.67 634.262,544.955 626.784,546.321 C 615.433,548.395 604.522,540.961 602.298,529.638 C 600.074,518.314 607.363,507.305 618.656,504.932 Z"/>
+      <path fill="#0c0c0d" d="M 617.591,516.643 C 622.631,516.773 631.457,516.036 628.338,523.851 C 626.904,527.445 630.76,525.121 629.235,532.406 C 624.347,535.163 623.5,534.46 617.711,534.49 C 617.635,528.541 617.595,522.592 617.591,516.643 Z"/>
+      <path fill="#ffffff" d="M 620.024,526.255 C 624.882,525.988 629.218,525.164 626.681,531.722 C 619.088,534.056 620.041,532.636 620.024,526.255 Z"/>
+      <path fill="#ffffff" d="M 619.939,518.403 C 625.572,518.454 627.401,518.087 626.066,524.234 C 619.081,525.043 619.864,524.75 619.939,518.403 Z"/>
+    </symbol>
 
-  <!-- calm side -->
-  <rect x="10" y="150" width="210" height="90" fill="#bcd9ec"/>
-  <path d="M10 150 q13 -6 26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0" fill="none" stroke="#2b6cb0" stroke-width="3"/>
-  <line x1="30" y1="150" x2="30" y2="120" stroke="#456" stroke-width="1.5"/>
-  <line x1="60" y1="145" x2="60" y2="120" stroke="#456" stroke-width="1.5"/>
-  <path d="M20 118 h20 M50 118 h20" stroke="#456" stroke-width="1.5"/>
-  <g transform="translate(150 160)">
-    <path d="M-22 6 L22 6 L15 22 L-15 22 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-    <line x1="0" y1="6" x2="0" y2="-26" stroke="#2b6cb0" stroke-width="3"/>
+    <!-- Canonical primitive: sailboat-bow.svg (asa103-canonical-assets, approved).
+         Inlined as a <g> rather than <use>d as a <symbol> because the panels need
+         translate(CX CY) scale(S) translate(-60 -30) about the primitive's roll
+         centre (60, 30), which <use x y width height> cannot express.
+         A short BARE mast (no sail) is added in the primitive's own coordinate
+         space: step (60, 12) up to (60, 12 - 1.2*B) = (60, -45.6), B = 48.
+         No sail is drawn, so the primitive's SIGN RULE does not apply here; both
+         vessels are upright, so heel is not a variable in this comparison.
+         BOTH panels instantiate this SAME definition at the SAME scale and the
+         SAME height on the shared datum, so the vessel is identical by
+         construction and the ONLY thing that differs between panels is the sea. -->
+    <g id="vessel">
+      <g stroke="#133f68" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M50 42h20l-4 18h-12z" fill="#133f68"/>
+        <path d="M12 12C14 26 26 40 44 42H76C94 40 106 26 108 12Z" fill="#1d5c94"/>
+        <path d="M44 12h32l-4-9h-24z" fill="#cfe5f1"/>
+      </g>
+      <path d="M60 12V-45.6" stroke="#0e3350" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </defs>
+
+  <rect width="460" height="260" fill="#edf6fa"/>
+
+  <!-- WAVE CONSTRUCTION - both panels are built on ONE common still-water datum,
+       y = 170, from the same quadratic-arc construction; only amplitude and
+       wavelength differ.
+         Panel A: amplitude 3.5, wave height 7 units, wavelength 76.67 units
+                  -> steepness (height / wavelength) = 0.091
+         Panel B: amplitude 10.5, wave height 21 units, wavelength 38.33 units
+                  -> steepness (height / wavelength) = 0.548
+       Panel B is therefore exactly 3x the wave height on exactly half the
+       wavelength: 6.0x the steepness, at twice the encounter frequency.
+       Vertical scale of the numeric labels: 7 units = 1 ft. -->
+
+  <!-- Common still-water datum, drawn once across the whole frame -->
+  <path d="M0 170H460" stroke="#a9c3d3" stroke-width="1" stroke-dasharray="6 4"/>
+
+  <!-- Panel A sea: 6 half-cycles of the low, long-period wave -->
+  <path d="M0 170 q19.17 -7 38.33 0 t38.33 0 t38.33 0 t38.33 0 t38.33 0 t38.33 0 L230 170 L230 260 L0 260 Z" fill="#cfe5f1"/>
+  <path d="M0 170 q19.17 -7 38.33 0 t38.33 0 t38.33 0 t38.33 0 t38.33 0 t38.33 0 L230 170" fill="none" stroke="#1d5c94" stroke-width="2"/>
+
+  <!-- Panel B sea: 12 half-cycles of the tall, short-period wave -->
+  <path d="M230 170 q9.58 -21 19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 L460 170 L460 260 L230 260 Z" fill="#cfe5f1"/>
+  <path d="M230 170 q9.58 -21 19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 t19.17 0 L460 170" fill="none" stroke="#1d5c94" stroke-width="2"/>
+
+  <!-- Breaking crests on the panel B wave train, at the six computed crest
+       abscissae. Neutral white, the same tone as the sails elsewhere in the set. -->
+  <g fill="#fff" stroke="#9fc0d4" stroke-width="1" stroke-linejoin="round">
+    <path d="M230.58 161.8q4 -4.4 9 -2.6 q5 -4.2 9 2.6 q-9 2.6 -18 0 Z"/>
+    <path d="M268.92 161.8q4 -4.4 9 -2.6 q5 -4.2 9 2.6 q-9 2.6 -18 0 Z"/>
+    <path d="M307.25 161.8q4 -4.4 9 -2.6 q5 -4.2 9 2.6 q-9 2.6 -18 0 Z"/>
+    <path d="M345.58 161.8q4 -4.4 9 -2.6 q5 -4.2 9 2.6 q-9 2.6 -18 0 Z"/>
+    <path d="M383.92 161.8q4 -4.4 9 -2.6 q5 -4.2 9 2.6 q-9 2.6 -18 0 Z"/>
+    <path d="M422.25 161.8q4 -4.4 9 -2.6 q5 -4.2 9 2.6 q-9 2.6 -18 0 Z"/>
   </g>
 
-  <!-- rough side -->
-  <rect x="240" y="150" width="210" height="90" fill="#9fc2d9"/>
-  <path d="M240 165 q10 -30 20 0 t20 -0 t20 -0 t20 -0 t20 -0 t20 -0 t20 -0 t20 -0 t20 -0" fill="none" stroke="#1a4a7a" stroke-width="3"/>
-  <g fill="#fff" opacity="0.9">
-    <circle cx="270" cy="140" r="3"/>
-    <circle cx="310" cy="138" r="3"/>
-    <circle cx="350" cy="140" r="3"/>
-    <circle cx="390" cy="138" r="3"/>
+  <!-- Neutral panel divider -->
+  <path d="M230 0V260" stroke="#a9c3d3" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- The SAME vessel, upright, at the SAME scale, in both panels. Each sits at a
+       datum crossing of its own wave train (panel A at x = 115 = 3 half-cycles,
+       panel B at x = 345 = 6 half-cycles), so both float at the still-water
+       datum y = 170. -->
+  <g transform="translate(115 170) scale(0.85) translate(-60 -30)"><use href="#vessel"/></g>
+  <g transform="translate(345 170) scale(0.85) translate(-60 -30)"><use href="#vessel"/></g>
+
+  <!-- Wave-height measures: identical bracket treatment and identical
+       panel-relative position (x = 200 within each 230-wide panel), spanning each
+       panel's own crest level to its own trough level. -->
+  <g stroke="#52697c" stroke-width="1.5" fill="none">
+    <path d="M200 166.5h10M200 173.5h10M205 166.5v7"/>
+    <path d="M430 159.5h10M430 180.5h10M435 159.5v21"/>
   </g>
-  <line x1="260" y1="165" x2="260" y2="105" stroke="#7a1f1f" stroke-width="1.5"/>
-  <line x1="300" y1="140" x2="300" y2="105" stroke="#7a1f1f" stroke-width="1.5"/>
-  <path d="M250 103 h20 M290 103 h20" stroke="#7a1f1f" stroke-width="1.5"/>
-  <g transform="translate(340 168) rotate(-8)">
-    <path d="M-22 6 L22 6 L15 22 L-15 22 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-    <line x1="0" y1="6" x2="0" y2="-26" stroke="#2b6cb0" stroke-width="3"/>
+  <g font-family="sans-serif" font-size="11" fill="#52697c" text-anchor="middle">
+    <text x="205" y="161">1 ft</text>
+    <text x="435" y="154">3 ft</text>
   </g>
+
+  <!-- Panel labels: identical primitive treatment, identical size, identical
+       panel-relative offset. No emphasis distinguishes either panel. -->
+  <use href="#label-a" x="18" y="18" width="36" height="36"/>
+  <use href="#label-b" x="248" y="18" width="36" height="36"/>
 </svg>

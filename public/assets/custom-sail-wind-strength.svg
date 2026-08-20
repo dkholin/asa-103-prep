@@ -1,33 +1,83 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 240" role="img" aria-label="Three sailboat views under light, moderate, and strong wind headings.">
-  <rect width="460" height="240" fill="#eef5fa"/>
-  <line x1="153" y1="10" x2="153" y2="230" stroke="#ccc" stroke-width="1" stroke-dasharray="4 4"/>
-  <line x1="307" y1="10" x2="307" y2="230" stroke="#ccc" stroke-width="1" stroke-dasharray="4 4"/>
+  <defs>
+    <!-- Canonical primitive: water-surface.svg (asa103-canonical-assets, approved) -->
+    <symbol id="water-surface" viewBox="93.42 656.79 206.52 17.05">
+      <path fill="#353556" d="M 228.524,660.792 C 239.697,668.891 251.545,669.893 262.814,661.227 C 270.021,666.298 275.454,667.888 284.372,666.834 C 288.993,666.288 294.106,662.619 295.882,662.725 C 296.393,666.414 293.162,667.504 290.122,668.205 C 280.363,670.454 271.753,669.502 262.925,664.713 C 251.445,670.84 239.941,671.983 228.618,664.541 C 217.546,671.604 205.994,671.535 194.732,664.781 C 182.371,671.638 173.4,670.92 160.961,664.767 C 148.226,670.999 139.166,671.622 126.617,664.594 C 118.522,669.306 111.672,671.032 102.275,668.504 C 100.625,668.057 99.0025,667.515 97.4153,666.88 L 97.5468,664.096 C 107.098,668.631 118.572,668.759 126.406,660.863 C 137.144,669.511 149.724,669.319 160.832,661.341 C 166.465,665.863 173.674,667.941 180.849,667.11 C 185.983,666.53 190.826,664.43 194.758,661.08 C 205.401,668.901 218.307,670.185 228.524,660.792 Z"/>
+    </symbol>
 
-  <!-- light air: full main and full headsail -->
-  <g transform="translate(76 180)">
-    <path d="M-30 0 L30 0 L22 16 L-22 16 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-    <path d="M0 0 L0 -70 L26 -6 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="1.5"/>
-    <path d="M-2 2 L-23 -46 L4 -6 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="1.5"/>
-    <line x1="0" y1="-70" x2="0" y2="0" stroke="#555" stroke-width="2"/>
-  </g>
-  <text x="76" y="24" font-family="sans-serif" font-size="12" fill="#1a3d5c" text-anchor="middle" font-weight="bold">LIGHT</text>
+    <!-- Canonical primitive: sailboat-bow.svg (asa103-canonical-assets, approved).
+         Inlined as a <g> rather than <use>d as a <symbol> because each panel needs
+         translate(CX CY) rotate(THETA) scale(S) translate(-60 -30) - an anchored
+         rotate+scale about the primitive's roll centre (60, 30), which
+         <use x y width height> cannot express.
+         Hull, keel, cabin trunk and the FULL-HEIGHT mast are defined once here and
+         instantiated by all three panels, so they are identical by construction.
+         Mast: step (60, 12) to masthead (60, 12 - 2.4*B) = (60, -103.2), B = 48. -->
+    <g id="hull">
+      <g stroke="#133f68" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M50 42h20l-4 18h-12z" fill="#133f68"/>
+        <path d="M12 12C14 26 26 40 44 42H76C94 40 106 26 108 12Z" fill="#1d5c94"/>
+        <path d="M44 12h32l-4-9h-24z" fill="#cfe5f1"/>
+      </g>
+      <path d="M60 12V-103.2" stroke="#0e3350" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </defs>
 
-  <!-- moderate: main and headsail both shortened from the light-air plan -->
-  <g transform="translate(230 180) rotate(-14)">
-    <path d="M-30 0 L30 0 L22 16 L-22 16 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-    <path d="M0 0 L0 -58 L21 -6 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="1.5"/>
-    <path d="M-2 2 L-19 -38 L4 -6 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="1.5"/>
-    <line x1="0" y1="-58" x2="0" y2="0" stroke="#555" stroke-width="2"/>
-  </g>
-  <text x="230" y="24" font-family="sans-serif" font-size="12" fill="#1a3d5c" text-anchor="middle" font-weight="bold">MODERATE</text>
+  <rect width="460" height="240" fill="#edf6fa"/>
 
-  <!-- strong -->
-  <g transform="translate(384 180) rotate(-9)">
-    <path d="M-30 0 L30 0 L22 16 L-22 16 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="2"/>
-    <path d="M0 0 L0 -46 L18 -6 Z" fill="#2b6cb0" stroke="#1a4a7a" stroke-width="1.5"/>
-    <path d="M0 -46 L0 -6 L14 -6 Z" fill="#c9dcea" stroke="#888" stroke-dasharray="2 2" opacity="0.5"/>
-    <path d="M-2 2 L-16 -30 L4 -6 Z" fill="#dce7ee" stroke="#2b6cb0" stroke-width="1.5"/>
-    <line x1="0" y1="-46" x2="0" y2="0" stroke="#555" stroke-width="2"/>
+  <!-- Common waterline datum at y = 200, drawn once across the whole frame so all
+       three panels sit on the identical water surface. -->
+  <rect y="200" width="460" height="40" fill="#cfe5f1"/>
+  <use href="#water-surface" x="0" y="195.67" width="115" height="8.67"/>
+  <use href="#water-surface" x="115" y="195.67" width="115" height="8.67"/>
+  <use href="#water-surface" x="230" y="195.67" width="115" height="8.67"/>
+  <use href="#water-surface" x="345" y="195.67" width="115" height="8.67"/>
+  <path d="M0 200H460" stroke="#1d5c94" stroke-width="2"/>
+
+  <!-- Neutral panel dividers, thirds of 460 -->
+  <path d="M153.33 0V240M306.67 0V240" stroke="#a9c3d3" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- SAIL CONSTRUCTION (primitive coordinate space, half-beam B = 48)
+       Every panel uses the same documented construction scaled by ONE factor k:
+         mainsail  M60 12  L60 (12 - k*2.40*B)  L(60 + k*0.86*B) (12 - k*0.20*B) Z
+         headsail  M60 12  L60 (12 - k*1.584*B) L(60 + k*0.7396*B) (12 - k*0.024*B) Z
+       i.e. the headsail is a fixed 0.66 of the main's hoist and 0.86 of its foot
+       reach, so main and headsail reduce together by the same factor and every
+       sail area scales as k^2.
+         k = 1.00 / 0.82 / 0.64  ->  total sail area 3727.5 / 2506.3 / 1526.8 sq units.
+       HEEL SIGN: the clew is outboard to STARBOARD (+x), so THETA is POSITIVE in
+       every panel, immersing the starboard rail - the boat heels toward its own
+       sail, per the primitive's SIGN RULE. Heel is monotonic 7 / 14 / 19 degrees,
+       all inside the documented 0..+22 range (rail-down begins at 20.6).
+       Fill, stroke colour, stroke weight, scale, hull, mast and waterline are
+       IDENTICAL in all three panels; only k and THETA differ. -->
+
+  <!-- LIGHT: k = 1.00, heel +7 deg -->
+  <g transform="translate(76.67 200) rotate(7) scale(0.95) translate(-60 -30)">
+    <use href="#hull"/>
+    <path d="M60 12 L60 -103.2 L101.28 2.4 Z" fill="#fff" stroke="#0e3350" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M60 12 L60 -64.03 L95.5 10.85 Z" fill="#fff" stroke="#0e3350" stroke-width="2" stroke-linejoin="round"/>
   </g>
-  <text x="384" y="24" font-family="sans-serif" font-size="12" fill="#7a1f1f" text-anchor="middle" font-weight="bold">STRONG</text>
+
+  <!-- MODERATE: k = 0.82, heel +14 deg -->
+  <g transform="translate(230 200) rotate(14) scale(0.95) translate(-60 -30)">
+    <use href="#hull"/>
+    <path d="M60 12 L60 -82.46 L93.85 4.13 Z" fill="#fff" stroke="#0e3350" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M60 12 L60 -50.35 L89.11 11.06 Z" fill="#fff" stroke="#0e3350" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+
+  <!-- STRONG: k = 0.64, heel +19 deg -->
+  <g transform="translate(383.33 200) rotate(19) scale(0.95) translate(-60 -30)">
+    <use href="#hull"/>
+    <path d="M60 12 L60 -61.73 L86.42 5.86 Z" fill="#fff" stroke="#0e3350" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M60 12 L60 -36.66 L82.72 11.26 Z" fill="#fff" stroke="#0e3350" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Wind-strength headings: premise only. Identical colour, size, weight and
+       panel-relative position; no panel is emphasised. -->
+  <g font-family="sans-serif" font-size="12" font-weight="700" fill="#52697c" text-anchor="middle">
+    <text x="76.67" y="24">LIGHT</text>
+    <text x="230" y="24">MODERATE</text>
+    <text x="383.33" y="24">STRONG</text>
+  </g>
 </svg>
