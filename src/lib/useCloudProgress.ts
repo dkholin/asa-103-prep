@@ -1,6 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { emptyProgress, type Progress } from './progress';
 import type { AuthUser, CloudGateway } from './cloud';
+import {
+  AnalyticsIdentity,
+  consumeSignupMethod,
+  isNewlyCreatedUser,
+  type AnalyticsClient,
+  type AuthState,
+} from './analytics';
 import { SaveGate } from './save-gate';
 
 export type CloudProgressState =
@@ -22,7 +29,7 @@ export type CloudProgressState =
 const messageOf = (error: unknown) =>
   error instanceof Error ? error.message : 'The cloud service returned an unexpected error.';
 
-export function useCloudProgress(gateway: CloudGateway) {
+export function useCloudProgress(gateway: CloudGateway, analytics: AnalyticsClient) {
   const [state, setState] = useState<CloudProgressState>({ phase: 'starting' });
   const activeUserId = useRef<string | null>(null);
   const loadGeneration = useRef(0);
@@ -31,6 +38,42 @@ export function useCloudProgress(gateway: CloudGateway) {
   const saveGeneration = useRef(0);
   const lastSaveError = useRef<string | null>(null);
   const signOutInProgress = useRef(false);
+  const identity = useRef(new AnalyticsIdentity(analytics));
+  const betaOpened = useRef(false);
+  const signupCompletedFor = useRef(new Set<string>());
+
+  /**
+   * Analytics view of the real auth transitions. Every guard here is a ref
+   * rather than an effect dependency because `StrictMode` re-runs the
+   * subscription effect in development: without them the entry event would be
+   * emitted twice for one page load.
+   */
+  const captureEntryOnce = useCallback(
+    (authState: AuthState) => {
+      // Captured on the first resolved auth state and deliberately before any
+      // identify call, so the entry stays attributed to the anonymous distinct
+      // id while still carrying the resolved state.
+      if (betaOpened.current) return;
+      betaOpened.current = true;
+      analytics.capture({ name: 'beta_opened', properties: { auth_state: authState } });
+    },
+    [analytics],
+  );
+
+  const observeAuth = useCallback(
+    (user: AuthUser | null) => {
+      captureEntryOnce(user ? 'signed-in' : 'signed-out');
+      identity.current.apply(user?.id ?? null);
+      if (!user) return;
+      // Consumed whether or not it is reported, so a returning sign-in cannot
+      // leave a stale method behind for some later account.
+      const method = consumeSignupMethod();
+      if (!isNewlyCreatedUser(user.createdAt) || signupCompletedFor.current.has(user.id)) return;
+      signupCompletedFor.current.add(user.id);
+      analytics.capture({ name: 'signup_completed', properties: method ? { method } : {} });
+    },
+    [analytics, captureEntryOnce],
+  );
 
   const loadForUser = useCallback(
     async (user: AuthUser) => {
@@ -57,6 +100,7 @@ export function useCloudProgress(gateway: CloudGateway) {
 
   const acceptUser = useCallback(
     (user: AuthUser | null) => {
+      observeAuth(user);
       if (user) {
         void loadForUser(user);
       } else {
@@ -67,7 +111,7 @@ export function useCloudProgress(gateway: CloudGateway) {
         setState({ phase: 'signed-out' });
       }
     },
-    [loadForUser],
+    [loadForUser, observeAuth],
   );
 
   const restoreSession = useCallback(async () => {
@@ -75,9 +119,10 @@ export function useCloudProgress(gateway: CloudGateway) {
     try {
       acceptUser(await gateway.getUser());
     } catch (error) {
+      captureEntryOnce('unknown');
       setState({ phase: 'session-error', message: messageOf(error) });
     }
-  }, [acceptUser, gateway]);
+  }, [acceptUser, captureEntryOnce, gateway]);
 
   useEffect(() => {
     let live = true;
@@ -86,7 +131,9 @@ export function useCloudProgress(gateway: CloudGateway) {
       .getUser()
       .then((user) => live && acceptUser(user))
       .catch((error) => {
-        if (live) setState({ phase: 'session-error', message: messageOf(error) });
+        if (!live) return;
+        captureEntryOnce('unknown');
+        setState({ phase: 'session-error', message: messageOf(error) });
       });
     return () => {
       live = false;
@@ -94,7 +141,7 @@ export function useCloudProgress(gateway: CloudGateway) {
       activeUserId.current = null;
       ++loadGeneration.current;
     };
-  }, [acceptUser, gateway]);
+  }, [acceptUser, captureEntryOnce, gateway]);
 
   const persist = useCallback(
     (user: AuthUser, progress: Progress) => {

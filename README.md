@@ -12,6 +12,12 @@ vertical slice: Navigation Rules / Lights practice with real, sourced graphics.
 - **Mock exam** — a short exam that withholds all feedback until submission.
 - **Account-backed progress** — Google sign-in or an email magic link, with
   per-user progress stored in Supabase and protected by Row Level Security.
+- **Optional onboarding** — three questions about exam timing, course status,
+  and sailing experience. Every one of them can be skipped.
+- **Product analytics** — a small semantic event set and a conservatively masked
+  session replay in PostHog, identified only by the Supabase user UUID. Form
+  inputs are masked and no email address is sent to analytics. Supabase remains
+  the source of truth for learner state; analytics is observational only.
 
 Readiness is deliberately simple: a question is "solid" when your most recent
 answer to it was correct.
@@ -26,8 +32,10 @@ npm run preview    # serve the production build on :4173
 ```
 
 Authentication requires the browser-public Supabase values documented in
-`.env.example`. Live project/provider setup and verification are described in
-`docs/beta-foundation/PHASE2_SETUP.md`.
+`.env.example`; analytics requires the browser-public PostHog values documented
+there too, and falls back to a no-op client when they are absent, so the study
+flow works without them. Live project setup and verification are described in
+`docs/beta-foundation/PHASE2_SETUP.md` and `PHASE3_SETUP.md`.
 
 ## Testing
 

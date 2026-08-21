@@ -1,9 +1,16 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { emptyProgress, parseProgress, type Progress } from './progress';
+import {
+  parseOnboardingRow,
+  toOnboardingRow,
+  type OnboardingAnswers,
+} from './onboarding';
 
 export interface AuthUser {
   id: string;
   email?: string;
+  /** Account creation time, used only to tell a brand-new signup from a returning sign-in. */
+  createdAt?: string;
 }
 
 export interface CloudGateway {
@@ -13,6 +20,9 @@ export interface CloudGateway {
   sendMagicLink(email: string, redirectTo: string): Promise<void>;
   loadProgress(userId: string): Promise<Progress>;
   saveProgress(userId: string, progress: Progress): Promise<void>;
+  /** Resolves to null when the learner has no onboarding record yet. */
+  loadOnboarding(userId: string): Promise<OnboardingAnswers | null>;
+  saveOnboarding(userId: string, answers: OnboardingAnswers): Promise<void>;
   signOut(): Promise<void>;
 }
 
@@ -45,10 +55,51 @@ const AUTH_CALLBACK_KEYS = [
   'state',
   'access_token',
   'refresh_token',
+  'provider_token',
+  'provider_refresh_token',
   'expires_in',
+  'expires_at',
   'token_type',
   'type',
 ] as const;
+
+/** The relative URL that remains once every OAuth/OTP callback field is removed. */
+function withoutAuthCallbackParams(url: URL, hashParams: URLSearchParams): string {
+  for (const key of AUTH_CALLBACK_KEYS) {
+    url.searchParams.delete(key);
+    hashParams.delete(key);
+  }
+  const cleanedHash = hashParams.toString();
+  url.hash = cleanedHash ? `#${cleanedHash}` : '';
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
+const parseHash = (url: URL) =>
+  new URLSearchParams(url.hash.startsWith('#') ? url.hash.slice(1) : '');
+
+const replaceUrlInPlace = (relativeUrl: string) =>
+  window.history.replaceState(window.history.state, '', relativeUrl);
+
+/**
+ * Removes the callback fields from the address bar.
+ *
+ * Called at the analytics boundary rather than at load: Supabase needs the
+ * callback params first (`detectSessionInUrl`), and analytics starts only once
+ * the auth state has resolved, by which point they have been consumed. Doing
+ * it here means every downstream analytics consumer — the flags request, the
+ * stored initial-person info, replay metadata — sees a clean URL by
+ * construction, instead of relying on each of them being scrubbed on the way
+ * out.
+ */
+export function stripAuthCallbackParams(
+  href = window.location.href,
+  replaceUrl: (relativeUrl: string) => void = replaceUrlInPlace,
+): void {
+  const url = new URL(href);
+  const original = `${url.pathname}${url.search}${url.hash}`;
+  const cleaned = withoutAuthCallbackParams(url, parseHash(url));
+  if (cleaned !== original) replaceUrl(cleaned);
+}
 
 /**
  * Consumes failed OAuth/OTP callback fields without exposing provider details.
@@ -57,22 +108,15 @@ const AUTH_CALLBACK_KEYS = [
  */
 export function consumeAuthCallbackError(
   href = window.location.href,
-  replaceUrl: (relativeUrl: string) => void = (relativeUrl) =>
-    window.history.replaceState(window.history.state, '', relativeUrl),
+  replaceUrl: (relativeUrl: string) => void = replaceUrlInPlace,
 ): string | null {
   const url = new URL(href);
-  const hashParams = new URLSearchParams(url.hash.startsWith('#') ? url.hash.slice(1) : '');
+  const hashParams = parseHash(url);
   const hasError = url.searchParams.has('error') || hashParams.has('error');
   if (!hasError) return null;
 
   const errorCode = url.searchParams.get('error_code') ?? hashParams.get('error_code');
-  for (const key of AUTH_CALLBACK_KEYS) {
-    url.searchParams.delete(key);
-    hashParams.delete(key);
-  }
-  const cleanedHash = hashParams.toString();
-  url.hash = cleanedHash ? `#${cleanedHash}` : '';
-  replaceUrl(`${url.pathname}${url.search}${url.hash}`);
+  replaceUrl(withoutAuthCallbackParams(url, hashParams));
 
   if (errorCode === 'otp_expired') {
     return 'That sign-in link is invalid or has expired. Request a new email link and try again.';
@@ -80,8 +124,10 @@ export function consumeAuthCallbackError(
   return 'We couldn’t complete sign-in. Please try Google again or request a new email link.';
 }
 
-function asAuthUser(user: { id: string; email?: string } | null): AuthUser | null {
-  return user ? { id: user.id, email: user.email } : null;
+function asAuthUser(
+  user: { id: string; email?: string; created_at?: string } | null,
+): AuthUser | null {
+  return user ? { id: user.id, email: user.email, createdAt: user.created_at } : null;
 }
 
 export class SupabaseCloudGateway implements CloudGateway {
@@ -138,6 +184,29 @@ export class SupabaseCloudGateway implements CloudGateway {
     const { error } = await this.client
       .from('learner_progress')
       .upsert({ user_id: userId, progress }, { onConflict: 'user_id' });
+    if (error) throw error;
+  }
+
+  async loadOnboarding(userId: string) {
+    const { data, error } = await this.client
+      .from('learner_onboarding')
+      .select('exam_timing, current_status, sailing_experience')
+      .eq('user_id', userId)
+      .maybeSingle();
+    if (error) throw error;
+    if (!data) return null;
+    const answers = parseOnboardingRow(data);
+    // A malformed row is not a skip. Failing closed keeps the caller from
+    // reporting invented buckets; onboarding is optional, so the caller simply
+    // does not ask again this session.
+    if (!answers) throw new Error('Stored onboarding answers have an invalid shape.');
+    return answers;
+  }
+
+  async saveOnboarding(userId: string, answers: OnboardingAnswers) {
+    const { error } = await this.client
+      .from('learner_onboarding')
+      .upsert({ user_id: userId, ...toOnboardingRow(answers) }, { onConflict: 'user_id' });
     if (error) throw error;
   }
 

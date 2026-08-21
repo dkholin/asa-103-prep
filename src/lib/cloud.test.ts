@@ -3,6 +3,7 @@ import {
   authRedirectUrl,
   consumeAuthCallbackError,
   readPublicSupabaseConfig,
+  stripAuthCallbackParams,
   SupabaseCloudGateway,
 } from './cloud';
 
@@ -77,5 +78,26 @@ describe('failed auth callback cleanup', () => {
       () => { successReplacementCalled = true; },
     )).toBeNull();
     expect(successReplacementCalled).toBe(false);
+  });
+});
+
+describe('clearing the callback before analytics starts', () => {
+  it('removes every callback field from the query and the hash, keeping the rest', () => {
+    let replacement: string | null = null;
+    stripAuthCallbackParams(
+      'https://dkholin.github.io/asa-103-prep/?seed=7&code=b7f1e9a2#access_token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIn0.sig&refresh_token=r3fr3sh&expires_at=1787340000&expires_in=3600&token_type=bearer&type=magiclink',
+      (url) => { replacement = url; },
+    );
+
+    expect(replacement).toBe('/asa-103-prep/?seed=7');
+    expect(replacement).not.toContain('access_token');
+    expect(replacement).not.toContain('refresh_token');
+    expect(replacement).not.toContain('code=');
+  });
+
+  it('leaves an ordinary URL untouched so it never rewrites history needlessly', () => {
+    let called = false;
+    stripAuthCallbackParams('http://127.0.0.1:4173/asa-103-prep/?seed=7', () => { called = true; });
+    expect(called).toBe(false);
   });
 });

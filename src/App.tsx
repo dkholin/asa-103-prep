@@ -2,30 +2,55 @@ import { useState, type ReactNode } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { MissedQuestions } from './components/MissedQuestions';
 import { MockExam } from './components/MockExam';
-import { PracticeSession } from './components/PracticeSession';
+import { Onboarding } from './components/Onboarding';
+import { PracticeSession, type PracticeSessionMode } from './components/PracticeSession';
 import { QUESTIONS } from './content/questions';
+import {
+  NoopAnalyticsClient,
+  rememberSignupMethod,
+  type AnalyticsClient,
+  type SignupMethod,
+} from './lib/analytics';
+import { AnalyticsProvider } from './lib/analytics-context';
 import { authRedirectUrl, type CloudGateway } from './lib/cloud';
 import { emptyProgress, type Progress } from './lib/progress';
 import { useCloudProgress } from './lib/useCloudProgress';
+import { useOnboarding } from './lib/useOnboarding';
 
 type View =
   | { name: 'dashboard' }
-  | { name: 'practice'; title: string; questionIds: string[] }
+  | { name: 'practice'; title: string; questionIds: string[]; session: PracticeSessionMode }
   | { name: 'missed' }
   | { name: 'mock' };
 
 export default function App(props: {
   gateway: CloudGateway | null;
+  analytics?: AnalyticsClient;
   authCallbackMessage?: string | null;
 }) {
-  const { gateway, authCallbackMessage = null } = props;
-  if (!gateway) return <ConfigurationRequired />;
-  return <CloudApp gateway={gateway} authCallbackMessage={authCallbackMessage} />;
+  const { gateway, analytics = new NoopAnalyticsClient(), authCallbackMessage = null } = props;
+  return (
+    <AnalyticsProvider client={analytics}>
+      {gateway ? (
+        <CloudApp
+          gateway={gateway}
+          analytics={analytics}
+          authCallbackMessage={authCallbackMessage}
+        />
+      ) : (
+        <ConfigurationRequired />
+      )}
+    </AnalyticsProvider>
+  );
 }
 
-function CloudApp(props: { gateway: CloudGateway; authCallbackMessage: string | null }) {
-  const { gateway, authCallbackMessage } = props;
-  const cloud = useCloudProgress(gateway);
+function CloudApp(props: {
+  gateway: CloudGateway;
+  analytics: AnalyticsClient;
+  authCallbackMessage: string | null;
+}) {
+  const { gateway, analytics, authCallbackMessage } = props;
+  const cloud = useCloudProgress(gateway, analytics);
 
   if (cloud.state.phase === 'starting') return <StatusCard title="Restoring your session…" />;
   if (cloud.state.phase === 'session-error') {
@@ -36,7 +61,13 @@ function CloudApp(props: { gateway: CloudGateway; authCallbackMessage: string | 
     );
   }
   if (cloud.state.phase === 'signed-out') {
-    return <SignIn gateway={gateway} initialMessage={authCallbackMessage} />;
+    return (
+      <SignIn
+        gateway={gateway}
+        analytics={analytics}
+        initialMessage={authCallbackMessage}
+      />
+    );
   }
   if (cloud.state.phase === 'loading') {
     return <StatusCard title="Loading your progress…" detail="Study controls unlock after the cloud copy is ready." />;
@@ -59,6 +90,9 @@ function CloudApp(props: { gateway: CloudGateway; authCallbackMessage: string | 
 
   return (
     <AuthenticatedApp
+      gateway={gateway}
+      analytics={analytics}
+      userId={cloud.state.user.id}
       progress={cloud.state.progress}
       updateProgress={cloud.updateProgress}
       userLabel={cloud.state.user.email ?? 'Signed-in learner'}
@@ -72,6 +106,9 @@ function CloudApp(props: { gateway: CloudGateway; authCallbackMessage: string | 
 }
 
 function AuthenticatedApp(props: {
+  gateway: CloudGateway;
+  analytics: AnalyticsClient;
+  userId: string;
   progress: Progress;
   updateProgress: (progress: Progress) => void;
   userLabel: string;
@@ -83,6 +120,29 @@ function AuthenticatedApp(props: {
 }) {
   const [view, setView] = useState<View>({ name: 'dashboard' });
   const goDashboard = () => setView({ name: 'dashboard' });
+  const onboarding = useOnboarding(props.gateway, props.analytics, props.userId);
+
+  // Onboarding is checked before the study shell renders so a first-time
+  // learner never sees the dashboard flash behind it. The wording matches the
+  // progress-loading screen it continues, so the transition stays seamless.
+  if (onboarding.state.phase === 'checking') {
+    return (
+      <StatusCard
+        title="Loading your progress…"
+        detail="Study controls unlock after the cloud copy is ready."
+      />
+    );
+  }
+  if (onboarding.state.phase !== 'done') {
+    return (
+      <Onboarding
+        state={onboarding.state}
+        onSubmit={onboarding.submit}
+        onRetry={onboarding.retry}
+        onContinue={onboarding.dismiss}
+      />
+    );
+  }
 
   return (
     <div className="app">
@@ -102,7 +162,9 @@ function AuthenticatedApp(props: {
             <button className={view.name === 'mock' ? 'active' : ''} onClick={() => setView({ name: 'mock' })}>Exam</button>
           </nav>
           <div className="account-controls">
-            <span className="account-label">{props.userLabel}</span>
+            {/* The label is the learner's email address, so it is blocked
+                from session replay rather than merely masked. */}
+            <span className="account-label" data-ph-no-capture>{props.userLabel}</span>
             <button className="secondary compact" onClick={() => void props.signOut()}>Sign out</button>
           </div>
         </div>
@@ -125,6 +187,7 @@ function AuthenticatedApp(props: {
             onStartTopic={(topicId, title) => setView({
               name: 'practice', title,
               questionIds: QUESTIONS.filter((q) => q.topic === topicId).map((q) => q.id),
+              session: { mode: 'topic', topic: topicId },
             })}
             onOpenMissed={() => setView({ name: 'missed' })}
             onStartMock={() => setView({ name: 'mock' })}
@@ -138,6 +201,7 @@ function AuthenticatedApp(props: {
             key={view.title + view.questionIds.join(',')}
             title={view.title}
             questionIds={view.questionIds}
+            session={view.session}
             progress={props.progress}
             updateProgress={props.updateProgress}
             onExit={goDashboard}
@@ -146,8 +210,14 @@ function AuthenticatedApp(props: {
         {view.name === 'missed' && (
           <MissedQuestions
             progress={props.progress}
-            onReviewAll={(ids) => setView({ name: 'practice', title: 'Missed question review', questionIds: ids })}
-            onReviewOne={(id) => setView({ name: 'practice', title: 'Missed question review', questionIds: [id] })}
+            onReviewAll={(ids) => setView({
+              name: 'practice', title: 'Missed question review', questionIds: ids,
+              session: { mode: 'review' },
+            })}
+            onReviewOne={(id) => setView({
+              name: 'practice', title: 'Missed question review', questionIds: [id],
+              session: { mode: 'review' },
+            })}
             onExit={goDashboard}
           />
         )}
@@ -159,12 +229,23 @@ function AuthenticatedApp(props: {
   );
 }
 
-function SignIn(props: { gateway: CloudGateway; initialMessage: string | null }) {
-  const { gateway, initialMessage } = props;
+function SignIn(props: {
+  gateway: CloudGateway;
+  analytics: AnalyticsClient;
+  initialMessage: string | null;
+}) {
+  const { gateway, analytics, initialMessage } = props;
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState<string | null>(initialMessage);
   const [busy, setBusy] = useState(false);
   const redirectTo = authRedirectUrl();
+
+  // Both methods leave the page, so the chosen method is remembered here for
+  // the signup_completed that follows the callback. It is a fixed token.
+  const begin = (method: SignupMethod) => {
+    analytics.capture({ name: 'signup_started', properties: { method } });
+    rememberSignupMethod(method);
+  };
 
   const run = async (operation: () => Promise<void>, success?: string) => {
     setBusy(true);
@@ -185,12 +266,16 @@ function SignIn(props: { gateway: CloudGateway; initialMessage: string | null })
         <h1>ASA 103 Prep</h1>
         <h2>Sign in to study</h2>
         <p className="muted">Your progress is saved to your account and available on your other devices.</p>
-        <button className="large auth-primary" disabled={busy} onClick={() => void run(() => gateway.signInWithGoogle(redirectTo))}>
+        <button className="large auth-primary" disabled={busy} onClick={() => {
+          begin('google');
+          void run(() => gateway.signInWithGoogle(redirectTo));
+        }}>
           Continue with Google
         </button>
         <div className="auth-divider"><span>or use email</span></div>
         <form onSubmit={(event) => {
           event.preventDefault();
+          begin('email');
           void run(() => gateway.sendMagicLink(email.trim(), redirectTo), 'Check your email for a secure sign-in link.');
         }}>
           <label htmlFor="email">Email address</label>
@@ -198,6 +283,13 @@ function SignIn(props: { gateway: CloudGateway; initialMessage: string | null })
           <button className="secondary" disabled={busy || !email.trim()} type="submit">Email me a sign-in link</button>
         </form>
         {message && <p role="alert" className="auth-message">{message}</p>}
+        {analytics.enabled && (
+          <p className="muted privacy-note" data-testid="analytics-disclosure">
+            We record anonymized product analytics and a masked session replay to improve this study
+            tool. Every form input, including this email field, is masked in the replay, and your
+            email address is never sent to analytics.
+          </p>
+        )}
       </section>
     </div>
   );

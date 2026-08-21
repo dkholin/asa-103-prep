@@ -102,3 +102,37 @@ export async function skipToPrompt(page: Page, prompt: string, limit = 60) {
   }
   expect(await currentPrompt(page), `never reached prompt: ${prompt}`).toBe(prompt.trim());
 }
+
+/* ---------------------------------------------------------------------------
+ * Analytics sink
+ *
+ * E2E builds route analytics to an in-page array instead of PostHog (see
+ * src/main.tsx), so a browser test can assert exactly what would have been
+ * sent. Identity calls appear in the same ordered list as `$identify`, `$set`,
+ * and `$reset`, which is what makes ordering assertions possible.
+ * ------------------------------------------------------------------------- */
+
+export interface CapturedEvent {
+  name: string;
+  properties?: Record<string, unknown>;
+}
+
+export async function captured(page: Page): Promise<CapturedEvent[]> {
+  return page.evaluate(
+    () =>
+      (window as unknown as { __analyticsEvents?: CapturedEvent[] }).__analyticsEvents ?? [],
+  ) as Promise<CapturedEvent[]>;
+}
+
+export async function capturedNames(page: Page): Promise<string[]> {
+  return (await captured(page)).map((event) => event.name);
+}
+
+export async function capturedOnce(page: Page, name: string): Promise<CapturedEvent> {
+  const matches = (await captured(page)).filter((event) => event.name === name);
+  expect(matches, `expected exactly one ${name}`).toHaveLength(1);
+  return matches[0];
+}
+
+/** Every form authentication material could take in a captured payload. */
+export const AUTH_MATERIAL = [/access_token/i, /refresh_token/i, /code=/i, /eyJ[A-Za-z0-9_-]+\./];

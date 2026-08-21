@@ -42,6 +42,11 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          # Both PostHog values are browser-public, so they are repository
+          # variables rather than secrets. Unset means the deployed app falls
+          # back to the no-op analytics client instead of failing.
+          VITE_POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
+          VITE_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
         run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
@@ -49,6 +54,8 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          VITE_POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
+          VITE_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
         run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:

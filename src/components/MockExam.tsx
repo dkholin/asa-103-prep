@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   MOCK_EXAM_SIZE,
   MOCK_STUDY_TARGET_PCT,
@@ -7,6 +7,8 @@ import {
 } from '../content/questions';
 import { TOPICS } from '../content/topics';
 import type { Question, TopicId } from '../content/types';
+import { mockCompletionProperties } from '../lib/analytics';
+import { useAnalytics, useFireOnceWhen } from '../lib/analytics-context';
 import { createRng, withShuffledChoices } from '../lib/shuffle';
 import {
   gradeMock,
@@ -59,10 +61,19 @@ function MockAttempt(props: {
   onExit: () => void;
   onRestart: () => void;
 }) {
+  const analytics = useAnalytics();
+  const startedAt = useRef(Date.now());
   const [questions] = useState<Question[]>(buildAttempt);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | null>>({});
   const [grade, setGrade] = useState<MockGrade | null>(null);
+  const graded = useRef(false);
+
+  // One attempt, one start. "Take another mock" remounts this component with a
+  // new key, which is exactly what makes it a genuinely new attempt.
+  useFireOnceWhen(true, () => {
+    analytics.capture({ name: 'mock_started', properties: { question_count: questions.length } });
+  });
 
   // An attempt lives in component state only: a reload discards it. Rebuilding
   // it from storage would mean persisting the question ids, every question's
@@ -95,6 +106,10 @@ function MockAttempt(props: {
   const last = index === questions.length - 1;
 
   const finish = () => {
+    // A second activation inside the same frame would grade and report the
+    // attempt twice. The guard has to be a ref: React has not re-rendered yet,
+    // so `grade` is still null in the second call's closure.
+    if (graded.current) return;
     if (
       unanswered > 0 &&
       !window.confirm(
@@ -103,6 +118,7 @@ function MockAttempt(props: {
     ) {
       return;
     }
+    graded.current = true;
     const g = gradeMock(questions, answers);
     let p = props.progress;
     for (const r of g.perQuestion) {
@@ -112,6 +128,17 @@ function MockAttempt(props: {
     }
     p = recordMockResult(p, { finishedAt: Date.now(), score: g.score, total: g.total });
     props.updateProgress(p);
+    // Grading fires every answer at once, so per-question events here would
+    // only duplicate what mock_completed already reports.
+    analytics.capture({
+      name: 'mock_completed',
+      properties: mockCompletionProperties(
+        g.score,
+        g.total,
+        unanswered,
+        Date.now() - startedAt.current,
+      ),
+    });
     setGrade(g);
   };
 
