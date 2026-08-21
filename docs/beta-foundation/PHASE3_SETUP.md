@@ -36,8 +36,11 @@ Both are repository *variables*, not secrets, because both ship to the browser.
 Locally they live in `.env.local` as `VITE_POSTHOG_KEY` and `VITE_POSTHOG_HOST`.
 A missing or malformed key fails closed to a no-op client: analytics never
 breaks a study flow. **A personal API key must never appear in a `VITE_*` value,
-in tracked files, or in these docs**; the deploy workflow fails the build if
-`POSTHOG_PERSONAL_API_KEY` appears in tracked files.
+in tracked files, or in these docs**; the deploy workflow's secret scan fails
+the build if the personal-key environment variable name appears anywhere in
+tracked files. That scan matches the literal name, so write *about* it the way
+this paragraph does rather than spelling it out — otherwise the documentation
+itself fails the build.
 
 Project defaults are wrong for this project and were changed. Re-check them if
 anything looks off, because several are ingestion-side and the client cannot
