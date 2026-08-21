@@ -63,3 +63,15 @@ boundary. Study UI remains locked until the row is loaded, same-client writes
 are serialized, invalid rows fail closed, and visible failed writes must be
 retried before logout. Reconsider normalization only if query or concurrency
 requirements become concrete.
+
+## 2026-08-21 — Reset browser-role table grants before relying on RLS
+
+Reason: Live verification found that Supabase's default table grants gave the
+`authenticated` role `TRUNCATE`, `TRIGGER`, and `REFERENCES` in addition to CRUD.
+RLS does not protect `TRUNCATE`, so owner policies alone would not prevent one
+authenticated learner from erasing every learner's progress.
+
+Impact: Browser-exposed learner tables must explicitly revoke all privileges
+from `anon` and `authenticated`, then grant only the operations the application
+requires. Verify both RLS policies and effective role grants against the live
+database; migration `202608210002` performs that reset for `learner_progress`.
