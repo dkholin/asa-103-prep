@@ -50,3 +50,16 @@ ownership and no custom backend.
 Impact: Supabase Auth/state arrives in Phase 2 with RLS and no privileged browser
 secret. PostHog arrives in Phase 3, uses the Supabase UUID for identity, excludes
 unnecessary PII, and never becomes the learner-state source of truth.
+
+## 2026-08-21 — Store one versioned progress snapshot per authenticated learner
+
+Reason: The actual `Progress` behavior updates question statistics, a derived
+review queue, and mock history together. One JSONB row preserves those atomic
+invariants with less schema and synchronization machinery than three normalized
+tables. There are no production users to migrate or offline conflicts to merge.
+
+Impact: `learner_progress.user_id` is both the primary key and RLS ownership
+boundary. Study UI remains locked until the row is loaded, same-client writes
+are serialized, invalid rows fail closed, and visible failed writes must be
+retried before logout. Reconsider normalization only if query or concurrency
+requirements become concrete.

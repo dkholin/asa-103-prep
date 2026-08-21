@@ -29,13 +29,27 @@ jobs:
       - run: npm ci
       - name: Scan tracked files for privileged secret material
         run: |
-          if git grep -nE 'BEGIN [A-Z ]*PRIVATE KEY|SUPABASE_SERVICE_ROLE_KEY|POSTHOG_PERSONAL_API_KEY' -- . ':(exclude).github/workflows/deploy.yml'; then
+          if git grep -nE 'BEGIN [A-Z ]*PRIVATE KEY|SUPABASE_SERVICE_ROLE_KEY|POSTHOG_PERSONAL_API_KEY|sb_secret_[A-Za-z0-9_-]{20,}' -- . ':(exclude).github/workflows/deploy.yml'; then
             exit 1
           fi
       - run: npm test
-      - run: npm run build
+      - name: Validate Supabase public build configuration
+        env:
+          VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+        run: test -n "$VITE_SUPABASE_URL" && test -n "$VITE_SUPABASE_PUBLISHABLE_KEY" && test -z "$VITE_E2E_FAKE_CLOUD"
+      - name: Build production application
+        env:
+          VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      - name: Rebuild deploy artifact without the test cloud double
+        env:
+          VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

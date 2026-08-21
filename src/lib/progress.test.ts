@@ -74,6 +74,15 @@ describe('serialization', () => {
       deserialize('{"version":1,"stats":null,"reviewQueue":[],"mockResults":[]}'),
     ).toEqual(emptyProgress());
   });
+
+  it('rejects structurally invalid cloud snapshots instead of trusting nested values', () => {
+    expect(deserialize(JSON.stringify({
+      version: 1,
+      stats: { q1: { attempts: -1, correct: 4, lastResult: 'maybe' } },
+      reviewQueue: ['q1', 'q1'],
+      mockResults: [{ finishedAt: 1, score: 9, total: 2 }],
+    }))).toEqual(emptyProgress());
+  });
 });
 
 describe('gradeMock', () => {

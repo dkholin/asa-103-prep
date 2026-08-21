@@ -10,7 +10,8 @@ vertical slice: Navigation Rules / Lights practice with real, sourced graphics.
 - **Missed questions** — wrong or skipped questions queue for review; a correct
   answer clears them.
 - **Mock exam** — a short exam that withholds all feedback until submission.
-- **Progress** persists in browser localStorage; no backend, no accounts.
+- **Account-backed progress** — Google sign-in or an email magic link, with
+  per-user progress stored in Supabase and protected by Row Level Security.
 
 Readiness is deliberately simple: a question is "solid" when your most recent
 answer to it was correct.
@@ -23,6 +24,10 @@ npm run dev        # dev server
 npm run build      # production build (dist/)
 npm run preview    # serve the production build on :4173
 ```
+
+Authentication requires the browser-public Supabase values documented in
+`.env.example`. Live project/provider setup and verification are described in
+`docs/beta-foundation/PHASE2_SETUP.md`.
 
 ## Testing
 

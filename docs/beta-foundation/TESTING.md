@@ -28,7 +28,12 @@ raster assets return successfully. After deployment, repeat the URL/reload and
 representative flow checks at `https://dkholin.github.io/asa-103-prep/` and
 confirm the GitHub Actions run succeeded.
 
-The repeatable hosted smoke command is:
+The repeatable hosted smoke command is below. Since browser-test contexts have
+no existing Supabase session, the hosted deployment check expects the signed-out
+authentication entry, verifies the Pages base-path assets, and reloads it. The
+normal local E2E suite uses its compile-time cloud double and still requires the
+authenticated dashboard; neither smoke substitutes for live provider login or
+cross-device checks.
 
 ```bash
 E2E_BASE_URL=https://dkholin.github.io npm run test:e2e -- e2e/deployment.spec.ts

@@ -888,6 +888,96 @@ button.large {
 }
 
 /* ---------------------------------------------------------------------
+   Authentication and cloud state
+   ------------------------------------------------------------------- */
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-5);
+}
+
+.auth-card {
+  width: min(100%, 480px);
+}
+
+.auth-card h1 {
+  font-family: var(--font-display);
+  color: var(--color-accent-strong);
+  margin-top: 0;
+}
+
+.auth-card form {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.auth-card label {
+  font-weight: 650;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+
+.auth-primary {
+  width: 100%;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+  color: var(--color-text-tertiary);
+  font-size: 0.9rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid var(--color-border);
+}
+
+.auth-message {
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-subtle);
+}
+
+.account-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.account-label,
+.cloud-status {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
+button.compact {
+  padding: 5px 9px;
+  min-height: auto;
+}
+
+.cloud-status {
+  text-align: right;
+  min-height: 1.4em;
+}
+
+.cloud-error {
+  color: var(--color-error);
+}
+
+/* ---------------------------------------------------------------------
    Responsive
    ------------------------------------------------------------------- */
 @media (max-width: 760px) {
@@ -912,5 +1002,17 @@ button.large {
 
   .prompt {
     font-size: 1.15rem;
+  }
+
+  .app-shell-row {
+    flex-wrap: wrap;
+  }
+
+  .account-controls {
+    width: 100%;
+  }
+
+  .cloud-status {
+    text-align: left;
   }
 }

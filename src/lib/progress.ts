@@ -172,9 +172,35 @@ export function serialize(p: Progress): string {
   return JSON.stringify(p);
 }
 
-/** Parse stored progress; any corrupt/foreign/missing payload falls back to empty progress. */
-export function deserialize(raw: string | null): Progress {
-  if (!raw) return emptyProgress();
+function isNonnegativeInteger(value: unknown): value is number {
+  return Number.isInteger(value) && (value as number) >= 0;
+}
+
+function isQuestionStat(value: unknown): value is QuestionStat {
+  if (typeof value !== 'object' || value === null) return false;
+  const stat = value as Partial<QuestionStat>;
+  return (
+    isNonnegativeInteger(stat.attempts) &&
+    isNonnegativeInteger(stat.correct) &&
+    stat.correct <= stat.attempts &&
+    (stat.lastResult === 'correct' || stat.lastResult === 'incorrect' || stat.lastResult === 'skipped')
+  );
+}
+
+function isMockResult(value: unknown): value is MockResult {
+  if (typeof value !== 'object' || value === null) return false;
+  const result = value as Partial<MockResult>;
+  return (
+    isNonnegativeInteger(result.finishedAt) &&
+    isNonnegativeInteger(result.score) &&
+    isNonnegativeInteger(result.total) &&
+    result.score <= result.total
+  );
+}
+
+/** Strict parser used at trust boundaries that must distinguish invalid from empty. */
+export function parseProgress(raw: string | null): Progress | null {
+  if (!raw) return null;
   try {
     const parsed: unknown = JSON.parse(raw);
     if (
@@ -186,10 +212,24 @@ export function deserialize(raw: string | null): Progress {
       !Array.isArray((parsed as { reviewQueue?: unknown }).reviewQueue) ||
       !Array.isArray((parsed as { mockResults?: unknown }).mockResults)
     ) {
-      return emptyProgress();
+      return null;
     }
-    return parsed as Progress;
+    const candidate = parsed as Progress;
+    if (
+      !Object.values(candidate.stats).every(isQuestionStat) ||
+      !candidate.reviewQueue.every((id) => typeof id === 'string') ||
+      new Set(candidate.reviewQueue).size !== candidate.reviewQueue.length ||
+      !candidate.mockResults.every(isMockResult)
+    ) {
+      return null;
+    }
+    return candidate;
   } catch {
-    return emptyProgress();
+    return null;
   }
+}
+
+/** Parse legacy/test storage; corrupt, foreign, or missing payloads start empty. */
+export function deserialize(raw: string | null): Progress {
+  return parseProgress(raw) ?? emptyProgress();
 }
