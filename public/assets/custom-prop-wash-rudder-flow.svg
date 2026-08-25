@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 352" role="img" aria-label="Two overhead panels of the same boat, forward gear and reverse gear, showing the direction of propeller-driven water flow near the rudder.">
+  <defs>
+    <!-- Canonical primitive: sailboat-top.svg (asa103-canonical-assets, approved).
+         BARE-HULL instance, as its header requires for a boat that is not sailing:
+         the two sail paths and the boom are dropped; hull, deck, centreline and
+         mast kept. Pivot (44,123); bow (44,6); transom y = 240. -->
+    <symbol id="sailboat-hull" viewBox="0 0 82 248">
+      <path fill="#282858" d="M44 6C56 30 72 74 78 118C80 134 80 150 79 164C77 197 74 222 70 236C69.6 238.5 69 240 66 240L22 240C19 240 18.4 238.5 18 236C14 222 11 197 9 164C8 150 8 134 10 118C16 74 32 30 44 6Z"/>
+      <path fill="#dcdfe3" d="M44 112C51 113 57 118 59 127L59.5 169C59.5 173 57.5 176 54 176L34 176C30.5 176 28.5 173 28.5 169L29 127C31 118 37 113 44 112Z"/>
+      <path fill="#282858" d="M38 167h12v9h-12z"/>
+      <path fill="#cacaca" d="M31 182L57 182C59 182 60 184 60 186L58 228C58 231 56 232 54 232L34 232C32 232 30 231 30 228L28 186C28 184 29 182 31 182Z"/>
+      <path stroke="#9b98ac" stroke-width="2" stroke-linecap="round" d="M44 9L44 100"/>
+      <circle cx="44" cy="100" r="4.5" fill="#dcdfe3"/>
+      <circle cx="44" cy="100" r="2" fill="#282858"/>
+    </symbol>
+
+    <!-- Canonical primitive: rudder.svg (asa103-canonical-assets, approved).
+         Stock (14,10); rotation 0 points the blade straight aft; a negative angle
+         swings the trailing edge to starboard, which pushes the stern to port. -->
+    <symbol id="rudder" viewBox="0 0 28 56">
+      <path fill="#ffffff" stroke="#0e3350" stroke-width="3.9" stroke-linejoin="round" d="M14 4C18.5 8.5 21 12.5 21 18C21 30 18 43 14 52C10 43 7 30 7 18C7 12.5 9.5 8.5 14 4Z"/>
+      <circle cx="14" cy="10" r="3" fill="#0e3350"/>
+    </symbol>
+
+    <!-- Propeller: the minimum deterministic geometry that fixes its position on
+         the shaft line and reads as a propeller from overhead. Hub on the
+         centreline, two blades projected edge-on athwartships. The diameter is
+         exaggerated for the same reason the rudder section is. -->
+    <symbol id="propeller" viewBox="0 0 24 12">
+      <ellipse cx="6.4" cy="6" rx="4.4" ry="2.7" fill="#ffffff" stroke="#0e3350" stroke-width="1.9"/>
+      <ellipse cx="17.6" cy="6" rx="4.4" ry="2.7" fill="#ffffff" stroke="#0e3350" stroke-width="1.9"/>
+      <circle cx="12" cy="6" r="3.4" fill="#ffffff" stroke="#0e3350" stroke-width="1.9"/>
+    </symbol>
+
+    <marker id="wash-head" markerWidth="3.4" markerHeight="3.4" refX="2.9" refY="1.7" orient="auto"><path d="M0 0 3.4 1.7 0 3.4Z" fill="#167d94"/></marker>
+    <marker id="swing-head" markerWidth="3.6" markerHeight="3.6" refX="3.1" refY="1.8" orient="auto"><path d="M0 0 3.6 1.8 0 3.6Z" fill="#b85f24"/></marker>
+  </defs>
+
+  <rect width="420" height="352" fill="#edf6fa"/>
+  <path d="M210 14V326" stroke="#cbdbe6" stroke-width="2"/>
+
+  <text x="105" y="28" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" letter-spacing="1.2" fill="#133f68">FORWARD GEAR</text>
+  <text x="315" y="28" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" letter-spacing="1.2" fill="#133f68">REVERSE GEAR</text>
+
+  <!-- ================= PANEL A - engine ahead ================= -->
+  <text x="105" y="54" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#52697c">bow</text>
+  <g transform="translate(105 168) scale(0.9)"><use href="#sailboat-hull" x="-44" y="-123" width="82" height="248"/></g>
+  <g transform="translate(105 217.5) scale(1.1)"><use href="#propeller" x="-12" y="-6" width="24" height="12"/></g>
+  <!-- Wash driven aft down the shaft line and out past the transom. Drawn before
+       the blade so the blade sits IN the stream rather than beside it. -->
+  <path d="M105 222V288" fill="none" stroke="#167d94" stroke-width="3" stroke-linecap="round" marker-end="url(#wash-head)"/>
+  <!-- Trailing edge deflected to starboard: a starboard helm order (22 degrees) -->
+  <g transform="translate(105 244.5) rotate(-22) scale(0.74)"><use href="#rudder" x="-14" y="-10" width="28" height="56"/></g>
+  <!-- Wash on the deflected blade pushes the stern the other way, to port -->
+  <text x="44" y="264" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="600" fill="#7c3f18">stern swings</text>
+  <path d="M86 278Q65 289 47 281" fill="none" stroke="#b85f24" stroke-width="2.8" stroke-linecap="round" marker-end="url(#swing-head)"/>
+
+  <path d="M137 217.5 147 210" stroke="#8297a8" stroke-width="1.2"/>
+  <text x="150" y="214" font-family="sans-serif" font-size="11.5" fill="#133f68">propeller</text>
+  <path d="M131 268 145 272" stroke="#8297a8" stroke-width="1.2"/>
+  <text x="148" y="276" font-family="sans-serif" font-size="11.5" fill="#133f68">rudder</text>
+
+  <text x="105" y="300" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="600" fill="#133f68">prop wash flows aft</text>
+  <text x="105" y="316" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="600" fill="#133f68">across the rudder</text>
+
+  <!-- ================= PANEL B - engine astern ================= -->
+  <g transform="translate(315 168) scale(0.9)"><use href="#sailboat-hull" x="-44" y="-123" width="82" height="248"/></g>
+  <g transform="translate(315 217.5) scale(1.1)"><use href="#propeller" x="-12" y="-6" width="24" height="12"/></g>
+  <!-- Same helm angle, opposite gear: the wash is thrown forward, away from the blade -->
+  <path d="M315 212V156" fill="none" stroke="#167d94" stroke-width="3" stroke-linecap="round" marker-end="url(#wash-head)"/>
+  <g transform="translate(315 244.5) rotate(-22) scale(0.74)"><use href="#rudder" x="-14" y="-10" width="28" height="56"/></g>
+
+  <text x="315" y="300" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="600" fill="#133f68">prop wash flows forward</text>
+  <text x="315" y="316" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="600" fill="#133f68">away from the rudder</text>
+
+  <text x="210" y="339" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#52697c">Astern the rudder still steers — from the boat’s motion, not the wash.</text>
+</svg>

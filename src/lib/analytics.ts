@@ -8,7 +8,7 @@
  * the firing rules can be tested without a network or a global.
  */
 
-export type PracticeMode = 'topic' | 'review';
+export type PracticeMode = 'topic' | 'review' | 'concept';
 export type SignupMethod = 'google' | 'email';
 /**
  * `unknown` is the session check itself failing. Entry during a Supabase
@@ -34,16 +34,12 @@ export interface AnalyticsEventMap {
   signup_started: { method: SignupMethod };
   signup_completed: { method?: SignupMethod };
   onboarding_completed: OnboardingBuckets & { answered_count: number };
-  practice_started: { mode: 'topic'; topic: string; question_count: number };
-  practice_completed: {
-    mode: 'topic';
-    topic: string;
-    answered: number;
-    correct: number;
-    incorrect: number;
-    skipped: number;
-    duration_ms: number;
-  };
+  practice_started:
+    | { mode: 'topic'; topic: string; question_count: number }
+    | { mode: 'concept'; lesson_id: string; question_count: number };
+  practice_completed:
+    | ({ mode: 'topic'; topic: string } & SessionCompletionProperties)
+    | ({ mode: 'concept'; lesson_id: string } & SessionCompletionProperties);
   missed_review_started: { mode: 'review'; question_count: number };
   missed_review_completed: {
     mode: 'review';
@@ -61,6 +57,13 @@ export interface AnalyticsEventMap {
     mode: PracticeMode;
   };
   question_skipped: { question_id: string; topic: string; mode: PracticeMode };
+  /**
+   * One `lesson_started` per lesson open, guarded by a ref rather than by
+   * rendered state. Reversing a completion is deliberately silent: it is a
+   * correction, not a study event.
+   */
+  lesson_started: { lesson_id: string; module_id: string };
+  lesson_completed: { lesson_id: string; module_id: string };
   mock_started: { question_count: number };
   mock_completed: {
     score: number;
@@ -95,6 +98,8 @@ export interface SessionTally {
   wrong: number;
   skipped: number;
 }
+
+type SessionCompletionProperties = ReturnType<typeof sessionCompletionProperties>;
 
 /**
  * `answered` counts only submitted answers, so a session's answered + skipped

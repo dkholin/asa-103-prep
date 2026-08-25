@@ -1,0 +1,115 @@
+import { describe, expect, it } from 'vitest';
+import manifest from '../asset-manifest.json';
+import { CONCEPT_IDS } from '../concepts';
+import { LESSONS, MODULES, lessonsForModule } from './index';
+import type { Block } from './types';
+
+const moduleIds = new Set(MODULES.map((m) => m.id));
+const conceptIds = new Set<string>(CONCEPT_IDS);
+const assetIds = new Set(manifest.assets.map((a) => a.id));
+
+describe('learn content integrity', () => {
+  it('has unique lesson ids', () => {
+    const ids = LESSONS.map((l) => l.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it('assigns every lesson to a real module', () => {
+    for (const l of LESSONS) {
+      expect([...moduleIds], `module of ${l.id}`).toContain(l.moduleId);
+    }
+  });
+
+  it('gives published modules lessons and coming-soon modules none', () => {
+    for (const m of MODULES) {
+      const count = lessonsForModule(m.id).length;
+      if (m.status === 'published') {
+        expect(count, `published module ${m.id} has no lessons`).toBeGreaterThan(0);
+      } else {
+        expect(count, `coming-soon module ${m.id} has lessons`).toBe(0);
+      }
+    }
+  });
+
+  it('numbers lessons contiguously from 1 within each module', () => {
+    for (const m of MODULES) {
+      const orders = lessonsForModule(m.id).map((l) => l.order);
+      expect(orders, `order values of ${m.id}`).toEqual(orders.map((_, i) => i + 1));
+    }
+  });
+
+  it('has a non-empty title and intro on every lesson', () => {
+    for (const l of LESSONS) {
+      expect(l.title.trim(), `title of ${l.id}`).not.toBe('');
+      expect(l.intro.trim(), `intro of ${l.id}`).not.toBe('');
+    }
+  });
+
+  it('publishes finished lesson copy rather than foundation placeholders', () => {
+    for (const l of LESSONS) {
+      const serialized = JSON.stringify(l);
+      expect(serialized, `placeholder copy in ${l.id}`).not.toMatch(/placeholder/i);
+      expect(l.blocks.length, `thin lesson ${l.id}`).toBeGreaterThanOrEqual(6);
+    }
+  });
+
+  it('tags every lesson with valid concept ids', () => {
+    for (const l of LESSONS) {
+      expect(l.concepts.length, `concepts of ${l.id}`).toBeGreaterThan(0);
+      for (const c of l.concepts) {
+        expect([...conceptIds], `concept ${c} of ${l.id}`).toContain(c);
+      }
+    }
+  });
+
+  // The manifest's JSON import widens ids to `string`, so this is the only
+  // place a bad figure reference can be caught before it renders as nothing.
+  it('references only assets that exist in the manifest', () => {
+    for (const l of LESSONS) {
+      for (const b of l.blocks) {
+        if (b.kind !== 'figure') continue;
+        expect([...assetIds], `asset ${b.assetId} of ${l.id}`).toContain(b.assetId);
+      }
+    }
+  });
+
+  // Keeps the block renderer honest: a kind nothing uses is a kind nobody has
+  // seen render.
+  it('exercises every block kind somewhere in the published content', () => {
+    const used = new Set<string>();
+    for (const l of LESSONS) {
+      for (const b of l.blocks) {
+        used.add(b.kind);
+        if (b.kind === 'list') used.add(b.ordered ? 'list:ordered' : 'list:unordered');
+        if (b.kind === 'callout') used.add(`callout:${b.tone}`);
+      }
+    }
+    const required: (Block['kind'] | string)[] = [
+      'text',
+      'heading',
+      'list',
+      'list:ordered',
+      'list:unordered',
+      'definition',
+      'callout',
+      'callout:note',
+      'callout:warning',
+      'table',
+      'figure',
+    ];
+    for (const kind of required) {
+      expect([...used], `no lesson uses ${kind}`).toContain(kind);
+    }
+  });
+
+  it('has well-formed tables', () => {
+    for (const l of LESSONS) {
+      for (const b of l.blocks) {
+        if (b.kind !== 'table') continue;
+        for (const row of b.rows) {
+          expect(row.length, `row width in ${l.id}`).toBe(b.headers.length);
+        }
+      }
+    }
+  });
+});

@@ -14,8 +14,10 @@ import {
   scrubUrl,
   sessionCompletionProperties,
   type AnalyticsClient,
+  type AnalyticsEvent,
   type OnboardingBuckets,
 } from './analytics';
+import { LESSONS } from '../content/learn';
 
 /** Everything a captured payload must never contain, whatever shape it arrives in. */
 const FORBIDDEN = [/access_token/i, /refresh_token/i, /code=/i, /eyJ[A-Za-z0-9_-]+\./];
@@ -180,6 +182,52 @@ describe('event property construction', () => {
       duration_ms: 600_000,
     });
     expect(mockCompletionProperties(0, 0, 0, 10).score_pct).toBe(0);
+  });
+
+  it('represents lesson Practice as concept mode with ids and counts only', () => {
+    const events: AnalyticsEvent[] = [
+      {
+        name: 'practice_started',
+        properties: { mode: 'concept', lesson_id: 'motoring-controls-instruments', question_count: 1 },
+      },
+      {
+        name: 'practice_completed',
+        properties: {
+          mode: 'concept',
+          lesson_id: 'motoring-controls-instruments',
+          answered: 1,
+          correct: 1,
+          incorrect: 0,
+          skipped: 0,
+          duration_ms: 100,
+        },
+      },
+    ];
+    for (const event of events) {
+      expect(event.properties).not.toHaveProperty('topic');
+      expect(JSON.stringify(event.properties)).not.toContain('Controls & Instruments');
+    }
+  });
+
+  // Lesson events carry ids only. The corpus check runs over every real lesson
+  // rather than one hand-written example, so prose reaching a property is a
+  // failure here rather than something noticed in a live payload.
+  it('keeps lesson prose out of the lesson events', () => {
+    for (const lesson of LESSONS) {
+      const properties = { lesson_id: lesson.id, module_id: lesson.moduleId };
+      const events: AnalyticsEvent[] = [
+        { name: 'lesson_started', properties },
+        { name: 'lesson_completed', properties },
+      ];
+      for (const event of events) {
+        const serialized = JSON.stringify(scrubAnalyticsProperties({ ...event.properties }));
+        // Positive control: an empty or unreadable payload cannot pass.
+        expect(serialized, `${event.name} lost its lesson id`).toContain(lesson.id);
+        expect(serialized, `${event.name} leaked the lesson title`).not.toContain(lesson.title);
+        expect(serialized, `${event.name} leaked the lesson intro`).not.toContain(lesson.intro);
+        expect(Object.keys(event.properties)).toEqual(['lesson_id', 'module_id']);
+      }
+    }
   });
 });
 

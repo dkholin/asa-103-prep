@@ -2,10 +2,21 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import manifest from './asset-manifest.json';
+import { LESSONS } from './learn';
 import { QUESTIONS, selectMockQuestions } from './questions';
 import { TOPIC_IDS } from './topics';
 
 const questionIds = QUESTIONS.map((q) => q.id);
+
+/**
+ * Assets an asset can legitimately be reached from. A manifest record earns its
+ * keep by being rendered somewhere, and Learn lesson figures are a second, equal
+ * consumer alongside visual questions — `learn.test.ts` enforces the other
+ * direction (a lesson figure must name a real manifest record).
+ */
+const lessonFigureAssetIds = new Set(
+  LESSONS.flatMap((l) => l.blocks.filter((b) => b.kind === 'figure').map((b) => b.assetId)),
+);
 
 describe('question bank integrity', () => {
   it('has unique question ids', () => {
@@ -136,7 +147,8 @@ describe('asset manifest integrity', () => {
 
   it('has no orphaned asset records', () => {
     for (const a of manifest.assets) {
-      expect(a.usedByQuestions.length, `asset ${a.id} is not used by any question`).toBeGreaterThan(0);
+      const used = a.usedByQuestions.length > 0 || lessonFigureAssetIds.has(a.id);
+      expect(used, `asset ${a.id} is not used by any question or lesson figure`).toBe(true);
     }
   });
 

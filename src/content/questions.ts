@@ -4769,6 +4769,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-fuel-gas-diesel-diagram',
   topic: 'safety-equipment',
+  concepts: ['blower-ventilation', 'fueling-safety'],
   format: 'visual',
   assetId: 'custom-fueling-gas-diesel',
   prompt: "Comparing the two fueling procedures shown, what is the key extra step required specifically before starting a gasoline engine after fueling, that is not required for diesel?",
@@ -4785,6 +4786,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-fuel-blower-purpose',
   topic: 'safety-equipment',
+  concepts: ['blower-ventilation'],
   format: 'text',
   prompt: "What is the specific purpose of running the engine compartment blower before starting a gasoline inboard engine?",
   choices: [
@@ -4800,6 +4802,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-fuel-shutdown-before',
   topic: 'safety-equipment',
+  concepts: ['fueling-safety'],
   format: 'text',
   prompt: "Before fueling at the dock, what should be shut off or extinguished aboard?",
   choices: [
@@ -4815,6 +4818,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-fuel-spill-response',
   topic: 'safety-equipment',
+  concepts: ['fueling-safety'],
   format: 'text',
   prompt: "If fuel is accidentally spilled into the water while fueling, what is the boater's obligation?",
   choices: [
@@ -4830,6 +4834,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-fuel-vapor-density',
   topic: 'safety-equipment',
+  concepts: ['blower-ventilation', 'fueling-safety'],
   format: 'text',
   prompt: "After fueling and before starting the engine, why is it recommended to open hatches and sniff the bilge (or use a vapor detector) in addition to running the blower?",
   choices: [
@@ -4849,6 +4854,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-auxiliary-engine-types',
   topic: 'engine-docking',
+  concepts: ['auxiliary-engine-types', 'outboard-motors'],
   format: 'visual',
   assetId: 'photo-outboard-engine',
   prompt: "The photo shows one common type of small-boat auxiliary engine. What are the two main auxiliary engine arrangements found on cruising boats?",
@@ -4865,6 +4871,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-prestart-compartment-inspect',
   topic: 'engine-docking',
+  concepts: ['pre-departure-engine-checks'],
   format: 'text',
   prompt: "As part of a pre-start check on an inboard engine, what should you look for when opening the engine compartment?",
   choices: [
@@ -4880,6 +4887,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-prestart-fluids-check',
   topic: 'engine-docking',
+  concepts: ['pre-departure-engine-checks'],
   format: 'text',
   prompt: "Which fluid levels are part of a basic ASA 103-level pre-start check on a diesel auxiliary?",
   choices: [
@@ -4895,6 +4903,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-prestart-ventilation-blower',
   topic: 'engine-docking',
+  concepts: ['blower-ventilation'],
   format: 'text',
   prompt: "On a gasoline-powered auxiliary, what pre-start step addresses the risk of explosive vapor in the engine compartment?",
   choices: [
@@ -4910,6 +4919,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-prestart-transmission-neutral',
   topic: 'engine-docking',
+  concepts: ['engine-starting-procedure'],
   format: 'text',
   prompt: "Why should you confirm the transmission/shift control is in neutral before starting the engine?",
   choices: [
@@ -4925,6 +4935,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-prestart-cooling-water-check',
   topic: 'engine-docking',
+  concepts: ['cooling-water-check'],
   format: 'text',
   prompt: "Immediately after starting the engine, what should you check to confirm the raw-water cooling system is working?",
   choices: [
@@ -4940,6 +4951,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-start-procedure-order',
   topic: 'engine-docking',
+  concepts: ['engine-starting-procedure', 'cooling-water-check'],
   format: 'text',
   prompt: "Which sequence best reflects a basic, correct auxiliary engine starting procedure?",
   choices: [
@@ -4955,6 +4967,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-prop-walk-id',
   topic: 'engine-docking',
+  concepts: ['prop-walk', 'right-hand-propeller'],
   format: 'visual',
   assetId: 'custom-prop-walk',
   prompt: "The diagram shows a boat backing under power with a right-hand propeller. What effect is illustrated, and why does it happen?",
@@ -4971,6 +4984,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-prop-wash-rudder',
   topic: 'engine-docking',
+  concepts: ['prop-wash'],
   format: 'text',
   prompt: "Why does a boat typically steer more effectively at low speed with a burst of forward throttle, even if boat speed barely changes?",
   choices: [
@@ -4986,6 +5000,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-prop-forward-vs-reverse-response',
   topic: 'engine-docking',
+  concepts: ['prop-walk', 'prop-wash'],
   format: 'text',
   prompt: "Compared to forward gear, why is steering control generally less effective in reverse?",
   choices: [
@@ -5001,6 +5016,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-prop-walk-use-docking',
   topic: 'engine-docking',
+  concepts: ['prop-walk', 'right-hand-propeller'],
   format: 'text',
   prompt: "A boat with a right-hand propeller (stern walks to port in reverse) needs to back into a slip to port. How can the skipper use prop walk to advantage?",
   choices: [
@@ -5016,6 +5032,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-stopping-distance-momentum',
   topic: 'engine-docking',
+  concepts: ['stopping-distance'],
   format: 'text',
   prompt: "Why do displacement sailboats generally need more room to stop than a car covering the same speed would suggest?",
   choices: [
@@ -5031,6 +5048,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-backing-steerage-way',
   topic: 'engine-docking',
+  concepts: ['steerage-way'],
   format: 'text',
   prompt: "What does \"steerage way\" mean, and why does it matter when backing down?",
   choices: [
@@ -5046,6 +5064,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-turning-short-radius-technique',
   topic: 'engine-docking',
+  concepts: ['turning-in-confined-space'],
   format: 'text',
   prompt: "In a tight space, what technique lets a single-engine boat turn in a notably shorter radius than steady forward power and full rudder alone?",
   choices: [
@@ -5061,6 +5080,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-pivot-point-location',
   topic: 'engine-docking',
+  concepts: ['pivot-point'],
   format: 'text',
   prompt: "Roughly where is a typical displacement sailboat's pivot point when turning under power at low speed?",
   choices: [
@@ -5076,6 +5096,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-control-panel-id',
   topic: 'engine-docking',
+  concepts: ['engine-controls'],
   format: 'visual',
   assetId: 'custom-engine-panel-throttle',
   prompt: "On the engine panel and control shown, what does the single lever typically control?",
@@ -5092,6 +5113,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-dock-wind-onto-approach',
   topic: 'engine-docking',
+  concepts: ['docking-approach', 'docking-wind'],
   format: 'visual',
   assetId: 'custom-docking-wind',
   prompt: "With the wind blowing directly onto the dock as shown, what is the recommended approach technique?",
@@ -5108,6 +5130,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-dock-wind-off-approach',
   topic: 'engine-docking',
+  concepts: ['docking-approach', 'docking-wind'],
   format: 'text',
   prompt: "If the wind is blowing directly off the dock (pushing the boat away from it), how should the approach generally be adjusted?",
   choices: [
@@ -5123,6 +5146,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-dock-current-parallel-approach',
   topic: 'engine-docking',
+  concepts: ['docking-approach', 'docking-current'],
   format: 'visual',
   assetId: 'custom-docking-current',
   prompt: "With a current running parallel to the dock as shown, why does the boat approach bow-first into the current?",
@@ -5139,6 +5163,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-dock-strongest-force-priority',
   topic: 'engine-docking',
+  concepts: ['docking-approach', 'docking-wind', 'docking-current'],
   format: 'text',
   prompt: "When both wind and current are acting on the boat during a docking approach and they don't align, what is the general planning priority?",
   choices: [
@@ -5154,6 +5179,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-dock-spring-line-use',
   topic: 'engine-docking',
+  concepts: ['spring-line'],
   format: 'text',
   prompt: "What is a spring line used for once the boat is alongside a dock?",
   choices: [
@@ -5169,6 +5195,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-dock-abort-goaround',
   topic: 'engine-docking',
+  concepts: ['abort-and-go-around'],
   format: 'text',
   prompt: "Midway through a docking approach, the boat is clearly being pushed off line by a gust and won't make a safe landing at the intended spot. What is the appropriate response?",
   choices: [
@@ -5184,6 +5211,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-mooring-approach-id',
   topic: 'engine-docking',
+  concepts: ['mooring-approach'],
   format: 'visual',
   assetId: 'custom-mooring-approach',
   prompt: "The diagram shows a boat approaching a mooring ball. Why does the boat approach slowly, head to wind?",
@@ -5200,6 +5228,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-mooring-speed-control',
   topic: 'engine-docking',
+  concepts: ['mooring-approach'],
   format: 'text',
   prompt: "What is a common mistake to avoid when approaching a mooring ball?",
   choices: [
@@ -5215,6 +5244,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'eng-mooring-pendant-pickup',
   topic: 'engine-docking',
+  concepts: ['mooring-pickup'],
   format: 'text',
   prompt: "Once the boat has stopped alongside the mooring ball, what is the immediate next step for the crew at the bow?",
   choices: [
@@ -6064,6 +6094,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-resp-crew-briefing',
   topic: 'seamanship-comms',
+  concepts: ['crew-briefing'],
   format: 'text',
   prompt: "What should a pre-departure crew briefing typically cover?",
   choices: [
@@ -6325,6 +6356,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-departure-checklist',
   topic: 'seamanship-comms',
+  concepts: ['pre-departure-checks'],
   format: 'text',
   prompt: "Which of the following belongs on a basic pre-departure readiness check before leaving the dock?",
   choices: [
@@ -6340,6 +6372,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-departure-lines-fenders',
   topic: 'seamanship-comms',
+  concepts: ['stowage'],
   format: 'text',
   prompt: "Shortly after clearing the dock and getting into open water, what should be done with the dock lines and fenders?",
   choices: [
@@ -6580,6 +6613,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-fire-fuel-vapor-prevention',
   topic: 'emergencies',
+  concepts: ['blower-ventilation', 'fueling-safety'],
   format: 'text',
   prompt: "Before starting an inboard gasoline engine after fueling, what precaution most directly reduces the risk of an explosion from accumulated fuel vapor?",
   choices: [

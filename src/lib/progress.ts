@@ -14,12 +14,34 @@ export interface MockResult {
   total: number;
 }
 
+/** A lesson the learner has touched. "Not started" is the absence of an entry. */
+export type LessonState = 'in-progress' | 'completed';
+
+export interface LearnProgress {
+  /**
+   * Keyed by lesson id. Ids of lessons that no longer exist are kept rather
+   * than dropped: this module cannot know the lesson catalogue, and discarding
+   * an unrecognised id would silently destroy the state of a lesson that a
+   * later release renames back or restores. The UI ignores what it cannot
+   * resolve.
+   */
+  lessons: Record<string, LessonState>;
+  /** Most recently opened lesson, for "Continue learning". */
+  lastLessonId?: string;
+}
+
 export interface Progress {
   version: 1;
   stats: Record<string, QuestionStat>;
   /** Question ids missed or skipped, awaiting review. */
   reviewQueue: string[];
   mockResults: MockResult[];
+  /**
+   * Absent until the learner opens a lesson, so a snapshot written before
+   * Learn existed is valid as-is and `emptyProgress()` — and therefore "Reset
+   * progress" — clears Learn without special handling.
+   */
+  learn?: LearnProgress;
 }
 
 export function emptyProgress(): Progress {
@@ -64,6 +86,43 @@ export function recordSkip(p: Progress, questionId: string): Progress {
 
 export function recordMockResult(p: Progress, result: MockResult): Progress {
   return { ...p, mockResults: [...p.mockResults, result] };
+}
+
+/** The stored state of one lesson, or undefined for "not started". */
+export function lessonState(p: Progress, lessonId: string): LessonState | undefined {
+  return p.learn?.lessons[lessonId];
+}
+
+function setLessonState(p: Progress, lessonId: string, state: LessonState): Progress {
+  const learn = p.learn ?? { lessons: {} };
+  if (learn.lessons[lessonId] === state) return p;
+  return { ...p, learn: { ...learn, lessons: { ...learn.lessons, [lessonId]: state } } };
+}
+
+/**
+ * Record that a lesson was opened.
+ *
+ * `in-progress` is set only when the lesson has no state yet, so re-opening a
+ * completed lesson does not downgrade it. Returns `p` itself when nothing
+ * changed — including the last-opened lesson — because every caller persists
+ * the whole snapshot, and a re-open that changes nothing must not cost a cloud
+ * write or flip the header to "Saving progress…".
+ */
+export function markLessonOpened(p: Progress, lessonId: string): Progress {
+  const learn = p.learn ?? { lessons: {} };
+  const known = learn.lessons[lessonId] !== undefined;
+  if (known && learn.lastLessonId === lessonId) return p;
+  const lessons = known ? learn.lessons : { ...learn.lessons, [lessonId]: 'in-progress' as LessonState };
+  return { ...p, learn: { ...learn, lessons, lastLessonId: lessonId } };
+}
+
+export function markLessonCompleted(p: Progress, lessonId: string): Progress {
+  return setLessonState(p, lessonId, 'completed');
+}
+
+/** Reverse a completion. The lesson stays opened, so it returns to `in-progress`. */
+export function markLessonNotCompleted(p: Progress, lessonId: string): Progress {
+  return setLessonState(p, lessonId, 'in-progress');
 }
 
 export interface MockGrade {
@@ -198,6 +257,29 @@ function isMockResult(value: unknown): value is MockResult {
   );
 }
 
+function isLessonState(value: unknown): value is LessonState {
+  return value === 'in-progress' || value === 'completed';
+}
+
+/**
+ * Absent `learn` is valid — that is a pre-Learn snapshot, not a broken one —
+ * but a present `learn` must be exactly this shape. Unknown lesson ids are
+ * accepted deliberately (see {@link LearnProgress.lessons}); an unrecognised
+ * *state* is not, because it means the value was written by something that did
+ * not agree with this schema.
+ */
+function isLearnProgress(value: unknown): value is LearnProgress {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) return false;
+  const learn = value as Partial<LearnProgress>;
+  if (typeof learn.lessons !== 'object' || learn.lessons === null || Array.isArray(learn.lessons)) {
+    return false;
+  }
+  return (
+    Object.values(learn.lessons).every(isLessonState) &&
+    (learn.lastLessonId === undefined || typeof learn.lastLessonId === 'string')
+  );
+}
+
 /** Strict parser used at trust boundaries that must distinguish invalid from empty. */
 export function parseProgress(raw: string | null): Progress | null {
   if (!raw) return null;
@@ -219,7 +301,8 @@ export function parseProgress(raw: string | null): Progress | null {
       !Object.values(candidate.stats).every(isQuestionStat) ||
       !candidate.reviewQueue.every((id) => typeof id === 'string') ||
       new Set(candidate.reviewQueue).size !== candidate.reviewQueue.length ||
-      !candidate.mockResults.every(isMockResult)
+      !candidate.mockResults.every(isMockResult) ||
+      (candidate.learn !== undefined && !isLearnProgress(candidate.learn))
     ) {
       return null;
     }

@@ -3,6 +3,11 @@ import {
   deserialize,
   emptyProgress,
   gradeMock,
+  lessonState,
+  markLessonCompleted,
+  markLessonNotCompleted,
+  markLessonOpened,
+  parseProgress,
   recordAnswer,
   recordMockResult,
   recordSkip,
@@ -82,6 +87,117 @@ describe('serialization', () => {
       reviewQueue: ['q1', 'q1'],
       mockResults: [{ finishedAt: 1, score: 9, total: 2 }],
     }))).toEqual(emptyProgress());
+  });
+});
+
+describe('learn progress', () => {
+  const withLearn = (learn: unknown) =>
+    JSON.stringify({ version: 1, stats: {}, reviewQueue: [], mockResults: [], learn });
+
+  it('leaves learn absent on empty progress, so a reset clears it', () => {
+    const p = emptyProgress();
+    expect('learn' in p).toBe(false);
+    expect(lessonState(p, 'motoring-propeller-effects')).toBeUndefined();
+  });
+
+  it('round-trips a snapshot that predates Learn', () => {
+    const legacy = '{"version":1,"stats":{},"reviewQueue":[],"mockResults":[]}';
+    const parsed = parseProgress(legacy);
+    expect(parsed).not.toBeNull();
+    expect(parsed!.learn).toBeUndefined();
+    expect(serialize(parsed!)).toBe(legacy);
+  });
+
+  it('round-trips learn state through serialize/deserialize', () => {
+    let p = markLessonOpened(emptyProgress(), 'a');
+    p = markLessonCompleted(p, 'a');
+    p = markLessonOpened(p, 'b');
+    expect(deserialize(serialize(p))).toEqual(p);
+  });
+
+  it('marks an unseen lesson in-progress on open and records it as the last lesson', () => {
+    const p = markLessonOpened(emptyProgress(), 'a');
+    expect(p.learn).toEqual({ lessons: { a: 'in-progress' }, lastLessonId: 'a' });
+  });
+
+  it('does not downgrade a completed lesson when it is opened again', () => {
+    let p = markLessonOpened(emptyProgress(), 'a');
+    p = markLessonCompleted(p, 'a');
+    p = markLessonOpened(p, 'b');
+    p = markLessonOpened(p, 'a');
+    expect(lessonState(p, 'a')).toBe('completed');
+    expect(p.learn!.lastLessonId).toBe('a');
+  });
+
+  // The snapshot is persisted whole on every accepted change, so an open that
+  // changes nothing must be identity-equal or it costs a redundant cloud write.
+  it('returns the same snapshot when re-opening the lesson already open', () => {
+    const opened = markLessonOpened(emptyProgress(), 'a');
+    expect(markLessonOpened(opened, 'a')).toBe(opened);
+    const completed = markLessonCompleted(opened, 'a');
+    expect(markLessonOpened(completed, 'a')).toBe(completed);
+    expect(markLessonCompleted(completed, 'a')).toBe(completed);
+  });
+
+  // lastLessonId legitimately changes, so this open is not a no-op even though
+  // the lesson's own state is untouched.
+  it('updates the last lesson when re-opening a different known lesson', () => {
+    let p = markLessonOpened(emptyProgress(), 'a');
+    p = markLessonOpened(p, 'b');
+    const back = markLessonOpened(p, 'a');
+    expect(back).not.toBe(p);
+    expect(back.learn!.lastLessonId).toBe('a');
+    expect(back.learn!.lessons).toEqual({ a: 'in-progress', b: 'in-progress' });
+  });
+
+  it('reverses a completion back to in-progress', () => {
+    let p = markLessonCompleted(markLessonOpened(emptyProgress(), 'a'), 'a');
+    p = markLessonNotCompleted(p, 'a');
+    expect(lessonState(p, 'a')).toBe('in-progress');
+  });
+
+  it('does not mutate the snapshot it is given', () => {
+    const before = markLessonOpened(emptyProgress(), 'a');
+    const snapshot = JSON.parse(serialize(before));
+    markLessonCompleted(before, 'a');
+    markLessonOpened(before, 'b');
+    expect(JSON.parse(serialize(before))).toEqual(snapshot);
+  });
+
+  // The parser cannot know the lesson catalogue, so rejecting an unrecognised
+  // id would be a data-loss trap. Resolving it is the UI's job.
+  it('accepts a stored lesson id that no longer exists', () => {
+    const parsed = parseProgress(withLearn({ lessons: { 'deleted-lesson': 'completed' }, lastLessonId: 'deleted-lesson' }));
+    expect(parsed!.learn).toEqual({
+      lessons: { 'deleted-lesson': 'completed' },
+      lastLessonId: 'deleted-lesson',
+    });
+  });
+
+  it('rejects every malformed learn shape instead of dropping the key', () => {
+    expect(parseProgress(withLearn('in-progress'))).toBeNull(); // not an object
+    expect(parseProgress(withLearn(null))).toBeNull();
+    expect(parseProgress(withLearn([]))).toBeNull();
+    expect(parseProgress(withLearn({}))).toBeNull(); // no lessons map
+    expect(parseProgress(withLearn({ lessons: null }))).toBeNull();
+    expect(parseProgress(withLearn({ lessons: [] }))).toBeNull();
+    expect(parseProgress(withLearn({ lessons: 'a' }))).toBeNull();
+    expect(parseProgress(withLearn({ lessons: { a: 'done' } }))).toBeNull(); // bad state
+    expect(parseProgress(withLearn({ lessons: { a: true } }))).toBeNull();
+    expect(parseProgress(withLearn({ lessons: {}, lastLessonId: 7 }))).toBeNull();
+    expect(parseProgress(withLearn({ lessons: {}, lastLessonId: null }))).toBeNull();
+  });
+
+  it('fails closed rather than starting a learner over with empty learn state', () => {
+    // deserialize's empty fallback is for local/legacy storage only; the cloud
+    // path uses parseProgress and must refuse to overwrite.
+    expect(parseProgress(withLearn({ lessons: { a: 'done' } }))).toBeNull();
+  });
+
+  it('accepts a valid learn key alongside otherwise ordinary progress', () => {
+    const parsed = parseProgress(withLearn({ lessons: { a: 'in-progress', b: 'completed' } }));
+    expect(parsed!.learn).toEqual({ lessons: { a: 'in-progress', b: 'completed' } });
+    expect(parsed!.learn!.lastLessonId).toBeUndefined();
   });
 });
 

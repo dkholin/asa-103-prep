@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Canonical primitive: rudder.svg
+  TRUE PLAN (bird's-eye) view RUDDER BLADE primitive. Blade and stock only - no
+  hull, no water, no flow arrows, no text, no labels, no answer cues.
+
+  Replaces nothing: this is the first approved rudder primitive. The traced
+  asset that used to sit in the working set (deferred/rudder.svg) is a filled
+  bezier blob carrying a foreign viewBox and a tiller-and-pivot SIDE view, so it
+  was never usable as a plan-view blade. It stays deferred and unapproved.
+
+  COORDINATE CONVENTIONS (consumers depend on these; do not change them)
+    viewBox           0 0 28 56
+    centreline        x = 14
+    STOCK / PIVOT     (14, 10)   where the rudder post passes through the hull
+    leading edge      (14, 4)
+    trailing edge     (14, 52)
+    chord             48 units   (leading edge to trailing edge)
+    max thickness     14 units   (x 7 .. 21) at y = 17
+
+  ORIENTATION
+    At rotation 0 the blade points STRAIGHT AFT down the panel, so it composes
+    directly with a bow-up vessel (sailboat-top.svg at THETA = 0). Positive
+    rotation angles swing the TRAILING EDGE to PORT (panel-left); negative
+    angles swing it to STARBOARD (panel-right). Trailing edge to starboard is a
+    starboard helm order: it pushes the STERN to PORT and swings the BOW to
+    STARBOARD. Check the rest of the panel agrees before picking a sign.
+
+  CONSUMER TRANSFORM PATTERN
+    <g transform="translate(CX CY) rotate(DELTA) scale(S)">
+      <use href="#rudder" x="-14" y="-10" width="28" height="56"/>
+    </g>
+    (CX, CY) is where the STOCK sits on the panel; DELTA is the rudder angle.
+    The use viewport (-14, -10, 28, 56) matches the viewBox 1:1, so the symbol
+    point (14, 10) lands on the group origin and the blade rotates about its
+    stock rather than about the box centre. Inlining the paths works too, with
+    a trailing translate(-14 -10).
+
+  WHY THE BLADE IS DRAWN THICKER THAN A REAL FOIL
+    Same readability argument as the mainsail camber in sailboat-top.svg. A real
+    spade rudder projects in plan as a section roughly 12-15% of its chord, so
+    at the sizes consumers render (20 .. 30 px of chord) the blade would be
+    under 4 px wide and its two outlines would merge into a single line. The
+    thickness here is 29% of chord, deliberately fat: it is what makes the blade
+    read as a deflectable foil with a leading and a trailing edge rather than as
+    a hairline stick, and it is what keeps the deflection angle legible.
+
+  WHY THE FILL IS WHITE
+    Consumers draw the blade over the hull, because that is where it is - the
+    plan view is an x-ray of the underwater hardware. The hull primitive is dark
+    (#282858) and its cockpit is light (#cacaca), so no single mid grey reads on
+    both. White fill plus a dark outline does: the fill carries the silhouette
+    over the hull, the outline carries it over the cockpit.
+
+  STROKE
+    stroke-width 3.9 in the primitive's own units, so a consumer scaling by
+    ~0.55 renders it at about 2.2 px, matching the outlined-hardware weight the
+    production diagrams use. Consumers scaling differently should rescale the
+    stroke to hold that rendered weight.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 56">
+  <!-- BLADE: rounded leading edge at the top, greatest thickness just abaft it,
+       a clean run to a fine trailing edge. Symmetric about x = 14. -->
+  <path fill="#ffffff" stroke="#0e3350" stroke-width="3.9" stroke-linejoin="round"
+        d="M14 4C18.5 8.5 21 12.5 21 18C21 30 18 43 14 52C10 43 7 30 7 18C7 12.5 9.5 8.5 14 4Z"/>
+  <!-- STOCK: the rudder post in section, marking the pivot the blade turns about -->
+  <circle cx="14" cy="10" r="3" fill="#0e3350"/>
+</svg>

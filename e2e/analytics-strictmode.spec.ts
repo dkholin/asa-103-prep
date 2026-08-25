@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { answerCurrentPractice, capturedNames } from './helpers';
+import { lessonsForModule } from '../src/content/learn';
 
 /**
  * The same once-only invariants, against the development server.
@@ -11,6 +12,8 @@ import { answerCurrentPractice, capturedNames } from './helpers';
  */
 
 const devPort = process.env.E2E_DEV_PORT ?? '5174';
+const FIRST_LESSON = lessonsForModule('motoring')[0];
+
 const devURL = (query: string) => `http://127.0.0.1:${devPort}/asa-103-prep/${query}`;
 
 test.skip(
@@ -53,4 +56,36 @@ test('StrictMode does not double-fire a mock attempt start', async ({ page }) =>
   await expect
     .poll(() => capturedNames(page).then((names) => names.filter((n) => n === 'mock_started')))
     .toHaveLength(1);
+});
+
+test('StrictMode does not double-fire a lesson open', async ({ page }) => {
+  await page.goto(devURL('?seed=20250815'));
+  await page.getByRole('button', { name: 'Learn', exact: true }).click();
+  await page
+    .getByRole('listitem')
+    .filter({ hasText: FIRST_LESSON.title })
+    .getByRole('button', { name: 'Open lesson' })
+    .click();
+  await expect(page.getByTestId('lesson-state')).toHaveText('In progress');
+
+  await expect
+    .poll(() => capturedNames(page).then((names) => names.filter((n) => n === 'lesson_started')))
+    .toHaveLength(1);
+
+  // A genuinely new open is a new lesson instance, so it fires again — the
+  // guard is per open, not per page load.
+  await page.getByRole('button', { name: 'Next lesson' }).click();
+  await expect
+    .poll(() => capturedNames(page).then((names) => names.filter((n) => n === 'lesson_started')))
+    .toHaveLength(2);
+
+  await page.getByRole('button', { name: 'Mark complete' }).click();
+  await expect
+    .poll(() => capturedNames(page).then((names) => names.filter((n) => n === 'lesson_completed')))
+    .toHaveLength(1);
+
+  // Reversing a completion is deliberately not an event.
+  await page.getByRole('button', { name: 'Mark as not complete' }).click();
+  await expect(page.getByTestId('lesson-state')).toHaveText('In progress');
+  expect((await capturedNames(page)).filter((n) => n === 'lesson_completed')).toHaveLength(1);
 });

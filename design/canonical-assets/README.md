@@ -26,6 +26,23 @@ They differ in aspect ratio and pivot, and — unlike the legacy shape — the n
 asserts a tack, so a direct substitution can turn a currently-correct diagram into a
 self-contradicting one. Retrofits are deferred and must be done per-diagram.
 
-## Not approved
+## `rudder.svg`
 
-`rudder.svg` is deferred and deliberately not included here.
+Plan-view rudder blade and stock, for steering and low-speed handling diagrams.
+Read its header comment before using it.
+
+- **Orientation** — at rotation 0 the blade points straight aft, so it composes
+  with a bow-up vessel. Positive rotation swings the **trailing edge to port**,
+  negative to starboard. A starboard helm order (trailing edge to starboard)
+  pushes the stern to port; make the rest of the panel agree.
+- **Pivot** — rotate about the **stock** at `(14, 10)`, not the viewBox centre.
+  The documented `<use x="-14" y="-10" width="28" height="56">` viewport puts the
+  stock on the group origin so the transform pattern works as written.
+- **Thickness is exaggerated** — 29% of chord, not a real foil section, for the
+  same reason the mainsail in `sailboat-top.svg` carries exaggerated camber: at
+  render size a true section collapses to a hairline and the deflection angle
+  stops being readable.
+
+This supersedes the traced `rudder.svg` that was previously deferred. That file
+is a tiller-and-pivot side view with a foreign viewBox, is not a plan-view
+blade, and remains unapproved and excluded.

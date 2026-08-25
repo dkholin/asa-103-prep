@@ -14,7 +14,10 @@ const questionById = new Map(QUESTIONS.map((q) => [q.id, q]));
  * launching screen states which it is. Topic and review sessions report
  * mutually exclusive event pairs; emitting both would double-count one session.
  */
-export type PracticeSessionMode = { mode: 'topic'; topic: TopicId } | { mode: 'review' };
+export type PracticeSessionMode =
+  | { mode: 'topic'; topic: TopicId }
+  | { mode: 'review' }
+  | { mode: 'concept'; lessonId: string };
 
 export function PracticeSession(props: {
   title: string;
@@ -44,6 +47,7 @@ export function PracticeSession(props: {
   const [tally, setTally] = useState({ correct: 0, wrong: 0, skipped: 0 });
   const complete = questions.length === 0 || index >= questions.length;
   const { session } = props;
+  const exitLabel = session.mode === 'concept' ? 'Back to lesson' : 'Back to dashboard';
 
   useFireOnceWhen(true, () => {
     analytics.capture(
@@ -52,7 +56,16 @@ export function PracticeSession(props: {
             name: 'practice_started',
             properties: { mode: 'topic', topic: session.topic, question_count: questions.length },
           }
-        : {
+        : session.mode === 'concept'
+          ? {
+              name: 'practice_started',
+              properties: {
+                mode: 'concept',
+                lesson_id: session.lessonId,
+                question_count: questions.length,
+              },
+            }
+          : {
             name: 'missed_review_started',
             properties: { mode: 'review', question_count: questions.length },
           },
@@ -66,7 +79,12 @@ export function PracticeSession(props: {
     analytics.capture(
       session.mode === 'topic'
         ? { name: 'practice_completed', properties: { mode: 'topic', topic: session.topic, ...totals } }
-        : { name: 'missed_review_completed', properties: { mode: 'review', ...totals } },
+        : session.mode === 'concept'
+          ? {
+              name: 'practice_completed',
+              properties: { mode: 'concept', lesson_id: session.lessonId, ...totals },
+            }
+          : { name: 'missed_review_completed', properties: { mode: 'review', ...totals } },
     );
   });
 
@@ -80,7 +98,7 @@ export function PracticeSession(props: {
         {(tally.wrong > 0 || tally.skipped > 0) && (
           <p className="muted">Missed and skipped questions were added to your review queue.</p>
         )}
-        <button onClick={props.onExit}>Back to dashboard</button>
+        <button onClick={props.onExit}>{exitLabel}</button>
       </section>
     );
   }
@@ -155,7 +173,7 @@ export function PracticeSession(props: {
               Skip
             </button>
             <button className="secondary" onClick={props.onExit}>
-              Back to dashboard
+              {exitLabel}
             </button>
           </div>
         ) : (
@@ -166,7 +184,7 @@ export function PracticeSession(props: {
                 {index + 1 < questions.length ? 'Next question' : 'Finish session'}
               </button>
               <button className="secondary" onClick={props.onExit}>
-                Back to dashboard
+                {exitLabel}
               </button>
             </div>
           </>

@@ -66,13 +66,26 @@ function Lightbox({
   );
 }
 
-export function QuestionFigure({ question }: { question: Question }) {
+/**
+ * The asset half of a figure: manifest lookup, alt text, licence attribution,
+ * and click-to-enlarge. Shared by question figures and Learn lesson figures so
+ * the licensing and lightbox logic exists once. `className` is additive — the
+ * `question-figure` styling applies to every caller.
+ */
+export function AssetFigure({
+  assetId,
+  caption,
+  className,
+}: {
+  assetId: string;
+  caption?: string;
+  className?: string;
+}) {
   const [open, setOpen] = useState(false);
-  if (question.format !== 'visual' || !question.assetId) return null;
-  const asset = assetById(question.assetId);
+  const asset = assetById(assetId);
   if (!asset) return null;
   const dark = asset.theme === 'dark';
-  const src = assetUrl(question.assetId);
+  const src = assetUrl(assetId);
   const alt = asset.altText;
   const credit = asset.attributionRequired ? (
     <AssetCredit
@@ -84,8 +97,9 @@ export function QuestionFigure({ question }: { question: Question }) {
       modificationNote={asset.modified ? asset.modificationNote : undefined}
     />
   ) : null;
+  const classes = ['question-figure', className, dark ? 'theme-dark' : ''].filter(Boolean).join(' ');
   return (
-    <figure className={`question-figure ${dark ? 'theme-dark' : ''}`}>
+    <figure className={classes}>
       <button
         type="button"
         className="figure-zoom-trigger"
@@ -95,10 +109,20 @@ export function QuestionFigure({ question }: { question: Question }) {
         <img src={src} alt={alt} />
         <span className="figure-zoom-hint">Click to enlarge</span>
       </button>
-      {credit && <figcaption className="asset-credit">{credit}</figcaption>}
+      {(caption || credit) && (
+        <figcaption className="asset-credit">
+          {caption && <span className="figure-caption">{caption}</span>}
+          {credit}
+        </figcaption>
+      )}
       {open && <Lightbox src={src} alt={alt} credit={credit} onClose={() => setOpen(false)} />}
     </figure>
   );
+}
+
+export function QuestionFigure({ question }: { question: Question }) {
+  if (question.format !== 'visual' || !question.assetId) return null;
+  return <AssetFigure assetId={question.assetId} />;
 }
 
 /**

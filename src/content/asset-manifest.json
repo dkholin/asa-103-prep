@@ -874,6 +874,19 @@
       ]
     },
     {
+      "id": "custom-prop-wash-rudder-flow",
+      "filename": "custom-prop-wash-rudder-flow.svg",
+      "description": "Purpose-built diagram: two-panel bird's-eye comparison of the same boat under power, showing propeller wash driven aft across a deflected rudder in forward gear and driven forward, away from the rudder, in reverse gear",
+      "altText": "Two overhead panels of the same boat, forward gear and reverse gear, showing the direction of propeller-driven water flow near the rudder.",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": []
+    },
+    {
       "id": "custom-docking-wind",
       "filename": "custom-docking-wind.svg",
       "description": "Purpose-built diagram: bird's-eye view of a boat approaching a dock at a shallow angle with wind blowing directly onto the dock",

@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from 'react';
 import { Dashboard } from './components/Dashboard';
+import { LearnHome } from './components/learn/LearnHome';
+import { LessonView } from './components/learn/LessonView';
 import { MissedQuestions } from './components/MissedQuestions';
 import { MockExam } from './components/MockExam';
 import { Onboarding } from './components/Onboarding';
@@ -21,7 +23,9 @@ type View =
   | { name: 'dashboard' }
   | { name: 'practice'; title: string; questionIds: string[]; session: PracticeSessionMode }
   | { name: 'missed' }
-  | { name: 'mock' };
+  | { name: 'mock' }
+  | { name: 'learn' }
+  | { name: 'lesson'; lessonId: string };
 
 export default function App(props: {
   gateway: CloudGateway | null;
@@ -120,6 +124,13 @@ function AuthenticatedApp(props: {
 }) {
   const [view, setView] = useState<View>({ name: 'dashboard' });
   const goDashboard = () => setView({ name: 'dashboard' });
+  const exitPractice = (session: PracticeSessionMode) => {
+    if (session.mode === 'concept') {
+      setView({ name: 'lesson', lessonId: session.lessonId });
+      return;
+    }
+    goDashboard();
+  };
   const onboarding = useOnboarding(props.gateway, props.analytics, props.userId);
 
   // Onboarding is checked before the study shell renders so a first-time
@@ -156,6 +167,13 @@ function AuthenticatedApp(props: {
           </div>
           <nav className="shell-nav" aria-label="Sections">
             <button className={view.name === 'dashboard' ? 'active' : ''} onClick={goDashboard}>Dashboard</button>
+            {/* A lesson is reached only through Learn, so it keeps Learn lit. */}
+            <button
+              className={view.name === 'learn' || view.name === 'lesson' ? 'active' : ''}
+              onClick={() => setView({ name: 'learn' })}
+            >
+              Learn
+            </button>
             <button className={view.name === 'missed' ? 'active' : ''} onClick={() => setView({ name: 'missed' })}>
               Review ({props.progress.reviewQueue.length})
             </button>
@@ -204,7 +222,7 @@ function AuthenticatedApp(props: {
             session={view.session}
             progress={props.progress}
             updateProgress={props.updateProgress}
-            onExit={goDashboard}
+            onExit={() => exitPractice(view.session)}
           />
         )}
         {view.name === 'missed' && (
@@ -223,6 +241,32 @@ function AuthenticatedApp(props: {
         )}
         {view.name === 'mock' && (
           <MockExam progress={props.progress} updateProgress={props.updateProgress} onExit={goDashboard} />
+        )}
+        {view.name === 'learn' && (
+          <LearnHome
+            progress={props.progress}
+            onOpenLesson={(lessonId) => setView({ name: 'lesson', lessonId })}
+            onExit={goDashboard}
+          />
+        )}
+        {view.name === 'lesson' && (
+          // Keyed by lesson id so each open is a fresh component instance, the
+          // same way a practice session is: that is what makes the once-per-
+          // open guard inside LessonView correct across prev/next.
+          <LessonView
+            key={view.lessonId}
+            lessonId={view.lessonId}
+            progress={props.progress}
+            updateProgress={props.updateProgress}
+            onOpenLesson={(lessonId) => setView({ name: 'lesson', lessonId })}
+            onStartPractice={(lesson, questionIds) => setView({
+              name: 'practice',
+              title: `${lesson.title} practice`,
+              questionIds,
+              session: { mode: 'concept', lessonId: lesson.id },
+            })}
+            onExit={() => setView({ name: 'learn' })}
+          />
         )}
       </main>
     </div>

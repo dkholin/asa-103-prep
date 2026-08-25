@@ -1025,6 +1025,131 @@ button.compact {
 }
 
 /* ---------------------------------------------------------------------
+   Learn: modules, lessons, and content blocks
+   ------------------------------------------------------------------- */
+.module-header {
+  align-items: flex-start;
+}
+
+.module-header h2 {
+  margin-bottom: var(--space-1);
+}
+
+.lesson-intro {
+  margin: 0;
+}
+
+.lesson-heading {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.lesson-text {
+  margin: 0;
+}
+
+.lesson-list {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.lesson-list li {
+  margin-bottom: var(--space-1);
+}
+
+.definition {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-accent-subtle);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.definition dt {
+  font-weight: 700;
+  color: var(--color-accent-strong);
+}
+
+.definition dd {
+  margin: var(--space-1) 0 0;
+}
+
+.callout {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-subtle);
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.callout-warning {
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.callout-title {
+  margin: 0 0 var(--space-1);
+  font-weight: 700;
+}
+
+.callout-text {
+  margin: 0;
+}
+
+/* The table, not the page, takes the overflow on a narrow viewport. */
+.lesson-table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.lesson-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 420px;
+  font-size: 0.92rem;
+}
+
+.lesson-table caption {
+  caption-side: top;
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  color: var(--color-text-secondary);
+  font-size: 0.82rem;
+}
+
+.lesson-table th,
+.lesson-table td {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.lesson-table thead th {
+  border-top: none;
+  background: var(--color-surface-subtle);
+  color: var(--color-accent-strong);
+}
+
+/* Declared after the per-kind rules above, several of which zero their own
+   margins: these selectors carry the same specificity, so source order is what
+   decides. The adjacent-sibling form also means the first block never gains a
+   gap above it. */
+.lesson-blocks > * + * {
+  margin-top: var(--space-4);
+}
+
+.lesson-figure {
+  max-width: 480px;
+}
+
+.figure-caption {
+  display: block;
+  color: var(--color-text-secondary);
+}
+
+/* ---------------------------------------------------------------------
    Responsive
    ------------------------------------------------------------------- */
 @media (max-width: 760px) {
