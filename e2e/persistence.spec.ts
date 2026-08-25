@@ -6,6 +6,7 @@ import {
   SEED,
   answerCurrentPractice,
   correctText,
+  revealLesson,
   seeded,
   seededPracticeOrder,
 } from './helpers';
@@ -59,15 +60,27 @@ const openLearn = async (page: Page) => {
 const lessonRow = (page: Page, title: string) =>
   page.getByRole('listitem').filter({ hasText: title });
 
+/**
+ * Learn home is an accordion, so a lesson row exists only while its module is
+ * expanded. Both helpers expand first, which is a no-op when the module is
+ * already the open one.
+ */
 const openLesson = async (page: Page, title: string) => {
+  await revealLesson(page, title);
   await lessonRow(page, title).getByRole('button', { name: 'Open lesson' }).click();
   await expect(page.getByRole('heading', { name: title })).toBeVisible();
+};
+
+/** The state chip for one lesson, with its module expanded first. */
+const revealedLessonRow = async (page: Page, title: string) => {
+  await revealLesson(page, title);
+  return lessonRow(page, title);
 };
 
 test('an opened lesson stays in progress across a reload', async ({ page }) => {
   await page.goto(seeded());
   await openLearn(page);
-  await expect(lessonRow(page, FIRST.title).locator('.chip')).toHaveText('Not started');
+  await expect((await revealedLessonRow(page, FIRST.title)).locator('.chip')).toHaveText('Not started');
 
   await openLesson(page, FIRST.title);
   await expect(page.getByTestId('lesson-state')).toHaveText('In progress');
@@ -78,7 +91,7 @@ test('an opened lesson stays in progress across a reload', async ({ page }) => {
 
   await page.reload();
   await openLearn(page);
-  await expect(lessonRow(page, FIRST.title).locator('.chip')).toHaveText('In progress');
+  await expect((await revealedLessonRow(page, FIRST.title)).locator('.chip')).toHaveText('In progress');
 });
 
 test('a completed lesson survives a reload and can be reversed', async ({ page }) => {
@@ -90,7 +103,7 @@ test('a completed lesson survives a reload and can be reversed', async ({ page }
 
   await page.reload();
   await openLearn(page);
-  await expect(lessonRow(page, FIRST.title).locator('.chip')).toHaveText('Completed');
+  await expect((await revealedLessonRow(page, FIRST.title)).locator('.chip')).toHaveText('Completed');
   await expect(page.getByTestId('module-progress-motoring')).toHaveText(
     `1 of ${MOTORING.length} lessons complete`,
   );
@@ -102,7 +115,7 @@ test('a completed lesson survives a reload and can be reversed', async ({ page }
 
   await page.reload();
   await openLearn(page);
-  await expect(lessonRow(page, FIRST.title).locator('.chip')).toHaveText('In progress');
+  await expect((await revealedLessonRow(page, FIRST.title)).locator('.chip')).toHaveText('In progress');
   await expect(page.getByTestId('module-progress-motoring')).toHaveText(
     `0 of ${MOTORING.length} lessons complete`,
   );
@@ -139,7 +152,7 @@ test('Continue learning starts at lesson one and later resumes the lesson in pro
 
   // The card and the outline are on one screen, so they must agree: lesson one
   // is in progress, so the card resumes it rather than offering to start it.
-  await expect(lessonRow(page, FIRST.title).locator('.chip')).toHaveText('In progress');
+  await expect((await revealedLessonRow(page, FIRST.title)).locator('.chip')).toHaveText('In progress');
   await expect(card.getByRole('button')).toHaveText('Resume lesson');
 });
 
@@ -196,7 +209,7 @@ test('Reset progress clears Learn state', async ({ page }) => {
     `1 of ${MOTORING.length} lessons complete`,
   );
 
-  await page.getByRole('button', { name: 'Dashboard', exact: true }).click();
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
   page.on('dialog', (d) => d.accept());
   await page.getByRole('button', { name: 'Reset progress' }).click();
 
@@ -204,12 +217,12 @@ test('Reset progress clears Learn state', async ({ page }) => {
   await expect(page.getByTestId('module-progress-motoring')).toHaveText(
     `0 of ${MOTORING.length} lessons complete`,
   );
-  await expect(lessonRow(page, FIRST.title).locator('.chip')).toHaveText('Not started');
+  await expect((await revealedLessonRow(page, FIRST.title)).locator('.chip')).toHaveText('Not started');
 
   // And it is the stored snapshot that was cleared, not just the rendered view.
   await page.reload();
   await openLearn(page);
-  await expect(lessonRow(page, FIRST.title).locator('.chip')).toHaveText('Not started');
+  await expect((await revealedLessonRow(page, FIRST.title)).locator('.chip')).toHaveText('Not started');
   await expect(page.getByTestId('continue-learning').getByRole('heading')).toHaveText(FIRST.title);
 });
 
@@ -265,6 +278,7 @@ test('opening a lesson costs a cloud write only when the snapshot changes', asyn
   await page.getByRole('button', { name: 'Back to dashboard' }).click();
 
   await openLearn(page);
+  await revealLesson(page, FIRST.title);
   const open = () =>
     lessonRow(page, FIRST.title).getByRole('button', { name: 'Open lesson' }).click();
 

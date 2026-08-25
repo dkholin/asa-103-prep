@@ -81,6 +81,36 @@ export function continueLearning(progress: Progress): ContinueTarget {
   return { kind: 'all-published-complete' };
 }
 
+/**
+ * Which published module the Learn accordion opens on, in this exact order:
+ *
+ * 1. the module owning `lastLessonId`, whenever that id still resolves to a
+ *    published lesson — regardless of that lesson's state, so returning from a
+ *    lesson reopens the module it came from even once it is complete;
+ * 2. otherwise the module owning whatever `continueLearning` points at, so the
+ *    hero card and the expanded module always agree;
+ * 3. otherwise the first published module in course order, which is also where
+ *    rule 2 lands with no prior activity — the empty state needs no special
+ *    case.
+ *
+ * Presentation state only: the caller seeds local React state with it and
+ * never persists the result.
+ */
+export function defaultExpandedModuleId(progress: Progress): string | null {
+  const firstPublished = MODULES.find((m) => m.status === 'published');
+  if (!firstPublished) return null;
+
+  const lastLessonId = progress.learn?.lastLessonId;
+  if (lastLessonId !== undefined) {
+    const last = publishedLessons().find((l) => l.id === lastLessonId);
+    if (last) return last.moduleId;
+  }
+
+  const target = continueLearning(progress);
+  if (target?.kind === 'lesson') return target.lesson.moduleId;
+  return firstPublished.id;
+}
+
 /** The three Learn labels, matching the readiness vocabulary in `shared.tsx`. */
 export function lessonStateLabel(state: LessonState | undefined): string {
   if (state === 'completed') return 'Completed';

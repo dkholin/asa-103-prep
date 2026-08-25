@@ -123,6 +123,16 @@ body {
   font-size: 0.88rem;
 }
 
+/* Section links plus the account trigger read as one control group, so they
+   share a row and wrap together rather than being pushed to opposite ends. */
+.shell-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
 .shell-nav {
   display: flex;
   gap: var(--space-2);
@@ -950,27 +960,81 @@ button.large {
   background: var(--color-accent-subtle);
 }
 
-.account-controls {
+/* ---------------------------------------------------------------------
+   Account menu
+   ------------------------------------------------------------------- */
+.account-menu {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  margin-left: auto;
 }
 
-.account-label,
+.account-menu-trigger {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  padding: 6px 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.account-menu-trigger:hover:not(:disabled) {
+  background: var(--color-surface);
+  color: var(--color-accent);
+}
+
+/* Open is a menu state, not a "you are here" state, so it stays visually
+   distinct from `.shell-nav button.active`. */
+.account-menu-trigger.open {
+  background: var(--color-surface);
+  color: var(--color-accent);
+}
+
+.account-menu-panel {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  z-index: 20;
+  min-width: 160px;
+  /* Never wider than the viewport it is anchored inside, which is what keeps
+     the panel on screen at 320px. */
+  max-width: calc(100vw - 2 * var(--space-4));
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.account-menu-item {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--color-text);
+  text-align: left;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.account-menu-item:hover:not(:disabled) {
+  background: var(--color-surface-subtle);
+  color: var(--color-accent);
+}
+
+/* No `min-height`: the silent success path must not reserve a header row, so
+   an empty status region collapses to nothing instead of flickering. */
 .cloud-status {
   color: var(--color-text-secondary);
   font-size: 0.85rem;
+  text-align: right;
 }
 
 button.compact {
   padding: 5px 9px;
   min-height: auto;
-}
-
-.cloud-status {
-  text-align: right;
-  min-height: 1.4em;
 }
 
 .cloud-error {
@@ -1033,6 +1097,42 @@ button.compact {
 
 .module-header h2 {
   margin-bottom: var(--space-1);
+}
+
+/* Reads as the module heading it lives inside, not as a button chrome. */
+.module-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.module-toggle:hover:not(:disabled) {
+  background: none;
+  color: var(--color-accent);
+}
+
+/* A caret that points right when closed and down when open. Decorative: the
+   state a screen reader hears comes from `aria-expanded`. */
+.module-toggle-icon {
+  width: 0;
+  height: 0;
+  flex-shrink: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid currentcolor;
+  transition: transform 0.12s ease;
+}
+
+.module-toggle[aria-expanded='true'] .module-toggle-icon {
+  transform: rotate(90deg);
 }
 
 .lesson-intro {
@@ -1180,11 +1280,59 @@ button.compact {
     flex-wrap: wrap;
   }
 
-  .account-controls {
+  /* The controls wrap under the brand rather than being squeezed beside it,
+     and start at the left edge so the five of them read in order. */
+  .shell-controls {
+    margin-left: 0;
     width: 100%;
+  }
+
+  /* The subtitle is the one header element with nothing to do at this width;
+     hiding it gives the five controls a full row instead of a crowded one. */
+  .subtitle {
+    display: none;
+  }
+
+  /*
+    Once the controls wrap, the Account trigger can sit anywhere along the row,
+    so anchoring the panel to it puts the panel off one edge or the other. The
+    panel is anchored to the sticky header instead and drops below it full
+    width, which is in the viewport wherever the trigger ended up.
+  */
+  .account-menu {
+    position: static;
+  }
+
+  .account-menu-panel {
+    top: 100%;
+    left: var(--space-4);
+    right: var(--space-4);
+    max-width: none;
   }
 
   .cloud-status {
     text-align: left;
+  }
+}
+
+/*
+  Below ~480px the four section links no longer fit one row at their default
+  size, so the nav wrapped internally and pushed Account onto a third row.
+  Tightening only the whitespace around the controls — horizontal padding and
+  the gap between them — buys the links a single row and leaves Account on the
+  second. Vertical padding grows to offset the smaller type, so the row is
+  bought with whitespace between the controls rather than out of their height:
+  they end up slightly taller here (≈38px) than at full size.
+*/
+@media (max-width: 480px) {
+  .shell-controls,
+  .shell-nav {
+    gap: 5px;
+  }
+
+  .shell-nav button,
+  .account-menu-trigger {
+    padding: 8px 6px;
+    font-size: 0.82rem;
   }
 }

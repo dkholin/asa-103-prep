@@ -1,17 +1,21 @@
 import { expect, test } from '@playwright/test';
-import { captured, correctText, displayedPositionOf, question, seeded } from './helpers';
+import {
+  captured,
+  correctText,
+  displayedPositionOf,
+  question,
+  revealLesson,
+  seeded,
+} from './helpers';
 
 async function openControlsLesson(page: import('@playwright/test').Page) {
-  await page.getByRole('button', { name: 'Learn', exact: true }).click();
-  await page
-    .getByRole('listitem')
-    .filter({ hasText: 'Controls & Instruments' })
-    .getByRole('button', { name: 'Open lesson' })
-    .click();
+  await openLearnLesson(page, 'Controls & Instruments');
 }
 
+/** Learn home, the owning accordion module expanded, then the lesson. */
 async function openLearnLesson(page: import('@playwright/test').Page, title: string) {
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
+  await revealLesson(page, title);
   await page
     .getByRole('listitem')
     .filter({ hasText: title })
@@ -91,6 +95,7 @@ test('Sails & Trim Practice uses concept resolution and never falls back by topi
   await page.getByRole('button', { name: 'Back to lesson' }).click();
 
   await page.getByRole('button', { name: 'Back to Learn' }).click();
+  await revealLesson(page, 'Trim by Point of Sail');
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Trim by Point of Sail' })

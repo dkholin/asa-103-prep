@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { MODULES, lessonsForModule } from '../content/learn';
 import {
   continueLearning,
+  defaultExpandedModuleId,
   lessonChipClass,
   lessonStateLabel,
   moduleLessonProgress,
@@ -129,6 +130,59 @@ describe('continueLearning', () => {
   it('reports a module-neutral terminal state once every published lesson is done', () => {
     const target = continueLearning(completeAll(emptyProgress()));
     expect(target).toEqual({ kind: 'all-published-complete' });
+  });
+});
+
+describe('defaultExpandedModuleId', () => {
+  const FIRST_PUBLISHED = MODULES.find((m) => m.status === 'published')!;
+
+  it('opens the first published module with no prior activity', () => {
+    // Not the first module in `MODULES` — that one is coming-soon.
+    expect(FIRST_PUBLISHED.id).toBe('motoring');
+    expect(defaultExpandedModuleId(emptyProgress())).toBe('motoring');
+  });
+
+  it('opens the module holding the last opened lesson', () => {
+    const p = markLessonOpened(emptyProgress(), SAILS_TRIM[2].id);
+    expect(defaultExpandedModuleId(p)).toBe('sails-trim');
+  });
+
+  // Rule 1 asks only that the lesson resolve, not that it still be unfinished:
+  // returning from a lesson must reopen the module it came from even once that
+  // lesson is complete, which is where this parts company with
+  // `continueLearning`.
+  it('keeps the last opened lesson’s module open after that lesson is completed', () => {
+    const p = markLessonCompleted(markLessonOpened(emptyProgress(), SAILS_TRIM[0].id), SAILS_TRIM[0].id);
+    expect(continueLearning(p)).toMatchObject({ kind: 'lesson', lesson: MOTORING[0] });
+    expect(defaultExpandedModuleId(p)).toBe('sails-trim');
+  });
+
+  it('falls back to the Continue learning target when the stored id is unknown', () => {
+    const p: Progress = {
+      ...emptyProgress(),
+      learn: {
+        lessons: Object.fromEntries(MOTORING.map((l) => [l.id, 'completed' as const])),
+        lastLessonId: 'motoring-removed-lesson',
+      },
+    };
+    // Motoring is finished, so Continue learning is in Sails & Trim.
+    expect(defaultExpandedModuleId(p)).toBe('sails-trim');
+  });
+
+  it('never opens a coming-soon module named by stored state', () => {
+    const p: Progress = {
+      ...emptyProgress(),
+      learn: { lessons: { 'seamanship-knots': 'in-progress' }, lastLessonId: 'seamanship-knots' },
+    };
+    const opened = defaultExpandedModuleId(p);
+    expect(MODULES.find((m) => m.id === opened)?.status).toBe('published');
+  });
+
+  it('opens the last lesson’s module once the whole course is complete', () => {
+    const p = completeAll(emptyProgress());
+    expect(continueLearning(p)).toEqual({ kind: 'all-published-complete' });
+    // `completeAll` opens every lesson in course order, so the last one wins.
+    expect(defaultExpandedModuleId(p)).toBe(SAILS_TRIM[SAILS_TRIM.length - 1].moduleId);
   });
 });
 

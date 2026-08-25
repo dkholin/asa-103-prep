@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react';
+import { AccountMenu } from './components/AccountMenu';
 import { Dashboard } from './components/Dashboard';
 import { LearnHome } from './components/learn/LearnHome';
 import { LessonView } from './components/learn/LessonView';
@@ -99,7 +100,6 @@ function CloudApp(props: {
       userId={cloud.state.user.id}
       progress={cloud.state.progress}
       updateProgress={cloud.updateProgress}
-      userLabel={cloud.state.user.email ?? 'Signed-in learner'}
       saveState={cloud.state.saveState}
       saveMessage={cloud.state.saveMessage}
       accountMessage={cloud.state.accountMessage}
@@ -115,7 +115,6 @@ function AuthenticatedApp(props: {
   userId: string;
   progress: Progress;
   updateProgress: (progress: Progress) => void;
-  userLabel: string;
   saveState: 'saved' | 'saving' | 'error';
   saveMessage?: string;
   accountMessage?: string;
@@ -165,37 +164,45 @@ function AuthenticatedApp(props: {
             </h1>
             <p className="subtitle">Navigation Rules, Charts, Systems &amp; Safety — practice tool</p>
           </div>
-          <nav className="shell-nav" aria-label="Sections">
-            <button className={view.name === 'dashboard' ? 'active' : ''} onClick={goDashboard}>Dashboard</button>
-            {/* A lesson is reached only through Learn, so it keeps Learn lit. */}
-            <button
-              className={view.name === 'learn' || view.name === 'lesson' ? 'active' : ''}
-              onClick={() => setView({ name: 'learn' })}
-            >
-              Learn
-            </button>
-            <button className={view.name === 'missed' ? 'active' : ''} onClick={() => setView({ name: 'missed' })}>
-              Review ({props.progress.reviewQueue.length})
-            </button>
-            <button className={view.name === 'mock' ? 'active' : ''} onClick={() => setView({ name: 'mock' })}>Exam</button>
-          </nav>
-          <div className="account-controls">
-            {/* The label is the learner's email address, so it is blocked
-                from session replay rather than merely masked. */}
-            <span className="account-label" data-ph-no-capture>{props.userLabel}</span>
-            <button className="secondary compact" onClick={() => void props.signOut()}>Sign out</button>
+          {/* Account sits alongside the section links rather than inside the
+              <nav>: it opens a menu, not a screen, so it is not a "section". */}
+          <div className="shell-controls">
+            <nav className="shell-nav" aria-label="Sections">
+              {/* A lesson is reached only through Learn, so it keeps Learn lit. */}
+              <button
+                className={view.name === 'learn' || view.name === 'lesson' ? 'active' : ''}
+                onClick={() => setView({ name: 'learn' })}
+              >
+                Learn
+              </button>
+              {/* "Practice" is the label for the dashboard view; the view, its
+                  component, and its landmark keep their original names. */}
+              <button className={view.name === 'dashboard' ? 'active' : ''} onClick={goDashboard}>Practice</button>
+              <button className={view.name === 'missed' ? 'active' : ''} onClick={() => setView({ name: 'missed' })}>
+                Review ({props.progress.reviewQueue.length})
+              </button>
+              <button className={view.name === 'mock' ? 'active' : ''} onClick={() => setView({ name: 'mock' })}>Exam</button>
+            </nav>
+            <AccountMenu onSignOut={() => void props.signOut()} />
           </div>
         </div>
+        {/*
+          Success is silent. The region is always in the DOM so that assistive
+          technology has a live region to announce into, but it renders — and
+          occupies — nothing unless a save actually failed or an account action
+          has something to report. `accountMessage` is checked independently of
+          `saveState` because "Unable to sign out: …" arrives with `saved`.
+        */}
         <div className={`cloud-status cloud-${props.saveState}`} role="status">
-          {props.saveState === 'saved' && 'Progress saved'}
-          {props.saveState === 'saving' && 'Saving progress…'}
           {props.saveState === 'error' && (
             <>
               Progress not saved{props.saveMessage ? `: ${props.saveMessage}` : ''}{' '}
               <button className="linklike" onClick={props.retrySave}>Retry</button>
             </>
           )}
-          {props.accountMessage && <span> · {props.accountMessage}</span>}
+          {props.accountMessage && (
+            <span>{props.saveState === 'error' ? ' · ' : ''}{props.accountMessage}</span>
+          )}
         </div>
       </header>
       <main>

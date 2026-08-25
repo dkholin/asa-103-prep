@@ -6,6 +6,7 @@ import {
   capturedNames,
   capturedOnce,
   seeded,
+  signOut,
 } from './helpers';
 
 /**
@@ -259,7 +260,7 @@ test('sign-in reports the method and sign-out resets the analytics identity', as
     method: 'google',
   });
 
-  await page.getByRole('button', { name: 'Sign out' }).click();
+  await signOut(page);
   await expect(page.getByRole('heading', { name: 'Sign in to study' })).toBeVisible();
 
   const names = await capturedNames(page);

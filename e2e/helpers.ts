@@ -1,5 +1,6 @@
 import { expect, type Page } from '@playwright/test';
 import { MOCK_EXAM_SIZE, QUESTIONS, selectMockQuestions } from '../src/content/questions';
+import { LESSONS, MODULES } from '../src/content/learn';
 import { mulberry32, prepareAttempt, withShuffledChoices } from '../src/lib/shuffle';
 import type { Question, TopicId } from '../src/content/types';
 
@@ -101,6 +102,37 @@ export async function skipToPrompt(page: Page, prompt: string, limit = 60) {
     await page.getByRole('button', { name: 'Skip' }).click();
   }
   expect(await currentPrompt(page), `never reached prompt: ${prompt}`).toBe(prompt.trim());
+}
+
+/* ---------------------------------------------------------------------------
+ * Header and Learn accordion
+ *
+ * Sign out lives behind the Account menu, and Learn shows one module expanded
+ * at a time, so a spec that wants either has a step to take first. These are
+ * idempotent on purpose: `revealLesson` on the already-open module is a no-op,
+ * which lets a spec call it before every lesson without tracking which module
+ * happens to be expanded.
+ * ------------------------------------------------------------------------- */
+
+/** Open the header Account menu and sign out. */
+export async function signOut(page: Page) {
+  await page.getByRole('button', { name: 'Account' }).click();
+  await page.getByRole('button', { name: 'Sign out' }).click();
+}
+
+/** Expand the Learn module named `title` unless it is already expanded. */
+export async function expandModule(page: Page, title: string) {
+  const toggle = page.getByRole('button', { name: title, exact: true });
+  if ((await toggle.getAttribute('aria-expanded')) !== 'true') await toggle.click();
+}
+
+/** Expand whichever module owns `lessonTitle`, so its row is on screen. */
+export async function revealLesson(page: Page, lessonTitle: string) {
+  const lesson = LESSONS.find((l) => l.title === lessonTitle);
+  if (!lesson) throw new Error(`unknown lesson title: ${lessonTitle}`);
+  const module = MODULES.find((m) => m.id === lesson.moduleId);
+  if (!module) throw new Error(`lesson ${lesson.id} names no module`);
+  await expandModule(page, module.title);
 }
 
 /* ---------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { SEED, correctText, seeded, seededPracticeOrder } from './helpers';
+import { SEED, correctText, revealLesson, seeded, seededPracticeOrder } from './helpers';
 
 test('every navigation control reaches the expected screen', async ({ page }) => {
   await page.goto(seeded());
@@ -38,6 +38,12 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
   // Learn: the module outline, a lesson, and prev/next within the module.
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Motoring', exact: true })).toBeVisible();
+  // Motoring is the module the accordion opens on with no prior activity, so
+  // its lessons are already on screen.
+  await expect(page.getByRole('button', { name: 'Motoring', exact: true })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
   // A coming-soon module states its status in text, and offers nothing to open.
   const comingSoon = page.locator('.card').filter({ hasText: 'Boat & Cruising Basics' });
   await expect(comingSoon.getByText('Coming soon')).toBeVisible();
@@ -58,13 +64,25 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
 
   await page.getByRole('button', { name: 'Back to Learn' }).click();
   await expect(page.getByRole('heading', { name: 'Learn', exact: true })).toBeVisible();
+  await revealLesson(page, 'Outboards, Fueling & Motoring Etiquette');
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Outboards, Fueling & Motoring Etiquette' })
     .getByRole('button', { name: 'Open lesson' })
     .click();
   await expect(page.getByRole('button', { name: 'Next lesson' })).toBeDisabled();
-  await page.getByRole('button', { name: 'Dashboard' }).click();
+
+  // A lesson in the other published module needs that module expanded first.
+  await page.getByRole('button', { name: 'Back to Learn' }).click();
+  await revealLesson(page, 'Preparing to Sail');
+  await page
+    .getByRole('listitem')
+    .filter({ hasText: 'Preparing to Sail' })
+    .getByRole('button', { name: 'Open lesson' })
+    .click();
+  await expect(page.getByRole('heading', { name: 'Preparing to Sail' })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
 
   // Header title acts as home from inside a session.

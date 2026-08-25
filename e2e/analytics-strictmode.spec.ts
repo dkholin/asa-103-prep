@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { answerCurrentPractice, capturedNames } from './helpers';
+import { answerCurrentPractice, capturedNames, revealLesson } from './helpers';
 import { lessonsForModule } from '../src/content/learn';
 
 /**
@@ -61,6 +61,7 @@ test('StrictMode does not double-fire a mock attempt start', async ({ page }) =>
 test('StrictMode does not double-fire a lesson open', async ({ page }) => {
   await page.goto(devURL('?seed=20250815'));
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
+  await revealLesson(page, FIRST_LESSON.title);
   await page
     .getByRole('listitem')
     .filter({ hasText: FIRST_LESSON.title })

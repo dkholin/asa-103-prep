@@ -227,7 +227,7 @@ test('a captured event actually reaches the wire', async ({ page }) => {
   expect(analytics.wire()).toContain('"api_key"');
 });
 
-test('session replay records, and masks both the typed and the displayed email', async ({ page }) => {
+test('session replay records, and no email reaches the wire', async ({ page }) => {
   const analytics = await interceptAnalytics(page);
   await page.goto(`${transportBaseURL}?signedOut=1`);
   await expect(page.getByRole('heading', { name: 'Sign in to study' })).toBeVisible();
@@ -235,10 +235,10 @@ test('session replay records, and masks both the typed and the displayed email',
 
   await page.getByLabel('Email address').fill('secret-learner@example.test');
   await page.getByRole('button', { name: 'Email me a sign-in link' }).click();
-  // The signed-in header renders the account's email address, which is blocked
-  // from replay rather than merely masked.
+  // The signed-in header no longer renders the account's email address at all,
+  // so there is nothing on screen for the recorder to have to mask.
   await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
-  await expect(page.getByText('learner@example.test')).toBeVisible();
+  await expect(page.getByText('learner@example.test')).toHaveCount(0);
   await page
     .locator('li.topic-row', { hasText: 'Signal Flags' })
     .getByRole('button', { name: 'Practice' })
@@ -267,8 +267,11 @@ test('session replay records, and masks both the typed and the displayed email',
   expect(corpus).toContain('Sign in to study');
   expect(corpus.length).toBeGreaterThan(50_000);
 
-  // maskAllInputs covers what the learner types; the block selector covers the
-  // address the header renders. Both promises are made on the sign-in card.
+  // maskAllInputs covers what the learner types — the promise made on the
+  // sign-in card. The account address is no longer rendered anywhere in the
+  // authenticated shell, so it cannot reach the recording by that route either;
+  // the `[data-ph-no-capture]` block selector stays configured as the guard for
+  // anything that renders PII in future.
   expect(corpus).not.toContain('secret-learner');
   expect(corpus).not.toContain('learner@example.test');
   expect(corpus).not.toContain('@example.test');

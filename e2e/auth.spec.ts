@@ -1,12 +1,14 @@
 import { expect, test } from '@playwright/test';
-import { answerCurrentPractice } from './helpers';
+import { answerCurrentPractice, signOut } from './helpers';
 
 test('signed-out learners can use Google as the primary sign-in method', async ({ page }) => {
   await page.goto('/?signedOut=1');
   await expect(page.getByRole('heading', { name: 'Sign in to study' })).toBeVisible();
   await page.getByRole('button', { name: 'Continue with Google' }).click();
   await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
-  await expect(page.getByText('Progress saved')).toBeVisible();
+  // Success is silent now, so the positive signal is the absence of a failure
+  // rather than a standing "Progress saved" label.
+  await expect(page.getByText(/Progress not saved/)).toHaveCount(0);
 });
 
 test('an expired email callback shows a safe error, cleans the URL, and keeps sign-in usable', async ({ page }) => {
@@ -39,7 +41,7 @@ test('email magic link is available as the fallback', async ({ page }) => {
 test('sign out returns to the authenticated-only entry screen', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
-  await page.getByRole('button', { name: 'Sign out' }).click();
+  await signOut(page);
   await expect(page.getByRole('heading', { name: 'Sign in to study' })).toBeVisible();
 });
 
@@ -65,11 +67,13 @@ test('a failed save is visible, retryable, and blocks sign-out', async ({ page }
   await answerCurrentPractice(page, 'correct');
   await expect(page.getByText(/Progress not saved: Simulated cloud save failure/)).toBeVisible();
 
-  await page.getByRole('button', { name: 'Sign out' }).click();
+  await signOut(page);
   await expect(page.getByText(/Sign-out canceled until progress is saved/)).toBeVisible();
   await page.getByRole('button', { name: 'Retry', exact: true }).click();
-  await expect(page.getByText('Progress saved')).toBeVisible();
-  await page.getByRole('button', { name: 'Sign out' }).click();
+  // The retry succeeding is now shown by the failure clearing, not by a label.
+  await expect(page.getByText(/Progress not saved/)).toHaveCount(0);
+  await expect(page.getByText(/Sign-out canceled/)).toHaveCount(0);
+  await signOut(page);
   await expect(page.getByRole('heading', { name: 'Sign in to study' })).toBeVisible();
 });
 
@@ -77,7 +81,7 @@ test('sign-out removes study controls and drains a previously accepted slow save
   await page.goto('/?slowSave=1');
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await answerCurrentPractice(page, 'correct');
-  await page.getByRole('button', { name: 'Sign out' }).click();
+  await signOut(page);
 
   await expect(page.getByRole('heading', { name: 'Finishing saves and signing out…' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Submit' })).not.toBeVisible();
@@ -86,12 +90,12 @@ test('sign-out removes study controls and drains a previously accepted slow save
 
 test('a gateway sign-out failure restores usable study controls and can be retried', async ({ page }) => {
   await page.goto('/?signOutError=1');
-  await page.getByRole('button', { name: 'Sign out' }).click();
+  await signOut(page);
   await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
   await expect(page.getByText(/Unable to sign out: Simulated sign-out failure/)).toBeVisible();
 
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await expect(page.getByRole('region', { name: 'Practice question' })).toBeVisible();
-  await page.getByRole('button', { name: 'Sign out' }).click();
+  await signOut(page);
   await expect(page.getByRole('heading', { name: 'Sign in to study' })).toBeVisible();
 });
