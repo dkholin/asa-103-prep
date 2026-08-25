@@ -7,8 +7,8 @@
  * is also where the "unknown lesson ids must not crash Learn" half of that
  * contract is enforced.
  */
-import { MODULES, lessonsForModule, moduleById } from '../content/learn';
-import type { LearnModule, Lesson } from '../content/learn';
+import { MODULES, lessonsForModule } from '../content/learn';
+import type { Lesson } from '../content/learn';
 import { lessonState, type LessonState, type Progress } from './progress';
 
 /** Lessons a learner can actually reach today, in course order. */
@@ -38,7 +38,7 @@ export type ContinueTarget =
    * the same screen labelled "In progress".
    */
   | { kind: 'lesson'; lesson: Lesson; resume: boolean }
-  | { kind: 'module-complete'; module: LearnModule }
+  | { kind: 'all-published-complete' }
   | null;
 
 /**
@@ -49,8 +49,8 @@ export type ContinueTarget =
  * 2. otherwise the first published lesson that is not complete, in course
  *    order — which with no prior activity is simply lesson 1, with no special
  *    case for the empty state;
- * 3. and if every published lesson is complete, the module itself, so the card
- *    reports completion rather than inventing a destination.
+ * 3. and if every published lesson is complete, a course-wide terminal state,
+ *    so the card reports completion without attributing it to one module.
  *
  * A coming-soon module is never a target: it contributes no lessons.
  */
@@ -78,8 +78,7 @@ export function continueLearning(progress: Progress): ContinueTarget {
     return { kind: 'lesson', lesson: next, resume: lessonState(progress, next.id) === 'in-progress' };
   }
 
-  const module = moduleById(lessons[lessons.length - 1].moduleId);
-  return module ? { kind: 'module-complete', module } : null;
+  return { kind: 'all-published-complete' };
 }
 
 /** The three Learn labels, matching the readiness vocabulary in `shared.tsx`. */

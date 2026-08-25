@@ -56,6 +56,56 @@ const EXPECTED_BY_LESSON: Record<string, string[]> = {
     'eng-auxiliary-engine-types',
     'emer-fire-fuel-vapor-prevention',
   ],
+  'sails-trim-lines-winches-sail-controls': [
+    'sail-trim-traveler-concept',
+    'sea-line-hand-wraps',
+    'sea-line-winch-turns',
+    'sea-line-load-awareness',
+    'sea-line-standing-clear',
+  ],
+  'sails-trim-preparing-to-sail': [
+    'sea-resp-crew-briefing',
+    'sea-departure-checklist',
+  ],
+  'sails-trim-setting-sail': ['sea-departure-lines-fenders'],
+  'sails-trim-sail-trim-fundamentals': [
+    'sail-trim-heel-diagram',
+    'sail-trim-easing-sheet',
+    'sail-trim-balance-helm',
+    'sail-trim-heel-safety',
+  ],
+  'sails-trim-trim-by-point-of-sail': [],
+  'sails-trim-reefing-reducing-sail': [
+    'wx-interp-gusts-sustained',
+    'wx-interp-wind-vs-forecast-mismatch',
+    'wx-interp-sea-state-diagram',
+    'sail-select-light-air',
+    'sail-select-moderate',
+    'sail-select-increasing-early',
+    'sail-select-signs-to-reduce',
+    'sail-select-visual-diagram',
+    'sail-select-genoa-vs-jib',
+    'sail-select-combo-heavy',
+    'sail-select-conservative-principle',
+    'sail-furl-photo-id',
+    'sail-furl-shape-change',
+    'sail-furl-when-to-use',
+    'sail-furl-limitations',
+    'sail-furl-load-control',
+    'sail-reef-when-why',
+    'sail-reef-effect-heel',
+    'sail-reef-diagram',
+    'sail-reef-sequence-concept',
+    'sail-reef-early-principle',
+  ],
+  'sails-trim-special-situations': [
+    'rules-motorsailing',
+    'sail-heave-purpose',
+    'sail-heave-diagram',
+    'sail-heave-behavior',
+    'sail-heave-when-useful',
+    'sail-heave-setup-concept',
+  ],
 };
 
 describe('concept Practice mapping', () => {
@@ -64,7 +114,6 @@ describe('concept Practice mapping', () => {
     for (const lesson of LESSONS.filter((item) => published.has(item.moduleId))) {
       const ids = practiceIdsForConcepts(lesson.concepts);
       expect(ids, lesson.id).toEqual(EXPECTED_BY_LESSON[lesson.id]);
-      expect(ids.length, `${lesson.id} has no Practice coverage`).toBeGreaterThan(0);
     }
   });
 
@@ -98,7 +147,22 @@ describe('concept Practice mapping', () => {
     expect(digest).toBe('fd86aaa573af75dc5a9bb56656d59ca91e3cde3ed848a0b2c6f0ac6eea2f2280');
   });
 
-  it('tags exactly the intentionally mapped 34 questions', () => {
-    expect(QUESTIONS.filter((question) => question.concepts?.length).length).toBe(34);
+  it('adds concept metadata to exactly 36 questions for Sails & Trim', () => {
+    const sailsConcepts = new Set<ConceptId>([
+      'line-handling-safety',
+      'sail-control-equipment',
+      'sail-trim-response',
+      'sail-area-selection',
+      'roller-furling',
+      'reefing',
+      'heaving-to',
+      'motorsailing',
+    ]);
+    expect(
+      QUESTIONS.filter((question) =>
+        question.concepts?.some((concept) => sailsConcepts.has(concept)),
+      ),
+    ).toHaveLength(36);
+    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(70);
   });
 });

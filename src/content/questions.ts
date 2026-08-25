@@ -807,6 +807,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-motorsailing',
     topic: 'right-of-way',
+    concepts: ['motorsailing'],
     format: 'text',
     prompt:
       'A sailboat has her sails up but is also running her engine to help her make way. Under the Rules, how is she classified?',
@@ -5350,6 +5351,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'wx-interp-gusts-sustained',
   topic: 'marine-weather',
+  concepts: ['sail-area-selection'],
   format: 'text',
   prompt: "A forecast reads 'winds 12 to 15 knots, gusts to 22 knots.' Which number should most influence how much sail area you carry?",
   choices: [
@@ -5395,6 +5397,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'wx-interp-wind-vs-forecast-mismatch',
   topic: 'marine-weather',
+  concepts: ['sail-area-selection'],
   format: 'text',
   prompt: "You're underway and the actual wind is noticeably stronger than what this morning's forecast called for. What is the appropriate response?",
   choices: [
@@ -5410,6 +5413,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'wx-interp-sea-state-diagram',
   topic: 'marine-weather',
+  concepts: ['sail-area-selection'],
   format: 'visual',
   assetId: 'custom-sea-state-diagram',
   prompt: "The diagram compares two sea states. What is the main practical implication of the rough-seas condition on the right for a small sailboat?",
@@ -5654,6 +5658,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-select-light-air',
   topic: 'sail-trim',
+  concepts: ['sail-area-selection'],
   format: 'text',
   prompt: "In light air (roughly 5 knots true wind or less), what sail plan generally makes the most sense?",
   choices: [
@@ -5669,6 +5674,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-select-moderate',
   topic: 'sail-trim',
+  concepts: ['sail-area-selection'],
   format: 'text',
   prompt: "In a moderate breeze (roughly 10 to 15 knots) with a comfortable, controllable heel angle, what is the typical sail plan?",
   choices: [
@@ -5684,6 +5690,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-select-increasing-early',
   topic: 'sail-trim',
+  concepts: ['sail-area-selection'],
   format: 'text',
   prompt: "The wind has been steadily building for the last twenty minutes and shows no sign of leveling off. What is the prudent approach to sail area?",
   choices: [
@@ -5699,6 +5706,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-select-signs-to-reduce',
   topic: 'sail-trim',
+  concepts: ['sail-area-selection'],
   format: 'text',
   prompt: "Which combination of signs on board suggests it's time to reduce sail?",
   choices: [
@@ -5714,6 +5722,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-select-visual-diagram',
   topic: 'sail-trim',
+  concepts: ['sail-area-selection'],
   format: 'visual',
   assetId: 'custom-sail-wind-strength',
   prompt: "The diagram shows sail plans for three wind strengths. What is the general pattern from left to right?",
@@ -5730,6 +5739,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-select-genoa-vs-jib',
   topic: 'sail-trim',
+  concepts: ['sail-area-selection'],
   format: 'text',
   prompt: "As wind builds through the day, why might a skipper switch from a large genoa to a smaller working jib (if the boat has that option)?",
   choices: [
@@ -5745,6 +5755,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-select-combo-heavy',
   topic: 'sail-trim',
+  concepts: ['sail-area-selection'],
   format: 'text',
   prompt: "In heavy air, what combination of sail area is generally appropriate for a cruising sailboat?",
   choices: [
@@ -5760,6 +5771,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-select-conservative-principle',
   topic: 'sail-trim',
+  concepts: ['sail-area-selection'],
   format: 'text',
   prompt: "Which general principle best summarizes prudent sail-carrying practice on a cruising boat?",
   choices: [
@@ -5775,6 +5787,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-furl-photo-id',
   topic: 'sail-trim',
+  concepts: ['roller-furling'],
   format: 'visual',
   assetId: 'photo-furled-headsail',
   prompt: "The photo shows a roller-furling drum at the base of a genoa's headstay. What is this system primarily used for?",
@@ -5791,6 +5804,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-furl-shape-change',
   topic: 'sail-trim',
+  concepts: ['roller-furling'],
   format: 'text',
   prompt: "When a roller-furling genoa is partially rolled up to reduce its area, what typically happens to its shape?",
   choices: [
@@ -5806,6 +5820,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-furl-when-to-use',
   topic: 'sail-trim',
+  concepts: ['roller-furling'],
   format: 'text',
   prompt: "What is a key practical advantage of a roller-furling headsail in building wind?",
   choices: [
@@ -5821,6 +5836,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-furl-limitations',
   topic: 'sail-trim',
+  concepts: ['roller-furling'],
   format: 'text',
   prompt: "What is a limitation of using a standard roller-furling genoa as your only means of reducing headsail area in strong wind?",
   choices: [
@@ -5836,6 +5852,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-furl-load-control',
   topic: 'sail-trim',
+  concepts: ['roller-furling'],
   format: 'text',
   prompt: "What is the correct technique when furling a headsail in a fresh breeze?",
   choices: [
@@ -5851,6 +5868,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-reef-when-why',
   topic: 'sail-trim',
+  concepts: ['reefing'],
   format: 'text',
   prompt: "In general terms, when should you reef the mainsail?",
   choices: [
@@ -5866,6 +5884,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-reef-effect-heel',
   topic: 'sail-trim',
+  concepts: ['reefing'],
   format: 'text',
   prompt: "What effect does reefing the mainsail have on the boat's heel and control?",
   choices: [
@@ -5881,6 +5900,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-reef-diagram',
   topic: 'sail-trim',
+  concepts: ['reefing'],
   format: 'visual',
   assetId: 'custom-reefed-mainsail',
   prompt: "The diagram compares a full mainsail to the same sail with a reef tied in. What has changed?",
@@ -5897,6 +5917,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-reef-sequence-concept',
   topic: 'sail-trim',
+  concepts: ['reefing'],
   format: 'text',
   prompt: "At a conceptual level, what is the basic sequence of tying in a reef?",
   choices: [
@@ -5912,6 +5933,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-reef-early-principle',
   topic: 'sail-trim',
+  concepts: ['reefing'],
   format: 'text',
   prompt: "Why do experienced sailors often say it's better to reef before you think you need to, rather than after?",
   choices: [
@@ -5927,6 +5949,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-heave-purpose',
   topic: 'sail-trim',
+  concepts: ['heaving-to'],
   format: 'text',
   prompt: "What is the main purpose of heaving-to?",
   choices: [
@@ -5942,6 +5965,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-heave-diagram',
   topic: 'sail-trim',
+  concepts: ['heaving-to'],
   format: 'visual',
   assetId: 'custom-heaving-to',
   prompt: "The diagram shows a boat hove-to. What combination of sail and rudder produces this state?",
@@ -5958,6 +5982,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-heave-behavior',
   topic: 'sail-trim',
+  concepts: ['heaving-to'],
   format: 'text',
   prompt: "Once properly hove-to, how does the boat typically behave?",
   choices: [
@@ -5973,6 +5998,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-heave-when-useful',
   topic: 'sail-trim',
+  concepts: ['heaving-to'],
   format: 'text',
   prompt: "Which situation is heaving-to well suited for?",
   choices: [
@@ -5988,6 +6014,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-heave-setup-concept',
   topic: 'sail-trim',
+  concepts: ['heaving-to'],
   format: 'text',
   prompt: "At a basic conceptual level, how do you set a boat up to heave-to from a close-hauled course?",
   choices: [
@@ -6003,6 +6030,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-trim-heel-diagram',
   topic: 'sail-trim',
+  concepts: ['sail-trim-response'],
   format: 'visual',
   assetId: 'custom-heel-trim',
   prompt: "The diagram compares two boats in the same gust. What likely caused the difference in heel angle between them?",
@@ -6019,6 +6047,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-trim-easing-sheet',
   topic: 'sail-trim',
+  concepts: ['sail-trim-response'],
   format: 'text',
   prompt: "In a sudden gust, what is a quick, effective way to reduce excess heel without reefing?",
   choices: [
@@ -6034,6 +6063,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-trim-traveler-concept',
   topic: 'sail-trim',
+  concepts: ['sail-control-equipment'],
   format: 'text',
   prompt: "At a basic level, what does the mainsail traveler control?",
   choices: [
@@ -6049,6 +6079,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-trim-balance-helm',
   topic: 'sail-trim',
+  concepts: ['sail-trim-response'],
   format: 'text',
   prompt: "The boat is heeling heavily and the helm feels like it wants to round up into the wind constantly. What is the likely connection, and the fix?",
   choices: [
@@ -6064,6 +6095,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sail-trim-heel-safety',
   topic: 'sail-trim',
+  concepts: ['sail-trim-response'],
   format: 'text',
   prompt: "The boat is heeled well past a comfortable angle, gear is sliding, and a crew member is having trouble staying seated. What should the skipper do?",
   choices: [
@@ -6200,6 +6232,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-line-hand-wraps',
   topic: 'seamanship-comms',
+  concepts: ['line-handling-safety'],
   format: 'text',
   prompt: "Why should you never wrap a loaded line around your hand?",
   choices: [
@@ -6215,6 +6248,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-line-winch-turns',
   topic: 'seamanship-comms',
+  concepts: ['line-handling-safety'],
   format: 'text',
   prompt: "Why is it important to take the correct number of wraps around a winch before loading a line?",
   choices: [
@@ -6230,6 +6264,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-line-load-awareness',
   topic: 'seamanship-comms',
+  concepts: ['line-handling-safety'],
   format: 'text',
   prompt: "Why should crew stay alert to which lines on deck are currently under load?",
   choices: [
@@ -6245,6 +6280,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-line-standing-clear',
   topic: 'seamanship-comms',
+  concepts: ['line-handling-safety'],
   format: 'text',
   prompt: "Before releasing or easing a heavily loaded dock line or sheet, what should crew do?",
   choices: [

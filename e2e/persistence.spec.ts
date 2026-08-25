@@ -46,6 +46,7 @@ test('progress survives a browser reload', async ({ page }) => {
  * ------------------------------------------------------------------------- */
 
 const MOTORING = lessonsForModule('motoring');
+const SAILS_TRIM = lessonsForModule('sails-trim');
 const FIRST = MOTORING[0];
 const THIRD = MOTORING[2];
 
@@ -140,6 +141,49 @@ test('Continue learning starts at lesson one and later resumes the lesson in pro
   // is in progress, so the card resumes it rather than offering to start it.
   await expect(lessonRow(page, FIRST.title).locator('.chip')).toHaveText('In progress');
   await expect(card.getByRole('button')).toHaveText('Resume lesson');
+});
+
+test('Continue learning crosses published modules and ends in a module-neutral state', async ({ page }) => {
+  const completedMotoring = Object.fromEntries(MOTORING.map((lesson) => [lesson.id, 'completed']));
+  await page.addInitScript(({ key, lessons }) => {
+    if (localStorage.getItem(key)) return;
+    localStorage.setItem(key, JSON.stringify({
+      version: 1,
+      stats: {},
+      reviewQueue: [],
+      mockResults: [],
+      learn: { lessons },
+    }));
+  }, { key: PROGRESS_KEY, lessons: completedMotoring });
+  await page.goto(seeded());
+  await openLearn(page);
+
+  const card = page.getByTestId('continue-learning');
+  await expect(card.getByRole('heading')).toHaveText(SAILS_TRIM[0].title);
+  await expect(card.getByRole('button')).toHaveText('Start lesson');
+
+  await openLesson(page, SAILS_TRIM[3].title);
+  await page.getByRole('button', { name: 'Back to Learn' }).click();
+  await expect(card.getByRole('heading')).toHaveText(SAILS_TRIM[3].title);
+  await expect(card.getByRole('button')).toHaveText('Resume lesson');
+
+  const allCompleted = Object.fromEntries(
+    [...MOTORING, ...SAILS_TRIM].map((lesson) => [lesson.id, 'completed']),
+  );
+  await page.evaluate(({ key, lessons }) => {
+    localStorage.setItem(key, JSON.stringify({
+      version: 1,
+      stats: {},
+      reviewQueue: [],
+      mockResults: [],
+      learn: { lessons },
+    }));
+  }, { key: PROGRESS_KEY, lessons: allCompleted });
+  await page.reload();
+  await openLearn(page);
+  await expect(page.getByTestId('continue-learning').getByRole('heading')).toHaveText(
+    'All available lessons complete',
+  );
 });
 
 test('Reset progress clears Learn state', async ({ page }) => {

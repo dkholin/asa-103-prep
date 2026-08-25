@@ -10,6 +10,15 @@ async function openControlsLesson(page: import('@playwright/test').Page) {
     .click();
 }
 
+async function openLearnLesson(page: import('@playwright/test').Page, title: string) {
+  await page.getByRole('button', { name: 'Learn', exact: true }).click();
+  await page
+    .getByRole('listitem')
+    .filter({ hasText: title })
+    .getByRole('button', { name: 'Open lesson' })
+    .click();
+}
+
 test('lesson concept Practice launches only mapped questions and exits back to its lesson', async ({ page }) => {
   await page.goto(seeded());
   await openControlsLesson(page);
@@ -71,4 +80,22 @@ test('completed concept Practice keeps shuffled choices stable and returns witho
   await page.getByRole('button', { name: 'Back to lesson' }).click();
   await expect(page.getByRole('heading', { name: 'Controls & Instruments' })).toBeVisible();
   await expect(page.getByTestId('lesson-state')).toHaveText('In progress');
+});
+
+test('Sails & Trim Practice uses concept resolution and never falls back by topic', async ({ page }) => {
+  await page.goto(seeded());
+  await openLearnLesson(page, 'Reefing & Reducing Sail');
+  await page.getByRole('button', { name: 'Practice this material' }).click();
+  await expect(page.getByRole('heading', { name: 'Reefing & Reducing Sail practice' })).toBeVisible();
+  await expect(page.getByText('Question 1 of 21')).toBeVisible();
+  await page.getByRole('button', { name: 'Back to lesson' }).click();
+
+  await page.getByRole('button', { name: 'Back to Learn' }).click();
+  await page
+    .getByRole('listitem')
+    .filter({ hasText: 'Trim by Point of Sail' })
+    .getByRole('button', { name: 'Open lesson' })
+    .click();
+  await expect(page.getByRole('heading', { name: 'Trim by Point of Sail' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Practice this material' })).toHaveCount(0);
 });

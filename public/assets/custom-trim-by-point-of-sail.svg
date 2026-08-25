@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-label="Five overhead sailboats under one true-wind convention, showing sails progressively eased from close-hauled through running.">
+  <defs>
+    <!-- Canonical primitive: wind-arrow.svg. Authored left-to-right; rotated 90
+         degrees here so every instance depicts the same top-to-bottom FLOW. -->
+    <symbol id="wind-arrow" viewBox="595.11 121.79 286.21 47.57">
+      <path fill="#8184a4" d="M845.116 125.793C848.069 127.05 855.295 131.993 858.313 133.933C864.555 137.95 870.891 141.818 877.316 145.534C866.495 151.802 855.076 159.697 844.991 165.359L845.012 154.41C824.633 153.876 802.719 154.209 782.18 154.167L640.748 154.174L599.217 154.235L599.108 137.84C680.448 136.767 763.901 137.794 845.397 137.729C845.418 133.882 845.219 129.668 845.116 125.793Z"/>
+    </symbol>
+
+    <!-- Bare-hull subset of canonical sailboat-top.svg. The canonical sail
+         paths and boom are deliberately omitted because they assert one fixed
+         35-degree close-reach trim. Coordinate system, pivot (44,123), hull,
+         deck, centreline, mast step, and transform assumptions are unchanged. -->
+    <g id="bare-sailboat-top">
+      <path fill="#282858" d="M44 6C56 30 72 74 78 118C80 134 80 150 79 164C77 197 74 222 70 236C69.6 238.5 69 240 66 240H22C19 240 18.4 238.5 18 236C14 222 11 197 9 164C8 150 8 134 10 118C16 74 32 30 44 6Z"/>
+      <path fill="#dcdfe3" d="M44 112C51 113 57 118 59 127L59.5 169C59.5 173 57.5 176 54 176H34C30.5 176 28.5 173 28.5 169L29 127C31 118 37 113 44 112Z"/>
+      <path fill="#282858" d="M38 167H50V176H38Z"/>
+      <path fill="#cacaca" d="M31 182H57C59 182 60 184 60 186L58 228C58 231 56 232 54 232H34C32 232 30 231 30 228L28 186C28 184 29 182 31 182Z"/>
+      <path stroke="#9b98ac" stroke-width="2" stroke-linecap="round" d="M44 9V100"/>
+      <circle cx="44" cy="100" r="4.5" fill="#dcdfe3"/>
+      <circle cx="44" cy="100" r="2" fill="#282858"/>
+    </g>
+
+    <style>
+      text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;fill:#172f45}
+      .title{font-size:28px;font-weight:750}
+      .label{font-size:26px;font-weight:700}
+      .small{font-size:18px}
+      .guide{fill:none;stroke:#b7d0dd;stroke-width:2;stroke-dasharray:7 7}
+      .sail{fill:#fff;fill-opacity:.93;stroke:#123f63;stroke-width:2.5;stroke-linejoin:round}
+      .boom{stroke:#123f63;stroke-width:3;stroke-linecap:round}
+    </style>
+  </defs>
+
+  <rect width="900" height="620" rx="20" fill="#edf6fa"/>
+  <text x="36" y="43" class="title">Sails ease as the boat bears away</text>
+  <text x="36" y="69" class="small">Teaching approximation - use sail feedback, not a fixed sheet angle.</text>
+
+  <!-- One visually explicit convention: all three canonical arrows point in
+       the identical direction and are labelled as flow, not source bearing. -->
+  <g transform="translate(686 18) rotate(90)">
+    <use href="#wind-arrow" x="0" y="-12" width="130" height="24"/>
+  </g>
+  <g transform="translate(755 18) rotate(90)">
+    <use href="#wind-arrow" x="0" y="-12" width="130" height="24"/>
+  </g>
+  <g transform="translate(824 18) rotate(90)">
+    <use href="#wind-arrow" x="0" y="-12" width="130" height="24"/>
+  </g>
+  <text x="755" y="166" text-anchor="middle" class="label">True-wind flow</text>
+  <text x="755" y="188" text-anchor="middle" class="small">same direction in every view</text>
+
+  <!-- Each boat uses translate(CX CY) rotate(HEADING) scale(.38)
+       translate(-44 -123), preserving the canonical pivot. Each asset-local
+       overlay shares that coordinate space. Clews move progressively farther
+       to port: near centreline, slightly eased, eased, well eased, run. -->
+  <path d="M80 196C190 145 292 151 376 219S545 351 777 471" class="guide"/>
+
+  <!-- Close-hauled: heading 40 degrees to port of up; sails nearest centreline. -->
+  <g transform="translate(130 195) rotate(-40) scale(.38) translate(-44 -123)">
+    <use href="#bare-sailboat-top"/>
+    <path class="sail" d="M44 11V100Q36 67 29 49Z"/>
+    <path class="sail" d="M44 100Q34 128 29 166L44 100Z"/>
+    <path class="boom" d="M44 100L29 166"/>
+  </g>
+  <text x="130" y="340" text-anchor="middle" class="label">Close-hauled</text>
+  <text x="130" y="362" text-anchor="middle" class="small">closest in</text>
+
+  <!-- Close reach. -->
+  <g transform="translate(305 218) rotate(-60) scale(.38) translate(-44 -123)">
+    <use href="#bare-sailboat-top"/>
+    <path class="sail" d="M44 11V100Q30 69 16 56Z"/>
+    <path class="sail" d="M44 100Q24 127 8 158L44 100Z"/>
+    <path class="boom" d="M44 100L8 158"/>
+  </g>
+  <text x="305" y="360" text-anchor="middle" class="label">Close reach</text>
+  <text x="305" y="382" text-anchor="middle" class="small">eased a little</text>
+
+  <!-- Beam reach. -->
+  <g transform="translate(475 292) rotate(-90) scale(.38) translate(-44 -123)">
+    <use href="#bare-sailboat-top"/>
+    <path class="sail" d="M44 11V100Q22 72 1 75Z"/>
+    <path class="sail" d="M44 100Q12 116-12 142L44 100Z"/>
+    <path class="boom" d="M44 100L-12 142"/>
+  </g>
+  <text x="475" y="425" text-anchor="middle" class="label">Beam reach</text>
+  <text x="475" y="447" text-anchor="middle" class="small">farther out</text>
+
+  <!-- Broad reach. -->
+  <g transform="translate(640 405) rotate(-125) scale(.38) translate(-44 -123)">
+    <use href="#bare-sailboat-top"/>
+    <path class="sail" d="M44 11V100Q13 82-18 98Z"/>
+    <path class="sail" d="M44 100Q4 105-30 119L44 100Z"/>
+    <path class="boom" d="M44 100L-30 119"/>
+  </g>
+  <text x="640" y="535" text-anchor="middle" class="label">Broad reach</text>
+  <text x="640" y="557" text-anchor="middle" class="small">well eased</text>
+
+  <!-- Running: wind flow is from stern toward bow in vessel coordinates. The
+       port-side sail choice is illustrative; either side may be appropriate. -->
+  <g transform="translate(800 465) rotate(180) scale(.38) translate(-44 -123)">
+    <use href="#bare-sailboat-top"/>
+    <path class="sail" d="M44 11V100Q8 97-25 121Z"/>
+    <path class="sail" d="M44 100Q4 96-33 104L44 100Z"/>
+    <path class="boom" d="M44 100L-33 104"/>
+  </g>
+  <text x="800" y="574" text-anchor="middle" class="label">Running</text>
+  <text x="800" y="596" text-anchor="middle" class="small">substantially eased</text>
+</svg>

@@ -1070,6 +1070,32 @@
       ]
     },
     {
+      "id": "custom-sail-shape-fundamentals",
+      "filename": "custom-sail-shape-fundamentals.svg",
+      "altText": "Two-view diagram defining chord, draft depth, draft position, twist, and angle of attack relative to apparent-wind flow.",
+      "description": "Purpose-built two-view diagram: a curved sail section related to its chord, draft depth, and draft position, beside an orientation overlay distinguishing upper-to-lower twist from angle of attack relative to apparent-wind flow",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": []
+    },
+    {
+      "id": "custom-trim-by-point-of-sail",
+      "filename": "custom-trim-by-point-of-sail.svg",
+      "altText": "Five overhead sailboats under one true-wind convention, showing sails progressively eased from close-hauled through running.",
+      "description": "Purpose-built diagram: five overhead boats sharing one true-wind-flow convention, with headings progressing from close-hauled through running and asset-local sail overlays eased progressively farther from the centerline",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": []
+    },
+    {
       "id": "photo-bowline",
       "filename": "photo-bowline.jpg",
       "altText": "Close photograph of a knot forming a loop in red rope.",

@@ -35,6 +35,18 @@ export const CONCEPT_IDS = [
   'outboard-motors',
   'fueling-safety',
   'motoring-etiquette',
+  'line-handling-safety',
+  'sail-control-equipment',
+  'setting-sail',
+  'sail-shape-fundamentals',
+  'sail-trim-response',
+  'trim-by-point-of-sail',
+  'sail-area-selection',
+  'roller-furling',
+  'reefing',
+  'heaving-to',
+  'fore-reaching',
+  'motorsailing',
 ] as const;
 
 export type ConceptId = (typeof CONCEPT_IDS)[number];

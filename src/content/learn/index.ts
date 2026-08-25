@@ -7,6 +7,13 @@ import { lesson as propellerEffects } from './motoring/propeller-effects';
 import { lesson as maneuveringUnderPower } from './motoring/maneuvering-under-power';
 import { lesson as dockingMooring } from './motoring/docking-mooring';
 import { lesson as outboardsFuelingEtiquette } from './motoring/outboards-fueling-etiquette';
+import { lesson as linesWinchesSailControls } from './sails-trim/lines-winches-sail-controls';
+import { lesson as preparingToSail } from './sails-trim/preparing-to-sail';
+import { lesson as settingSail } from './sails-trim/setting-sail';
+import { lesson as sailTrimFundamentals } from './sails-trim/sail-trim-fundamentals';
+import { lesson as trimByPointOfSail } from './sails-trim/trim-by-point-of-sail';
+import { lesson as reefingReducingSail } from './sails-trim/reefing-reducing-sail';
+import { lesson as specialSituations } from './sails-trim/special-situations';
 
 export type { Block, Lesson, LearnModule } from './types';
 export { MODULES } from './modules';
@@ -25,6 +32,13 @@ export const LESSONS: Lesson[] = [
   maneuveringUnderPower,
   dockingMooring,
   outboardsFuelingEtiquette,
+  linesWinchesSailControls,
+  preparingToSail,
+  settingSail,
+  sailTrimFundamentals,
+  trimByPointOfSail,
+  reefingReducingSail,
+  specialSituations,
 ];
 
 const byId = new Map(LESSONS.map((l) => [l.id, l]));

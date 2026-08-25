@@ -45,12 +45,35 @@ describe('learn content integrity', () => {
     }
   });
 
-  it('publishes finished lesson copy rather than foundation placeholders', () => {
-    for (const l of LESSONS) {
+  it('keeps finished Motoring copy substantial and free of placeholders', () => {
+    for (const l of lessonsForModule('motoring')) {
       const serialized = JSON.stringify(l);
       expect(serialized, `placeholder copy in ${l.id}`).not.toMatch(/placeholder/i);
       expect(l.blocks.length, `thin lesson ${l.id}`).toBeGreaterThanOrEqual(6);
     }
+  });
+
+  it('publishes exactly seven finished Sails & Trim lessons using only approved figures', () => {
+    const lessons = lessonsForModule('sails-trim');
+    expect(lessons).toHaveLength(7);
+    for (const lesson of lessons) {
+      expect(JSON.stringify(lesson), `placeholder copy in ${lesson.id}`).not.toMatch(/placeholder|lesson coverage/i);
+      expect(lesson.blocks.length, `thin lesson ${lesson.id}`).toBeGreaterThanOrEqual(7);
+    }
+    expect(
+      lessons.flatMap((lesson) => lesson.blocks)
+        .filter((block) => block.kind === 'figure')
+        .map((block) => block.assetId),
+    ).toEqual([
+      'custom-sail-shape-fundamentals',
+      'custom-heel-trim',
+      'custom-trim-by-point-of-sail',
+      'custom-sail-wind-strength',
+      'custom-reefed-mainsail',
+      'photo-furled-headsail',
+      'custom-heaving-to',
+      'custom-lee-shore',
+    ]);
   });
 
   it('tags every lesson with valid concept ids', () => {

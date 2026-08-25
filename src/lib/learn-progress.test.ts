@@ -15,7 +15,10 @@ import {
 } from './progress';
 
 const MOTORING = lessonsForModule('motoring');
+const SAILS_TRIM = lessonsForModule('sails-trim');
 const completeAll = (p: Progress) =>
+  publishedLessons().reduce((acc, l) => markLessonCompleted(markLessonOpened(acc, l.id), l.id), p);
+const completeMotoring = (p: Progress) =>
   MOTORING.reduce((acc, l) => markLessonCompleted(markLessonOpened(acc, l.id), l.id), p);
 
 describe('published lesson catalogue', () => {
@@ -26,7 +29,9 @@ describe('published lesson catalogue', () => {
   });
 
   it('keeps course order within a module', () => {
-    expect(publishedLessons().map((l) => l.id)).toEqual(MOTORING.map((l) => l.id));
+    expect(publishedLessons().map((l) => l.id)).toEqual(
+      [...MOTORING, ...SAILS_TRIM].map((l) => l.id),
+    );
   });
 });
 
@@ -69,6 +74,23 @@ describe('continueLearning', () => {
     expect(continueLearning(p)).toEqual({ kind: 'lesson', lesson: MOTORING[3], resume: false });
   });
 
+  it('moves from completed Motoring to the first Sails & Trim lesson', () => {
+    expect(continueLearning(completeMotoring(emptyProgress()))).toEqual({
+      kind: 'lesson',
+      lesson: SAILS_TRIM[0],
+      resume: false,
+    });
+  });
+
+  it('resumes an in-progress Sails & Trim lesson', () => {
+    const progress = markLessonOpened(emptyProgress(), SAILS_TRIM[3].id);
+    expect(continueLearning(progress)).toEqual({
+      kind: 'lesson',
+      lesson: SAILS_TRIM[3],
+      resume: true,
+    });
+  });
+
   // Stored state can name a lesson this build no longer ships. Learn must fall
   // through to the sequential rule rather than dead-end on it.
   it('ignores a last lesson id that no longer exists', () => {
@@ -104,10 +126,9 @@ describe('continueLearning', () => {
     );
   });
 
-  it('reports the module complete once every published lesson is done', () => {
+  it('reports a module-neutral terminal state once every published lesson is done', () => {
     const target = continueLearning(completeAll(emptyProgress()));
-    expect(target?.kind).toBe('module-complete');
-    expect(target?.kind === 'module-complete' && target.module.id).toBe('motoring');
+    expect(target).toEqual({ kind: 'all-published-complete' });
   });
 });
 

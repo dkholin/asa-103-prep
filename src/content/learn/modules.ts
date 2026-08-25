@@ -32,7 +32,7 @@ export const MODULES: LearnModule[] = [
     id: 'sails-trim',
     title: 'Sails & Trim',
     blurb: 'Sail plan, trimming for each point of sail, reefing, and heavy air',
-    status: 'coming-soon',
+    status: 'published',
   },
   {
     id: 'navigation-rules-tools',

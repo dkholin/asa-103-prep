@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-label="Two-view diagram defining chord, draft depth, draft position, twist, and angle of attack relative to apparent-wind flow.">
+  <defs>
+    <marker id="arrow-navy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10Z" fill="#173f63"/>
+    </marker>
+    <marker id="arrow-wind" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#707799"/>
+    </marker>
+    <style>
+      text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;fill:#172f45}
+      .title{font-size:20px;font-weight:700}
+      .label{font-size:18px;font-weight:650}
+      .small{font-size:15px}
+      .datum{fill:none;stroke:#173f63;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+      .guide{fill:none;stroke:#54748e;stroke-width:2;stroke-dasharray:6 5}
+      .measure{fill:none;stroke:#173f63;stroke-width:2;marker-start:url(#arrow-navy);marker-end:url(#arrow-navy)}
+      .flow{fill:none;stroke:#707799;stroke-width:4;stroke-linecap:round;marker-end:url(#arrow-wind)}
+    </style>
+  </defs>
+
+  <rect width="720" height="420" rx="18" fill="#edf6fa"/>
+  <rect x="24" y="24" width="318" height="372" rx="14" fill="#fff" stroke="#c5dbe7" stroke-width="2"/>
+  <rect x="358" y="24" width="338" height="372" rx="14" fill="#fff" stroke="#c5dbe7" stroke-width="2"/>
+
+  <!-- View 1: section geometry. The horizontal chord is the reference datum;
+       every draft measurement terminates on it, not on the panel baseline. -->
+  <text x="48" y="61" class="title">Sail section</text>
+  <text x="48" y="84" class="small">One chosen height through the sail</text>
+  <path d="M66 254H312" class="datum"/>
+  <path d="M66 254C116 174 206 177 312 254" fill="#d7eaf3" stroke="#173f63" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="171" cy="197" r="5" fill="#d48032"/>
+
+  <path d="M66 275H312" class="measure"/>
+  <path d="M66 260V285M312 260V285" class="guide"/>
+  <text x="189" y="307" text-anchor="middle" class="label">Chord</text>
+
+  <path d="M171 247V204" class="measure"/>
+  <text x="181" y="225" class="label">Draft depth</text>
+
+  <path d="M66 340H171" class="measure"/>
+  <path d="M66 315V350M171 204V350" class="guide"/>
+  <text x="118" y="369" text-anchor="middle" class="label">Draft position</text>
+  <text x="226" y="369" class="small">along the chord</text>
+
+  <!-- View 2: a teaching overlay, not a universal trim setting. The lower and
+       upper chord samples share an origin only so their angular difference is
+       unmistakable; the angle-of-attack arc references the lower chord alone. -->
+  <text x="382" y="61" class="title">Orientation through the sail</text>
+  <text x="382" y="84" class="small">Angles vary with course, trim, and height</text>
+
+  <path d="M391 245H650" class="flow"/>
+  <text x="570" y="286" text-anchor="middle" class="label">Apparent-wind flow</text>
+
+  <path d="M442 245L635 186" class="datum"/>
+  <path d="M442 245Q530 196 635 186" fill="none" stroke="#4d8ca8" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+  <text x="654" y="232" text-anchor="end" class="label">Lower chord</text>
+  <path d="M626 220 575 212" class="guide"/>
+
+  <path d="M442 245L595 132" class="datum" stroke-dasharray="8 5"/>
+  <path d="M442 245Q506 165 595 132" fill="none" stroke="#d48032" stroke-width="8" stroke-linecap="round" opacity=".72"/>
+  <text x="599" y="119" class="label">Upper chord</text>
+
+  <path d="M501 245A59 59 0 0 0 498 227" fill="none" stroke="#d48032" stroke-width="3" marker-end="url(#arrow-navy)"/>
+  <text x="382" y="330" class="label">Angle of attack</text>
+  <path d="M470 315 488 250" class="guide"/>
+
+  <path d="M625 190A92 92 0 0 0 594 142" fill="none" stroke="#d48032" stroke-width="3" marker-end="url(#arrow-navy)"/>
+  <text x="604" y="338" class="label">Twist</text>
+  <text x="447" y="363" class="small">upper chord differs from lower chord</text>
+  <path d="M634 327C690 300 690 220 630 190" class="guide"/>
+
+  <text x="360" y="399" text-anchor="middle" class="small">Relationships shown schematically - no single depth, position, or angle is universal.</text>
+</svg>

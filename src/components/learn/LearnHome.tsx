@@ -41,11 +41,8 @@ export function LearnHome(props: {
             </>
           ) : (
             <>
-              <h2>{target.module.title} complete</h2>
-              <p className="muted">
-                You have marked every {target.module.title} lesson complete. More modules are on the
-                way.
-              </p>
+              <h2>All available lessons complete</h2>
+              <p className="muted">You have marked every published lesson complete.</p>
             </>
           )}
         </div>
