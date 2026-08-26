@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { lessonsForModule } from '../src/content/learn';
+import { MODULES, lessonsForModule } from '../src/content/learn';
 import {
   NAV_LIGHTS,
   QUESTIONS_TOTAL,
@@ -48,6 +48,9 @@ test('progress survives a browser reload', async ({ page }) => {
 
 const MOTORING = lessonsForModule('motoring');
 const SAILS_TRIM = lessonsForModule('sails-trim');
+const PUBLISHED_LESSONS = MODULES.filter((module) => module.status === 'published').flatMap(
+  (module) => lessonsForModule(module.id),
+);
 const FIRST = MOTORING[0];
 const THIRD = MOTORING[2];
 
@@ -180,8 +183,11 @@ test('Continue learning crosses published modules and ends in a module-neutral s
   await expect(card.getByRole('heading')).toHaveText(SAILS_TRIM[3].title);
   await expect(card.getByRole('button')).toHaveText('Resume lesson');
 
+  // Derived from the catalogue, not from a hard-coded pair of modules: the
+  // terminal state means "every published lesson", so publishing a third
+  // module must widen this seed automatically rather than break the test.
   const allCompleted = Object.fromEntries(
-    [...MOTORING, ...SAILS_TRIM].map((lesson) => [lesson.id, 'completed']),
+    PUBLISHED_LESSONS.map((lesson) => [lesson.id, 'completed']),
   );
   await page.evaluate(({ key, lessons }) => {
     localStorage.setItem(key, JSON.stringify({

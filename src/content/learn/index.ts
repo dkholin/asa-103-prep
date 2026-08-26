@@ -14,6 +14,15 @@ import { lesson as sailTrimFundamentals } from './sails-trim/sail-trim-fundament
 import { lesson as trimByPointOfSail } from './sails-trim/trim-by-point-of-sail';
 import { lesson as reefingReducingSail } from './sails-trim/reefing-reducing-sail';
 import { lesson as specialSituations } from './sails-trim/special-situations';
+import { lesson as lookoutRiskSafeSpeed } from './navigation-rules-tools/lookout-risk-safe-speed';
+import { lesson as meetingSituations } from './navigation-rules-tools/meeting-situations';
+import { lesson as sailingVesselsSpecialRules } from './navigation-rules-tools/sailing-vessels-special-rules';
+import { lesson as navigationLights } from './navigation-rules-tools/navigation-lights';
+import { lesson as reducedVisibilitySoundSignals } from './navigation-rules-tools/reduced-visibility-sound-signals';
+import { lesson as aidsToNavigation } from './navigation-rules-tools/aids-to-navigation';
+import { lesson as readingAChart } from './navigation-rules-tools/reading-a-chart';
+import { lesson as compassCoursesBearings } from './navigation-rules-tools/compass-courses-bearings';
+import { lesson as distanceSpeedTimeElectronics } from './navigation-rules-tools/distance-speed-time-electronics';
 
 export type { Block, Lesson, LearnModule } from './types';
 export { MODULES } from './modules';
@@ -39,6 +48,15 @@ export const LESSONS: Lesson[] = [
   trimByPointOfSail,
   reefingReducingSail,
   specialSituations,
+  lookoutRiskSafeSpeed,
+  meetingSituations,
+  sailingVesselsSpecialRules,
+  navigationLights,
+  reducedVisibilitySoundSignals,
+  aidsToNavigation,
+  readingAChart,
+  compassCoursesBearings,
+  distanceSpeedTimeElectronics,
 ];
 
 const byId = new Map(LESSONS.map((l) => [l.id, l]));

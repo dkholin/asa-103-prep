@@ -29,10 +29,24 @@ describe('published lesson catalogue', () => {
     for (const lesson of publishedLessons()) expect(published.has(lesson.moduleId)).toBe(true);
   });
 
+  // Derived from the catalogue rather than from a hard-coded pair of modules,
+  // so publishing a third one exercises the same invariant instead of failing
+  // a list that only ever described the modules that happened to exist.
   it('keeps course order within a module', () => {
-    expect(publishedLessons().map((l) => l.id)).toEqual(
-      [...MOTORING, ...SAILS_TRIM].map((l) => l.id),
+    const published = MODULES.filter((m) => m.status === 'published');
+    const lessons = publishedLessons();
+
+    // Modules appear whole and in course order — never interleaved.
+    expect([...new Set(lessons.map((l) => l.moduleId))]).toEqual(published.map((m) => m.id));
+    expect(lessons).toHaveLength(
+      published.reduce((total, m) => total + lessonsForModule(m.id).length, 0),
     );
+
+    // And within each module, lessons run 1..n in their own order.
+    for (const m of published) {
+      const orders = lessons.filter((l) => l.moduleId === m.id).map((l) => l.order);
+      expect(orders, `order values of ${m.id}`).toEqual(orders.map((_, i) => i + 1));
+    }
   });
 });
 
@@ -181,8 +195,10 @@ describe('defaultExpandedModuleId', () => {
   it('opens the last lesson’s module once the whole course is complete', () => {
     const p = completeAll(emptyProgress());
     expect(continueLearning(p)).toEqual({ kind: 'all-published-complete' });
-    // `completeAll` opens every lesson in course order, so the last one wins.
-    expect(defaultExpandedModuleId(p)).toBe(SAILS_TRIM[SAILS_TRIM.length - 1].moduleId);
+    // `completeAll` opens every lesson in course order, so the last one wins —
+    // whichever published module that lesson happens to live in today.
+    const lessons = publishedLessons();
+    expect(defaultExpandedModuleId(p)).toBe(lessons[lessons.length - 1].moduleId);
   });
 });
 

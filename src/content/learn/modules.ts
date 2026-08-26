@@ -38,7 +38,7 @@ export const MODULES: LearnModule[] = [
     id: 'navigation-rules-tools',
     title: 'Navigation Rules & Tools',
     blurb: 'Right of way, lights and sounds, charts, and aids to navigation',
-    status: 'coming-soon',
+    status: 'published',
   },
   {
     id: 'hands-on-cruising',

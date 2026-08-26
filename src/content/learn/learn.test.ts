@@ -76,6 +76,46 @@ describe('learn content integrity', () => {
     ]);
   });
 
+  /**
+   * Navigation Rules & Tools is published as a skeleton: the nine lessons,
+   * their order and their concept tags are the finished part, and the teaching
+   * copy is not. This guard pins the shape so a later copy pass cannot quietly
+   * drop, reorder or retag a lesson — and asserts no figures yet, so the first
+   * figure added to the module has to come with a manifest entry and an
+   * updated expectation rather than slipping in unreviewed.
+   */
+  it('publishes nine Navigation Rules & Tools lessons in order, tagged and figure-free', () => {
+    const lessons = lessonsForModule('navigation-rules-tools');
+    expect(lessons.map((lesson) => lesson.title)).toEqual([
+      'Lookout, Risk & Safe Speed',
+      'Meeting Situations: Overtaking, Head-On, Crossing',
+      'Sailing Vessels & Special Rules',
+      'Navigation Lights',
+      'Reduced Visibility & Sound Signals',
+      'Aids to Navigation',
+      'Reading a Nautical Chart',
+      'Compass, Courses & Bearings',
+      'Distance, Speed, Time & Electronic Navigation',
+    ]);
+    expect(lessons.map((lesson) => lesson.order)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    for (const lesson of lessons) {
+      expect(lesson.id, `id prefix of ${lesson.id}`).toMatch(/^navigation-rules-tools-/);
+      expect(lesson.concepts.length, `concepts of ${lesson.id}`).toBeGreaterThan(0);
+      for (const concept of lesson.concepts) {
+        expect([...conceptIds], `concept ${concept} of ${lesson.id}`).toContain(concept);
+      }
+      expect(lesson.blocks.length, `empty lesson ${lesson.id}`).toBeGreaterThan(0);
+      expect(
+        lesson.blocks.filter((block) => block.kind === 'figure'),
+        `${lesson.id} has figures before the copy pass`,
+      ).toHaveLength(0);
+    }
+    // No concept is tagged on two lessons in this module: a learner who
+    // practises a lesson never re-practises the same set from its neighbour.
+    const tagged = lessons.flatMap((lesson) => lesson.concepts);
+    expect(new Set(tagged).size).toBe(tagged.length);
+  });
+
   it('tags every lesson with valid concept ids', () => {
     for (const l of LESSONS) {
       expect(l.concepts.length, `concepts of ${l.id}`).toBeGreaterThan(0);

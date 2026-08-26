@@ -11,6 +11,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'lights-power-underway',
     topic: 'nav-lights',
+    concepts: ['navigation-lights'],
     format: 'visual',
     assetId: 'photo-power-vessel-underway',
     prompt:
@@ -44,6 +45,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'lights-sail-underway',
     topic: 'nav-lights',
+    concepts: ['navigation-lights'],
     format: 'visual',
     assetId: 'photo-sailing-vessel-underway',
     prompt:
@@ -77,6 +79,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'lights-anchored',
     topic: 'nav-lights',
+    concepts: ['special-vessel-lights'],
     format: 'visual',
     assetId: 'photo-vessel-at-anchor',
     prompt:
@@ -110,6 +113,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'lights-trawling',
     topic: 'nav-lights',
+    concepts: ['special-vessel-lights'],
     format: 'visual',
     assetId: 'photo-trawler-gear-out',
     prompt:
@@ -142,6 +146,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'lights-id-green-only',
     topic: 'nav-lights',
+    concepts: ['navigation-lights'],
     format: 'visual',
     assetId: 'custom-night-green-only',
     prompt:
@@ -176,6 +181,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'lights-id-headon-night',
     topic: 'nav-lights',
+    concepts: ['navigation-lights'],
     format: 'visual',
     assetId: 'custom-night-headon',
     prompt:
@@ -212,6 +218,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-crossing-power',
     topic: 'right-of-way',
+    concepts: ['crossing-situation'],
     format: 'visual',
     assetId: 'custom-crossing',
     prompt:
@@ -248,6 +255,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-overtaking',
     topic: 'right-of-way',
+    concepts: ['overtaking-situation'],
     format: 'visual',
     assetId: 'custom-overtaking',
     prompt:
@@ -280,6 +288,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-sail-opposite-tacks',
     topic: 'right-of-way',
+    concepts: ['sailing-vessel-encounters'],
     format: 'visual',
     assetId: 'custom-sail-opposite-tacks',
     prompt:
@@ -312,6 +321,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-sail-same-tack',
     topic: 'right-of-way',
+    concepts: ['sailing-vessel-encounters'],
     format: 'visual',
     assetId: 'custom-sail-same-tack',
     prompt:
@@ -344,6 +354,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'sound-one-short',
     topic: 'sound-signals',
+    concepts: ['sound-signals'],
     format: 'text',
     prompt:
       'Under the International Rules, a power-driven vessel in sight of another sounds ONE short blast. What does it mean?',
@@ -374,6 +385,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'sound-five-short',
     topic: 'sound-signals',
+    concepts: ['sound-signals'],
     format: 'text',
     prompt:
       'Another vessel sounds five or more short, rapid blasts at you. What is she signaling?',
@@ -407,6 +419,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'sound-fog-power-making-way',
     topic: 'sound-signals',
+    concepts: ['sound-signals'],
     format: 'text',
     prompt:
       'In fog (restricted visibility), a power-driven vessel MAKING WAY through the water sounds:',
@@ -438,6 +451,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rule6-safe-speed-factors',
     topic: 'right-of-way',
+    concepts: ['safe-speed'],
     format: 'text',
     prompt:
       'When determining a safe speed, Rule 6 requires every vessel to take into account which of the following?',
@@ -473,6 +487,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rule6-safe-speed-radar',
     topic: 'right-of-way',
+    concepts: ['safe-speed'],
     format: 'text',
     prompt:
       'You are underway with your radar operating. Rule 6(b) adds which additional factor to your safe-speed decision, beyond the factors that apply to every vessel?',
@@ -505,6 +520,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rule7-risk-bearing',
     topic: 'right-of-way',
+    concepts: ['lookout-and-risk-of-collision'],
     format: 'text',
     prompt:
       'You are tracking an approaching vessel and notice her compass bearing from you is not appreciably changing over several minutes. What does Rule 7 say this indicates?',
@@ -540,6 +556,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rule7-scanty-information',
     topic: 'right-of-way',
+    concepts: ['lookout-and-risk-of-collision'],
     format: 'text',
     prompt:
       'Rule 7(c) specifically warns against doing what, when assessing risk of collision?',
@@ -573,6 +590,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rule8-early-substantial',
     topic: 'right-of-way',
+    concepts: ['avoiding-action'],
     format: 'text',
     prompt:
       'Rule 8(a) says any action taken to avoid collision shall be:',
@@ -608,6 +626,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rule8-substantial-alterations',
     topic: 'right-of-way',
+    concepts: ['avoiding-action'],
     format: 'text',
     prompt:
       'Rule 8(b) says that when altering course and/or speed to avoid collision, you should:',
@@ -642,6 +661,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rule8-slacken-stop-reverse',
     topic: 'right-of-way',
+    concepts: ['avoiding-action'],
     format: 'text',
     prompt:
       'If you have insufficient sea room to avoid a close-quarters situation by altering course alone, Rule 8(e) says you should:',
@@ -676,6 +696,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-sail-uncertain-tack',
     topic: 'right-of-way',
+    concepts: ['sailing-vessel-encounters'],
     format: 'text',
     prompt:
       'You are on a sailing vessel with the wind on your port side. You see another sailing vessel to windward but cannot tell whether she has the wind on her port or starboard side. What must you do?',
@@ -711,6 +732,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-sail-windward-defn',
     topic: 'right-of-way',
+    concepts: ['sailing-vessel-encounters'],
     format: 'text',
     prompt:
       "Rule 12(b) defines a sailing vessel's windward side as:",
@@ -743,6 +765,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-sail-give-way-exceptions',
     topic: 'right-of-way',
+    concepts: ['vessel-status-hierarchy'],
     format: 'text',
     prompt:
       'A sailing vessel is normally the stand-on vessel over an ordinary power-driven vessel. Under Rule 18, which vessels must a sailing vessel still keep out of the way of?',
@@ -777,6 +800,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-sail-same-tack-text',
     topic: 'right-of-way',
+    concepts: ['sailing-vessel-encounters'],
     format: 'text',
     prompt:
       'Two sailing vessels are running before the wind on the same tack, converging. Vessel A is directly upwind of vessel B. Which vessel must keep clear?',
@@ -842,6 +866,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-overtaking-defn-angle',
     topic: 'right-of-way',
+    concepts: ['overtaking-situation'],
     format: 'text',
     prompt:
       'A vessel is considered to be "overtaking" another when she is approaching from:',
@@ -875,6 +900,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-overtaking-doubt',
     topic: 'right-of-way',
+    concepts: ['overtaking-situation'],
     format: 'text',
     prompt:
       'You are unsure whether you are overtaking another vessel or crossing her path. Rule 13(c) says you should:',
@@ -907,6 +933,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-overtaking-duty-persists',
     topic: 'right-of-way',
+    concepts: ['overtaking-situation'],
     format: 'text',
     prompt:
       'You began overtaking another vessel from well abaft her beam. As you draw abreast, the bearing between you changes so it now looks more like a crossing situation. Does your overtaking obligation end?',
@@ -940,6 +967,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-headon-defn',
     topic: 'right-of-way',
+    concepts: ['head-on-situation'],
     format: 'visual',
     assetId: 'custom-headon-bowview',
     prompt:
@@ -970,6 +998,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-headon-doubt',
     topic: 'right-of-way',
+    concepts: ['head-on-situation'],
     format: 'text',
     prompt:
       'You are approaching another power-driven vessel and are uncertain whether a true head-on situation exists. Rule 14(c) instructs you to:',
@@ -999,6 +1028,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-headon-standon',
     topic: 'right-of-way',
+    concepts: ['head-on-situation'],
     format: 'text',
     prompt:
       'In a true head-on situation between two power-driven vessels, which vessel is the stand-on vessel?',
@@ -1028,6 +1058,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-headon-sail-not-power',
     topic: 'right-of-way',
+    concepts: ['head-on-situation'],
     format: 'text',
     prompt:
       'Two sailing vessels are approaching each other bow to bow, one on port tack and one on starboard tack. Does Rule 14 (the power-driven head-on rule) govern this encounter?',
@@ -1060,6 +1091,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-crossing-standon',
     topic: 'right-of-way',
+    concepts: ['crossing-situation'],
     format: 'visual',
     assetId: 'custom-crossing-standon',
     prompt:
@@ -1091,6 +1123,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-crossing-power-only',
     topic: 'right-of-way',
+    concepts: ['crossing-situation'],
     format: 'text',
     prompt:
       'The crossing rule, Rule 15, applies specifically between:',
@@ -1121,6 +1154,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-crossing-astern-rationale',
     topic: 'right-of-way',
+    concepts: ['crossing-situation'],
     format: 'text',
     prompt:
       'In a crossing situation, Rule 15 directs the give-way vessel to avoid crossing ahead of the other vessel and, if circumstances allow, to pass astern instead. Why?',
@@ -1153,6 +1187,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-give-way-early',
     topic: 'right-of-way',
+    concepts: ['stand-on-give-way'],
     format: 'text',
     prompt:
       'Rule 16 says the give-way vessel shall:',
@@ -1182,6 +1217,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-standon-may-act-no-port',
     topic: 'right-of-way',
+    concepts: ['stand-on-give-way'],
     format: 'text',
     prompt:
       'As the stand-on vessel in a crossing situation, you decide it is now clear the give-way vessel is not taking appropriate action, so you take avoiding action of your own under Rule 17(a)(ii). What must you avoid doing, if circumstances allow?',
@@ -1214,6 +1250,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-standon-must-act',
     topic: 'right-of-way',
+    concepts: ['stand-on-give-way'],
     format: 'text',
     prompt:
       'You are the stand-on vessel and have been holding course and speed, but the give-way vessel still has not acted and the vessels are now so close that collision cannot be avoided by her action alone. Rule 17(b) says you must:',
@@ -1247,6 +1284,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-pecking-order',
     topic: 'right-of-way',
+    concepts: ['vessel-status-hierarchy'],
     format: 'text',
     prompt:
       'Under Rule 18, an ordinary power-driven vessel underway must generally keep out of the way of which of these vessels (except where Rules 9, 10, or 13 say otherwise)?',
@@ -1279,6 +1317,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rules-standon-duty-not-relieved',
     topic: 'right-of-way',
+    concepts: ['stand-on-give-way'],
     format: 'text',
     prompt:
       'The stand-on vessel fails to keep her course and speed as Rule 17 requires. Does this relieve the give-way vessel of her Rule 16 obligation to keep out of the way?',
@@ -1309,6 +1348,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'lights-two-masthead-50m',
     topic: 'nav-lights',
+    concepts: ['navigation-lights'],
     format: 'text',
     prompt:
       'At night you see a vessel showing two white masthead lights in a vertical line, the forward one lower than the after one, along with sidelights and a sternlight. What is she?',
@@ -1342,6 +1382,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'lights-nuc',
     topic: 'nav-lights',
+    concepts: ['special-vessel-lights'],
     format: 'text',
     prompt:
       'At night, two all-round RED lights displayed in a vertical line indicate a vessel that is:',
@@ -1371,6 +1412,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'lights-ram',
     topic: 'nav-lights',
+    concepts: ['special-vessel-lights'],
     format: 'text',
     prompt:
       'At night, all-round lights shown in the order red, white, red (top to bottom) in a vertical line indicate a vessel that is:',
@@ -1401,6 +1443,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rule19-avoid-alter-port-forward',
     topic: 'right-of-way',
+    concepts: ['restricted-visibility'],
     format: 'text',
     prompt:
       'In restricted visibility, you detect another vessel by radar alone, forward of your beam, and determine a close-quarters situation is developing. If you must alter course, Rule 19(d) says you should avoid, so far as possible:',
@@ -1434,6 +1477,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rule19-safe-speed-fog',
     topic: 'right-of-way',
+    concepts: ['restricted-visibility'],
     format: 'text',
     prompt:
       'Rule 19(b) requires every vessel, in or near an area of restricted visibility, to:',
@@ -1466,6 +1510,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'rule19-fog-signal-forward',
     topic: 'right-of-way',
+    concepts: ['restricted-visibility'],
     format: 'text',
     prompt:
       'In fog, you hear another vessel\'s fog signal apparently forward of your beam and cannot avoid a close-quarters situation. Rule 19(e) says you must:',
@@ -1569,6 +1614,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-tools-dividers',
     topic: 'chart-nav',
+    concepts: ['plotting-a-course'],
     format: 'visual',
     assetId: 'photo-plotting-tools',
     prompt:
@@ -1605,6 +1651,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-tools-parallel-rules',
     topic: 'chart-nav',
+    concepts: ['plotting-a-course'],
     format: 'visual',
     assetId: 'photo-parallel-rule',
     prompt:
@@ -1641,6 +1688,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-tools-compass-rose-rings',
     topic: 'chart-nav',
+    concepts: ['compass-and-compass-rose'],
     format: 'visual',
     assetId: 'noaa-compass-rose',
     prompt:
@@ -1677,6 +1725,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-tools-chart-parts',
     topic: 'chart-nav',
+    concepts: ['chart-symbols'],
     format: 'visual',
     assetId: 'noaa-chart-schematic',
     prompt:
@@ -1709,6 +1758,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sym-danger-line',
     topic: 'chart-nav',
+    concepts: ['chart-symbols'],
     format: 'visual',
     assetId: 'noaa-rocks-general',
     prompt:
@@ -1745,6 +1795,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sym-buoy-beacon-default',
     topic: 'chart-nav',
+    concepts: ['buoys-beacons-and-lights'],
     format: 'visual',
     assetId: 'noaa-buoy-beacon-basic',
     prompt:
@@ -1781,6 +1832,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sym-wk-abbrev',
     topic: 'chart-nav',
+    concepts: ['chart-symbols'],
     format: 'text',
     prompt:
       'On a NOAA chart, you see the abbreviation "Wk" next to a charted symbol. What does it indicate?',
@@ -1816,6 +1868,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sym-rk-abbrev',
     topic: 'chart-nav',
+    concepts: ['chart-symbols'],
     format: 'text',
     prompt:
       'On a NOAA chart, a sounding is followed by the abbreviation "Rk" (for example, "12 Rk"). What does this tell you?',
@@ -1851,6 +1904,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sym-obstn-abbrev',
     topic: 'chart-nav',
+    concepts: ['chart-symbols'],
     format: 'text',
     prompt:
       'What does the chart abbreviation "Obstn" identify?',
@@ -1886,6 +1940,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sym-foul-ground',
     topic: 'chart-nav',
+    concepts: ['chart-symbols'],
     format: 'visual',
     assetId: 'noaa-obstruction-foul',
     prompt:
@@ -1922,6 +1977,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sym-wreck-known-depth',
     topic: 'chart-nav',
+    concepts: ['chart-symbols'],
     format: 'visual',
     assetId: 'noaa-wreck-symbols',
     prompt:
@@ -1958,6 +2014,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sym-wreck-unknown-depth',
     topic: 'chart-nav',
+    concepts: ['chart-symbols'],
     format: 'visual',
     assetId: 'noaa-wreck-symbols',
     prompt:
@@ -1994,6 +2051,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sym-chart-datum-abbrev',
     topic: 'chart-nav',
+    concepts: ['soundings-and-chart-datum'],
     format: 'text',
     prompt:
       'Charted soundings (water depths) are all measured relative to a reference plane abbreviated "CD" on NOAA charts. What does "CD" stand for, and why does it matter?',
@@ -2029,6 +2087,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sound-true-position',
     topic: 'chart-nav',
+    concepts: ['soundings-and-chart-datum'],
     format: 'visual',
     assetId: 'noaa-soundings-basic',
     prompt:
@@ -2065,6 +2124,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sound-out-of-position',
     topic: 'chart-nav',
+    concepts: ['soundings-and-chart-datum'],
     format: 'visual',
     assetId: 'noaa-soundings-basic',
     prompt:
@@ -2101,6 +2161,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sound-least-depth-channel',
     topic: 'chart-nav',
+    concepts: ['soundings-and-chart-datum'],
     format: 'visual',
     assetId: 'noaa-soundings-basic',
     prompt:
@@ -2137,6 +2198,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sound-depth-contour-shading',
     topic: 'chart-nav',
+    concepts: ['soundings-and-chart-datum'],
     format: 'visual',
     assetId: 'noaa-depth-contours',
     prompt:
@@ -2173,6 +2235,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sound-bottom-abbrev',
     topic: 'chart-nav',
+    concepts: ['soundings-and-chart-datum'],
     format: 'text',
     prompt:
       'Charts often print a small italic letter abbreviation near an anchorage, such as "S", "M", or "rky". What are these abbreviations describing?',
@@ -2208,6 +2271,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sound-isolated-danger',
     topic: 'chart-nav',
+    concepts: ['chart-symbols'],
     format: 'visual',
     assetId: 'noaa-wreck-symbols',
     prompt:
@@ -2244,6 +2308,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-sound-rock-awash',
     topic: 'chart-nav',
+    concepts: ['chart-symbols'],
     format: 'visual',
     assetId: 'noaa-rock-covers',
     prompt:
@@ -2280,6 +2345,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-aton-lateral-colors',
     topic: 'chart-nav',
+    concepts: ['lateral-system-aton'],
     format: 'visual',
     assetId: 'noaa-iala-region-b',
     prompt:
@@ -2316,6 +2382,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-aton-numbering',
     topic: 'chart-nav',
+    concepts: ['lateral-system-aton'],
     format: 'text',
     prompt:
       'U.S. lateral aids to navigation are numbered as well as colored. When proceeding from seaward into a channel (the normal "upstream" or return direction), how are green and red aids numbered?',
@@ -2351,6 +2418,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-aton-red-right-returning',
     topic: 'chart-nav',
+    concepts: ['lateral-system-aton'],
     format: 'visual',
     assetId: 'noaa-iala-region-b',
     prompt:
@@ -2387,6 +2455,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-aton-preferred-channel',
     topic: 'chart-nav',
+    concepts: ['lateral-system-aton'],
     format: 'visual',
     assetId: 'noaa-iala-region-b',
     prompt:
@@ -2423,6 +2492,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-aton-daymark-shapes',
     topic: 'chart-nav',
+    concepts: ['lateral-system-aton'],
     format: 'text',
     prompt:
       'Fixed daymarks (unlit, shore- or piling-mounted signs) also follow the lateral color system. What shape and color combination marks the starboard-hand side of a channel by day?',
@@ -2458,6 +2528,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-aton-light-quick',
     topic: 'chart-nav',
+    concepts: ['buoys-beacons-and-lights'],
     format: 'visual',
     assetId: 'noaa-light-characters',
     prompt:
@@ -2494,6 +2565,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-aton-light-occulting',
     topic: 'chart-nav',
+    concepts: ['buoys-beacons-and-lights'],
     format: 'visual',
     assetId: 'noaa-light-characters',
     prompt:
@@ -2530,6 +2602,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-aton-beacon-vs-buoy',
     topic: 'chart-nav',
+    concepts: ['buoys-beacons-and-lights'],
     format: 'visual',
     assetId: 'noaa-buoy-beacon-basic',
     prompt:
@@ -2566,6 +2639,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-latlong-reading',
     topic: 'chart-nav',
+    concepts: ['latitude-longitude'],
     format: 'visual',
     assetId: 'custom-lat-long-grid',
     prompt:
@@ -2602,6 +2676,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-latlong-dms-format',
     topic: 'chart-nav',
+    concepts: ['latitude-longitude'],
     format: 'text',
     prompt:
       'A charted position is given as 41°24.5\'N. How should this be read?',
@@ -2637,6 +2712,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-latlong-equator',
     topic: 'chart-nav',
+    concepts: ['latitude-longitude'],
     format: 'text',
     prompt:
       'Latitude is measured as an angular distance north or south of what reference line?',
@@ -2672,6 +2748,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-latlong-prime-meridian',
     topic: 'chart-nav',
+    concepts: ['latitude-longitude'],
     format: 'text',
     prompt:
       'Longitude is measured as an angular distance east or west of what reference line?',
@@ -2707,6 +2784,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-latlong-minute-equals-nm',
     topic: 'chart-nav',
+    concepts: ['distance-speed-time'],
     format: 'text',
     prompt:
       'Why is the latitude scale on the side border of a chart used to measure distance, rather than the longitude scale on the top or bottom border?',
@@ -2742,6 +2820,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-compass-true-vs-magnetic',
     topic: 'chart-nav',
+    concepts: ['compass-and-compass-rose'],
     format: 'visual',
     assetId: 'noaa-compass-rose',
     prompt:
@@ -2778,6 +2857,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-compass-variation-defn',
     topic: 'chart-nav',
+    concepts: ['compass-variation'],
     format: 'text',
     prompt:
       'A chart\'s compass rose states "VAR 6°W." If you plot a true course of 090° (due east) on the chart, what magnetic course should you steer to follow that same track, ignoring deviation?',
@@ -2813,6 +2893,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-compass-apply-variation',
     topic: 'chart-nav',
+    concepts: ['compass-variation'],
     format: 'visual',
     assetId: 'noaa-compass-rose',
     prompt:
@@ -2849,6 +2930,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-compass-deviation-vs-variation',
     topic: 'chart-nav',
+    concepts: ['compass-deviation'],
     format: 'text',
     prompt:
       'Besides variation, a boat\'s steering compass can be affected by "deviation." How does deviation differ from variation?',
@@ -2884,6 +2966,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-distance-latitude-scale',
     topic: 'chart-nav',
+    concepts: ['distance-speed-time'],
     format: 'visual',
     assetId: 'custom-distance-scale',
     prompt:
@@ -2920,6 +3003,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-distance-nm-length',
     topic: 'chart-nav',
+    concepts: ['distance-speed-time'],
     format: 'text',
     prompt:
       'Approximately how many feet are in one nautical mile, and how does a nautical mile compare to a statute (land) mile?',
@@ -2955,6 +3039,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-distance-dividers-method',
     topic: 'chart-nav',
+    concepts: ['distance-speed-time'],
     format: 'text',
     prompt:
       'You need to measure the distance along a curving track between two points on a chart that is longer than a single span of your dividers. What is the standard technique?',
@@ -2990,6 +3075,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-compass-interference-sources',
     topic: 'chart-nav',
+    concepts: ['compass-deviation'],
     format: 'visual',
     assetId: 'custom-compass-interference',
     prompt:
@@ -3026,6 +3112,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'chart-nav-compass-interference-siting',
     topic: 'chart-nav',
+    concepts: ['compass-deviation'],
     format: 'text',
     prompt:
       'You are choosing where to permanently mount a new steering compass on a small boat. What general precaution should guide your choice of location?',
@@ -5367,6 +5454,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'wx-interp-visibility-change',
   topic: 'marine-weather',
+  concepts: ['restricted-visibility'],
   format: 'text',
   prompt: "The forecast for the next few hours mentions visibility decreasing to one mile or less in patchy fog. What should this change in your preparation?",
   choices: [

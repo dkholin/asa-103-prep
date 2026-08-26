@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 import { CONCEPT_IDS, type ConceptId } from './concepts';
-import { LESSONS, MODULES } from './learn';
+import { LESSONS, MODULES, lessonsForModule } from './learn';
 import { practiceIdsForConcepts } from './practice-concepts';
 import { QUESTIONS } from './questions';
 
@@ -106,6 +106,113 @@ const EXPECTED_BY_LESSON: Record<string, string[]> = {
     'sail-heave-when-useful',
     'sail-heave-setup-concept',
   ],
+  'navigation-rules-tools-lookout-risk-safe-speed': [
+    'rule6-safe-speed-factors',
+    'rule6-safe-speed-radar',
+    'rule7-risk-bearing',
+    'rule7-scanty-information',
+    'rule8-early-substantial',
+    'rule8-substantial-alterations',
+    'rule8-slacken-stop-reverse',
+    'rules-give-way-early',
+    'rules-standon-may-act-no-port',
+    'rules-standon-must-act',
+    'rules-standon-duty-not-relieved',
+  ],
+  'navigation-rules-tools-meeting-situations': [
+    'rules-crossing-power',
+    'rules-overtaking',
+    'rules-overtaking-defn-angle',
+    'rules-overtaking-doubt',
+    'rules-overtaking-duty-persists',
+    'rules-headon-defn',
+    'rules-headon-doubt',
+    'rules-headon-standon',
+    'rules-headon-sail-not-power',
+    'rules-crossing-standon',
+    'rules-crossing-power-only',
+    'rules-crossing-astern-rationale',
+  ],
+  'navigation-rules-tools-sailing-vessels-special-rules': [
+    'rules-sail-opposite-tacks',
+    'rules-sail-same-tack',
+    'rules-sail-uncertain-tack',
+    'rules-sail-windward-defn',
+    'rules-sail-give-way-exceptions',
+    'rules-sail-same-tack-text',
+    'rules-motorsailing',
+    'rules-pecking-order',
+  ],
+  'navigation-rules-tools-navigation-lights': [
+    'lights-power-underway',
+    'lights-sail-underway',
+    'lights-anchored',
+    'lights-trawling',
+    'lights-id-green-only',
+    'lights-id-headon-night',
+    'lights-two-masthead-50m',
+    'lights-nuc',
+    'lights-ram',
+  ],
+  'navigation-rules-tools-reduced-visibility-sound-signals': [
+    'sound-one-short',
+    'sound-five-short',
+    'sound-fog-power-making-way',
+    'rule19-avoid-alter-port-forward',
+    'rule19-safe-speed-fog',
+    'rule19-fog-signal-forward',
+    'wx-interp-visibility-change',
+  ],
+  'navigation-rules-tools-aids-to-navigation': [
+    'chart-nav-sym-buoy-beacon-default',
+    'chart-nav-aton-lateral-colors',
+    'chart-nav-aton-numbering',
+    'chart-nav-aton-red-right-returning',
+    'chart-nav-aton-preferred-channel',
+    'chart-nav-aton-daymark-shapes',
+    'chart-nav-aton-light-quick',
+    'chart-nav-aton-light-occulting',
+    'chart-nav-aton-beacon-vs-buoy',
+  ],
+  'navigation-rules-tools-reading-a-chart': [
+    'chart-nav-tools-chart-parts',
+    'chart-nav-sym-danger-line',
+    'chart-nav-sym-wk-abbrev',
+    'chart-nav-sym-rk-abbrev',
+    'chart-nav-sym-obstn-abbrev',
+    'chart-nav-sym-foul-ground',
+    'chart-nav-sym-wreck-known-depth',
+    'chart-nav-sym-wreck-unknown-depth',
+    'chart-nav-sym-chart-datum-abbrev',
+    'chart-nav-sound-true-position',
+    'chart-nav-sound-out-of-position',
+    'chart-nav-sound-least-depth-channel',
+    'chart-nav-sound-depth-contour-shading',
+    'chart-nav-sound-bottom-abbrev',
+    'chart-nav-sound-isolated-danger',
+    'chart-nav-sound-rock-awash',
+    'chart-nav-latlong-reading',
+    'chart-nav-latlong-dms-format',
+    'chart-nav-latlong-equator',
+    'chart-nav-latlong-prime-meridian',
+  ],
+  'navigation-rules-tools-compass-courses-bearings': [
+    'chart-nav-tools-dividers',
+    'chart-nav-tools-parallel-rules',
+    'chart-nav-tools-compass-rose-rings',
+    'chart-nav-compass-true-vs-magnetic',
+    'chart-nav-compass-variation-defn',
+    'chart-nav-compass-apply-variation',
+    'chart-nav-compass-deviation-vs-variation',
+    'chart-nav-compass-interference-sources',
+    'chart-nav-compass-interference-siting',
+  ],
+  'navigation-rules-tools-distance-speed-time-electronics': [
+    'chart-nav-latlong-minute-equals-nm',
+    'chart-nav-distance-latitude-scale',
+    'chart-nav-distance-nm-length',
+    'chart-nav-distance-dividers-method',
+  ],
 };
 
 describe('concept Practice mapping', () => {
@@ -163,6 +270,36 @@ describe('concept Practice mapping', () => {
         question.concepts?.some((concept) => sailsConcepts.has(concept)),
       ),
     ).toHaveLength(36);
-    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(70);
+  });
+
+  it('carries concept metadata on exactly 158 questions across the whole bank', () => {
+    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(158);
+  });
+
+  /**
+   * The literal mapping above is the contract; this pins the number a learner
+   * actually sees on each Navigation Rules & Tools lesson's "Practice this
+   * material" session, so a concept retag cannot quietly change the size of a
+   * session while the id list is being edited.
+   */
+  it('resolves a pinned Practice count for every Navigation Rules & Tools lesson', () => {
+    const counts = lessonsForModule('navigation-rules-tools').map((lesson) => [
+      lesson.id,
+      practiceIdsForConcepts(lesson.concepts).length,
+    ]);
+    expect(counts).toEqual([
+      ['navigation-rules-tools-lookout-risk-safe-speed', 11],
+      ['navigation-rules-tools-meeting-situations', 12],
+      ['navigation-rules-tools-sailing-vessels-special-rules', 8],
+      ['navigation-rules-tools-navigation-lights', 9],
+      ['navigation-rules-tools-reduced-visibility-sound-signals', 7],
+      ['navigation-rules-tools-aids-to-navigation', 9],
+      ['navigation-rules-tools-reading-a-chart', 20],
+      ['navigation-rules-tools-compass-courses-bearings', 9],
+      ['navigation-rules-tools-distance-speed-time-electronics', 4],
+    ]);
+    // Every lesson resolves to a real session: none of the nine is a dead
+    // "Practice this material" button.
+    expect(counts.every(([, count]) => (count as number) > 0)).toBe(true);
   });
 });
