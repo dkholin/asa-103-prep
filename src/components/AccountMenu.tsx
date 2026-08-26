@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { UserRound } from 'lucide-react';
 
 /**
  * The header's account affordance: a disclosure button that reveals a small
@@ -72,6 +73,7 @@ export function AccountMenu(props: { onSignOut: () => void }) {
         aria-controls={open ? panelId : undefined}
         onClick={() => setOpen((value) => !value)}
       >
+        <UserRound aria-hidden="true" size={16} strokeWidth={1.75} />
         Account
       </button>
       {open && (
