@@ -251,7 +251,11 @@ describe('concept Practice mapping', () => {
   it('keeps all pre-Step-3 question content byte-stable after removing concepts', () => {
     const stripped = QUESTIONS.map(({ concepts: _concepts, ...question }) => question);
     const digest = createHash('sha256').update(JSON.stringify(stripped)).digest('hex');
-    expect(digest).toBe('fd86aaa573af75dc5a9bb56656d59ca91e3cde3ed848a0b2c6f0ac6eea2f2280');
+    // Rolled once, deliberately: the malformed correct answer on
+    // `chart-nav-compass-apply-variation` ("About 3°N/A") was corrected to
+    // "About 3°11'W" to agree with its own explanation. Any other change to
+    // this digest is a question-bank edit that was not approved.
+    expect(digest).toBe('d637f5c7a71e9ecc7383e8f0a7f4e2f4c32ca216fc634674a216057eff830d4e');
   });
 
   it('adds concept metadata to exactly 36 questions for Sails & Trim', () => {

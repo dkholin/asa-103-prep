@@ -2913,7 +2913,7 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'a',
-        text: 'About 3°N/A — approximately 1° less westerly than in 2018, since 8 years × 8\' per year ≈ 64\', or just over 1°, decreasing the original 4°15\'W',
+        text: 'About 3°11\'W — approximately 1° less westerly than in 2018, since 8 years × 8\' per year ≈ 64\', or just over 1°, decreasing the original 4°15\'W',
       },
       {
         id: 'b',
