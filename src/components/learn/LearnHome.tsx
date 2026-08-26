@@ -1,4 +1,17 @@
 import { useState } from 'react';
+import {
+  Anchor,
+  ArrowRight,
+  ChevronDown,
+  Compass,
+  Fuel,
+  LifeBuoy,
+  Map,
+  Sailboat,
+  Waypoints,
+  Wind,
+  type LucideIcon,
+} from 'lucide-react';
 import { MODULES, lessonsForModule } from '../../content/learn';
 import {
   continueLearning,
@@ -8,6 +21,18 @@ import {
   moduleLessonProgress,
 } from '../../lib/learn-progress';
 import { lessonState, type Progress } from '../../lib/progress';
+import { ProgressCharacteristic } from './ProgressCharacteristic';
+
+const MODULE_ICONS: Record<string, LucideIcon> = {
+  'boat-cruising-basics': Sailboat,
+  motoring: Fuel,
+  'cruising-life-safety': LifeBuoy,
+  'sails-trim': Wind,
+  'navigation-rules-tools': Compass,
+  'hands-on-cruising': Anchor,
+  seamanship: Waypoints,
+  'cruise-planning-independence': Map,
+};
 
 export function LearnHome(props: {
   progress: Progress;
@@ -27,8 +52,9 @@ export function LearnHome(props: {
   );
 
   return (
-    <section aria-label="Learn">
-      <div className="card">
+    <section className="learn-home" aria-label="Learn">
+      <div className="card learn-intro">
+        <p className="eyebrow">Course outline</p>
         <h2>Learn</h2>
         <p className="muted">
           Course modules to read alongside the question bank. Lessons are never locked — open any of
@@ -37,7 +63,7 @@ export function LearnHome(props: {
       </div>
 
       {target && (
-        <div className="card hero-card" data-testid="continue-learning">
+        <div className="card hero-card learn-continue" data-testid="continue-learning">
           <p className="eyebrow">Continue learning</p>
           {target.kind === 'lesson' ? (
             <>
@@ -46,8 +72,9 @@ export function LearnHome(props: {
                 {target.resume ? 'Pick up where you left off.' : 'Next up in your course.'}
               </p>
               <div className="actions">
-                <button onClick={() => props.onOpenLesson(target.lesson.id)}>
+                <button className="learn-primary-action" onClick={() => props.onOpenLesson(target.lesson.id)}>
                   {target.resume ? 'Resume lesson' : 'Start lesson'}
+                  <ArrowRight aria-hidden="true" size={16} strokeWidth={1.75} />
                 </button>
               </div>
             </>
@@ -66,10 +93,20 @@ export function LearnHome(props: {
         const published = module.status === 'published';
         const expanded = published && expandedModuleId === module.id;
         const listId = `module-lessons-${module.id}`;
+        const ModuleIcon = MODULE_ICONS[module.id] ?? Map;
+        const currentLessonId = lessons.some((lesson) => lesson.id === props.progress.learn?.lastLessonId)
+          ? props.progress.learn?.lastLessonId
+          : undefined;
         return (
-          <div className="card" key={module.id}>
+          <article
+            className={`card learn-module-card${expanded ? ' learn-module-expanded' : ''}${published ? '' : ' learn-module-soon'}`}
+            key={module.id}
+          >
             <div className="topic-row module-header">
-              <div>
+              <span className="module-icon" aria-hidden="true">
+                <ModuleIcon size={24} strokeWidth={1.75} />
+              </span>
+              <div className="module-copy">
                 {/*
                   Heading wrapping a button is the accordion pattern: the module
                   keeps its place in the heading outline while the control that
@@ -90,7 +127,6 @@ export function LearnHome(props: {
                         setExpandedModuleId((current) => (current === module.id ? null : module.id))
                       }
                     >
-                      <span className="module-toggle-icon" aria-hidden="true" />
                       {module.title}
                     </button>
                   ) : (
@@ -99,29 +135,45 @@ export function LearnHome(props: {
                 </h2>
                 <div className="muted">{module.blurb}</div>
               </div>
-              <div className="topic-side">
+              <div className="module-progress">
                 {published ? (
-                  // Counts only. No percentage, score, or streak: marking a
-                  // lesson read is not evidence of mastery.
-                  <span className="chip" data-testid={`module-progress-${module.id}`}>
-                    {completed} of {total} lessons complete
-                  </span>
+                  <>
+                    <ProgressCharacteristic
+                      lessons={lessons}
+                      progress={props.progress}
+                      currentLessonId={currentLessonId}
+                      size="sm"
+                    />
+                    {/* Counts only. No percentage, score, or streak: marking a
+                        lesson read is not evidence of mastery. */}
+                    <span className="module-progress-label" data-testid={`module-progress-${module.id}`}>
+                      {completed} of {total} lessons complete
+                    </span>
+                  </>
                 ) : (
                   <span className="chip chip-not-started">Coming soon</span>
                 )}
               </div>
+              {published && (
+                <ChevronDown
+                  className="module-chevron"
+                  aria-hidden="true"
+                  size={20}
+                  strokeWidth={1.75}
+                />
+              )}
             </div>
             {/*
               Collapsed lessons are not rendered at all rather than hidden with
               CSS, so their buttons leave the tab order with them.
             */}
             {expanded && (
-              <ul className="topic-list" id={listId}>
+              <ul className="topic-list learn-lesson-list" id={listId}>
                 {lessons.map((lesson) => {
                   const state = lessonState(props.progress, lesson.id);
                   return (
-                    <li key={lesson.id} className="topic-row">
-                      <div>
+                    <li key={lesson.id} className="topic-row learn-lesson-row">
+                      <div className="lesson-row-copy">
                         <div className="topic-name">
                           {lesson.order}. {lesson.title}
                         </div>
@@ -129,8 +181,9 @@ export function LearnHome(props: {
                       </div>
                       <div className="topic-side">
                         <span className={lessonChipClass(state)}>{lessonStateLabel(state)}</span>
-                        <button className="secondary" onClick={() => props.onOpenLesson(lesson.id)}>
+                        <button className="secondary lesson-open-button" onClick={() => props.onOpenLesson(lesson.id)}>
                           Open lesson
+                          <ArrowRight aria-hidden="true" size={16} strokeWidth={1.75} />
                         </button>
                       </div>
                     </li>
@@ -138,7 +191,7 @@ export function LearnHome(props: {
                 })}
               </ul>
             )}
-          </div>
+          </article>
         );
       })}
 
