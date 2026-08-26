@@ -1,16 +1,39 @@
 import type { Lesson } from '../types';
 
-/**
- * Draft skeleton. Structure, ordering and concept tags are final; the teaching
- * copy and any figures are still to be written.
- */
 export const lesson: Lesson = {
   id: 'navigation-rules-tools-reading-a-chart', moduleId: 'navigation-rules-tools', order: 7,
   title: 'Reading a Nautical Chart',
   intro: 'What the printed page is telling you: symbols, depths, and the coordinate grid every position is stated in.',
   concepts: ['chart-symbols', 'soundings-and-chart-datum', 'latitude-longitude'],
   blocks: [
-    { kind: 'callout', tone: 'note', title: 'Draft lesson', text: 'This lesson is an outline. The Practice questions below are already mapped to its concepts and work today; the written explanation is still being drafted.' },
-    { kind: 'text', text: 'Planned coverage: Chart title block and margins, hazard and seabed symbols, soundings and chart datum, depth contours and shading, and reading latitude and longitude off the borders.' },
+    { kind: 'heading', text: 'What a chart is, and what it is not' },
+    { kind: 'text', text: 'A nautical chart is a scaled, surveyed picture of the water: depths, the shape of the bottom, hazards, aids to navigation, the shoreline and landmarks, on a coordinate grid so any point can be named exactly. Everything on it is fixed; nothing on it is current. Tide, weather and traffic come from elsewhere and are applied to what the chart says.' },
+    { kind: 'text', text: 'Before reading the water, read the margins. The title block gives area, scale, projection, the units used for soundings and heights, and the datums; the borders carry the latitude and longitude scales; a compass rose gives true and magnetic. Cautionary notes flag unsurveyed areas, and the source or Zone of Confidence diagram says how reliable each part of the survey is.' },
+    { kind: 'figure', assetId: 'noaa-chart-schematic', caption: 'The anatomy of a chart sheet. What governs how you read everything else — scale, units, datums, notes — lives in the margins and the title block.' },
+    { kind: 'callout', tone: 'note', title: 'Chart No. 1 is the dictionary', text: 'NOAA’s U.S. Chart No. 1 lists every symbol, abbreviation and term used on U.S. charts, in lettered sections — depths in I, seabed in J, rocks and wrecks in K, lights in P, buoys and beacons in Q. The skill is not memorising symbols; it is noticing an unfamiliar one and looking it up before you sail over it.' },
+    { kind: 'heading', text: 'Latitude and longitude' },
+    { kind: 'text', text: 'Latitude is angular distance north or south of the equator, 0° to 90°, read from the side borders. Longitude is angular distance east or west of Greenwich, 0° to 180°, read from the top and bottom borders. Latitude is always stated first.' },
+    { kind: 'text', text: 'Each degree divides into 60 minutes of arc. Minutes traditionally divide into 60 seconds, but charts and GPS receivers commonly use decimal minutes: 41°24.5′N is not the same as 41°24′05″N. Know which format a device is showing before transcribing a position from it.' },
+    { kind: 'figure', assetId: 'custom-lat-long-grid', caption: 'Reading a position is a two-step trace: run a line in from the side border for latitude and from the top or bottom border for longitude, and read where they meet.' },
+    { kind: 'callout', tone: 'note', title: 'One minute of latitude is one nautical mile', text: 'That makes the side border a distance ruler as well as a coordinate scale. The longitude scale is not: minutes of longitude shrink toward the poles.' },
+    { kind: 'heading', text: 'Soundings and chart datum' },
+    { kind: 'text', text: 'A sounding is the depth at a charted position, in the units named in the title block. Where numbers would crowd, the chart marks the true position with a small dot and runs a leader line to the figure — read the dot, not where the number sits. Across a narrow channel a single least-depth figure may replace the individual soundings, because the shoalest point governs whether you can transit.' },
+    { kind: 'figure', assetId: 'noaa-soundings-basic', caption: 'Three ways a depth figure is presented. Each answers the same question — how deep, and exactly where — with a different solution to fitting the number onto the page.' },
+    { kind: 'definition', term: 'Chart datum', text: 'The tidal level soundings and drying heights are referred to. On NOAA charts it is Mean Lower Low Water — except Great Lakes and non-tidal inland waterway charts, which use their own datums.' },
+    { kind: 'callout', tone: 'warning', title: 'Charted depth is a reference, not a guarantee', text: 'Mean Lower Low Water is an average of the lower of each day’s low waters, so the tide falls below it regularly by construction. On a negative tide the actual depth is less than the charted sounding, and wind setdown can lower it further. NOAA also cautions that even modern surveys may miss an obstruction or the shoalest depth. Apply the tide of the moment, then keep a margin under the keel on top of that.' },
+    { kind: 'text', text: 'Depth contours join points of equal depth and are shaded in bands, so relative depth reads at a glance long before you check individual soundings. Shading for the shape of the shoal, soundings for the numbers.' },
+    { kind: 'figure', assetId: 'noaa-depth-contours', caption: 'The shading scheme itself: bands of tint laid between named contours, from the foreshore down through the shallow-water and safety contours to deep water. Two shades or four may be used, so check which scheme a chart is drawn to before reading depth from tone.' },
+    { kind: 'heading', text: 'Hazards' },
+    { kind: 'text', text: 'The hazard symbols share one design idea: they say what the thing is, and whether its depth is known. A wreck charted with a depth figure can be compared against your draft and the tide; a wreck charted without one has undetermined depth and must be treated as a hazard, never as clearance you can assume. On an electronic chart, the ECDIS presentation adds a magenta isolated-danger symbol for a small, discrete hazard shallower than the safety contour in otherwise navigable water — a display convention of the plotter, not a paper-chart symbol. Whichever presentation you are reading, go round it.' },
+    { kind: 'figure', assetId: 'noaa-wreck-symbols', caption: 'Chart No. 1 rows 22 and 23 laid out across the notation columns — INT, NOAA, NGA, other NGA and ECDIS — about a dozen renderings of the same two entries. Row 22 is a submerged wreck of known depth and carries a sounding on the symbol; row 23 is a submerged wreck of unknown depth and carries none. Same object, different states of knowledge, and the presence or absence of that figure is the whole difference.' },
+    { kind: 'table', caption: 'Abbreviations you will meet constantly', headers: ['Abbreviation', 'Means', 'Why it matters'], rows: [
+      ['Wk', 'Wreck', 'Check whether a depth is charted with it'],
+      ['Rk', 'Rock', 'The number with it is a depth over the rock, or a height if it dries'],
+      ['Obstn', 'Obstruction', 'A bottom hazard that is neither rock nor wreck — piling, debris, foul'],
+      ['S / M / Cl / rky / Sh / Wd', 'Sand, mud, clay, rocky, shells, weed', 'Nature of the seabed — decides whether an anchor will hold'],
+      ['CD', 'Chart datum', 'The reference level the soundings are measured from'],
+    ] },
+    { kind: 'text', text: 'Three conventions complete the picture. A danger line, dotted or dashed, draws the eye to a hazard easy to miss at chart scale, or encloses several. Foul ground is a bottom littered with debris or wreck remains: generally safe to pass over, not to anchor in. A rock that covers and uncovers lies between the high- and low-water lines — visible at low tide, invisible and far more dangerous as the tide makes.' },
+    { kind: 'callout', tone: 'note', title: 'Check the chart’s vintage as well as its content', text: 'A chart shows what surveys found, when they found it, and sand and mud near river and bay entrances change continually. Use a current edition, apply the Local Notice to Mariners, treat anything labelled “reported” with caution, and in poorly surveyed water follow the customary routes rather than trusting the white space.' },
   ],
 };

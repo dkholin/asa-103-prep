@@ -2464,12 +2464,12 @@ export const QUESTIONS: Question[] = [
       {
         id: 'a',
         text: 'The preferred channel is to your starboard when returning from seaward — treat the mark generally as you would a red, starboard-hand mark',
+        whyWrong:
+          'The second half is right and the first half is wrong. It is treated as a red, starboard-hand mark, and you do keep it to starboard — which is exactly why the preferred channel lies to PORT of the mark, not to starboard. Keeping the mark to starboard puts your track down the branch on the mark\'s port side.',
       },
       {
         id: 'b',
-        text: 'The preferred channel is to your port when returning from seaward',
-        whyWrong:
-          'A red-topped junction mark indicates the preferred channel is to starboard, not port — a green-topped mark would indicate port instead.',
+        text: 'The preferred channel is to your port when returning from seaward — treat the mark as a red, starboard-hand mark and keep it to starboard',
       },
       {
         id: 'c',
@@ -2484,9 +2484,9 @@ export const QUESTIONS: Question[] = [
           'Color banding indicates channel preference, not the mark\'s lighting status.',
       },
     ],
-    correctChoiceId: 'a',
+    correctChoiceId: 'b',
     explanation:
-      'A junction/preferred-channel mark shows red and green bands; the color of the topmost band indicates which lateral color the mark should be treated as for the preferred route. A red-topped mark means the preferred channel lies to your starboard when returning from seaward — pass it as you would a red nun. A green-topped mark means the preferred channel is to port.',
+      'A junction/preferred-channel mark shows red and green bands, and the topmost band tells you which lateral mark to treat it as. Red on top means treat it as a red, starboard-hand mark: keep it to starboard when returning from seaward, exactly as you would a red nun. Because your track passes on the mark\'s port side, the preferred channel is the branch to PORT of the mark — which is why Chart No. 1 labels red-over-green as "Preferred Channel to Port." A green-topped mark reverses it: keep it to port, and the preferred channel lies to starboard of the mark.',
     source: 'NOAA U.S. Chart No. 1, Appendix 1 — IALA Maritime Buoyage System, Region B (Preferred Channel Marks)',
   },
   {

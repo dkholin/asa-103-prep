@@ -1,16 +1,46 @@
 import type { Lesson } from '../types';
 
-/**
- * Draft skeleton. Structure, ordering and concept tags are final; the teaching
- * copy and any figures are still to be written.
- */
 export const lesson: Lesson = {
   id: 'navigation-rules-tools-aids-to-navigation', moduleId: 'navigation-rules-tools', order: 6,
   title: 'Aids to Navigation',
   intro: 'The buoys, beacons and markers that tell you where the water is and what to keep clear of.',
   concepts: ['lateral-system-aton', 'buoys-beacons-and-lights', 'regulatory-markers'],
   blocks: [
-    { kind: 'callout', tone: 'note', title: 'Draft lesson', text: 'This lesson is an outline. The Practice questions below are already mapped to its concepts and work today; the written explanation is still being drafted.' },
-    { kind: 'text', text: 'Planned coverage: The IALA Region B lateral system, buoy versus beacon, light characteristics and their chart abbreviations, and the regulatory markers that carry non-lateral meaning.' },
+    { kind: 'heading', text: 'Buoy or beacon?' },
+    { kind: 'definition', term: 'Beacon', text: 'An aid permanently fixed to the earth’s surface — a piling, tower, or structure ashore. Lighted beacons are lights; unlighted ones are daybeacons, identified by their daymark.' },
+    { kind: 'definition', term: 'Buoy', text: 'A floating aid moored to a sinker on the bottom. It marks an approximate position: chain and current let it swing, and weather, ice, or a collision can drag it off station or sink it.' },
+    { kind: 'text', text: 'The distinction is practical. A beacon is where the chart says it is. A buoy is a strong indication that should be cross-checked against soundings, bearings, and the chart — especially in poor visibility or after a storm. Charts give the two families separate default symbols for exactly this reason.' },
+    { kind: 'figure', assetId: 'noaa-buoy-beacon-basic', caption: 'The default chart symbols when no other attributes are charted. The small circle in each marks the charted position; the shape above it distinguishes the fixed structure from the floating one.' },
+    { kind: 'heading', text: 'The lateral system: IALA Region B' },
+    { kind: 'text', text: 'Lateral marks show the sides of a channel, and their meaning depends on a stated direction — the conventional direction of buoyage, normally the direction taken when approaching a harbour, river, or estuary from seaward. In IALA Region B, which covers the United States, starboard-hand marks are red and port-hand marks are green.' },
+    { kind: 'table', caption: 'U.S. lateral marks, returning from seaward', headers: ['Hand', 'Colour', 'Buoy shape', 'Daymark', 'Numbering'], rows: [
+      ['Starboard', 'Red', 'Nun (conical) or pillar', 'Red triangle', 'Even'],
+      ['Port', 'Green', 'Can (cylindrical) or pillar', 'Green square', 'Odd'],
+    ] },
+    { kind: 'figure', assetId: 'noaa-iala-region-b', caption: 'The Region B lateral marks as charted. Shape, colour, daymark, and number all encode the same information, so any one of them can confirm the others.' },
+    { kind: 'text', text: 'Numbers increase in the conventional direction of buoyage, so a rising sequence confirms you are heading in the buoyage direction and gives a running position check along the channel. Reverse your track and the marks swap sides: proceeding toward open water you keep green to starboard and the numbers count down.' },
+    { kind: 'callout', tone: 'note', title: '“Red, right, returning” — and its limits', text: 'The mnemonic is sound for the U.S. lateral system when returning from seaward. It says nothing about non-lateral marks, it reverses when you head back out, and it is wrong in IALA Region A, which covers much of Europe, Africa, Asia, and Australasia. A memory aid for one system in one direction, not a law of nature.' },
+    { kind: 'text', text: 'Where a channel divides, a preferred-channel (junction) mark carries horizontal bands of red and green. The topmost band says which lateral mark to treat it as. Red on top makes it a starboard-hand mark: returning from seaward you keep the buoy on your starboard side, and because your track then passes down the buoy’s port side, the preferred channel is the branch to port of the mark — which is why Chart No. 1 labels red-over-green “Preferred Channel to Port.” Green on top reverses both halves: keep it to port, and the preferred channel is the branch to starboard of it. The secondary channel is usually navigable — it simply is not the primary route, and deserves a closer look at the chart.' },
+    { kind: 'heading', text: 'Lights' },
+    { kind: 'text', text: 'A lit aid is identified at night by its light characteristic — colour, rhythm, and the period of one complete cycle — printed on the chart beside the symbol. Green lights mark port-hand aids and red lights starboard-hand aids; yellow lights carry no lateral meaning.' },
+    { kind: 'table', caption: 'Common light characters and their chart abbreviations', headers: ['Abbreviation', 'Character', 'What you see'], rows: [
+      ['F', 'Fixed', 'Steady and continuous, no dark period'],
+      ['Fl', 'Flashing', 'Brief flashes; dark period longer than the light'],
+      ['Oc', 'Occulting', 'Mostly lit, with brief regular eclipses — the inverse of flashing'],
+      ['Iso', 'Isophase', 'Equal periods of light and dark'],
+      ['Q', 'Quick', 'A rapid twinkle, about 50 to 79 flashes a minute'],
+      ['Fl (2+1)', 'Composite group flashing', 'Two flashes then one, repeated — the junction-mark rhythm'],
+    ] },
+    { kind: 'figure', assetId: 'noaa-light-characters', caption: 'Each character is drawn as a light-and-dark timeline, which makes the family resemblances obvious: what changes between them is the ratio of lit to dark, and the rate.' },
+    { kind: 'heading', text: 'Information and regulatory marks' },
+    { kind: 'text', text: 'These are the non-lateral signs: white with orange bands, carrying a black-lettered message inside or beside an orange geometric shape. The shape is the message class and it is standardised nationally, so learn the four shapes rather than reading each sign from scratch.' },
+    { kind: 'table', caption: '33 CFR 62.33 — information and regulatory marks', headers: ['Orange shape', 'Meaning'], rows: [
+      ['Open-faced diamond', 'Danger'],
+      ['Diamond with a cross inside', 'Vessels excluded from the marked area'],
+      ['Circle', 'Operating restrictions in force, such as a speed or no-wake limit'],
+      ['Square or rectangle', 'Information — directions, distances, or locations, lettered inside'],
+    ] },
+    { kind: 'text', text: 'Two other families are worth recognising on sight. Special marks are solid yellow and indicate an area or feature described on the chart — an anchorage, a cable area, a data buoy — rather than a side of a channel. Aids marking the Intracoastal Waterway carry yellow symbols in addition to their normal colouring: a yellow triangle means keep the aid to starboard, a yellow square means keep it to port, both regardless of the aid’s own colour or number, and a plain yellow horizontal band simply identifies an ICW aid with no lateral meaning at all.' },
+    { kind: 'callout', tone: 'warning', title: 'Aids supplement the chart; they do not replace it', text: 'Never navigate from marks alone. A buoy can be off station, extinguished, or missing; a light can fail; privately maintained local aids may not be charted. Carry current charts, check the Local Notice to Mariners before a trip, and confirm what you are seeing against depth, bearings, and the shoreline.' },
   ],
 };

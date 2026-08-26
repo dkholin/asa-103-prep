@@ -77,14 +77,14 @@ describe('learn content integrity', () => {
   });
 
   /**
-   * Navigation Rules & Tools is published as a skeleton: the nine lessons,
-   * their order and their concept tags are the finished part, and the teaching
-   * copy is not. This guard pins the shape so a later copy pass cannot quietly
-   * drop, reorder or retag a lesson — and asserts no figures yet, so the first
-   * figure added to the module has to come with a manifest entry and an
-   * updated expectation rather than slipping in unreviewed.
+   * Navigation Rules & Tools is finished: nine lessons, their order, their
+   * concept tags and their teaching copy. This guard pins the shape so a later
+   * edit cannot quietly drop, reorder or retag a lesson, and pins the exact
+   * figure list in document order — every figure in this module is a reused,
+   * already-approved manifest asset, so a new one has to arrive with a
+   * deliberate change here rather than slipping in unreviewed.
    */
-  it('publishes nine Navigation Rules & Tools lessons in order, tagged and figure-free', () => {
+  it('publishes nine finished Navigation Rules & Tools lessons in order, tagged and using only approved figures', () => {
     const lessons = lessonsForModule('navigation-rules-tools');
     expect(lessons.map((lesson) => lesson.title)).toEqual([
       'Lookout, Risk & Safe Speed',
@@ -104,12 +104,38 @@ describe('learn content integrity', () => {
       for (const concept of lesson.concepts) {
         expect([...conceptIds], `concept ${concept} of ${lesson.id}`).toContain(concept);
       }
-      expect(lesson.blocks.length, `empty lesson ${lesson.id}`).toBeGreaterThan(0);
-      expect(
-        lesson.blocks.filter((block) => block.kind === 'figure'),
-        `${lesson.id} has figures before the copy pass`,
-      ).toHaveLength(0);
+      expect(JSON.stringify(lesson), `placeholder copy in ${lesson.id}`)
+        .not.toMatch(/placeholder|draft lesson|planned coverage|still being drafted/i);
+      expect(lesson.blocks.length, `thin lesson ${lesson.id}`).toBeGreaterThanOrEqual(7);
     }
+    expect(
+      lessons.flatMap((lesson) => lesson.blocks)
+        .filter((block) => block.kind === 'figure')
+        .map((block) => block.assetId),
+    ).toEqual([
+      'custom-overtaking',
+      'custom-headon-bowview',
+      'custom-crossing',
+      'custom-crossing-standon',
+      'custom-sail-opposite-tacks',
+      'custom-sail-same-tack',
+      'custom-night-headon',
+      'custom-night-green-only',
+      'photo-trawler-gear-out',
+      'noaa-buoy-beacon-basic',
+      'noaa-iala-region-b',
+      'noaa-light-characters',
+      'noaa-chart-schematic',
+      'custom-lat-long-grid',
+      'noaa-soundings-basic',
+      'noaa-depth-contours',
+      'noaa-wreck-symbols',
+      'custom-binnacle-compass',
+      'noaa-compass-rose',
+      'custom-compass-interference',
+      'photo-plotting-tools',
+      'custom-distance-scale',
+    ]);
     // No concept is tagged on two lessons in this module: a learner who
     // practises a lesson never re-practises the same set from its neighbour.
     const tagged = lessons.flatMap((lesson) => lesson.concepts);

@@ -255,7 +255,18 @@ describe('concept Practice mapping', () => {
     // `chart-nav-compass-apply-variation` ("About 3°N/A") was corrected to
     // "About 3°11'W" to agree with its own explanation. Any other change to
     // this digest is a question-bank edit that was not approved.
-    expect(digest).toBe('d637f5c7a71e9ecc7383e8f0a7f4e2f4c32ca216fc634674a216057eff830d4e');
+    //
+    // Rolled a second time, deliberately: `chart-nav-aton-preferred-channel`
+    // marked choice `a` correct, asserting that a red-topped preferred-channel
+    // mark puts the preferred channel to starboard. Under 33 CFR 62.25(c) and
+    // NOAA Chart No. 1 Appendix 1 (this project's own `noaa-iala-region-b`
+    // asset, which labels red-over-green "Preferred Channel to Port"), red on
+    // top means the mark is a starboard-hand mark kept to starboard, so the
+    // preferred channel lies to PORT of it. `correctChoiceId` moved to `b`,
+    // `b` gained the mark-handling clause, `a` gained a `whyWrong` defusing the
+    // compound-statement trap, and the explanation was updated to agree. Any
+    // other change to this digest is a question-bank edit that was not approved.
+    expect(digest).toBe('bddc31c3403161b945d2436fb690decbc44e27237370be76acd4c11d7d2725cd');
   });
 
   it('adds concept metadata to exactly 36 questions for Sails & Trim', () => {
