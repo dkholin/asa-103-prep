@@ -8,6 +8,7 @@ import {
   Map,
   Sailboat,
   ShieldCheck,
+  Triangle,
   Waypoints,
   type LucideIcon,
 } from 'lucide-react';
@@ -26,7 +27,7 @@ const MODULE_ICONS: Record<string, LucideIcon> = {
   'boat-cruising-basics': Sailboat,
   motoring: Cog,
   'cruising-life-safety': ShieldCheck,
-  'sails-trim': Sailboat,
+  'sails-trim': Triangle,
   'navigation-rules-tools': Compass,
   'hands-on-cruising': Anchor,
   seamanship: Waypoints,
