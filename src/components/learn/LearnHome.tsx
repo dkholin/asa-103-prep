@@ -4,12 +4,11 @@ import {
   ArrowRight,
   ChevronDown,
   Compass,
-  Fuel,
-  LifeBuoy,
+  Cog,
   Map,
   Sailboat,
+  ShieldCheck,
   Waypoints,
-  Wind,
   type LucideIcon,
 } from 'lucide-react';
 import { MODULES, lessonsForModule } from '../../content/learn';
@@ -25,9 +24,9 @@ import { ProgressCharacteristic } from './ProgressCharacteristic';
 
 const MODULE_ICONS: Record<string, LucideIcon> = {
   'boat-cruising-basics': Sailboat,
-  motoring: Fuel,
-  'cruising-life-safety': LifeBuoy,
-  'sails-trim': Wind,
+  motoring: Cog,
+  'cruising-life-safety': ShieldCheck,
+  'sails-trim': Sailboat,
   'navigation-rules-tools': Compass,
   'hands-on-cruising': Anchor,
   seamanship: Waypoints,
