@@ -1472,65 +1472,196 @@ button.compact {
   height: 11px;
 }
 
+/* ---------------------------------------------------------------------
+   Lesson reading experience
+   ------------------------------------------------------------------- */
+.lesson {
+  overflow: clip;
+}
+
+.lesson-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 68ch);
+  justify-content: center;
+}
+
+.lesson-header,
+.lesson-reading {
+  min-width: 0;
+}
+
+.lesson-header {
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.lesson-back {
+  min-height: 44px;
+  margin: calc(-1 * var(--space-2)) 0 var(--space-2);
+  color: var(--marine);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.lesson-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.lesson-title-row h2 {
+  max-width: 28ch;
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  line-height: 1.05;
+}
+
+.lesson-intro,
+.lesson-blocks {
+  font-family: var(--font-reading);
+}
+
 .lesson-intro {
-  margin: 0;
+  max-width: 62ch;
+  margin: var(--space-3) 0 0;
+  color: var(--slate);
+  font-size: 1.12rem;
+  line-height: 1.58;
+}
+
+.lesson-reading {
+  padding-top: var(--space-6);
 }
 
 .lesson-heading {
-  font-size: 1rem;
-  margin-bottom: 0;
+  margin: var(--space-7) 0 0;
+  color: var(--ink);
+  font-size: 1.32rem;
+  line-height: 1.2;
 }
 
 .lesson-text {
   margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.72;
 }
 
 .lesson-list {
   margin: 0;
-  padding-left: var(--space-5);
+  padding-left: 1.6em;
+  font-size: 1.06rem;
+  line-height: 1.65;
 }
 
 .lesson-list li {
-  margin-bottom: var(--space-1);
+  padding-left: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.lesson-list li::marker {
+  color: var(--marine);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.lesson-margin {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-display);
+}
+
+.lesson-margin-section {
+  min-width: 0;
+}
+
+.lesson-margin-label,
+.lesson-margin-section h3 {
+  margin: 0 0 var(--space-2);
+  color: var(--slate);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.lesson-margin-detail {
+  margin: var(--space-1) 0 0;
+  color: var(--slate);
+  font-size: 0.82rem;
+}
+
+.lesson-margin-section ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lesson-margin-section li {
+  padding: 7px 0;
+  border-top: 1px solid var(--hairline-soft);
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1.25;
 }
 
 .definition {
   margin: 0;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-4) var(--space-5);
   border-left: 3px solid var(--color-accent);
   background: var(--color-accent-subtle);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
 .definition dt {
+  font-family: var(--font-display);
   font-weight: 700;
   color: var(--color-accent-strong);
 }
 
 .definition dd {
   margin: var(--space-1) 0 0;
+  font-size: 1.02rem;
+  line-height: 1.58;
 }
 
 .callout {
-  padding: var(--space-3) var(--space-4);
+  position: relative;
+  padding: var(--space-4) var(--space-5);
+  border-left: 3px solid var(--marine);
   border-radius: var(--radius-sm);
   background: var(--color-accent-subtle);
   color: var(--color-text);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .callout-warning {
+  border-left-color: var(--caution);
   background: var(--color-warning-bg);
   color: var(--color-warning-text);
 }
 
+.callout-kicker {
+  margin: 0 0 var(--space-1);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
 .callout-title {
   margin: 0 0 var(--space-1);
+  font-family: var(--font-display);
   font-weight: 700;
 }
 
 .callout-text {
   margin: 0;
+  line-height: 1.58;
 }
 
 /* The table, not the page, takes the overflow on a narrow viewport. */
@@ -1539,6 +1670,12 @@ button.compact {
   max-width: 100%;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
+  overscroll-behavior-inline: contain;
+}
+
+.lesson-table-scroll:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
 }
 
 .lesson-table {
@@ -1554,6 +1691,8 @@ button.compact {
   text-align: left;
   color: var(--color-text-secondary);
   font-size: 0.82rem;
+  font-family: var(--font-display);
+  font-weight: 600;
 }
 
 .lesson-table th,
@@ -1567,6 +1706,7 @@ button.compact {
   border-top: none;
   background: var(--color-surface-subtle);
   color: var(--color-accent-strong);
+  font-family: var(--font-display);
 }
 
 /* Declared after the per-kind rules above, several of which zero their own
@@ -1578,12 +1718,96 @@ button.compact {
 }
 
 .lesson-figure {
-  max-width: 480px;
+  max-width: 100%;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .figure-caption {
   display: block;
   color: var(--color-text-secondary);
+  font-family: var(--font-reading);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.lesson-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-sans);
+}
+
+.lesson-neighbours {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  font-family: var(--font-sans);
+}
+
+button.lesson-neighbour {
+  display: flex;
+  min-width: 0;
+  min-height: 80px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  white-space: normal;
+}
+
+button.lesson-neighbour-next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.lesson-neighbour-direction {
+  color: var(--slate);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.lesson-neighbour-title {
+  margin-top: var(--space-1);
+  color: var(--marine);
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  line-height: 1.2;
+}
+
+button.lesson-neighbour:disabled .lesson-neighbour-title {
+  color: var(--slate);
+}
+
+@media (min-width: 1080px) {
+  .lesson-layout {
+    grid-template-columns: minmax(0, 68ch) minmax(220px, 260px);
+    column-gap: var(--space-7);
+    align-items: start;
+  }
+
+  .lesson-header,
+  .lesson-reading {
+    grid-column: 1;
+  }
+
+  .lesson-margin {
+    position: sticky;
+    top: 92px;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin-top: 40px;
+    padding: 0;
+    border: 0;
+  }
 }
 
 /* ---------------------------------------------------------------------
@@ -1697,6 +1921,25 @@ button.compact {
   .lesson-open-button {
     min-height: 44px;
   }
+
+  .lesson-title-row {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .lesson-title-row h2 {
+    max-width: 100%;
+  }
+
+  .lesson-intro,
+  .lesson-text {
+    font-size: 1.04rem;
+  }
+
+  .definition,
+  .callout {
+    padding: var(--space-4);
+  }
 }
 
 /*
@@ -1743,6 +1986,23 @@ button.compact {
 
   .lesson-open-button {
     justify-content: center;
+  }
+
+  .lesson-actions > button {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .lesson-neighbours {
+    grid-template-columns: 1fr;
+  }
+
+  button.lesson-neighbour,
+  button.lesson-neighbour-next {
+    width: 100%;
+    min-height: 76px;
+    align-items: flex-start;
+    text-align: left;
   }
 }
 

@@ -1,4 +1,4 @@
-import { lessonById, moduleById, neighbours } from '../../content/learn';
+import { lessonById, lessonsForModule, moduleById, neighbours } from '../../content/learn';
 import type { Lesson } from '../../content/learn';
 import { practiceIdsForConcepts } from '../../content/practice-concepts';
 import { useAnalytics, useFireOnceWhen } from '../../lib/analytics-context';
@@ -11,6 +11,7 @@ import {
   type Progress,
 } from '../../lib/progress';
 import { Blocks } from './Blocks';
+import { ProgressCharacteristic } from './ProgressCharacteristic';
 
 export function LessonView(props: {
   lessonId: string;
@@ -53,6 +54,8 @@ function LessonBody(props: {
   const state = lessonState(props.progress, lesson.id);
   const completed = state === 'completed';
   const practiceQuestionIds = practiceIdsForConcepts(lesson.concepts);
+  const moduleLessons = lessonsForModule(lesson.moduleId);
+  const terms = lesson.blocks.flatMap((block) => block.kind === 'definition' ? [block.term] : []);
 
   /**
    * One open per mounted lesson. App keys this component by lesson id, so
@@ -86,59 +89,80 @@ function LessonBody(props: {
 
   return (
     <section className="card lesson" aria-label={lesson.title}>
-      <p className="eyebrow">
-        {module?.title ?? lesson.moduleId} · Lesson {index + 1} of {total}
-      </p>
-      <div className="topic-row module-header">
-        <h2>{lesson.title}</h2>
-        <div className="topic-side">
+      <div className="lesson-layout">
+        <header className="lesson-header">
+          <button className="linklike lesson-back" onClick={props.onExit}>← Back to Learn</button>
+          <p className="eyebrow">
+            {module?.title ?? lesson.moduleId} · Lesson {index + 1} of {total}
+          </p>
+          <div className="lesson-title-row">
+            <h2>{lesson.title}</h2>
           <span className={lessonChipClass(state)} data-testid="lesson-state">
             {lessonStateLabel(state)}
           </span>
-        </div>
-      </div>
-      <p className="muted lesson-intro">{lesson.intro}</p>
-      <hr className="hairline" />
+          </div>
+          <p className="lesson-intro">{lesson.intro}</p>
+        </header>
 
-      <Blocks blocks={lesson.blocks} />
+        <aside className="lesson-margin" aria-label="Lesson reference">
+          <div className="lesson-margin-section">
+            <p className="lesson-margin-label">Module progress</p>
+            <ProgressCharacteristic
+              lessons={moduleLessons}
+              progress={props.progress}
+              currentLessonId={lesson.id}
+              size="md"
+            />
+            <p className="lesson-margin-detail">Lesson {index + 1} of {total}</p>
+          </div>
+          {terms.length > 0 && (
+            <div className="lesson-margin-section">
+              <h3>Terms in this lesson</h3>
+              <ul>{terms.map((term) => <li key={term}>{term}</li>)}</ul>
+            </div>
+          )}
+        </aside>
 
-      {practiceQuestionIds.length > 0 && (
-        <div className="actions">
-          <button onClick={() => props.onStartPractice(lesson, practiceQuestionIds)}>
-            Practice this material
-          </button>
-        </div>
-      )}
+        <main className="lesson-reading">
+          <Blocks blocks={lesson.blocks} />
 
-      {/* Completion is always an explicit act and always reversible: nothing
-          here infers it from scroll position or time on the page. */}
-      <div className="actions">
-        <button onClick={toggleCompletion}>
-          {completed ? 'Mark as not complete' : 'Mark complete'}
-        </button>
-      </div>
+          <div className="lesson-actions">
+            {practiceQuestionIds.length > 0 && (
+              <button className="large" onClick={() => props.onStartPractice(lesson, practiceQuestionIds)}>
+                Practice this material
+              </button>
+            )}
+            {/* Completion is always an explicit act and always reversible. */}
+            <button
+              className="secondary"
+              aria-label={completed ? 'Mark as not complete' : 'Mark complete'}
+              onClick={toggleCompletion}
+            >
+              {completed ? 'Completed' : 'Mark complete'}
+            </button>
+          </div>
 
-      {/* Prev/next are always rendered and disabled at the ends, so the pair
-          does not shift position between the first and last lesson. */}
-      <div className="actions">
-        <button
-          className="secondary"
-          disabled={!previous}
-          onClick={() => previous && props.onOpenLesson(previous.id)}
-        >
-          Previous lesson
-        </button>
-        <button
-          className="secondary"
-          disabled={!next}
-          onClick={() => next && props.onOpenLesson(next.id)}
-        >
-          Next lesson
-        </button>
-        <span className="spacer" />
-        <button className="secondary" onClick={props.onExit}>
-          Back to Learn
-        </button>
+          <nav className="lesson-neighbours" aria-label="Adjacent lessons">
+            <button
+              className="secondary lesson-neighbour lesson-neighbour-previous"
+              aria-label={`Previous lesson${previous ? `: ${previous.title}` : ''}`}
+              disabled={!previous}
+              onClick={() => previous && props.onOpenLesson(previous.id)}
+            >
+              <span className="lesson-neighbour-direction">← Previous</span>
+              <span className="lesson-neighbour-title">{previous?.title ?? 'No previous lesson'}</span>
+            </button>
+            <button
+              className="secondary lesson-neighbour lesson-neighbour-next"
+              aria-label={`Next lesson${next ? `: ${next.title}` : ''}`}
+              disabled={!next}
+              onClick={() => next && props.onOpenLesson(next.id)}
+            >
+              <span className="lesson-neighbour-direction">Next →</span>
+              <span className="lesson-neighbour-title">{next?.title ?? 'No next lesson'}</span>
+            </button>
+          </nav>
+        </main>
       </div>
     </section>
   );

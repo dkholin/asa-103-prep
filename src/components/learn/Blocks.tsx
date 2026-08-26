@@ -31,7 +31,8 @@ function BlockView({ block }: { block: Block }) {
       );
     case 'callout':
       return (
-        <aside className={`callout callout-${block.tone}`}>
+        <aside className={`callout callout-${block.tone}`} aria-label={block.title ?? (block.tone === 'warning' ? 'Caution' : 'Technique')}>
+          <p className="callout-kicker">{block.tone === 'warning' ? 'Caution' : 'Technique'}</p>
           {block.title && <p className="callout-title">{block.title}</p>}
           <p className="callout-text">{block.text}</p>
         </aside>
