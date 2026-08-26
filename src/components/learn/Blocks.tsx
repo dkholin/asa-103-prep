@@ -40,7 +40,17 @@ function BlockView({ block }: { block: Block }) {
     case 'table':
       // The scroller, not the page, absorbs a table too wide for the viewport.
       return (
-        <div className="lesson-table-scroll" role="region" aria-label={block.caption ?? 'Table'} tabIndex={0}>
+        <div
+          className="lesson-table-scroll"
+          role="region"
+          aria-label={block.caption ?? 'Table'}
+          tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+            event.preventDefault();
+            event.currentTarget.scrollBy({ left: event.key === 'ArrowLeft' ? -64 : 64 });
+          }}
+        >
           <table className="lesson-table">
             {block.caption && <caption>{block.caption}</caption>}
             <thead>
