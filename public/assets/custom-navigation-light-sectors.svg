@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Top-down diagram of a power-driven vessel showing the red port sidelight arc and green starboard sidelight arc of 112.5 degrees each, the 135 degree white sternlight arc, and a separate outer band for the 225 degree masthead light spanning both sidelight arcs combined.">
+  <!--
+    Bearing convention used throughout this figure:
+      bearing 000 deg = dead ahead (bow, toward the top of the canvas)
+      a point at bearing T and radius r is (cx + r*sin T, cy - r*cos T)
+      increasing bearing therefore runs clockwise on screen, so every SVG
+      elliptical arc below uses sweep-flag = 1.
+    Centre of the light system: cx = 400, cy = 440.
+
+    Sector bearing ranges (Rule 21):
+      starboard sidelight (green)  000.0 -> 112.5   = 112.5 deg
+      port sidelight      (red)    247.5 -> 360.0   = 112.5 deg
+      sternlight          (white)  112.5 -> 247.5   = 135.0 deg
+      =======================================================
+      inner system total           112.5 + 112.5 + 135.0 = 360.0 deg (closes exactly)
+
+      masthead light      (white)  247.5 -> 112.5 through 000 = 225.0 deg
+      drawn as a SEPARATE outer annular band (r 240 to 290) so it reads as a
+      different light rather than an overlay, and
+      225.0 = 112.5 + 112.5, i.e. exactly the two sidelight arcs combined.
+  -->
+  <rect width="800" height="800" fill="#eef5fa"/>
+
+  <text x="400" y="34" font-family="sans-serif" font-size="20" font-weight="700" fill="#123b57" text-anchor="middle">Rule 21 arcs, seen from directly above</text>
+  <text x="400" y="56" font-family="sans-serif" font-size="17" fill="#3c5f78" text-anchor="middle">bow at the top; bearings measured from dead ahead</text>
+
+  <!-- ============ inner system: two sidelights + sternlight, r = 210 ============ -->
+  <!-- starboard sidelight, green, bearings 000.0 to 112.5 (sweep 112.5, large-arc 0) -->
+  <path d="M400,440 L400,230 A210,210 0 0,1 594.015,520.364 Z" fill="#1e8449" fill-opacity="0.28" stroke="#146636" stroke-width="2"/>
+  <!-- port sidelight, red, bearings 247.5 to 360.0 (sweep 112.5, large-arc 0) -->
+  <path d="M400,440 L205.985,520.364 A210,210 0 0,1 400,230 Z" fill="#c0392b" fill-opacity="0.28" stroke="#8e2b20" stroke-width="2"/>
+  <!-- sternlight, white, bearings 112.5 to 247.5 (sweep 135, large-arc 0) -->
+  <path d="M400,440 L594.015,520.364 A210,210 0 0,1 205.985,520.364 Z" fill="#ffffff" fill-opacity="0.92" stroke="#5d7080" stroke-width="2"/>
+
+  <!-- ============ masthead light: separate outer annular band, r 240 to 290 ============ -->
+  <!-- bearings 247.5 to 112.5 through 000 (sweep 225, large-arc 1) -->
+  <path d="M132.075,550.978 A290,290 0 1,1 667.925,550.978 L621.731,531.844 A240,240 0 1,0 178.269,531.844 Z" fill="#ffffff" fill-opacity="0.95" stroke="#2f4a5c" stroke-width="2.5"/>
+
+  <!-- overtaking-sector boundaries: dashed radials at 22.5 deg abaft each beam,
+       i.e. bearings 112.5 and 247.5, which are also the ends of every arc above -->
+  <line x1="598.634" y1="522.277" x2="686.403" y2="558.632" stroke="#4a6274" stroke-width="2" stroke-dasharray="7 5"/>
+  <line x1="201.366" y1="522.277" x2="113.597" y2="558.632" stroke="#4a6274" stroke-width="2" stroke-dasharray="7 5"/>
+
+  <!-- ============ the centrepiece: 225 = 112.5 + 112.5 ============ -->
+  <!-- inner brace, r = 320, split by a tick at bearing 000 into two 112.5 deg halves -->
+  <path d="M104.359,562.459 A320,320 0 0,1 400,120" fill="none" stroke="#123b57" stroke-width="2"/>
+  <path d="M400,120 A320,320 0 0,1 695.641,562.459" fill="none" stroke="#123b57" stroke-width="2"/>
+  <line x1="111.75" y1="559.397" x2="96.968" y2="565.52" stroke="#123b57" stroke-width="2"/>
+  <line x1="688.25" y1="559.397" x2="703.032" y2="565.52" stroke="#123b57" stroke-width="2"/>
+  <line x1="400" y1="128" x2="400" y2="112" stroke="#123b57" stroke-width="2.5"/>
+  <!-- outer brace, r = 355, one continuous 225 deg span from 247.5 to 112.5 -->
+  <path d="M72.023,575.853 A355,355 0 1,1 727.977,575.853" fill="none" stroke="#123b57" stroke-width="2.5"/>
+  <line x1="79.414" y1="572.791" x2="64.632" y2="578.914" stroke="#123b57" stroke-width="2.5"/>
+  <line x1="720.586" y1="572.791" x2="735.368" y2="578.914" stroke="#123b57" stroke-width="2.5"/>
+
+  <!-- brace labels, on white pills so they read over the brace arcs -->
+  <rect x="79.3" y="236.1" width="76" height="28" rx="14" fill="#eef5fa" stroke="#123b57" stroke-width="1.5"/>
+  <text x="117.3" y="256" font-family="sans-serif" font-size="18" font-weight="700" fill="#123b57" text-anchor="middle">112.5°</text>
+  <rect x="644.7" y="236.1" width="76" height="28" rx="14" fill="#eef5fa" stroke="#123b57" stroke-width="1.5"/>
+  <text x="682.7" y="256" font-family="sans-serif" font-size="18" font-weight="700" fill="#123b57" text-anchor="middle">112.5°</text>
+  <rect x="358" y="71" width="84" height="28" rx="14" fill="#eef5fa" stroke="#123b57" stroke-width="2"/>
+  <text x="400" y="91" font-family="sans-serif" font-size="18" font-weight="700" fill="#123b57" text-anchor="middle">225°</text>
+
+  <!-- ============ the vessel: powerboat-top canonical geometry, inlined ============ -->
+  <g transform="translate(400,440) scale(0.34) translate(-456.21,-335.935)">
+    <path fill="#282858" d="M 450.309,544.253 C 442.113,541.871 406.465,533.01 404.804,527.907 C 400.943,516.044 397.668,488.236 395.847,475.322 C 384.041,391.626 376.556,305.482 404.099,223.824 C 415.536,189.914 432.957,153.747 456.553,126.176 C 494.343,167.884 516.535,230.711 523.605,286.036 C 532.569,356.187 523.229,429.667 512.091,499.121 C 511.139,505.055 509.33,523.953 505.065,529.741 C 498.976,533.817 469.271,542.654 461.935,544.237 C 461.428,544.239 460.888,544.23 460.384,544.248 C 459.457,544.846 458.613,545.43 457.492,545.575 C 456.11,545.754 453.921,545.834 452.793,544.846 C 451.724,543.91 452.259,509.219 452.208,505.186 C 455.497,505.184 457.188,504.99 460.455,505.667 C 461.1,505.603 461.34,505.542 461.972,505.394 C 472.034,505.112 482.801,505.548 492.591,505.115 C 495.87,477.139 497.974,449.09 500.291,421.523 C 505.233,364.375 511.769,306.564 492.631,251.069 C 490.649,245.321 487.021,230.598 483.597,226.833 C 470.775,212.733 446.398,211.682 431.957,223.988 C 426.303,228.806 424.164,238.772 422.221,245.179 C 414.868,268.625 410.236,292.839 408.419,317.344 C 406.057,346.313 409.178,386.9 411.641,416.246 C 414.02,444.583 416.343,477.089 419.955,505.235 L 450.389,505.174 L 450.309,544.253 Z"/>
+    <path fill="#282858" d="M 452.208,505.186 C 455.497,505.184 457.188,504.99 460.455,505.667 C 459.743,509.776 459.757,539.881 460.384,544.248 C 459.457,544.846 458.613,545.43 457.492,545.575 C 456.11,545.754 453.921,545.834 452.793,544.846 C 451.724,543.91 452.259,509.219 452.208,505.186 Z"/>
+    <path fill="#dcdfe3" d="M 460.455,505.667 C 461.1,505.603 461.34,505.542 461.972,505.394 C 461.888,518.342 461.875,531.29 461.935,544.237 C 461.428,544.239 460.888,544.23 460.384,544.248 C 459.757,539.881 459.743,509.776 460.455,505.667 Z"/>
+    <path fill="#282858" d="M 451.733,217.452 C 460.14,216.952 478.062,220.523 481.686,227.539 C 490.419,244.448 498.8,277.884 501.033,295.669 C 507.145,344.347 500.746,394.861 496.626,443.443 C 485.652,442.911 473.048,443.152 461.942,443.153 L 415.728,443.503 C 415.472,429.498 413.19,413.15 412.119,399.01 C 408.475,350.924 406.917,303.081 420.94,256.288 C 427.528,234.301 426.591,222.395 451.733,217.452 Z"/>
+  </g>
+
+  <!-- ============ sector labels ============ -->
+  <text x="279.437" y="352" font-family="sans-serif" font-size="17" font-weight="700" fill="#8e2b20" text-anchor="middle">PORT</text>
+  <text x="279.437" y="370" font-family="sans-serif" font-size="15" fill="#8e2b20" text-anchor="middle">sidelight, red</text>
+  <text x="279.437" y="387" font-family="sans-serif" font-size="15" font-weight="700" fill="#8e2b20" text-anchor="middle">112.5°</text>
+
+  <text x="520.563" y="352" font-family="sans-serif" font-size="17" font-weight="700" fill="#146636" text-anchor="middle">STARBOARD</text>
+  <text x="520.563" y="370" font-family="sans-serif" font-size="15" fill="#146636" text-anchor="middle">sidelight, green</text>
+  <text x="520.563" y="387" font-family="sans-serif" font-size="15" font-weight="700" fill="#146636" text-anchor="middle">112.5°</text>
+
+  <text x="400" y="573" font-family="sans-serif" font-size="17" font-weight="700" fill="#2f4a5c" text-anchor="middle">STERNLIGHT</text>
+  <text x="400" y="591" font-family="sans-serif" font-size="15" fill="#2f4a5c" text-anchor="middle">white, 135°</text>
+
+  <text x="400" y="170" font-family="sans-serif" font-size="17" font-weight="700" fill="#2f4a5c" text-anchor="middle">MASTHEAD LIGHT</text>
+  <text x="400" y="188" font-family="sans-serif" font-size="15" fill="#2f4a5c" text-anchor="middle">white, 225°, separate outer band</text>
+
+  <text x="686.403" y="594" font-family="sans-serif" font-size="15" fill="#4a6274" text-anchor="end">22.5° abaft the beam</text>
+  <text x="113.597" y="594" font-family="sans-serif" font-size="15" fill="#4a6274" text-anchor="start">22.5° abaft the beam</text>
+
+  <!-- ============ arithmetic strip ============ -->
+  <rect x="90" y="626" width="620" height="88" rx="10" fill="#ffffff" stroke="#c3d8e6" stroke-width="2"/>
+  <text x="400" y="656" font-family="sans-serif" font-size="16" fill="#123b57" text-anchor="middle">112.5° + 112.5° + 135° = 360°   the inner three arcs close the circle</text>
+  <text x="400" y="686" font-family="sans-serif" font-size="16" font-weight="700" fill="#123b57" text-anchor="middle">112.5° + 112.5° = 225°   the outer band spans both sidelight arcs</text>
+</svg>

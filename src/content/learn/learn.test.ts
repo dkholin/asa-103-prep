@@ -119,12 +119,14 @@ describe('learn content integrity', () => {
       'custom-crossing-standon',
       'custom-sail-opposite-tacks',
       'custom-sail-same-tack',
+      'custom-navigation-light-sectors',
       'custom-night-headon',
       'custom-night-green-only',
       'photo-trawler-gear-out',
       'noaa-buoy-beacon-basic',
       'noaa-iala-region-b',
       'noaa-light-characters',
+      'uscg-regulatory-marks',
       'noaa-chart-schematic',
       'custom-lat-long-grid',
       'noaa-soundings-basic',
@@ -132,10 +134,18 @@ describe('learn content integrity', () => {
       'noaa-wreck-symbols',
       'custom-binnacle-compass',
       'noaa-compass-rose',
+      'custom-true-magnetic-compass',
       'custom-compass-interference',
       'photo-plotting-tools',
       'custom-distance-scale',
     ]);
+    // Each of the three Step 3 instructional figures sits in exactly one lesson,
+    // beside the explanation it illustrates.
+    const figuresOf = (order: number) =>
+      lessons[order - 1].blocks.filter((block) => block.kind === 'figure').map((block) => block.assetId);
+    expect(figuresOf(4)[0]).toBe('custom-navigation-light-sectors');
+    expect(figuresOf(6)).toContain('uscg-regulatory-marks');
+    expect(figuresOf(8)[2]).toBe('custom-true-magnetic-compass');
     // No concept is tagged on two lessons in this module: a learner who
     // practises a lesson never re-practises the same set from its neighbour.
     const tagged = lessons.flatMap((lesson) => lesson.concepts);

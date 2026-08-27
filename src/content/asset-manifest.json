@@ -1282,6 +1282,47 @@
       "usedByQuestions": [
         "emer-anchor-dragging-recognize"
       ]
+    },
+    {
+      "id": "custom-navigation-light-sectors",
+      "filename": "custom-navigation-light-sectors.svg",
+      "altText": "Top-down diagram of a power-driven vessel showing the red port sidelight arc and green starboard sidelight arc of 112.5 degrees each, the 135 degree white sternlight arc, and a separate outer band for the 225 degree masthead light spanning both sidelight arcs combined.",
+      "description": "Project-original top-down schematic of the Rule 21 light sectors: 112.5 degree port and starboard sidelight arcs, the 135 degree sternlight arc closing the circle at 360 degrees, and the 225 degree masthead arc drawn as a separate outer annular band braced to show that it equals the two sidelight arcs added together",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": []
+    },
+    {
+      "id": "custom-true-magnetic-compass",
+      "filename": "custom-true-magnetic-compass.svg",
+      "altText": "Three north reference arrows from one origin: true north vertical, magnetic north offset west by an example variation of 12 degrees drawn as a plain tinted angle, and compass north a further 6 degrees west drawn as a hatched deviation angle, beside a correction strip running true to magnetic to compass.",
+      "description": "Project-original diagram separating the two compass corrections: a plain tinted angular sector for variation between true and magnetic north, a hatched sector for deviation between magnetic and compass north, panels stating what each correction belongs to, and a correction strip carrying the east and west sign convention with a worked example",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": []
+    },
+    {
+      "id": "uscg-regulatory-marks",
+      "filename": "uscg-regulatory-marks.png",
+      "altText": "Reference plate of information and regulatory marks: white buoys with orange bands carrying an orange diamond, a crossed diamond, a circle, and a square, each paired with its meaning and with lettered example marks.",
+      "description": "Cropped plate from the U.S. Coast Guard booklet U.S. Aids to Navigation System showing the four information and regulatory mark shapes with their meanings and lettered examples",
+      "sourcePage": "https://uscgboating.org/images/486.PDF",
+      "originalUrl": "https://uscgboating.org/images/486.PDF",
+      "creator": "U.S. Coast Guard, Office of Boating Safety",
+      "license": "Public domain (work of the U.S. Government, 17 U.S.C. 105)",
+      "attributionRequired": true,
+      "attributionText": "U.S. Aids to Navigation System · U.S. Coast Guard · booklet page 15",
+      "modified": true,
+      "modificationNote": "Cropped from PDF sheet 9 (left half of the two-up spread, booklet page 15) of the U.S. Aids to Navigation System booklet to the Information and Regulatory Marks section; rendered at 300 dpi and resized. Colours unaltered.",
+      "usedByQuestions": []
     }
   ]
 }

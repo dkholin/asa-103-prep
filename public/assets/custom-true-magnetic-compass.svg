@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-label="Three north reference arrows from one origin: true north vertical, magnetic north offset west by an example variation of 12 degrees drawn as a plain tinted angle, and compass north a further 6 degrees west drawn as a hatched deviation angle, beside a correction strip running true to magnetic to compass.">
+  <!--
+    Bearing convention: bearing 000 deg points up the canvas; a point at bearing T
+    and radius r from the origin (280, 440) is (280 + r*sin T, 440 - r*cos T).
+    Westerly offsets therefore lean to the viewer's LEFT.
+
+    Arrow bearings (all values are worked examples, not universal constants):
+      TRUE north     bearing 000
+      MAGNETIC north bearing 348  = 12 deg west of true  (example variation)
+      COMPASS north  bearing 342  = a further 6 deg west (example deviation)
+    Because both offsets are westerly, a fixed heading reads LARGER off each
+    successive reference: 000 T -> 012 M -> 018 C, which is what the strip says.
+  -->
+  <defs>
+    <!-- deterministic hatch: fixed 7px lattice, no randomness -->
+    <pattern id="deviation-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="7" height="7" fill="#fdf3e6"/>
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#b0651a" stroke-width="2.6"/>
+    </pattern>
+  </defs>
+
+  <rect width="900" height="620" fill="#eef5fa"/>
+  <text x="30" y="38" font-family="sans-serif" font-size="22" font-weight="700" fill="#123b57">Three norths, two corrections</text>
+  <text x="30" y="60" font-family="sans-serif" font-size="16" fill="#3c5f78">All angles shown are worked examples for one place and one boat, not fixed values.</text>
+
+  <!-- ================= left: the three north references ================= -->
+  <!-- variation sector, true to magnetic: flat tint, r = 250, bearings 348 to 360 (12 deg) -->
+  <path d="M280,440 L228.02,195.46 A250,250 0 0,1 280,190 Z" fill="#4a90c4" fill-opacity="0.35" stroke="#2f6d99" stroke-width="1.5"/>
+  <!-- deviation sector, magnetic to compass: hatched, r = 285, bearings 342 to 348 (6 deg) -->
+  <path d="M280,440 L191.93,168.95 A285,285 0 0,1 220.75,161.23 Z" fill="url(#deviation-hatch)" stroke="#b0651a" stroke-width="1.5"/>
+
+  <!-- TRUE north, bearing 000 -->
+  <line x1="280" y1="440" x2="280" y2="146" stroke="#123b57" stroke-width="4"/>
+  <polygon points="280,132 273,152 287,152" fill="#123b57"/>
+  <!-- MAGNETIC north, bearing 348 -->
+  <line x1="280" y1="440" x2="221.37" y2="164.17" stroke="#2f6d99" stroke-width="4"/>
+  <polygon points="217.63,146.56 228.22,162.71 214.52,165.63" fill="#2f6d99"/>
+  <!-- COMPASS north, bearing 342 -->
+  <line x1="280" y1="440" x2="192.85" y2="171.80" stroke="#b0651a" stroke-width="4"/>
+  <polygon points="187.29,154.68 199.51,169.64 186.19,173.96" fill="#b0651a"/>
+
+  <circle cx="280" cy="440" r="7" fill="#123b57"/>
+  <text x="280" y="470" font-family="sans-serif" font-size="15" fill="#3c5f78" text-anchor="middle">one common origin</text>
+
+  <!-- arrow labels -->
+  <text x="292" y="126" font-family="sans-serif" font-size="18" font-weight="700" fill="#123b57">TRUE north</text>
+  <text x="292" y="144" font-family="sans-serif" font-size="15" fill="#3c5f78">the geographic pole</text>
+  <text x="210" y="118" font-family="sans-serif" font-size="18" font-weight="700" fill="#2f6d99" text-anchor="end">MAGNETIC north</text>
+  <text x="150" y="180" font-family="sans-serif" font-size="18" font-weight="700" fill="#b0651a" text-anchor="end">COMPASS north</text>
+  <line x1="155" y1="176" x2="184" y2="163" stroke="#b0651a" stroke-width="1.5"/>
+
+  <!-- angle callouts on pills, with leaders -->
+  <line x1="256" y1="286" x2="345" y2="266" stroke="#2f6d99" stroke-width="1.5"/>
+  <rect x="341" y="250" width="132" height="32" rx="14" fill="#ffffff" stroke="#2f6d99" stroke-width="1.5"/>
+  <text x="407" y="272" font-family="sans-serif" font-size="16" font-weight="700" fill="#2f6d99" text-anchor="middle">12° W example</text>
+
+  <line x1="148" y1="252" x2="214" y2="228" stroke="#b0651a" stroke-width="1.5"/>
+  <rect x="30" y="236" width="122" height="32" rx="14" fill="#ffffff" stroke="#b0651a" stroke-width="1.5"/>
+  <text x="91" y="258" font-family="sans-serif" font-size="16" font-weight="700" fill="#b0651a" text-anchor="middle">6° W example</text>
+
+  <!-- ================= right: what each correction belongs to ================= -->
+  <rect x="470" y="88" width="400" height="176" rx="10" fill="#ffffff" stroke="#c3d8e6" stroke-width="2"/>
+  <rect x="490" y="108" width="34" height="34" rx="4" fill="#4a90c4" fill-opacity="0.35" stroke="#2f6d99" stroke-width="1.5"/>
+  <text x="538" y="124" font-family="sans-serif" font-size="18" font-weight="700" fill="#2f6d99">VARIATION</text>
+  <text x="538" y="142" font-family="sans-serif" font-size="15" fill="#3c5f78">true north to magnetic north</text>
+  <text x="490" y="174" font-family="sans-serif" font-size="16" fill="#123b57">Belongs to the place, not to the boat.</text>
+  <text x="490" y="198" font-family="sans-serif" font-size="16" fill="#123b57">Read it off the chart’s compass rose.</text>
+  <text x="490" y="222" font-family="sans-serif" font-size="16" fill="#123b57">Changes with where you are, and slowly</text>
+  <text x="490" y="242" font-family="sans-serif" font-size="16" fill="#123b57">over the years.</text>
+
+  <rect x="470" y="284" width="400" height="196" rx="10" fill="#ffffff" stroke="#c3d8e6" stroke-width="2"/>
+  <rect x="490" y="304" width="34" height="34" rx="4" fill="url(#deviation-hatch)" stroke="#b0651a" stroke-width="1.5"/>
+  <text x="538" y="320" font-family="sans-serif" font-size="18" font-weight="700" fill="#b0651a">DEVIATION</text>
+  <text x="538" y="338" font-family="sans-serif" font-size="15" fill="#3c5f78">magnetic north to compass north</text>
+  <text x="490" y="370" font-family="sans-serif" font-size="16" fill="#123b57">Belongs to this one boat and this one</text>
+  <text x="490" y="390" font-family="sans-serif" font-size="16" fill="#123b57">installation.</text>
+  <text x="490" y="414" font-family="sans-serif" font-size="16" fill="#123b57">Changes with heading and with what is</text>
+  <text x="490" y="434" font-family="sans-serif" font-size="16" fill="#123b57">stowed nearby, so it is not one number.</text>
+  <text x="490" y="458" font-family="sans-serif" font-size="16" fill="#123b57">Read it off the boat’s deviation table.</text>
+
+  <!-- ================= bottom: correction strip ================= -->
+  <rect x="30" y="512" width="840" height="88" rx="10" fill="#ffffff" stroke="#c3d8e6" stroke-width="2"/>
+  <text x="112" y="552" font-family="sans-serif" font-size="20" font-weight="700" fill="#123b57" text-anchor="middle">TRUE</text>
+  <line x1="160" y1="546" x2="270" y2="546" stroke="#2f6d99" stroke-width="2.5"/>
+  <polygon points="280,546 268,540 268,552" fill="#2f6d99"/>
+  <text x="215" y="536" font-family="sans-serif" font-size="15" fill="#2f6d99" text-anchor="middle">apply variation</text>
+  <text x="344" y="552" font-family="sans-serif" font-size="20" font-weight="700" fill="#123b57" text-anchor="middle">MAGNETIC</text>
+  <line x1="420" y1="546" x2="520" y2="546" stroke="#b0651a" stroke-width="2.5"/>
+  <polygon points="530,546 518,540 518,552" fill="#b0651a"/>
+  <text x="470" y="536" font-family="sans-serif" font-size="15" fill="#b0651a" text-anchor="middle">apply deviation</text>
+  <text x="592" y="552" font-family="sans-serif" font-size="20" font-weight="700" fill="#123b57" text-anchor="middle">COMPASS</text>
+  <text x="760" y="540" font-family="sans-serif" font-size="16" font-weight="700" fill="#123b57" text-anchor="middle">going this way:</text>
+  <text x="760" y="560" font-family="sans-serif" font-size="16" fill="#123b57" text-anchor="middle">add west, subtract east</text>
+  <text x="450" y="584" font-family="sans-serif" font-size="16" fill="#3c5f78" text-anchor="middle">worked example with the angles drawn above: 000° T  +12° W → 012° M  +6° W → 018° C</text>
+</svg>

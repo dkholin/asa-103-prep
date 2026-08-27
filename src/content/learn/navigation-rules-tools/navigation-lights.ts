@@ -15,6 +15,7 @@ export const lesson: Lesson = {
       ['All-round light', 'Varies by signal', '360°', 'Unbroken all the way round'],
     ] },
     { kind: 'text', text: 'The arcs are not arbitrary. Two sidelights of 112.5° plus a 135° sternlight total 360°, and the 225° masthead light is exactly the two sidelight arcs combined. From any bearing you therefore see a defined combination, and the combination tells you the other vessel’s aspect. On a vessel under 20 metres the sidelights may be combined in one centreline lantern, which changes where the lights are, not what they mean.' },
+    { kind: 'figure', assetId: 'custom-navigation-light-sectors', caption: 'The same arithmetic drawn to scale, looking straight down with the bow at the top. The masthead arc is drawn as a separate outer band because it is a separate light: it starts and stops on exactly the same two bearings as the pair of sidelights beneath it.' },
     {
       kind: 'list',
       items: [

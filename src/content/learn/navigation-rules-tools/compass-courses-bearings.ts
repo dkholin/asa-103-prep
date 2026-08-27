@@ -19,6 +19,7 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Deviation' },
     { kind: 'definition', term: 'Deviation', text: 'Compass error caused by the boat’s own magnetic influences — ferrous metal, wiring, engine, electronics. It belongs to that individual vessel and changes with heading, because the onboard sources swing around the card as the boat turns.' },
     { kind: 'text', text: 'That heading dependence is why deviation is recorded as a card of corrections across a range of headings rather than one number. The card is produced by swinging the compass — comparing what it reads against known headings — after installation and whenever the boat’s magnetic environment changes. Variation and deviation are separate corrections, applied separately.' },
+    { kind: 'figure', assetId: 'custom-true-magnetic-compass', caption: 'Two corrections, drawn differently on purpose. The plain sector belongs to the place you are in; the hatched one belongs to the boat you are in. The angles shown are one worked example, not values to memorise.' },
     { kind: 'figure', assetId: 'custom-compass-interference', caption: 'Two ordinary items stowed close to the compass, and the needle no longer settles where it should. Deviation is created by what is near the instrument, not by the instrument’s quality.' },
     {
       kind: 'list',

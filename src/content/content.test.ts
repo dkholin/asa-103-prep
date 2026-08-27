@@ -152,6 +152,47 @@ describe('asset manifest integrity', () => {
     }
   });
 
+  it('records the USCG regulatory-marks plate as a cropped U.S. Government work, not a project original', () => {
+    const plate = manifest.assets.find((asset) => asset.id === 'uscg-regulatory-marks');
+    expect(plate?.filename).toBe('uscg-regulatory-marks.png');
+    expect(plate?.creator).toBe('U.S. Coast Guard, Office of Boating Safety');
+    expect(plate?.license).toMatch(/Public domain/);
+    expect(plate?.sourcePage).toBe('https://uscgboating.org/images/486.PDF');
+    expect(plate?.attributionRequired).toBe(true);
+    expect(plate?.modified).toBe(true);
+    expect(plate?.modificationNote).toMatch(/Cropped from PDF sheet 9/);
+  });
+
+  it('keeps the navigation-light sector geometry auditable and arithmetically closed', () => {
+    const svg = readFileSync(
+      join(process.cwd(), 'public', 'assets', 'custom-navigation-light-sectors.svg'),
+      'utf8',
+    );
+    // Every sector's bearing range is stated in a comment so the drawing can be checked.
+    expect(svg).toContain('000.0 -> 112.5   = 112.5 deg');
+    expect(svg).toContain('247.5 -> 360.0   = 112.5 deg');
+    expect(svg).toContain('112.5 -> 247.5   = 135.0 deg');
+    expect(svg).toContain('247.5 -> 112.5 through 000 = 225.0 deg');
+    expect(112.5 + 112.5 + 135).toBe(360);
+    expect(112.5 + 112.5).toBe(225);
+    // The masthead arc is a separate annular band, not an overlay on the sidelights.
+    expect(svg).toMatch(/A290,290 0 1,1 .*A240,240 0 1,0/);
+  });
+
+  it('draws variation and deviation with different fills, not different colours alone', () => {
+    const svg = readFileSync(
+      join(process.cwd(), 'public', 'assets', 'custom-true-magnetic-compass.svg'),
+      'utf8',
+    );
+    // Deterministic hatch for deviation; flat tint for variation.
+    expect(svg).toContain('<pattern id="deviation-hatch"');
+    expect(svg).toContain('fill="url(#deviation-hatch)"');
+    expect(svg).toMatch(/fill="#4a90c4" fill-opacity="0\.35"/);
+    // Matches the Lesson 8 sign convention: westerly corrections are added.
+    expect(svg).toContain('add west, subtract east');
+    expect(svg).toContain('000° T  +12° W → 012° M  +6° W → 018° C');
+  });
+
   it('keeps known answer-bearing phrases out of visible custom SVG labels', () => {
     const prohibited = [
       'stemhead fitting',

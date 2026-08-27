@@ -40,6 +40,7 @@ export const lesson: Lesson = {
       ['Circle', 'Operating restrictions in force, such as a speed or no-wake limit'],
       ['Square or rectangle', 'Information — directions, distances, or locations, lettered inside'],
     ] },
+    { kind: 'figure', assetId: 'uscg-regulatory-marks', caption: 'The four shapes on the marks themselves. The orange band top and bottom identifies the family at a distance; the shape in the middle carries the class, and the lettering only fills in the local detail.' },
     { kind: 'text', text: 'Two other families are worth recognising on sight. Special marks are solid yellow and indicate an area or feature described on the chart — an anchorage, a cable area, a data buoy — rather than a side of a channel. Aids marking the Intracoastal Waterway carry yellow symbols in addition to their normal colouring: a yellow triangle means keep the aid to starboard, a yellow square means keep it to port, both regardless of the aid’s own colour or number, and a plain yellow horizontal band simply identifies an ICW aid with no lateral meaning at all.' },
     { kind: 'callout', tone: 'warning', title: 'Aids supplement the chart; they do not replace it', text: 'Never navigate from marks alone. A buoy can be off station, extinguished, or missing; a light can fail; privately maintained local aids may not be charted. Carry current charts, check the Local Notice to Mariners before a trip, and confirm what you are seeing against depth, bearings, and the shoreline.' },
   ],
