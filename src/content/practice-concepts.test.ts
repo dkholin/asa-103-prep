@@ -6,6 +6,38 @@ import { practiceIdsForConcepts } from './practice-concepts';
 import { QUESTIONS } from './questions';
 
 const EXPECTED_BY_LESSON: Record<string, string[]> = {
+  'boat-cruising-basics-anatomy-of-a-cruising-boat': ['sys-transom-defn'],
+  'boat-cruising-basics-cockpit-and-helm': ['sys-cockpit-locker-use'],
+  'boat-cruising-basics-a-tour-of-the-deck': [
+    'sys-turnbuckle-id',
+    'sys-turnbuckle-function',
+    'sys-chainplate-id',
+    'sys-chainplate-function',
+    'sys-stemhead-id',
+  ],
+  'boat-cruising-basics-steering-and-rudder': [
+    'sys-rudder-post-location',
+    'sys-binnacle-compass-id',
+    'sys-emergency-tiller-id',
+    'sys-emergency-tiller-when',
+  ],
+  'boat-cruising-basics-belowdecks-layout': [
+    'sys-companionway-defn',
+    'sys-saloon-location',
+    'sys-galley-defn',
+    'sys-vberth-location',
+    'sys-bilge-defn',
+    'sys-hatches-function',
+  ],
+  'boat-cruising-basics-onboard-systems-orientation': [
+    'sys-bilge-pump-id',
+    'sys-bilge-pump-function',
+    'sys-seacock-id',
+    'sys-seacock-hose-failure-reasoning',
+    'sys-through-hull-defn',
+    'sys-battery-basics',
+    'sys-electrical-panel-basics',
+  ],
   'motoring-before-getting-under-way': [
     'sea-resp-crew-briefing',
     'sea-departure-checklist',
@@ -287,8 +319,71 @@ describe('concept Practice mapping', () => {
     ).toHaveLength(36);
   });
 
-  it('carries concept metadata on exactly 158 questions across the whole bank', () => {
-    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(158);
+  it('carries concept metadata on exactly 182 questions across the whole bank', () => {
+    // 158 before Boat & Cruising Basics, plus the 24 previously untagged
+    // `cruising-systems` questions its six lessons claim — additive metadata
+    // only, with no question content touched.
+    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(182);
+  });
+
+  /**
+   * The six Boat & Cruising Basics lessons, pinned the same way Navigation
+   * Rules & Tools is: the literal id lists above are the contract, and these
+   * are the session sizes a learner actually sees behind "Practice this
+   * material".
+   */
+  it('resolves a pinned Practice count for every Boat & Cruising Basics lesson', () => {
+    const counts = lessonsForModule('boat-cruising-basics').map((lesson) => [
+      lesson.id,
+      practiceIdsForConcepts(lesson.concepts).length,
+    ]);
+    expect(counts).toEqual([
+      ['boat-cruising-basics-anatomy-of-a-cruising-boat', 1],
+      ['boat-cruising-basics-cockpit-and-helm', 1],
+      ['boat-cruising-basics-a-tour-of-the-deck', 5],
+      ['boat-cruising-basics-steering-and-rudder', 4],
+      ['boat-cruising-basics-belowdecks-layout', 6],
+      ['boat-cruising-basics-onboard-systems-orientation', 7],
+    ]);
+    expect(counts.every(([, count]) => (count as number) > 0)).toBe(true);
+  });
+
+  /**
+   * The module's three-concept lesson resolves to the union of its concepts
+   * exactly once each, and the module as a whole claims 24 distinct questions
+   * — no question is practised twice within the module.
+   */
+  it('claims exactly 24 distinct questions across Boat & Cruising Basics', () => {
+    const lessons = lessonsForModule('boat-cruising-basics');
+    const ids = lessons.flatMap((lesson) => practiceIdsForConcepts(lesson.concepts));
+    expect(ids).toHaveLength(24);
+    expect(new Set(ids).size).toBe(24);
+  });
+
+  /**
+   * Neighbouring material that deliberately stayed unclaimed in Step 1:
+   * anchoring hardware belongs to Hands-On Cruising, the compass questions to
+   * Navigation subject matter, and steering-failure response to Cruising Life
+   * & Safety. A later module claims them; Boat Basics must not.
+   */
+  it('leaves adjacent Hands-On, Navigation and emergency questions unclaimed', () => {
+    const boatConcepts = new Set<ConceptId>(
+      lessonsForModule('boat-cruising-basics').flatMap((lesson) => lesson.concepts),
+    );
+    const claimed = new Set(practiceIdsForConcepts([...boatConcepts]));
+    for (const id of [
+      'sys-windlass-id',
+      'sys-windlass-function',
+      'sys-ground-tackle-defn',
+      'sys-compass-purpose',
+      'sys-compass-interference-note',
+      'emer-steering-failure-response',
+    ]) {
+      const question = QUESTIONS.find((item) => item.id === id);
+      expect(question, `missing question ${id}`).toBeDefined();
+      expect(question?.concepts ?? [], `${id} gained concepts`).toEqual([]);
+      expect(claimed, `${id} claimed by Boat & Cruising Basics`).not.toContain(id);
+    }
   });
 
   /**

@@ -1,5 +1,11 @@
 import { MODULES } from './modules';
 import type { Lesson, LearnModule } from './types';
+import { lesson as anatomyOfACruisingBoat } from './boat-cruising-basics/anatomy-of-a-cruising-boat';
+import { lesson as cockpitAndHelm } from './boat-cruising-basics/cockpit-and-helm';
+import { lesson as aTourOfTheDeck } from './boat-cruising-basics/a-tour-of-the-deck';
+import { lesson as steeringAndRudder } from './boat-cruising-basics/steering-and-rudder';
+import { lesson as belowdecksLayout } from './boat-cruising-basics/belowdecks-layout';
+import { lesson as onboardSystemsOrientation } from './boat-cruising-basics/onboard-systems-orientation';
 import { lesson as beforeGettingUnderWay } from './motoring/before-getting-under-way';
 import { lesson as engineBasicsPrestart } from './motoring/engine-basics-prestart';
 import { lesson as controlsInstruments } from './motoring/controls-instruments';
@@ -34,6 +40,12 @@ export { MODULES } from './modules';
  * mistake here shows up as a test failure, not as a silently reordered course.
  */
 export const LESSONS: Lesson[] = [
+  anatomyOfACruisingBoat,
+  cockpitAndHelm,
+  aTourOfTheDeck,
+  steeringAndRudder,
+  belowdecksLayout,
+  onboardSystemsOrientation,
   beforeGettingUnderWay,
   engineBasicsPrestart,
   controlsInstruments,

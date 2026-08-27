@@ -4073,6 +4073,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-turnbuckle-id',
   topic: 'cruising-systems',
+  concepts: ['deck-hardware-and-rigging-attachments'],
   format: 'visual',
   assetId: 'photo-turnbuckle',
   prompt: "What is the fitting shown between the wire shroud and the chainplate, and what is its purpose?",
@@ -4089,6 +4090,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-turnbuckle-function',
   topic: 'cruising-systems',
+  concepts: ['deck-hardware-and-rigging-attachments'],
   format: 'text',
   prompt: "Before a passage, you notice a turnbuckle on a lower shroud is only finger-tight and the shroud has visible slack. What is the main concern?",
   choices: [
@@ -4104,6 +4106,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-chainplate-id',
   topic: 'cruising-systems',
+  concepts: ['deck-hardware-and-rigging-attachments'],
   format: 'visual',
   assetId: 'photo-chainplate',
   prompt: "What is the metal fitting shown bolted through the deck/hull, and what does it do?",
@@ -4120,6 +4123,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-chainplate-function',
   topic: 'cruising-systems',
+  concepts: ['deck-hardware-and-rigging-attachments'],
   format: 'text',
   prompt: "Why do surveyors and owners pay close attention to chainplates and the area around them?",
   choices: [
@@ -4135,6 +4139,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-stemhead-id',
   topic: 'cruising-systems',
+  concepts: ['deck-hardware-and-rigging-attachments'],
   format: 'visual',
   assetId: 'custom-stemhead-bow-roller',
   prompt: "What is the fitting at the very top of the bow called, and what is its purpose?",
@@ -4151,6 +4156,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-rudder-post-location',
   topic: 'cruising-systems',
+  concepts: ['steering-systems'],
   format: 'text',
   prompt: "Where would you find a boat's rudder post, and what does it do?",
   choices: [
@@ -4166,6 +4172,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-transom-defn',
   topic: 'cruising-systems',
+  concepts: ['boat-anatomy-and-terms'],
   format: 'text',
   prompt: "What is the \"transom\" of a boat?",
   choices: [
@@ -4181,6 +4188,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-binnacle-compass-id',
   topic: 'cruising-systems',
+  concepts: ['steering-systems'],
   format: 'visual',
   assetId: 'custom-binnacle-compass',
   prompt: "What is the pedestal-mounted assembly shown, and what instrument sits on top of it?",
@@ -4227,6 +4235,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-cockpit-locker-use',
   topic: 'cruising-systems',
+  concepts: ['cockpit-layout'],
   format: 'text',
   prompt: "What is a cockpit locker typically used for on a cruising sailboat?",
   choices: [
@@ -4242,6 +4251,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-emergency-tiller-id',
   topic: 'cruising-systems',
+  concepts: ['steering-systems'],
   format: 'visual',
   assetId: 'custom-emergency-tiller',
   prompt: "What does the diagram show, and when would you use this arrangement?",
@@ -4258,6 +4268,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-emergency-tiller-when',
   topic: 'cruising-systems',
+  concepts: ['steering-systems'],
   format: 'text',
   prompt: "You are underway when the wheel suddenly turns freely with no response from the rudder. What is the appropriate immediate action?",
   choices: [
@@ -4273,6 +4284,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-companionway-defn',
   topic: 'cruising-systems',
+  concepts: ['belowdecks-layout'],
   format: 'text',
   prompt: "What is the \"companionway\" on a sailboat?",
   choices: [
@@ -4288,6 +4300,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-saloon-location',
   topic: 'cruising-systems',
+  concepts: ['belowdecks-layout'],
   format: 'visual',
   assetId: 'custom-cabin-layout',
   prompt: "In the cabin layout shown, which labeled space is the saloon, and what is it used for?",
@@ -4304,6 +4317,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-galley-defn',
   topic: 'cruising-systems',
+  concepts: ['belowdecks-layout'],
   format: 'text',
   prompt: "What is the \"galley\" on a cruising boat?",
   choices: [
@@ -4319,6 +4333,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-vberth-location',
   topic: 'cruising-systems',
+  concepts: ['belowdecks-layout'],
   format: 'visual',
   assetId: 'custom-cabin-layout',
   prompt: "Which labeled space in the cabin layout is the V-berth, and where is it located?",
@@ -4335,6 +4350,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-bilge-defn',
   topic: 'cruising-systems',
+  concepts: ['belowdecks-layout'],
   format: 'text',
   prompt: "What is the \"bilge\" of a boat?",
   choices: [
@@ -4350,6 +4366,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-bilge-pump-id',
   topic: 'cruising-systems',
+  concepts: ['bilge-and-pumps'],
   format: 'visual',
   assetId: 'custom-bilge-pump',
   prompt: "The diagram shows two bilge pump systems. What is the purpose of having both an electric pump and a manual backup pump?",
@@ -4366,6 +4383,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-bilge-pump-function',
   topic: 'cruising-systems',
+  concepts: ['bilge-and-pumps'],
   format: 'text',
   prompt: "What is the primary purpose of a bilge pump?",
   choices: [
@@ -4381,6 +4399,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-seacock-id',
   topic: 'cruising-systems',
+  concepts: ['through-hulls-and-seacocks'],
   format: 'visual',
   assetId: 'custom-seacock-throughhull',
   prompt: "What do the fittings in this cross-section do, working from the outside of the hull inward?",
@@ -4397,6 +4416,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-seacock-hose-failure-reasoning',
   topic: 'cruising-systems',
+  concepts: ['through-hulls-and-seacocks'],
   format: 'text',
   prompt: "A hose attached to a through-hull fitting below the waterline bursts while underway. Why does it matter whether the seacock for that fitting was closed or open?",
   choices: [
@@ -4412,6 +4432,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-through-hull-defn',
   topic: 'cruising-systems',
+  concepts: ['through-hulls-and-seacocks'],
   format: 'text',
   prompt: "Which of these is an example of a system that typically uses a through-hull fitting?",
   choices: [
@@ -4474,6 +4495,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-hatches-function',
   topic: 'cruising-systems',
+  concepts: ['belowdecks-layout'],
   format: 'text',
   prompt: "What is the main function of deck hatches on a cruising boat?",
   choices: [
@@ -4489,6 +4511,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-battery-basics',
   topic: 'cruising-systems',
+  concepts: ['dc-electrical-system'],
   format: 'text',
   prompt: "Why do most cruising sailboats carry separate \"house\" and \"starting\" battery banks?",
   choices: [
@@ -4504,6 +4527,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sys-electrical-panel-basics',
   topic: 'cruising-systems',
+  concepts: ['dc-electrical-system'],
   format: 'text',
   prompt: "What is the purpose of the circuit breakers on a boat's DC electrical panel?",
   choices: [

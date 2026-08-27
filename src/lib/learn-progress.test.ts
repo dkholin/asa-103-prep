@@ -15,12 +15,16 @@ import {
   type Progress,
 } from './progress';
 
+// Boat & Cruising Basics is the first published module in course order, so it
+// — not Motoring — is where the sequential rules land with no prior activity.
+const BOAT = lessonsForModule('boat-cruising-basics');
 const MOTORING = lessonsForModule('motoring');
 const SAILS_TRIM = lessonsForModule('sails-trim');
-const completeAll = (p: Progress) =>
-  publishedLessons().reduce((acc, l) => markLessonCompleted(markLessonOpened(acc, l.id), l.id), p);
-const completeMotoring = (p: Progress) =>
-  MOTORING.reduce((acc, l) => markLessonCompleted(markLessonOpened(acc, l.id), l.id), p);
+const complete = (p: Progress, lessons: readonly { id: string }[]) =>
+  lessons.reduce((acc, l) => markLessonCompleted(markLessonOpened(acc, l.id), l.id), p);
+const completeAll = (p: Progress) => complete(p, publishedLessons());
+/** Everything ahead of Sails & Trim in course order. */
+const completeThroughMotoring = (p: Progress) => complete(p, [...BOAT, ...MOTORING]);
 
 describe('published lesson catalogue', () => {
   it('contains only lessons from published modules', () => {
@@ -66,7 +70,7 @@ describe('moduleLessonProgress', () => {
 describe('continueLearning', () => {
   it('starts at the first lesson with no prior activity', () => {
     const target = continueLearning(emptyProgress());
-    expect(target).toEqual({ kind: 'lesson', lesson: MOTORING[0], resume: false });
+    expect(target).toEqual({ kind: 'lesson', lesson: BOAT[0], resume: false });
   });
 
   it('resumes the last opened lesson while it is still in progress', () => {
@@ -75,22 +79,24 @@ describe('continueLearning', () => {
   });
 
   it('moves on to the first unfinished lesson once the last one is complete', () => {
-    let p = markLessonOpened(emptyProgress(), MOTORING[0].id);
-    p = markLessonCompleted(p, MOTORING[0].id);
-    expect(continueLearning(p)).toEqual({ kind: 'lesson', lesson: MOTORING[1], resume: false });
+    let p = markLessonOpened(emptyProgress(), BOAT[0].id);
+    p = markLessonCompleted(p, BOAT[0].id);
+    expect(continueLearning(p)).toEqual({ kind: 'lesson', lesson: BOAT[1], resume: false });
   });
 
   it('skips completed lessons when finding the next one', () => {
     let p = emptyProgress();
-    for (const lesson of MOTORING.slice(0, 3)) {
+    for (const lesson of BOAT.slice(0, 3)) {
       p = markLessonCompleted(markLessonOpened(p, lesson.id), lesson.id);
     }
     // The last open was lesson 3, now complete, so rule 1 does not apply.
-    expect(continueLearning(p)).toEqual({ kind: 'lesson', lesson: MOTORING[3], resume: false });
+    expect(continueLearning(p)).toEqual({ kind: 'lesson', lesson: BOAT[3], resume: false });
   });
 
-  it('moves from completed Motoring to the first Sails & Trim lesson', () => {
-    expect(continueLearning(completeMotoring(emptyProgress()))).toEqual({
+  it('crosses into the next published module once the earlier ones are complete', () => {
+    // Boat & Cruising Basics and Motoring both finished, so the sequential
+    // rule walks past two whole modules into Sails & Trim.
+    expect(continueLearning(completeThroughMotoring(emptyProgress()))).toEqual({
       kind: 'lesson',
       lesson: SAILS_TRIM[0],
       resume: false,
@@ -113,19 +119,19 @@ describe('continueLearning', () => {
       ...emptyProgress(),
       learn: { lessons: { 'motoring-removed-lesson': 'in-progress' }, lastLessonId: 'motoring-removed-lesson' },
     };
-    expect(continueLearning(p)).toEqual({ kind: 'lesson', lesson: MOTORING[0], resume: false });
+    expect(continueLearning(p)).toEqual({ kind: 'lesson', lesson: BOAT[0], resume: false });
   });
 
   // The card and the outline sit on one screen. Offering to "start" a lesson
   // the list below labels "In progress" is a self-contradiction, so `resume`
   // is a fact about the destination, not about which rule selected it.
   it('reports a resume when the first unfinished lesson is itself in progress', () => {
-    let p = markLessonOpened(emptyProgress(), MOTORING[0].id);
-    p = markLessonCompleted(markLessonOpened(p, MOTORING[2].id), MOTORING[2].id);
+    let p = markLessonOpened(emptyProgress(), BOAT[0].id);
+    p = markLessonCompleted(markLessonOpened(p, BOAT[2].id), BOAT[2].id);
     // Rule 1 does not apply: the last-opened lesson is now complete.
-    expect(p.learn!.lastLessonId).toBe(MOTORING[2].id);
+    expect(p.learn!.lastLessonId).toBe(BOAT[2].id);
     // Rule 2 lands back on lesson one, which the outline shows as "In progress".
-    expect(continueLearning(p)).toEqual({ kind: 'lesson', lesson: MOTORING[0], resume: true });
+    expect(continueLearning(p)).toEqual({ kind: 'lesson', lesson: BOAT[0], resume: true });
   });
 
   it('never targets a coming-soon module', () => {
@@ -151,9 +157,11 @@ describe('defaultExpandedModuleId', () => {
   const FIRST_PUBLISHED = MODULES.find((m) => m.status === 'published')!;
 
   it('opens the first published module with no prior activity', () => {
-    // Not the first module in `MODULES` — that one is coming-soon.
-    expect(FIRST_PUBLISHED.id).toBe('motoring');
-    expect(defaultExpandedModuleId(emptyProgress())).toBe('motoring');
+    // Rule 3 reads the catalogue rather than naming a module, so publishing an
+    // earlier one moves the empty state with it — as Boat & Cruising Basics
+    // did when it stopped being coming-soon.
+    expect(FIRST_PUBLISHED.id).toBe('boat-cruising-basics');
+    expect(defaultExpandedModuleId(emptyProgress())).toBe('boat-cruising-basics');
   });
 
   it('opens the module holding the last opened lesson', () => {
@@ -167,7 +175,7 @@ describe('defaultExpandedModuleId', () => {
   // `continueLearning`.
   it('keeps the last opened lesson’s module open after that lesson is completed', () => {
     const p = markLessonCompleted(markLessonOpened(emptyProgress(), SAILS_TRIM[0].id), SAILS_TRIM[0].id);
-    expect(continueLearning(p)).toMatchObject({ kind: 'lesson', lesson: MOTORING[0] });
+    expect(continueLearning(p)).toMatchObject({ kind: 'lesson', lesson: BOAT[0] });
     expect(defaultExpandedModuleId(p)).toBe('sails-trim');
   });
 
@@ -175,11 +183,13 @@ describe('defaultExpandedModuleId', () => {
     const p: Progress = {
       ...emptyProgress(),
       learn: {
-        lessons: Object.fromEntries(MOTORING.map((l) => [l.id, 'completed' as const])),
+        lessons: Object.fromEntries(
+          [...BOAT, ...MOTORING].map((l) => [l.id, 'completed' as const]),
+        ),
         lastLessonId: 'motoring-removed-lesson',
       },
     };
-    // Motoring is finished, so Continue learning is in Sails & Trim.
+    // Everything before Sails & Trim is finished, so Continue learning is there.
     expect(defaultExpandedModuleId(p)).toBe('sails-trim');
   });
 

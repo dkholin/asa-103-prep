@@ -13,6 +13,7 @@ import { revealLesson, seeded } from './helpers';
  * loud.
  */
 
+const BOAT = lessonsForModule('boat-cruising-basics');
 const MOTORING = lessonsForModule('motoring');
 const SAILS_TRIM = lessonsForModule('sails-trim');
 const PROGRESS_KEY = 'asa103.e2e.fake-cloud-progress.v1';
@@ -160,22 +161,30 @@ test('Learn opens one module at a time and hides the rest of the course', async 
   await page.goto(seeded());
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
 
-  // With no prior activity the first published module is the open one — which
-  // is Motoring, not the coming-soon module that sits above it.
-  await expect(moduleToggle(page, 'Motoring')).toHaveAttribute('aria-expanded', 'true');
+  // With no prior activity the first published module is the open one — now
+  // Boat & Cruising Basics, which leads the course.
+  await expect(moduleToggle(page, 'Boat & Cruising Basics')).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
+  await expect(moduleToggle(page, 'Motoring')).toHaveAttribute('aria-expanded', 'false');
   await expect(moduleToggle(page, 'Sails & Trim')).toHaveAttribute('aria-expanded', 'false');
-  await expect(page.getByRole('button', { name: 'Open lesson' })).toHaveCount(MOTORING.length);
+  await expect(page.getByRole('button', { name: 'Open lesson' })).toHaveCount(BOAT.length);
 
-  // Opening the other one closes the first: never two at once, never none by
+  // Opening another closes the first: never two at once, never none by
   // accident.
   await moduleToggle(page, 'Sails & Trim').click();
-  await expect(moduleToggle(page, 'Motoring')).toHaveAttribute('aria-expanded', 'false');
+  await expect(moduleToggle(page, 'Boat & Cruising Basics')).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
   await expect(moduleToggle(page, 'Sails & Trim')).toHaveAttribute('aria-expanded', 'true');
   await expect(page.getByRole('button', { name: 'Open lesson' })).toHaveCount(SAILS_TRIM.length);
 
   // Collapsing leaves the header, and its progress chip, in place.
   await moduleToggle(page, 'Sails & Trim').click();
   await expect(page.getByRole('button', { name: 'Open lesson' })).toHaveCount(0);
+  await expect(page.getByTestId('module-progress-boat-cruising-basics')).toBeVisible();
   await expect(page.getByTestId('module-progress-motoring')).toBeVisible();
   await expect(page.getByTestId('module-progress-sails-trim')).toBeVisible();
 });
@@ -183,8 +192,11 @@ test('Learn opens one module at a time and hides the rest of the course', async 
 test('a collapsed module leaves nothing behind in the tab order', async ({ page }) => {
   await page.goto(seeded());
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
-  await moduleToggle(page, 'Motoring').click();
-  await expect(moduleToggle(page, 'Motoring')).toHaveAttribute('aria-expanded', 'false');
+  await moduleToggle(page, 'Boat & Cruising Basics').click();
+  await expect(moduleToggle(page, 'Boat & Cruising Basics')).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
 
   // Not merely hidden: the rows are not in the document, so nothing focusable
   // is left for a keyboard learner to tab into.
@@ -192,16 +204,16 @@ test('a collapsed module leaves nothing behind in the tab order', async ({ page 
 
   // Tabbing on from the collapsed header reaches the next module, never a
   // lesson button inside the closed one.
-  await moduleToggle(page, 'Motoring').focus();
+  await moduleToggle(page, 'Boat & Cruising Basics').focus();
   await page.keyboard.press('Tab');
-  await expect(moduleToggle(page, 'Sails & Trim')).toBeFocused();
+  await expect(moduleToggle(page, 'Motoring')).toBeFocused();
 });
 
 test('a coming-soon module is compact, non-expandable, and not a button', async ({ page }) => {
   await page.goto(seeded());
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
 
-  const comingSoon = page.locator('.card').filter({ hasText: 'Boat & Cruising Basics' });
+  const comingSoon = page.locator('.card').filter({ hasText: 'Hands-On Cruising' });
   await expect(comingSoon.getByText('Coming soon')).toBeVisible();
   await expect(comingSoon.getByRole('button')).toHaveCount(0);
   await expect(comingSoon.getByRole('button', { name: 'Open lesson' })).toHaveCount(0);
@@ -255,16 +267,19 @@ test('no toggle advertises a control that is not on the page', async ({ page }) 
 
   // The same on Learn, where one module is expanded and the rest are not.
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
-  await expect(moduleToggle(page, 'Motoring')).toHaveAttribute(
+  await expect(moduleToggle(page, 'Boat & Cruising Basics')).toHaveAttribute(
     'aria-controls',
-    'module-lessons-motoring',
+    'module-lessons-boat-cruising-basics',
   );
   await expect(moduleToggle(page, 'Sails & Trim')).not.toHaveAttribute('aria-controls', /.*/);
   expect(await danglingControls(page)).toEqual([]);
 
   // And after the accordion swaps which one is open, in both directions.
   await moduleToggle(page, 'Sails & Trim').click();
-  await expect(moduleToggle(page, 'Motoring')).not.toHaveAttribute('aria-controls', /.*/);
+  await expect(moduleToggle(page, 'Boat & Cruising Basics')).not.toHaveAttribute(
+    'aria-controls',
+    /.*/,
+  );
   await expect(moduleToggle(page, 'Sails & Trim')).toHaveAttribute(
     'aria-controls',
     'module-lessons-sails-trim',

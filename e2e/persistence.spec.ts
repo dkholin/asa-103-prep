@@ -46,13 +46,17 @@ test('progress survives a browser reload', async ({ page }) => {
  * quietly matching nothing.
  * ------------------------------------------------------------------------- */
 
+const BOAT = lessonsForModule('boat-cruising-basics');
 const MOTORING = lessonsForModule('motoring');
 const SAILS_TRIM = lessonsForModule('sails-trim');
 const PUBLISHED_LESSONS = MODULES.filter((module) => module.status === 'published').flatMap(
   (module) => lessonsForModule(module.id),
 );
 const FIRST = MOTORING[0];
-const THIRD = MOTORING[2];
+// Boat & Cruising Basics leads the course, so these are the lessons the
+// Continue learning sequential rule actually lands on.
+const COURSE_FIRST = BOAT[0];
+const COURSE_THIRD = BOAT[2];
 
 const openLearn = async (page: Page) => {
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
@@ -130,37 +134,41 @@ test('Continue learning starts at lesson one and later resumes the lesson in pro
 
   // No prior activity: the first lesson in course order, with no special case.
   const card = page.getByTestId('continue-learning');
-  await expect(card.getByRole('heading')).toHaveText(FIRST.title);
+  await expect(card.getByRole('heading')).toHaveText(COURSE_FIRST.title);
   await card.getByRole('button', { name: 'Start lesson' }).click();
-  await expect(page.getByRole('heading', { name: FIRST.title })).toBeVisible();
+  await expect(page.getByRole('heading', { name: COURSE_FIRST.title })).toBeVisible();
   await page.getByRole('button', { name: 'Back to Learn' }).click();
 
   // A lesson left in progress is what Continue learning resumes.
-  await openLesson(page, THIRD.title);
+  await openLesson(page, COURSE_THIRD.title);
   await page.getByRole('button', { name: 'Back to Learn' }).click();
-  await expect(card.getByRole('heading')).toHaveText(THIRD.title);
+  await expect(card.getByRole('heading')).toHaveText(COURSE_THIRD.title);
 
   await page.reload();
   await openLearn(page);
-  await expect(card.getByRole('heading')).toHaveText(THIRD.title);
+  await expect(card.getByRole('heading')).toHaveText(COURSE_THIRD.title);
   await card.getByRole('button', { name: 'Resume lesson' }).click();
-  await expect(page.getByRole('heading', { name: THIRD.title })).toBeVisible();
+  await expect(page.getByRole('heading', { name: COURSE_THIRD.title })).toBeVisible();
 
   // Completing it hands Continue learning back to the sequential rule, which
   // is the first *unfinished* lesson — lesson one, still only in progress —
   // not the lesson after the one just completed.
   await page.getByRole('button', { name: 'Mark complete' }).click();
   await page.getByRole('button', { name: 'Back to Learn' }).click();
-  await expect(card.getByRole('heading')).toHaveText(FIRST.title);
+  await expect(card.getByRole('heading')).toHaveText(COURSE_FIRST.title);
 
   // The card and the outline are on one screen, so they must agree: lesson one
   // is in progress, so the card resumes it rather than offering to start it.
-  await expect((await revealedLessonRow(page, FIRST.title)).locator('.chip')).toHaveText('In progress');
+  await expect((await revealedLessonRow(page, COURSE_FIRST.title)).locator('.chip')).toHaveText('In progress');
   await expect(card.getByRole('button')).toHaveText('Resume lesson');
 });
 
 test('Continue learning crosses published modules and ends in a module-neutral state', async ({ page }) => {
-  const completedMotoring = Object.fromEntries(MOTORING.map((lesson) => [lesson.id, 'completed']));
+  // Everything ahead of Sails & Trim in course order, so the sequential rule
+  // has to walk past two whole modules to reach it.
+  const completedMotoring = Object.fromEntries(
+    [...BOAT, ...MOTORING].map((lesson) => [lesson.id, 'completed']),
+  );
   await page.addInitScript(({ key, lessons }) => {
     if (localStorage.getItem(key)) return;
     localStorage.setItem(key, JSON.stringify({
@@ -229,7 +237,10 @@ test('Reset progress clears Learn state', async ({ page }) => {
   await page.reload();
   await openLearn(page);
   await expect((await revealedLessonRow(page, FIRST.title)).locator('.chip')).toHaveText('Not started');
-  await expect(page.getByTestId('continue-learning').getByRole('heading')).toHaveText(FIRST.title);
+  // Back to the empty state, which is lesson one of the course, not of Motoring.
+  await expect(page.getByTestId('continue-learning').getByRole('heading')).toHaveText(
+    COURSE_FIRST.title,
+  );
 });
 
 /**

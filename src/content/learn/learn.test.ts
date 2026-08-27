@@ -53,6 +53,58 @@ describe('learn content integrity', () => {
     }
   });
 
+  /**
+   * Boat & Cruising Basics is at Step 1: the six lesson objects, their order,
+   * ids, titles and concept tags are final and pinned here, while the copy is
+   * still placeholder — so this guard deliberately does NOT assert the
+   * placeholder-free, block-count shape the finished modules above do. Step 2
+   * tightens it; until then this is what stops a lesson being dropped,
+   * reordered or retagged while the prose is being written.
+   */
+  it('publishes six Boat & Cruising Basics lesson skeletons in order, tagged and figure-free', () => {
+    const module = MODULES.find((item) => item.id === 'boat-cruising-basics');
+    expect(module?.status).toBe('published');
+    const lessons = lessonsForModule('boat-cruising-basics');
+    expect(lessons).toHaveLength(6);
+    expect(lessons.map((lesson) => lesson.id)).toEqual([
+      'boat-cruising-basics-anatomy-of-a-cruising-boat',
+      'boat-cruising-basics-cockpit-and-helm',
+      'boat-cruising-basics-a-tour-of-the-deck',
+      'boat-cruising-basics-steering-and-rudder',
+      'boat-cruising-basics-belowdecks-layout',
+      'boat-cruising-basics-onboard-systems-orientation',
+    ]);
+    expect(lessons.map((lesson) => lesson.title)).toEqual([
+      'Anatomy of a Cruising Boat',
+      'The Cockpit & Helm',
+      'A Tour of the Deck',
+      'Steering & the Rudder',
+      'Belowdecks: Living Space & Layout',
+      'Onboard Systems at a Glance',
+    ]);
+    expect(lessons.map((lesson) => lesson.order)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(lessons.map((lesson) => lesson.concepts)).toEqual([
+      ['boat-anatomy-and-terms'],
+      ['cockpit-layout'],
+      ['deck-hardware-and-rigging-attachments'],
+      ['steering-systems'],
+      ['belowdecks-layout'],
+      ['through-hulls-and-seacocks', 'bilge-and-pumps', 'dc-electrical-system'],
+    ]);
+    for (const lesson of lessons) {
+      for (const concept of lesson.concepts) {
+        expect([...conceptIds], `concept ${concept} of ${lesson.id}`).toContain(concept);
+      }
+      // Step 1 ships no figures: the module's artwork is a Step 3 decision.
+      expect(
+        lesson.blocks.filter((block) => block.kind === 'figure'),
+        `figure in Step 1 skeleton ${lesson.id}`,
+      ).toEqual([]);
+      // Enough blocks to render, and no more.
+      expect(lesson.blocks.length, `empty skeleton ${lesson.id}`).toBeGreaterThan(0);
+    }
+  });
+
   it('publishes exactly seven finished Sails & Trim lessons using only approved figures', () => {
     const lessons = lessonsForModule('sails-trim');
     expect(lessons).toHaveLength(7);

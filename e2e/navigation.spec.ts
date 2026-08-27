@@ -38,17 +38,21 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
   // Learn: the module outline, a lesson, and prev/next within the module.
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Motoring', exact: true })).toBeVisible();
-  // Motoring is the module the accordion opens on with no prior activity, so
-  // its lessons are already on screen.
+  // Boat & Cruising Basics is the first published module, so it is the one the
+  // accordion opens on with no prior activity — Motoring stays collapsed.
+  await expect(
+    page.getByRole('button', { name: 'Boat & Cruising Basics', exact: true }),
+  ).toHaveAttribute('aria-expanded', 'true');
   await expect(page.getByRole('button', { name: 'Motoring', exact: true })).toHaveAttribute(
     'aria-expanded',
-    'true',
+    'false',
   );
   // A coming-soon module states its status in text, and offers nothing to open.
-  const comingSoon = page.locator('.card').filter({ hasText: 'Boat & Cruising Basics' });
+  const comingSoon = page.locator('.card').filter({ hasText: 'Hands-On Cruising' });
   await expect(comingSoon.getByText('Coming soon')).toBeVisible();
   await expect(comingSoon.getByRole('button', { name: 'Open lesson' })).toHaveCount(0);
 
+  await revealLesson(page, 'Before Getting Under Way');
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Before Getting Under Way' })

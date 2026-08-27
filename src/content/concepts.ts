@@ -73,6 +73,14 @@ export const CONCEPT_IDS = [
   'plotting-a-course',
   'distance-speed-time',
   'electronic-navigation',
+  'boat-anatomy-and-terms',
+  'cockpit-layout',
+  'deck-hardware-and-rigging-attachments',
+  'steering-systems',
+  'belowdecks-layout',
+  'through-hulls-and-seacocks',
+  'bilge-and-pumps',
+  'dc-electrical-system',
 ] as const;
 
 export type ConceptId = (typeof CONCEPT_IDS)[number];

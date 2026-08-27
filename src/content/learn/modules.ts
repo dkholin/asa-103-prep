@@ -14,7 +14,7 @@ export const MODULES: LearnModule[] = [
     id: 'boat-cruising-basics',
     title: 'Boat & Cruising Basics',
     blurb: 'How a cruising boat is put together and what everything is called',
-    status: 'coming-soon',
+    status: 'published',
   },
   {
     id: 'motoring',
