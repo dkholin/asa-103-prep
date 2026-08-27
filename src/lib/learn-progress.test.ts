@@ -19,11 +19,12 @@ import {
 // — not Motoring — is where the sequential rules land with no prior activity.
 const BOAT = lessonsForModule('boat-cruising-basics');
 const MOTORING = lessonsForModule('motoring');
+const CRUISING_LIFE = lessonsForModule('cruising-life-safety');
 const SAILS_TRIM = lessonsForModule('sails-trim');
 const complete = (p: Progress, lessons: readonly { id: string }[]) =>
   lessons.reduce((acc, l) => markLessonCompleted(markLessonOpened(acc, l.id), l.id), p);
 const completeAll = (p: Progress) => complete(p, publishedLessons());
-/** Everything ahead of Sails & Trim in course order. */
+/** Everything ahead of Cruising Life & Safety in course order. */
 const completeThroughMotoring = (p: Progress) => complete(p, [...BOAT, ...MOTORING]);
 
 describe('published lesson catalogue', () => {
@@ -95,10 +96,11 @@ describe('continueLearning', () => {
 
   it('crosses into the next published module once the earlier ones are complete', () => {
     // Boat & Cruising Basics and Motoring both finished, so the sequential
-    // rule walks past two whole modules into Sails & Trim.
+    // rule walks past two whole modules into the next published one — which is
+    // now Cruising Life & Safety, sitting between Motoring and Sails & Trim.
     expect(continueLearning(completeThroughMotoring(emptyProgress()))).toEqual({
       kind: 'lesson',
-      lesson: SAILS_TRIM[0],
+      lesson: CRUISING_LIFE[0],
       resume: false,
     });
   });
@@ -189,8 +191,9 @@ describe('defaultExpandedModuleId', () => {
         lastLessonId: 'motoring-removed-lesson',
       },
     };
-    // Everything before Sails & Trim is finished, so Continue learning is there.
-    expect(defaultExpandedModuleId(p)).toBe('sails-trim');
+    // Everything before Cruising Life & Safety is finished, so Continue
+    // learning is there.
+    expect(defaultExpandedModuleId(p)).toBe('cruising-life-safety');
   });
 
   it('never opens a coming-soon module named by stored state', () => {

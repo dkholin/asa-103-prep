@@ -88,6 +88,58 @@ const EXPECTED_BY_LESSON: Record<string, string[]> = {
     'eng-auxiliary-engine-types',
     'emer-fire-fuel-vapor-prevention',
   ],
+  'cruising-life-safety-responsibility-aboard': [
+    'sea-resp-skipper-authority',
+    'sea-resp-crew-briefing',
+    'sea-resp-situational-awareness',
+    'sea-resp-delegation',
+  ],
+  'cruising-life-safety-staying-on-the-boat': [
+    'safety-pfd-type-id',
+    'safety-pfd-fit-check',
+    'safety-pfd-stowage-accessible',
+    'safety-pfd-child',
+    'safety-pfd-inflatable-maintenance',
+    'safety-harness-id',
+    'safety-harness-when-clip',
+    'safety-harness-clip-point',
+  ],
+  'cruising-life-safety-safety-gear': [
+    'safety-req-pfd-count',
+    'safety-req-throwable-length',
+    'safety-req-visual-distress-coastal',
+    'safety-req-visual-distress-inland-under16',
+    'safety-req-sound-device',
+    'safety-req-fire-extinguisher-condition',
+    'safety-req-nav-lights-general',
+    'safety-prudent-first-aid-kit',
+    'safety-prudent-flashlight-handheld',
+    'safety-prudent-vhf-handheld-backup',
+    'safety-prudent-tool-spares',
+  ],
+  'cruising-life-safety-living-aboard-resources': [
+    'safety-stow-heavy-gear-low',
+    'safety-stow-loose-gear-underway',
+    'safety-stow-galley-items-passage',
+  ],
+  'cruising-life-safety-power-fuel-hazards': [
+    'safety-fuel-spill-response',
+    'safety-fuel-vapor-density',
+  ],
+  'cruising-life-safety-when-things-go-wrong': [
+    'sea-vhf-ch16',
+    'sea-vhf-distress-mayday',
+    'emer-fire-classes-onboard',
+    'emer-fire-extinguisher-class-b',
+    'emer-fire-engine-compartment-response',
+    'emer-fire-galley-priorities',
+    'emer-fire-fuel-vapor-prevention',
+    'emer-fire-immediate-priorities',
+    'emer-flooding-seacock-response',
+    'emer-flooding-recognize-priority',
+    'emer-vhf-distress-mayday',
+    'emer-crew-injury-priorities',
+  ],
   'sails-trim-lines-winches-sail-controls': [
     'sail-trim-traveler-concept',
     'sea-line-hand-wraps',
@@ -319,11 +371,16 @@ describe('concept Practice mapping', () => {
     ).toHaveLength(36);
   });
 
-  it('carries concept metadata on exactly 182 questions across the whole bank', () => {
+  it('carries concept metadata on exactly 218 questions across the whole bank', () => {
     // 158 before Boat & Cruising Basics, plus the 24 previously untagged
-    // `cruising-systems` questions its six lessons claim — additive metadata
-    // only, with no question content touched.
-    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(182);
+    // `cruising-systems` questions its six lessons claim, plus Cruising Life &
+    // Safety Step 1. That module claims 40 questions, but four of them were
+    // already tagged — `sea-resp-crew-briefing` reuses the existing
+    // `crew-briefing` concept unchanged, and the three fuel-vapour questions
+    // keep their Motoring `fueling-safety`/`blower-ventilation` tags and gain
+    // a second concept — so only 36 previously untagged questions became
+    // tagged. Additive metadata only, with no question content touched.
+    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(218);
   });
 
   /**
@@ -411,5 +468,79 @@ describe('concept Practice mapping', () => {
     // Every lesson resolves to a real session: none of the nine is a dead
     // "Practice this material" button.
     expect(counts.every(([, count]) => (count as number) > 0)).toBe(true);
+  });
+  /**
+   * Cruising Life & Safety, Step 1. The literal id lists above are the
+   * contract; these are the session sizes a learner actually sees behind
+   * "Practice this material" on each of the six lessons, taken from the app's
+   * own resolver rather than counted by hand.
+   */
+  it('resolves a pinned Practice count for every Cruising Life & Safety lesson', () => {
+    const counts = lessonsForModule('cruising-life-safety').map((lesson) => [
+      lesson.id,
+      practiceIdsForConcepts(lesson.concepts).length,
+    ]);
+    expect(counts).toEqual([
+      ['cruising-life-safety-responsibility-aboard', 4],
+      ['cruising-life-safety-staying-on-the-boat', 8],
+      ['cruising-life-safety-safety-gear', 11],
+      ['cruising-life-safety-living-aboard-resources', 3],
+      ['cruising-life-safety-power-fuel-hazards', 2],
+      ['cruising-life-safety-when-things-go-wrong', 12],
+    ]);
+    // Every lesson resolves to a real session: none of the six is a dead
+    // "Practice this material" button.
+    expect(counts.every(([, count]) => (count as number) > 0)).toBe(true);
+  });
+
+  /**
+   * The module claims 40 distinct questions and practises none of them twice.
+   * Lesson 1 and lesson 6 each carry more than one concept, so this is the
+   * guard that a multi-concept lesson resolves to the union of its concepts
+   * exactly once each, and that no question is served by two lessons of the
+   * same module.
+   */
+  it('claims exactly 40 distinct questions across Cruising Life & Safety', () => {
+    const lessons = lessonsForModule('cruising-life-safety');
+    const ids = lessons.flatMap((lesson) => practiceIdsForConcepts(lesson.concepts));
+    expect(ids).toHaveLength(40);
+    expect(new Set(ids).size).toBe(40);
+  });
+
+  /**
+   * The module boundary, enforced from the question side. Crew overboard,
+   * hypothermia, grounding, a dragging anchor, steering and prop failures
+   * belong to Hands-On Cruising; rigging failure, knots and routine radio
+   * etiquette to Seamanship; fuelling and blower procedure to Motoring. Engine
+   * failure is deliberately still unassigned. None of them may be pulled into
+   * a Cruising Life & Safety session.
+   */
+  it('leaves reserved Hands-On, Seamanship and Motoring questions out of the module', () => {
+    const moduleConcepts = new Set<ConceptId>(
+      lessonsForModule('cruising-life-safety').flatMap((lesson) => lesson.concepts),
+    );
+    const claimed = new Set(practiceIdsForConcepts([...moduleConcepts]));
+    const reserved = QUESTIONS.filter(
+      (question) =>
+        /^emer-(mob|hypothermia|grounding|anchor-dragging|steering-failure|fouled-prop|rigging-failure|engine-failure)/.test(
+          question.id,
+        ) || /^sea-(knot-|vhf-concise-comms|vhf-working-channel-switch)/.test(question.id),
+    );
+    expect(reserved.length).toBeGreaterThan(0);
+    for (const question of reserved) {
+      expect(claimed, `${question.id} claimed by Cruising Life & Safety`).not.toContain(question.id);
+    }
+    // The three Motoring fuelling/blower questions this module must not claim
+    // keep exactly the concepts they already had.
+    for (const id of ['safety-fuel-gas-diesel-diagram', 'safety-fuel-blower-purpose', 'safety-fuel-shutdown-before']) {
+      const question = QUESTIONS.find((item) => item.id === id);
+      expect(question, `missing question ${id}`).toBeDefined();
+      expect(claimed, `${id} claimed by Cruising Life & Safety`).not.toContain(id);
+    }
+    // `stowage` and the Boat Basics system concepts stayed out of the module's
+    // tags: reusing them would have dragged their questions in with them.
+    for (const concept of ['stowage', 'dc-electrical-system', 'bilge-and-pumps', 'through-hulls-and-seacocks', 'fueling-safety', 'blower-ventilation']) {
+      expect([...moduleConcepts], `${concept} tagged on a Cruising Life & Safety lesson`).not.toContain(concept);
+    }
   });
 });

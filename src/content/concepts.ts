@@ -81,6 +81,14 @@ export const CONCEPT_IDS = [
   'through-hulls-and-seacocks',
   'bilge-and-pumps',
   'dc-electrical-system',
+  'skipper-and-crew-responsibility',
+  'personal-on-deck-safety',
+  'safety-equipment-readiness',
+  'living-aboard-resources',
+  'power-and-invisible-hazards',
+  'fire-and-flooding-response',
+  'distress-communications',
+  'crew-injury-response',
 ] as const;
 
 export type ConceptId = (typeof CONCEPT_IDS)[number];

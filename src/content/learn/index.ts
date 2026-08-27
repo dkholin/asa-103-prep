@@ -13,6 +13,12 @@ import { lesson as propellerEffects } from './motoring/propeller-effects';
 import { lesson as maneuveringUnderPower } from './motoring/maneuvering-under-power';
 import { lesson as dockingMooring } from './motoring/docking-mooring';
 import { lesson as outboardsFuelingEtiquette } from './motoring/outboards-fueling-etiquette';
+import { lesson as responsibilityAboard } from './cruising-life-safety/responsibility-aboard';
+import { lesson as stayingOnTheBoat } from './cruising-life-safety/staying-on-the-boat';
+import { lesson as safetyGear } from './cruising-life-safety/safety-gear';
+import { lesson as livingAboardResources } from './cruising-life-safety/living-aboard-resources';
+import { lesson as powerFuelHazards } from './cruising-life-safety/power-fuel-hazards';
+import { lesson as whenThingsGoWrong } from './cruising-life-safety/when-things-go-wrong';
 import { lesson as linesWinchesSailControls } from './sails-trim/lines-winches-sail-controls';
 import { lesson as preparingToSail } from './sails-trim/preparing-to-sail';
 import { lesson as settingSail } from './sails-trim/setting-sail';
@@ -53,6 +59,12 @@ export const LESSONS: Lesson[] = [
   maneuveringUnderPower,
   dockingMooring,
   outboardsFuelingEtiquette,
+  responsibilityAboard,
+  stayingOnTheBoat,
+  safetyGear,
+  livingAboardResources,
+  powerFuelHazards,
+  whenThingsGoWrong,
   linesWinchesSailControls,
   preparingToSail,
   settingSail,

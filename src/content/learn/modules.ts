@@ -26,7 +26,7 @@ export const MODULES: LearnModule[] = [
     id: 'cruising-life-safety',
     title: 'Cruising Life & Safety',
     blurb: 'Living aboard, onboard systems, required gear, and emergency response',
-    status: 'coming-soon',
+    status: 'published',
   },
   {
     id: 'sails-trim',

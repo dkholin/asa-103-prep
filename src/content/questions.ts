@@ -4547,6 +4547,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-req-pfd-count',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'text',
   prompt: "Under federal law, how many wearable PFDs (life jackets) must a recreational boat carry?",
   choices: [
@@ -4562,6 +4563,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-req-throwable-length',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'text',
   prompt: "At what vessel length does federal law also require a throwable flotation device (e.g., a ring buoy or buoyant cushion) in addition to wearable PFDs?",
   choices: [
@@ -4577,6 +4579,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-req-visual-distress-coastal',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'visual',
   assetId: 'custom-visual-distress-flare',
   prompt: "A boat 20 feet long operates on coastal waters. What visual distress signal equipment is legally required?",
@@ -4593,6 +4596,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-req-visual-distress-inland-under16',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'text',
   prompt: "A 14-foot boat operates only on an inland lake with no coastal or Great Lakes connection. Regarding visual distress signals, which statement is accurate?",
   choices: [
@@ -4608,6 +4612,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-req-sound-device',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'text',
   prompt: "What is the legal purpose of a sound-producing device (e.g., a whistle or horn) required aboard a recreational boat?",
   choices: [
@@ -4623,6 +4628,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-req-fire-extinguisher-condition',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'visual',
   assetId: 'photo-fire-extinguisher-use',
   prompt: "A required fire extinguisher aboard is found with a gauge reading in the red (\"recharge\") zone. What is the correct action?",
@@ -4639,6 +4645,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-req-nav-lights-general',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'text',
   prompt: "Which statement about navigation lights and the federal equipment requirements is accurate?",
   choices: [
@@ -4654,6 +4661,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-pfd-type-id',
   topic: 'safety-equipment',
+  concepts: ['personal-on-deck-safety'],
   format: 'visual',
   assetId: 'custom-pfd-wearable-throwable',
   prompt: "The diagram shows two categories of flotation device. What is the key functional difference between them?",
@@ -4670,6 +4678,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-pfd-fit-check',
   topic: 'safety-equipment',
+  concepts: ['personal-on-deck-safety'],
   format: 'text',
   prompt: "How should you check that a wearable PFD fits properly?",
   choices: [
@@ -4685,6 +4694,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-pfd-stowage-accessible',
   topic: 'safety-equipment',
+  concepts: ['personal-on-deck-safety'],
   format: 'text',
   prompt: "Federal requirements state wearable PFDs must be \"readily accessible.\" What does that mean in practice?",
   choices: [
@@ -4700,6 +4710,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-pfd-child',
   topic: 'safety-equipment',
+  concepts: ['personal-on-deck-safety'],
   format: 'text',
   prompt: "What is a well-established prudent practice regarding children and PFDs, beyond the base federal carriage requirement?",
   choices: [
@@ -4715,6 +4726,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-pfd-inflatable-maintenance',
   topic: 'safety-equipment',
+  concepts: ['personal-on-deck-safety'],
   format: 'text',
   prompt: "An inflatable PFD needs what kind of routine attention that a foam PFD does not?",
   choices: [
@@ -4730,6 +4742,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-prudent-first-aid-kit',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'text',
   prompt: "Is a first-aid kit federally required aboard a recreational boat?",
   choices: [
@@ -4745,6 +4758,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-prudent-flashlight-handheld',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'text',
   prompt: "A working handheld flashlight is best described as which kind of safety item aboard a recreational boat?",
   choices: [
@@ -4760,6 +4774,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-prudent-vhf-handheld-backup',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'text',
   prompt: "Why do ASA courses recommend carrying a handheld VHF radio in addition to a fixed-mount VHF?",
   choices: [
@@ -4775,6 +4790,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-prudent-tool-spares',
   topic: 'safety-equipment',
+  concepts: ['safety-equipment-readiness'],
   format: 'text',
   prompt: "Why is a basic tool kit and a set of spare parts (impeller, fuses, hose clamps, filters) considered prudent gear for a cruising boat?",
   choices: [
@@ -4790,6 +4806,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-stow-heavy-gear-low',
   topic: 'safety-equipment',
+  concepts: ['living-aboard-resources'],
   format: 'text',
   prompt: "Why should heavy items (spare batteries, canned provisions, tools) be stowed as low as possible in the boat?",
   choices: [
@@ -4805,6 +4822,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-stow-loose-gear-underway',
   topic: 'safety-equipment',
+  concepts: ['living-aboard-resources'],
   format: 'text',
   prompt: "Before heading offshore in a building sea, why is it important to secure all loose gear belowdecks and on deck?",
   choices: [
@@ -4820,6 +4838,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-stow-galley-items-passage',
   topic: 'safety-equipment',
+  concepts: ['living-aboard-resources'],
   format: 'text',
   prompt: "What is a specific, recommended stowage practice for galley items before getting underway in a seaway?",
   choices: [
@@ -4835,6 +4854,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-harness-id',
   topic: 'safety-equipment',
+  concepts: ['personal-on-deck-safety'],
   format: 'visual',
   assetId: 'custom-harness-tether-jackline',
   prompt: "What does this deck arrangement show, and what is its purpose?",
@@ -4851,6 +4871,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-harness-when-clip',
   topic: 'safety-equipment',
+  concepts: ['personal-on-deck-safety'],
   format: 'text',
   prompt: "In what conditions is it considered good practice to wear a harness and clip in with a tether?",
   choices: [
@@ -4866,6 +4887,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-harness-clip-point',
   topic: 'safety-equipment',
+  concepts: ['personal-on-deck-safety'],
   format: 'text',
   prompt: "When clipping a tether onto the boat, what is the recommended attachment point?",
   choices: [
@@ -4930,7 +4952,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-fuel-spill-response',
   topic: 'safety-equipment',
-  concepts: ['fueling-safety'],
+  concepts: ['fueling-safety', 'power-and-invisible-hazards'],
   format: 'text',
   prompt: "If fuel is accidentally spilled into the water while fueling, what is the boater's obligation?",
   choices: [
@@ -4946,7 +4968,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'safety-fuel-vapor-density',
   topic: 'safety-equipment',
-  concepts: ['blower-ventilation', 'fueling-safety'],
+  concepts: ['blower-ventilation', 'fueling-safety', 'power-and-invisible-hazards'],
   format: 'text',
   prompt: "After fueling and before starting the engine, why is it recommended to open hatches and sniff the bilge (or use a vapor detector) in addition to running the blower?",
   choices: [
@@ -6223,6 +6245,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-resp-skipper-authority',
   topic: 'seamanship-comms',
+  concepts: ['skipper-and-crew-responsibility'],
   format: 'text',
   prompt: "Who holds ultimate responsibility for the safety of the vessel and crew, regardless of how tasks are delegated?",
   choices: [
@@ -6254,6 +6277,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-resp-situational-awareness',
   topic: 'seamanship-comms',
+  concepts: ['skipper-and-crew-responsibility'],
   format: 'text',
   prompt: "Should situational awareness (watching traffic, weather, and hazards) be treated as only the skipper's job?",
   choices: [
@@ -6269,6 +6293,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-resp-delegation',
   topic: 'seamanship-comms',
+  concepts: ['skipper-and-crew-responsibility'],
   format: 'text',
   prompt: "The skipper assigns the navigation role to an experienced crew member for the day. What does this delegation mean for the skipper's overall responsibility?",
   choices: [
@@ -6284,6 +6309,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-vhf-ch16',
   topic: 'seamanship-comms',
+  concepts: ['distress-communications'],
   format: 'text',
   prompt: "What is VHF Channel 16 primarily used for on a recreational boat?",
   choices: [
@@ -6299,6 +6325,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'sea-vhf-distress-mayday',
   topic: 'seamanship-comms',
+  concepts: ['distress-communications'],
   format: 'text',
   prompt: "When is it appropriate to transmit a Mayday call over VHF?",
   choices: [
@@ -6700,6 +6727,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-fire-classes-onboard',
   topic: 'emergencies',
+  concepts: ['fire-and-flooding-response'],
   format: 'text',
   prompt: "A galley fire involving cooking oil and a cockpit fire fed by leaking gasoline are examples of which fire class(es), which affects what kind of extinguisher is appropriate?",
   choices: [
@@ -6715,6 +6743,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-fire-extinguisher-class-b',
   topic: 'emergencies',
+  concepts: ['fire-and-flooding-response'],
   format: 'visual',
   assetId: 'photo-fire-extinguisher-marine',
   prompt: "The extinguisher pictured is a USCG-approved marine-type unit rated 5-B. What does the \"B\" rating tell you it is designed to fight?",
@@ -6731,6 +6760,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-fire-engine-compartment-response',
   topic: 'emergencies',
+  concepts: ['fire-and-flooding-response'],
   format: 'text',
   prompt: "Smoke is coming from the engine compartment while underway. What is the correct immediate sequence of actions?",
   choices: [
@@ -6746,6 +6776,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-fire-galley-priorities',
   topic: 'emergencies',
+  concepts: ['fire-and-flooding-response'],
   format: 'text',
   prompt: "A pan of cooking oil catches fire on the galley stove. What is the correct first response?",
   choices: [
@@ -6761,7 +6792,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-fire-fuel-vapor-prevention',
   topic: 'emergencies',
-  concepts: ['blower-ventilation', 'fueling-safety'],
+  concepts: ['blower-ventilation', 'fueling-safety', 'fire-and-flooding-response'],
   format: 'text',
   prompt: "Before starting an inboard gasoline engine after fueling, what precaution most directly reduces the risk of an explosion from accumulated fuel vapor?",
   choices: [
@@ -6777,6 +6808,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-fire-immediate-priorities',
   topic: 'emergencies',
+  concepts: ['fire-and-flooding-response'],
   format: 'text',
   prompt: "A fire breaks out belowdecks and is spreading faster than it can be controlled with onboard extinguishers. What should the crew prioritize?",
   choices: [
@@ -6793,6 +6825,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-flooding-seacock-response',
   topic: 'emergencies',
+  concepts: ['fire-and-flooding-response'],
   format: 'visual',
   assetId: 'custom-flooding-seacock',
   prompt: "As shown, water is spraying in around a loose hose clamp on a through-hull fitting below the waterline. What is the correct immediate response?",
@@ -6809,6 +6842,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-flooding-recognize-priority',
   topic: 'emergencies',
+  concepts: ['fire-and-flooding-response'],
   format: 'text',
   prompt: "The crew notices water sloshing noticeably in the bilge and rising. What should be done first, before anything else?",
   choices: [
@@ -6976,6 +7010,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-vhf-distress-mayday',
   topic: 'emergencies',
+  concepts: ['distress-communications'],
   format: 'text',
   prompt: "The boat is taking on water faster than the pumps can handle and the crew needs help immediately. What is the correct way to call for help on VHF?",
   choices: [
@@ -6991,6 +7026,7 @@ export const QUESTIONS: Question[] = [
 {
   id: 'emer-crew-injury-priorities',
   topic: 'emergencies',
+  concepts: ['crew-injury-response'],
   format: 'text',
   prompt: "A crew member is seriously injured on deck during a passage. What should the skipper prioritize first, before administering first aid?",
   choices: [

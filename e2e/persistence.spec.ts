@@ -48,6 +48,7 @@ test('progress survives a browser reload', async ({ page }) => {
 
 const BOAT = lessonsForModule('boat-cruising-basics');
 const MOTORING = lessonsForModule('motoring');
+const CRUISING_LIFE = lessonsForModule('cruising-life-safety');
 const SAILS_TRIM = lessonsForModule('sails-trim');
 const PUBLISHED_LESSONS = MODULES.filter((module) => module.status === 'published').flatMap(
   (module) => lessonsForModule(module.id),
@@ -164,8 +165,8 @@ test('Continue learning starts at lesson one and later resumes the lesson in pro
 });
 
 test('Continue learning crosses published modules and ends in a module-neutral state', async ({ page }) => {
-  // Everything ahead of Sails & Trim in course order, so the sequential rule
-  // has to walk past two whole modules to reach it.
+  // Everything ahead of Cruising Life & Safety in course order, so the
+  // sequential rule has to walk past two whole modules to reach it.
   const completedMotoring = Object.fromEntries(
     [...BOAT, ...MOTORING].map((lesson) => [lesson.id, 'completed']),
   );
@@ -183,7 +184,7 @@ test('Continue learning crosses published modules and ends in a module-neutral s
   await openLearn(page);
 
   const card = page.getByTestId('continue-learning');
-  await expect(card.getByRole('heading')).toHaveText(SAILS_TRIM[0].title);
+  await expect(card.getByRole('heading')).toHaveText(CRUISING_LIFE[0].title);
   await expect(card.getByRole('button')).toHaveText('Start lesson');
 
   await openLesson(page, SAILS_TRIM[3].title);

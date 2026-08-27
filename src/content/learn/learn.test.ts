@@ -163,6 +163,71 @@ describe('learn content integrity', () => {
     expect(new Set(tagged).size).toBe(tagged.length);
   });
 
+  /**
+   * Cruising Life & Safety is at Step 1: the six lesson objects, their order,
+   * ids, titles and concept tags are final and pinned here, while the copy is
+   * still a neutral skeleton — so this guard deliberately does NOT assert the
+   * placeholder-free, block-count, prose-length shape the finished modules
+   * above do.
+   *
+   * STEP 2 MUST REPLACE THIS TEST with the normal finished-module content
+   * guard: drop the skeleton allowance, assert placeholder-free substantial
+   * copy and a block-count floor, and pin the module's figure list in document
+   * order the way Boat & Cruising Basics and Navigation Rules & Tools do.
+   *
+   * Note on the last assertion: it pins that no concept repeats *within this
+   * module*, so practising one lesson never re-serves a neighbour's set. It is
+   * not a general rule — a concept may legitimately be tagged on lessons in
+   * different modules, which is how `crew-briefing` reaches both Motoring and
+   * lesson 1 here.
+   */
+  it('publishes six Cruising Life & Safety lesson skeletons in order, tagged and figure-free', () => {
+    const module = MODULES.find((item) => item.id === 'cruising-life-safety');
+    expect(module?.status).toBe('published');
+    const lessons = lessonsForModule('cruising-life-safety');
+    expect(lessons).toHaveLength(6);
+    expect(lessons.map((lesson) => lesson.id)).toEqual([
+      'cruising-life-safety-responsibility-aboard',
+      'cruising-life-safety-staying-on-the-boat',
+      'cruising-life-safety-safety-gear',
+      'cruising-life-safety-living-aboard-resources',
+      'cruising-life-safety-power-fuel-hazards',
+      'cruising-life-safety-when-things-go-wrong',
+    ]);
+    expect(lessons.map((lesson) => lesson.title)).toEqual([
+      'Who Is Responsible Aboard',
+      'Staying On the Boat',
+      'Safety Gear: Required & Recommended',
+      'Water, Galley & Head',
+      'Power, Fuel & Invisible Hazards',
+      'Fire, Flooding & Calling for Help',
+    ]);
+    expect(lessons.map((lesson) => lesson.order)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(lessons.map((lesson) => lesson.concepts)).toEqual([
+      ['crew-briefing', 'skipper-and-crew-responsibility'],
+      ['personal-on-deck-safety'],
+      ['safety-equipment-readiness'],
+      ['living-aboard-resources'],
+      ['power-and-invisible-hazards'],
+      ['fire-and-flooding-response', 'distress-communications', 'crew-injury-response'],
+    ]);
+    for (const lesson of lessons) {
+      for (const concept of lesson.concepts) {
+        expect([...conceptIds], `concept ${concept} of ${lesson.id}`).toContain(concept);
+      }
+      // Skeleton-tolerant: a real title, a real intro sentence, and something
+      // to render. Nothing about length or placeholder wording until Step 2.
+      expect(lesson.intro.trim().split(/\s+/).length, `stub intro on ${lesson.id}`).toBeGreaterThanOrEqual(8);
+      expect(lesson.blocks.length, `empty lesson ${lesson.id}`).toBeGreaterThan(0);
+    }
+    // Step 1 creates no assets and uses none: the figure work is Step 2/3.
+    expect(
+      lessons.flatMap((lesson) => lesson.blocks).filter((block) => block.kind === 'figure'),
+    ).toEqual([]);
+    const tagged = lessons.flatMap((lesson) => lesson.concepts);
+    expect(new Set(tagged).size).toBe(tagged.length);
+  });
+
   it('publishes exactly seven finished Sails & Trim lessons using only approved figures', () => {
     const lessons = lessonsForModule('sails-trim');
     expect(lessons).toHaveLength(7);
