@@ -1,15 +1,70 @@
 import type { Lesson } from '../types';
 
-/** Step 1 skeleton — see `anatomy-of-a-cruising-boat.ts`. */
 export const lesson: Lesson = {
   id: 'boat-cruising-basics-onboard-systems-orientation',
   moduleId: 'boat-cruising-basics',
   order: 6,
   title: 'Onboard Systems at a Glance',
-  intro: 'Placeholder intro — finding the boat’s systems before anyone needs them in a hurry.',
+  intro: 'Water, bilge and electricity: what a cruising boat carries, roughly where each part of it lives, and why you find it before you need it.',
   concepts: ['through-hulls-and-seacocks', 'bilge-and-pumps', 'dc-electrical-system'],
   blocks: [
-    { kind: 'heading', text: 'Placeholder heading' },
-    { kind: 'text', text: 'Placeholder lesson body. Planned coverage: locating the fresh- and waste-water systems, through-hulls and seacocks, the bilge and its pumps, house and start batteries, the DC panel, the battery selector and shorepower.' },
+    { kind: 'text', text: 'What makes a cruising boat livable away from a dock is that it carries its own utilities. Three are worth locating on your first day aboard: the water that comes in and goes out, the pumps that deal with water that should not be there at all, and the electricity that runs everything else. This lesson is a walk-through, not an operating manual — the aim is that you can point at each component and say what it is.' },
+    { kind: 'heading', text: 'Fresh water and waste' },
+    { kind: 'text', text: 'Fresh water is carried in a tank, often under a settee or a berth where the space and the low weight want to be, and delivered by an electric pump to taps in the galley and head and to a shower. Many systems include an accumulator, a small tank that smooths the pressure so the pump is not cycling on every trickle. Some boats also keep a hand pump at the galley sink, which works when the electrics do not.' },
+    { kind: 'text', text: 'Used water has to leave. Sink and shower drains go overboard through fittings in the hull, sometimes by way of a sump and a small pump when the fixture sits too low to drain by gravity. The head is a system of its own: a marine toilet plumbed to a holding tank, to an overboard discharge, or to both. Know which arrangement your boat has and where its valves are; when and where a head may be discharged, and how tanks are managed, come with Cruising Life & Safety.' },
+    { kind: 'heading', text: 'Through-hulls and seacocks' },
+    { kind: 'text', text: 'Every one of those connections between the inside of the boat and the sea is a deliberate hole in the hull, and each one is fitted with hardware you should be able to recognise.' },
+    {
+      kind: 'definition',
+      term: 'Through-hull fitting',
+      text: 'A fitting installed through the hull to let water in or out — engine cooling intake, sink and head drains, bilge-pump discharge. Many are below the waterline.',
+    },
+    {
+      kind: 'definition',
+      term: 'Seacock',
+      text: 'A valve mounted on the inboard side of a through-hull, so that opening can be shut off completely from inside the boat. Its handle position tells you at a glance whether the fitting is open or closed.',
+    },
+    {
+      kind: 'figure',
+      assetId: 'custom-seacock-throughhull',
+      caption: 'A hull in section, cut through an opening below the waterline. Working inward from the sea: the fitting passing through the hull, the valve mounted on its inboard end, and the hose carrying water on to whatever it serves. Closing that valve is what separates the two.',
+    },
+    { kind: 'text', text: 'That last point is the whole reason to learn them. Everything downstream of a seacock — hose, clamps, strainer, fixture — can fail, and the seacock is what lets you isolate it. Boats often group their through-hulls in one accessible spot precisely so they can be found and checked quickly. Walk your boat, locate each one, note which way its handle turns, and confirm nothing is stowed on top of it.' },
+    { kind: 'heading', text: 'The bilge and its pumps' },
+    { kind: 'text', text: 'Water gets aboard even on a sound boat: rain through an open hatch, spray down the companionway, condensation, the drips from a shower. It all runs to the lowest point of the hull, the bilge, and it is removed by bilge pumps.' },
+    {
+      kind: 'figure',
+      assetId: 'custom-bilge-pump',
+      caption: 'Two ways to get water out of the same space: an electric pump sitting in the deepest part with a float switch to start it, and a hand pump plumbed to the same area for when the electric one is not an option.',
+    },
+    { kind: 'text', text: 'Most cruising boats have at least two, and the reason is redundancy. The electric pump is normally the primary: it sits in the deepest part of the bilge, wired to a float switch that starts it automatically when the water reaches a certain level, so it works whether or not anyone notices. The manual pump is a diaphragm pump worked by a removable handle, usually fitted where it can be reached from the cockpit. It needs no power and no working electrical system, which is exactly why it is there.' },
+    {
+      kind: 'callout',
+      tone: 'note',
+      title: 'Two pumps means two ways for one to fail',
+      text: 'Redundancy only counts if both paths actually work. Bilge pump intakes are fitted with strainers to keep debris out of them, and lifting a floorboard from time to time to look at the bilge — is it dry, is anything clogging the intakes, does the pump run when tested — is ordinary practice rather than maintenance. What to do about water arriving faster than the pumps can shift it is a different subject, and is taught with emergency response.',
+    },
+    { kind: 'heading', text: 'The DC electrical system' },
+    { kind: 'text', text: 'Nearly everything electrical aboard a boat this size runs on 12-volt direct current supplied by batteries: cabin and navigation lights, instruments, pumps, refrigeration, and the engine starter. The batteries are usually mounted low and reasonably close to the engine, since the cables carrying starting current want to be short.' },
+    { kind: 'text', text: 'Cruising boats normally divide that battery capacity into two groups, and the split is the single most useful thing to understand about the system.' },
+    {
+      kind: 'table',
+      caption: 'Why the batteries are separated',
+      headers: ['Bank', 'What it feeds', 'Why it is kept apart'],
+      rows: [
+        ['House bank', 'Lights, pumps, instruments, refrigeration — everything you use while living aboard', 'These loads run for hours and steadily draw the bank down'],
+        ['Start battery', 'The engine starter, and little else', 'Held in reserve so the engine still starts after a heavy night on the house bank'],
+      ],
+    },
+    { kind: 'text', text: 'Between the banks and the boat sits a battery selector switch, commonly with positions for one bank, the other, both together, and off. It decides which batteries are connected, and the combined position is what makes the reserve in one bank available to the other. The distribution panel — the switchboard, often mounted at the chart table — then divides the supply into individual circuits, each with its own breaker that protects the circuit and doubles as its on/off switch. Most panels also carry a voltmeter, which is how you keep an eye on the state of the batteries.' },
+    {
+      kind: 'callout',
+      tone: 'warning',
+      title: 'Leave the selector alone while the engine is running',
+      text: 'The engine’s alternator charges the batteries, and switching the selector to Off while it is running can disconnect that output abruptly. On many installations the resulting voltage spike damages the alternator’s diodes or regulator. Many modern switches include an alternator field disconnect designed to prevent exactly this, and some charging setups are less exposed than others — but you rarely know which you are standing in front of. The habit that is right on every boat is simply not to move the selector with the engine turning.',
+    },
+    { kind: 'heading', text: 'Shorepower' },
+    { kind: 'text', text: 'Alongside the DC system, many cruising boats have a second and entirely separate one: 120-volt alternating current, the same as a house, live only when the boat is plugged into a shorepower outlet on a dock. It has its own section of the distribution panel and its own outlets, and it typically drives a battery charger that tops up the DC banks while you are connected, along with any domestic appliances aboard. Two systems, two supplies, one panel — DC from the batteries all the time, AC from the dock only when connected. Connecting shorepower safely and budgeting power on passage are taken up in Cruising Life & Safety.' },
+    { kind: 'text', text: 'The engine is a system too, with its own fuel, cooling, exhaust and electrical supplies. On a boat of this size it lives in a compartment under or behind the companionway steps, reached by lifting them out and often also through a cockpit locker. Everything about running it is covered in Motoring; for now, knowing where it is completes the tour.' },
   ],
 };

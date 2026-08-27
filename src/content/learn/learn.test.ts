@@ -54,14 +54,22 @@ describe('learn content integrity', () => {
   });
 
   /**
-   * Boat & Cruising Basics is at Step 1: the six lesson objects, their order,
-   * ids, titles and concept tags are final and pinned here, while the copy is
-   * still placeholder — so this guard deliberately does NOT assert the
-   * placeholder-free, block-count shape the finished modules above do. Step 2
-   * tightens it; until then this is what stops a lesson being dropped,
-   * reordered or retagged while the prose is being written.
+   * Boat & Cruising Basics is finished as of Step 2. Step 1's version of this
+   * guard deliberately tolerated placeholder copy and asserted the module
+   * shipped no figures; both allowances are gone. What is pinned now is the
+   * same contract the other finished modules carry — ids, order, titles and
+   * concept tags, placeholder-free substantial copy, and the exact list of
+   * reused manifest figures in document order, so a new asset has to arrive
+   * with a deliberate edit here rather than slipping in unreviewed.
+   *
+   * The block-count floor is 12 rather than the 6–7 used above because this is
+   * a vocabulary module: its lessons are built from many short definition,
+   * list and table blocks rather than a few long ones. It sits below the
+   * current minimum (15) with room to spare, so an editorial trim does not
+   * break the build — the job is to catch a lesson gutted back to a skeleton,
+   * not to force any particular length.
    */
-  it('publishes six Boat & Cruising Basics lesson skeletons in order, tagged and figure-free', () => {
+  it('publishes six finished Boat & Cruising Basics lessons in order, tagged and using only approved figures', () => {
     const module = MODULES.find((item) => item.id === 'boat-cruising-basics');
     expect(module?.status).toBe('published');
     const lessons = lessonsForModule('boat-cruising-basics');
@@ -95,14 +103,52 @@ describe('learn content integrity', () => {
       for (const concept of lesson.concepts) {
         expect([...conceptIds], `concept ${concept} of ${lesson.id}`).toContain(concept);
       }
-      // Step 1 ships no figures: the module's artwork is a Step 3 decision.
+      expect(JSON.stringify(lesson), `placeholder copy in ${lesson.id}`)
+        .not.toMatch(/placeholder|draft lesson|planned coverage|still being drafted|lesson coverage|\bTBD\b/i);
+      expect(lesson.blocks.length, `thin lesson ${lesson.id}`).toBeGreaterThanOrEqual(12);
+      // A finished lesson opens with a real sentence, not a stub label.
+      expect(lesson.intro.trim().split(/\s+/).length, `stub intro on ${lesson.id}`).toBeGreaterThanOrEqual(8);
+      // Substantial teaching copy, measured on prose only so the floor cannot
+      // be met by piling on list items or table cells.
+      const prose = [lesson.intro, ...lesson.blocks.filter((block) => block.kind === 'text').map((block) => block.text)];
+      expect(prose.join(' ').split(/\s+/).length, `thin prose in ${lesson.id}`).toBeGreaterThanOrEqual(400);
+      // Every lesson teaches with more than running text.
       expect(
-        lesson.blocks.filter((block) => block.kind === 'figure'),
-        `figure in Step 1 skeleton ${lesson.id}`,
-      ).toEqual([]);
-      // Enough blocks to render, and no more.
-      expect(lesson.blocks.length, `empty skeleton ${lesson.id}`).toBeGreaterThan(0);
+        new Set(lesson.blocks.map((block) => block.kind)).size,
+        `monotonous block use in ${lesson.id}`,
+      ).toBeGreaterThanOrEqual(4);
     }
+    // Every figure in the module is a reused, already-approved manifest asset,
+    // pinned here in document order.
+    expect(
+      lessons.flatMap((lesson) => lesson.blocks)
+        .filter((block) => block.kind === 'figure')
+        .map((block) => block.assetId),
+    ).toEqual([
+      'photo-chainplate',
+      'custom-stemhead-bow-roller',
+      'custom-binnacle-compass',
+      'custom-emergency-tiller',
+      'custom-cabin-layout',
+      'custom-seacock-throughhull',
+      'custom-bilge-pump',
+    ]);
+    // Every figure carries a caption: these assets have deliberately
+    // answer-neutral alt text for Practice, so Learn supplies the teaching.
+    for (const block of lessons.flatMap((lesson) => lesson.blocks)) {
+      if (block.kind !== 'figure') continue;
+      expect(block.caption?.trim(), `uncaptioned figure ${block.assetId}`).toBeTruthy();
+    }
+    // Regulatory carriage requirements belong to the future Cruising Life &
+    // Safety module, and the source chapter's terminology for them is stale.
+    // Deliberately no bare `flare`: the flare of a bow is this module's own
+    // hull vocabulary, so only the signalling sense is matched.
+    expect(JSON.stringify(lessons), 'deferred safety-regulation material in Boat Basics')
+      .not.toMatch(/\bB-I\b|\bB-II\b|extinguisher|distress signal|\bflares\b|life ?jacket|\bPFD\b/i);
+    // No concept is tagged on two lessons: practising one lesson never
+    // re-serves the neighbour's question set.
+    const tagged = lessons.flatMap((lesson) => lesson.concepts);
+    expect(new Set(tagged).size).toBe(tagged.length);
   });
 
   it('publishes exactly seven finished Sails & Trim lessons using only approved figures', () => {

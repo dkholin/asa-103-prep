@@ -1,15 +1,70 @@
 import type { Lesson } from '../types';
 
-/** Step 1 skeleton — see `anatomy-of-a-cruising-boat.ts`. */
 export const lesson: Lesson = {
   id: 'boat-cruising-basics-steering-and-rudder',
   moduleId: 'boat-cruising-basics',
   order: 4,
   title: 'Steering & the Rudder',
-  intro: 'Placeholder intro — how a turn of the wheel reaches the water, and what carries it there.',
+  intro: 'What is between your hands and the blade in the water, and what to reach for when the usual path stops working.',
   concepts: ['steering-systems'],
   blocks: [
-    { kind: 'heading', text: 'Placeholder heading' },
-    { kind: 'text', text: 'Placeholder lesson body. Planned coverage: wheel and tiller, pedestal and binnacle, rudder stock, quadrant or radial drive, steering linkage, rudder configurations, and the emergency tiller as part of the steering system.' },
+    { kind: 'heading', text: 'Two ways to hold the rudder' },
+    { kind: 'text', text: 'Steering is the business of turning one blade, the rudder, and holding it where you want it. There are two ways a cruising boat gives you that control. A tiller is a lever fixed straight onto the top of the rudder: you push it and the rudder turns, with nothing in between. A wheel is an indirect arrangement — turning it drives a mechanism that turns the rudder for you.' },
+    { kind: 'text', text: 'The trade is leverage against feel. A rudder on a boat of cruising size generates real force, and beyond a certain size a tiller long enough to manage it would fill the cockpit. A wheel gears that force down to something one person can hold for an hour. What you give up is directness: a tiller reports what the rudder is doing straight into your hand, which is why many sailors prefer one on a smaller boat, and why tiller steering is not merely the budget option.' },
+    {
+      kind: 'table',
+      caption: 'Orientation, not a verdict — both are found on cruising boats',
+      headers: ['', 'Tiller', 'Wheel'],
+      rows: [
+        ['Connection to rudder', 'Direct lever on the rudder stock', 'Through a mechanism in between'],
+        ['Effort at higher loads', 'Rises with rudder force', 'Geared down by the mechanism'],
+        ['Feedback', 'Immediate and unfiltered', 'Muted by the linkage'],
+        ['Cockpit space', 'Sweeps an arc that must stay clear', 'Fixed position, usually well aft'],
+        ['Parts that can fail', 'Very few', 'Cables, sheaves, bearings, chain'],
+      ],
+    },
+    { kind: 'heading', text: 'The pedestal and binnacle' },
+    { kind: 'text', text: 'On a wheel-steered boat the wheel is carried on a pedestal rising from the cockpit sole, and the pedestal is also the tidiest place on the boat to mount things the helmsman needs to see. In that role it is called the binnacle: it traditionally carries the steering compass at the top, where it sits in the helmsman’s line of sight, and on many boats also the engine controls and instrument displays.' },
+    {
+      kind: 'figure',
+      assetId: 'custom-binnacle-compass',
+      caption: 'The pedestal-mounted steering assembly: the wheel on its shaft, and the boat’s steering compass carried on top where the helmsman can read it while looking ahead.',
+    },
+    { kind: 'text', text: 'Recognising the assembly is what matters here — pedestal, wheel, compass on top. Reading that compass, and the corrections that turn what it shows into a course, are covered in Navigation Rules & Tools.' },
+    { kind: 'heading', text: 'From the wheel to the water' },
+    {
+      kind: 'definition',
+      term: 'Rudder stock (rudder post)',
+      text: 'The shaft that forms the rudder’s backbone. It runs up from the blade, passes through an opening in the hull, and is supported by bearings inside the boat. Everything that steers the boat acts on the top of this shaft.',
+    },
+    { kind: 'text', text: 'That top end is usually under the cockpit sole or in a locker, and it is where wheel steering does its work. A very common arrangement uses cables: an arm clamped to the stock is turned by cables that run from a sprocket and chain on the wheel shaft, through sheaves, to that arm. The arm may be a quadrant — a quarter-circle plate, essentially a tiller bent into an arc — or a radial drive, a circular disc that the cables wrap around. Rack-and-pinion gearing and hydraulic rams are also in use, particularly on smaller and larger boats respectively.' },
+    { kind: 'text', text: 'Do not assume any one of these on a boat you are stepping aboard. The point of knowing the family is that it tells you what to look at: a chain of components between the wheel and the stock, each one a place the connection could be interrupted. A tiller has almost none of that, which is the other half of the trade in the table above.' },
+    { kind: 'heading', text: 'How the rudder is hung' },
+    { kind: 'text', text: 'The blade itself is attached to the boat in one of a few standard ways, and the vocabulary comes up constantly in boat descriptions and surveys.' },
+    {
+      kind: 'table',
+      caption: 'Three rudder configurations you will hear named',
+      headers: ['Type', 'How it is mounted', 'Typically found on'],
+      rows: [
+        ['Keel-hung', 'Hung on the trailing edge of a full or long keel, supported along its length', 'Traditional and older long-keeled designs'],
+        ['Skeg-hung', 'Hung on a fixed fin — the skeg — that is part of the hull and stands ahead of the blade', 'Many cruising designs with separate keel and rudder'],
+        ['Spade', 'Free-standing, carried only by its stock in bearings inside the hull', 'The majority of modern production boats'],
+      ],
+    },
+    { kind: 'text', text: 'Read down that table and you can see the pattern: the further you go, the less structure surrounds the blade. A keel-hung rudder is well protected by the keel ahead of it; a skeg gives a separate rudder both a leading protection and additional support; a spade rudder has neither, and depends entirely on its stock and bearings. Each is a legitimate design with its own reasoning, and identifying which one a boat has is the orientation-level skill.' },
+    { kind: 'heading', text: 'The emergency tiller' },
+    { kind: 'text', text: 'Because wheel steering has a chain of parts in it, most wheel-steered cruising boats carry a backup: an emergency tiller, a removable lever that fits directly onto the head of the rudder stock. It bypasses the wheel, the cables and everything else, and gives you the same direct control a tiller-steered boat has all the time.' },
+    {
+      kind: 'figure',
+      assetId: 'custom-emergency-tiller',
+      caption: 'The backup path to the rudder: a removable lever dropped onto the exposed head of the rudder stock, reached through an access hatch, working the blade directly.',
+    },
+    { kind: 'text', text: 'Getting to it usually means opening a small deck plate or a cockpit locker to expose the top of the stock. That is worth knowing before you need it — where the tiller is stowed, which hatch, and whether anything has to be moved out of the way first. Ask on your first day aboard, because the answers are boat-specific and nobody wants to be looking for them under pressure.' },
+    {
+      kind: 'callout',
+      tone: 'note',
+      title: 'Locate it now, practise it later',
+      text: 'This module’s job is to make sure you can find the rudder stock, the steering gear and the emergency tiller on your own boat. Actually handling a steering failure — slowing down, sorting out the crew, getting the tiller fitted and steering the boat with it — is drill material, and it is taught where the other emergency procedures are.',
+    },
   ],
 };
