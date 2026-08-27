@@ -51,6 +51,11 @@ export const lesson: Lesson = {
         ['Spade', 'Free-standing, carried only by its stock in bearings inside the hull', 'The majority of modern production boats'],
       ],
     },
+    {
+      kind: 'figure',
+      assetId: 'custom-rudder-types',
+      caption: 'The three configurations in profile, bow to the left. On the left the blade hangs on the aft edge of a full keel; in the middle it hangs on a fixed skeg standing ahead of it; on the right it stands free with nothing ahead of it or below it, carried on the stock drawn dashed where it runs up inside the hull. A separate fin keel is shown well forward of the blade in the second and third panels.',
+    },
     { kind: 'text', text: 'Read down that table and you can see the pattern: the further you go, the less structure surrounds the blade. A keel-hung rudder is well protected by the keel ahead of it; a skeg gives a separate rudder both a leading protection and additional support; a spade rudder has neither, and depends entirely on its stock and bearings. Each is a legitimate design with its own reasoning, and identifying which one a boat has is the orientation-level skill.' },
     { kind: 'heading', text: 'The emergency tiller' },
     { kind: 'text', text: 'Because wheel steering has a chain of parts in it, most wheel-steered cruising boats carry a backup: an emergency tiller, a removable lever that fits directly onto the head of the rudder stock. It bypasses the wheel, the cables and everything else, and gives you the same direct control a tiller-steered boat has all the time.' },

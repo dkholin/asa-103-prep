@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 460" role="img" aria-label="Overhead deck plan of a cruising sailboat, bow to the left, with the bow and stern pulpits, anchor locker, foredeck, sidedeck, toerail, stanchions and lifelines, chainplates, jibsheet tracks, coach-roof handrails, cleats and a fairlead each labelled.">
+  <title>Overhead deck plan of a cruising sailboat with its deck hardware labelled</title>
+  <rect width="740" height="460" fill="#f3ede2"/>
+
+  <!-- Hull deck edge, bow to the left, symmetrical about the centreline y=210.
+       Same boat and same bow-left orientation as the module's other overhead figure. -->
+  <path d="M60 210 C 108 158, 200 130, 320 128 L560 132 C 596 134, 612 143, 618 152 L618 268 C 612 277, 596 286, 560 288 L320 292 C 200 290, 108 262, 60 210 Z" fill="#e8e2d5" stroke="#444" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- Toerail: the raised strip round the outer edge, drawn as a band between
+       the deck edge and its inset line so it cannot be read as a lifeline. -->
+  <path fill-rule="evenodd" fill="#c9c2b0" d="M60 210 C 108 158, 200 130, 320 128 L560 132 C 596 134, 612 143, 618 152 L618 268 C 612 277, 596 286, 560 288 L320 292 C 200 290, 108 262, 60 210 Z M72 210 C 116 166, 202 138, 320 136 L558 140 C 590 142, 604 150, 610 158 L610 262 C 604 270, 590 278, 558 280 L320 284 C 202 282, 116 254, 72 210 Z"/>
+  <path d="M72 210 C 116 166, 202 138, 320 136 L558 140 C 590 142, 604 150, 610 158 L610 262 C 604 270, 590 278, 558 280 L320 284 C 202 282, 116 254, 72 210 Z" fill="none" stroke="#777" stroke-width="1.5"/>
+
+  <!-- Coach roof, the companionway at its aft end, and the cockpit aft of that -->
+  <path d="M256 210 L268 178 L428 174 L446 210 L428 246 L268 242 Z" fill="#efe9dc" stroke="#444" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="430" y="196" width="26" height="28" rx="3" fill="#c9c2b0" stroke="#333" stroke-width="1.5"/>
+  <path d="M458 176 L588 180 L588 240 L458 244 Z" fill="#f3ede2" stroke="#444" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- Handrails on the coach roof, and the mast as a position reference -->
+  <rect x="280" y="182" width="136" height="9" rx="4.5" fill="#8a8a8a" stroke="#333" stroke-width="1.2"/>
+  <rect x="280" y="229" width="136" height="9" rx="4.5" fill="#8a8a8a" stroke="#333" stroke-width="1.2"/>
+  <circle cx="296" cy="210" r="9" fill="#8a8a8a" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Jibsheet track on each sidedeck, inboard of the lifelines -->
+  <g fill="#8a8a8a" stroke="#333" stroke-width="1.2">
+    <rect x="340" y="155" width="80" height="8" rx="2"/>
+    <rect x="340" y="257" width="80" height="8" rx="2"/>
+  </g>
+  <g fill="#f3ede2">
+    <circle cx="352" cy="159" r="1.7"/><circle cx="369" cy="159" r="1.7"/><circle cx="386" cy="159" r="1.7"/><circle cx="403" cy="159" r="1.7"/>
+    <circle cx="352" cy="261" r="1.7"/><circle cx="369" cy="261" r="1.7"/><circle cx="386" cy="261" r="1.7"/><circle cx="403" cy="261" r="1.7"/>
+  </g>
+
+  <!-- Chainplates, abreast of the mast at the outboard edge of each sidedeck -->
+  <g fill="#8a8a8a" stroke="#333" stroke-width="1.2">
+    <rect x="290" y="141" width="12" height="8" rx="2"/>
+    <rect x="290" y="271" width="12" height="8" rx="2"/>
+  </g>
+
+  <!-- Lifelines threaded through the stanchions, inboard of the toerail -->
+  <g fill="none" stroke="#5a5a5a" stroke-width="2">
+    <path d="M100 186 L175 167 L250 152 L340 146 L430 148 L510 149 L575 150"/>
+    <path d="M100 234 L175 253 L250 268 L340 274 L430 272 L510 271 L575 270"/>
+  </g>
+  <g fill="#8a8a8a" stroke="#333" stroke-width="1.4">
+    <circle cx="175" cy="167" r="5"/><circle cx="250" cy="152" r="5"/><circle cx="340" cy="146" r="5"/><circle cx="430" cy="148" r="5"/><circle cx="510" cy="149" r="5"/>
+    <circle cx="175" cy="253" r="5"/><circle cx="250" cy="268" r="5"/><circle cx="340" cy="274" r="5"/><circle cx="430" cy="272" r="5"/><circle cx="510" cy="271" r="5"/>
+  </g>
+
+  <!-- Bow and stern pulpits: the frames the lifelines terminate on -->
+  <g fill="none" stroke="#5a5a5a" stroke-width="3.5" stroke-linecap="round">
+    <path d="M100 186 C 82 194, 74 202, 70 210 C 74 218, 82 226, 100 234"/>
+    <path d="M575 150 C 594 152, 604 158, 606 166 L606 254 C 604 262, 594 268, 575 270"/>
+  </g>
+
+  <!-- Anchor-locker hatch in the foredeck. The fitting at the tip of the stem
+       is deliberately not drawn here: lesson 3 teaches it with its own close-up,
+       and a plan-view repeat would add a label without adding a relationship. -->
+  <rect x="124" y="190" width="52" height="40" rx="4" fill="#e0d9c9" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Cleats forward, amidships and aft; a fairlead cut through the toerail
+       beside each bow cleat, where the dockline leaves the boat. -->
+  <g fill="#8a8a8a" stroke="#333" stroke-width="1.2">
+    <rect x="141" y="172" width="18" height="9" rx="4"/><rect x="141" y="239" width="18" height="9" rx="4"/>
+    <rect x="457" y="158" width="18" height="9" rx="4"/><rect x="457" y="253" width="18" height="9" rx="4"/>
+    <rect x="547" y="158" width="18" height="9" rx="4"/><rect x="547" y="253" width="18" height="9" rx="4"/>
+  </g>
+  <g fill="#f3ede2" stroke="#333" stroke-width="1.8" stroke-linejoin="round">
+    <path d="M143 166 L145 157 L156 155 L158 164 Z"/>
+    <path d="M143 254 L145 263 L156 265 L158 256 Z"/>
+  </g>
+
+  <!-- Leader lines -->
+  <g stroke="#555" stroke-width="1.4" fill="#555">
+    <line x1="310" y1="52" x2="296" y2="143"/><circle cx="296" cy="143" r="3"/>
+    <line x1="225" y1="94" x2="160" y2="194"/><circle cx="160" cy="194" r="3"/>
+    <line x1="400" y1="94" x2="380" y2="157"/><circle cx="380" cy="157" r="3"/>
+    <line x1="600" y1="94" x2="514" y2="150"/><circle cx="514" cy="150" r="3"/>
+    <line x1="628" y1="158" x2="608" y2="164"/><circle cx="608" cy="164" r="3"/>
+    <line x1="90" y1="430" x2="80" y2="228"/><circle cx="80" cy="228" r="3"/>
+    <line x1="250" y1="430" x2="152" y2="266"/><circle cx="152" cy="266" r="3"/>
+    <line x1="560" y1="430" x2="556" y2="259"/><circle cx="556" cy="259" r="3"/>
+    <line x1="340" y1="388" x2="352" y2="289"/><circle cx="352" cy="289" r="3"/>
+    <line x1="470" y1="388" x2="412" y2="236"/><circle cx="412" cy="236" r="3"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#2b2b2b">
+    <text x="310" y="44" text-anchor="middle">Chainplate</text>
+    <text x="225" y="86" text-anchor="middle">Anchor locker</text>
+    <text x="400" y="86" text-anchor="middle">Jibsheet track</text>
+    <text x="600" y="86" text-anchor="middle">Stanchions &amp; lifelines</text>
+    <text x="628" y="164">Stern pulpit</text>
+    <text x="340" y="402" text-anchor="middle">Toerail</text>
+    <text x="470" y="402" text-anchor="middle">Handrail</text>
+    <text x="90" y="444" text-anchor="middle">Bow pulpit</text>
+    <text x="250" y="444" text-anchor="middle">Fairlead (chock)</text>
+    <text x="560" y="444" text-anchor="middle">Cleat</text>
+    <text x="215" y="240" text-anchor="middle" font-size="17">Foredeck</text>
+    <text x="510" y="171" text-anchor="middle" font-size="15">Sidedeck</text>
+    <text x="362" y="214" text-anchor="middle" font-size="17">Coach roof</text>
+    <text x="523" y="214" text-anchor="middle" font-size="17">Cockpit</text>
+  </g>
+</svg>

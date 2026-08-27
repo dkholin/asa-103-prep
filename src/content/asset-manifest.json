@@ -1323,6 +1323,45 @@
       "modified": true,
       "modificationNote": "Cropped from PDF sheet 9 (left half of the two-up spread, booklet page 15) of the U.S. Aids to Navigation System booklet to the Information and Regulatory Marks section; rendered at 300 dpi and resized. Colours unaltered.",
       "usedByQuestions": []
+    },
+    {
+      "id": "custom-boat-anatomy-profile",
+      "filename": "custom-boat-anatomy-profile.svg",
+      "altText": "Side-profile diagram of a cruising sailboat, bow to the left, with the bow, stem, hull, keel, rudder, transom, stern, deck, foredeck, coach roof, cockpit, companionway, mast and boom each labelled.",
+      "description": "Purpose-built diagram: an original schematic side profile of a cruising sailboat establishing where the major external areas sit relative to one another - keel under the hull, rudder aft of it and forward of the transom, coach roof amidships with the cockpit and companionway aft of it, and the mast and boom as orientation landmarks",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": []
+    },
+    {
+      "id": "custom-rudder-types",
+      "filename": "custom-rudder-types.svg",
+      "altText": "Three side-profile panels of the after part of a hull, labelled keel-hung, skeg-hung and spade, each showing the rudder blade and whatever structure supports it.",
+      "description": "Purpose-built diagram: an original three-panel side-profile comparison of rudder configurations - a blade hung on the aft edge of a full keel, a blade hung on a fixed skeg standing ahead of it, and a free-standing blade carried only on its stock, with the stock shown running up inside the hull",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": []
+    },
+    {
+      "id": "custom-deck-plan-labelled",
+      "filename": "custom-deck-plan-labelled.svg",
+      "altText": "Overhead deck plan of a cruising sailboat, bow to the left, with the bow and stern pulpits, anchor locker, foredeck, sidedeck, toerail, stanchions and lifelines, chainplates, jibsheet tracks, coach-roof handrails, cleats and a fairlead each labelled.",
+      "description": "Purpose-built diagram: an original overhead deck plan of a cruising sailboat showing where deck hardware sits relative to the deck areas - the sidedeck running between the coach roof and the toerail, stanchions and lifelines inboard of the toerail, jibsheet tracks and chainplates on the sidedeck, handrails on the coach roof, and cleats and a fairlead at the deck edge",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": []
     }
   ]
 }

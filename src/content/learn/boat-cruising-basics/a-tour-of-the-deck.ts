@@ -11,6 +11,11 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Leaving the cockpit' },
     { kind: 'text', text: 'A boat’s deck is a working surface with obstacles on it, and the way to learn it is to walk it. Step over the cockpit coaming and you are on the sidedeck — the strip of deck running between the coach roof and the outer edge of the hull. It is narrower than it looks, it is the only route forward on most boats, and it slopes outboard.' },
     { kind: 'text', text: 'Along the outer edge runs the toerail, a raised strip — often aluminium, sometimes moulded — that gives your foot something to push against when the boat is heeled. Just inboard of it stand the stanchions, vertical posts bolted through the deck, and threaded through them are the lifelines: wires or covered cable running fore and aft, with the upper one somewhere around hip height on a standing adult. That is lower than it feels, and lifelines are a barrier, not a handhold. They keep you from going over the side, but they flex, and leaning your weight outboard against one is a poor habit.' },
+    {
+      kind: 'figure',
+      assetId: 'custom-deck-plan-labelled',
+      caption: 'The deck from above, bow to the left — the map for the walk that follows. The sidedeck is the strip running between the coach roof and the toerail at the outer edge, and the stanchions carrying the lifelines stand just inboard of that rail. Most of the fittings met later in the lesson are named here in the places they are found.',
+    },
     { kind: 'text', text: 'The handrails on top of the coach roof are the real handholds. They are inboard, they are through-bolted, and they are rigid. Working your way forward along them keeps your weight low and toward the centreline of the boat, which is where you want it.' },
     {
       kind: 'callout',

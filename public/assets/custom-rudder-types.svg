@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" role="img" aria-label="Three side-profile panels of the after part of a hull, labelled keel-hung, skeg-hung and spade, each showing the rudder blade and whatever structure supports it.">
+  <title>Keel-hung, skeg-hung and spade rudders compared in side profile</title>
+  <rect width="720" height="330" fill="#f3ede2"/>
+  <g stroke="#cdc4b2" stroke-width="1.5">
+    <line x1="240" y1="24" x2="240" y2="306"/>
+    <line x1="480" y1="24" x2="480" y2="306"/>
+  </g>
+
+  <!-- Each panel shows the after part of the same hull in profile, bow to the
+       left, so the only difference between them is what supports the blade.
+       Every appendage is drawn with its root carried up to y=150, above the
+       hull's bottom line; the hull is painted last so the roots disappear into
+       it instead of butting against it with a gap. -->
+
+  <!-- ============ 1. KEEL-HUNG ============ -->
+  <g transform="translate(0 0)">
+    <!-- Full keel running forward out of the panel. Its aft edge - the
+         sternpost - rakes aft as it rises, and the blade hangs on that edge. -->
+    <path d="M6 150 L6 250 L120 250 L158 150 Z" fill="#c9c2b0" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Rudder: its leading edge lies along the keel's aft edge, full height -->
+    <path d="M158 150 L120 250 L146 244 L178 150 Z" fill="#c07a45" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M6 92 L200 100 L186 158 C 150 186, 80 194, 6 190 Z" fill="#e8e2d5" stroke="#444" stroke-width="2.5" stroke-linejoin="round"/>
+    <text x="120" y="34" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#2b2b2b">Keel-hung</text>
+    <g stroke="#555" stroke-width="1.4" fill="#555">
+      <line x1="60" y1="286" x2="70" y2="246"/><circle cx="70" cy="246" r="3"/>
+      <line x1="190" y1="286" x2="144" y2="238"/><circle cx="144" cy="238" r="3"/>
+    </g>
+    <g font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#2b2b2b">
+      <text x="58" y="304" text-anchor="middle">Full keel</text>
+      <text x="190" y="304" text-anchor="middle">Rudder</text>
+    </g>
+  </g>
+
+  <!-- ============ 2. SKEG-HUNG ============ -->
+  <g transform="translate(240 0)">
+    <!-- Separate fin keel, well forward of the blade -->
+    <path d="M22 150 L92 150 L86 258 L36 260 Z" fill="#c9c2b0" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Skeg: a fixed fin standing down from the hull directly ahead of the blade -->
+    <path d="M108 150 L136 234 L168 150 Z" fill="#c9c2b0" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Rudder: its leading edge is hung on the skeg's aft edge -->
+    <path d="M168 150 L136 234 L158 242 L182 150 Z" fill="#c07a45" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M6 92 L200 100 L186 158 C 150 186, 80 194, 6 190 Z" fill="#e8e2d5" stroke="#444" stroke-width="2.5" stroke-linejoin="round"/>
+    <text x="120" y="34" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#2b2b2b">Skeg-hung</text>
+    <g stroke="#555" stroke-width="1.4" fill="#555">
+      <line x1="52" y1="286" x2="60" y2="252"/><circle cx="60" cy="252" r="3"/>
+      <line x1="104" y1="286" x2="132" y2="198"/><circle cx="132" cy="198" r="3"/>
+      <line x1="194" y1="286" x2="153" y2="218"/><circle cx="153" cy="218" r="3"/>
+    </g>
+    <g font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#2b2b2b">
+      <text x="48" y="304" text-anchor="middle">Keel</text>
+      <text x="104" y="304" text-anchor="middle">Skeg</text>
+      <text x="194" y="304" text-anchor="middle">Rudder</text>
+    </g>
+  </g>
+
+  <!-- ============ 3. SPADE ============ -->
+  <g transform="translate(480 0)">
+    <path d="M22 150 L92 150 L86 258 L36 260 Z" fill="#c9c2b0" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Rudder: nothing stands ahead of the blade or below it -->
+    <path d="M148 150 L152 246 L172 242 L178 150 Z" fill="#c07a45" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M6 92 L200 100 L186 158 C 150 186, 80 194, 6 190 Z" fill="#e8e2d5" stroke="#444" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Stock: dashed where it runs up inside the hull to its bearings -->
+    <line x1="166" y1="170" x2="170" y2="112" stroke="#5a5a5a" stroke-width="5" stroke-dasharray="8 5" stroke-linecap="butt"/>
+    <text x="120" y="34" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="#2b2b2b">Spade</text>
+    <g stroke="#555" stroke-width="1.4" fill="#555">
+      <line x1="52" y1="286" x2="60" y2="252"/><circle cx="60" cy="252" r="3"/>
+      <line x1="140" y1="286" x2="160" y2="214"/><circle cx="160" cy="214" r="3"/>
+      <line x1="196" y1="80" x2="170" y2="122"/><circle cx="170" cy="122" r="3"/>
+    </g>
+    <g font-family="system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="18" fill="#2b2b2b">
+      <text x="48" y="304" text-anchor="middle">Keel</text>
+      <text x="138" y="304" text-anchor="middle">Rudder</text>
+      <text x="200" y="74" text-anchor="middle">Stock</text>
+    </g>
+  </g>
+</svg>

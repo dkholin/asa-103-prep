@@ -118,21 +118,33 @@ describe('learn content integrity', () => {
         `monotonous block use in ${lesson.id}`,
       ).toBeGreaterThanOrEqual(4);
     }
-    // Every figure in the module is a reused, already-approved manifest asset,
-    // pinned here in document order.
+    // Every figure in the module is an approved manifest asset, pinned here in
+    // document order. The three project-original schematics added last carry
+    // the spatial teaching the close-ups cannot: the profile in lesson 1, the
+    // deck plan in lesson 3, the rudder comparison in lesson 4.
     expect(
       lessons.flatMap((lesson) => lesson.blocks)
         .filter((block) => block.kind === 'figure')
         .map((block) => block.assetId),
     ).toEqual([
+      'custom-boat-anatomy-profile',
+      'custom-deck-plan-labelled',
       'photo-chainplate',
       'custom-stemhead-bow-roller',
       'custom-binnacle-compass',
+      'custom-rudder-types',
       'custom-emergency-tiller',
       'custom-cabin-layout',
       'custom-seacock-throughhull',
       'custom-bilge-pump',
     ]);
+    // Each new schematic sits in exactly the lesson whose spatial explanation
+    // it illustrates, so a figure cannot silently drift to a neighbour.
+    const boatFiguresOf = (order: number) =>
+      lessons[order - 1].blocks.filter((block) => block.kind === 'figure').map((block) => block.assetId);
+    expect(boatFiguresOf(1)).toEqual(['custom-boat-anatomy-profile']);
+    expect(boatFiguresOf(3)[0]).toBe('custom-deck-plan-labelled');
+    expect(boatFiguresOf(4)[1]).toBe('custom-rudder-types');
     // Every figure carries a caption: these assets have deliberately
     // answer-neutral alt text for Practice, so Learn supplies the teaching.
     for (const block of lessons.flatMap((lesson) => lesson.blocks)) {

@@ -30,6 +30,11 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'The deck and what sits on it' },
     { kind: 'text', text: 'The deck is the walking surface that caps the hull. Forward of the mast it is called the foredeck; the narrow strips running down each side are the sidedecks. Amidships the deck rises into a coach roof — also called a trunk cabin — which is simply the raised structure that buys headroom for the cabin below. Aft of that is the cockpit, the recessed well where the crew sits and steers, and at its forward end the companionway, the hatch and ladder that lead below.' },
     {
+      kind: 'figure',
+      assetId: 'custom-boat-anatomy-profile',
+      caption: 'The same boat in profile, bow to the left. The keel hangs under the hull on the centreline and the rudder is a separate blade aft of it and forward of the transom. The coach roof stands on the deck amidships, with the cockpit aft of it and the companionway in the cabin’s aft face at the cockpit’s forward end. The mast and boom are marked as landmarks only — this is not a sail plan.',
+    },
+    {
       kind: 'list',
       items: [
         'Bow and stem — the forward end and its leading edge.',
