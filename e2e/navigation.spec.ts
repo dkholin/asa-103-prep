@@ -48,9 +48,9 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
     'false',
   );
   // A coming-soon module states its status in text, and offers nothing to open.
-  // Retargeted when Hands-On Cruising was published: Seamanship is now the
-  // first coming-soon module. Same assertions, different module.
-  const comingSoon = page.locator('.card').filter({ hasText: 'Seamanship' });
+  // Seamanship is locally published for Step 1; Cruise Planning & Independence
+  // remains coming soon. The same non-openable contract still applies.
+  const comingSoon = page.locator('.card').filter({ hasText: 'Cruise Planning & Independence' });
   await expect(comingSoon.getByText('Coming soon')).toBeVisible();
   await expect(comingSoon.getByRole('button', { name: 'Open lesson' })).toHaveCount(0);
 

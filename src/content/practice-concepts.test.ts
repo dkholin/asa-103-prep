@@ -354,6 +354,15 @@ const EXPECTED_BY_LESSON: Record<string, string[]> = {
     'emer-engine-failure-loss-of-propulsion',
     'emer-engine-failure-under-sail-response',
   ],
+  'seamanship-loops-and-stoppers': ['sea-knot-bowline', 'sea-knot-figure8-stopper'],
+  'seamanship-fastening-and-gripping-hitches': [
+    'sea-knot-cleat-hitch',
+    'sea-knot-clove-hitch',
+    'sea-knot-round-turn-two-half-hitches',
+    'sea-knot-rolling-hitch',
+  ],
+  'seamanship-routine-vhf': ['sea-vhf-concise-comms', 'sea-vhf-working-channel-switch'],
+  'seamanship-rigging-trouble-and-assistance': ['emer-rigging-failure-response'],
 };
 
 describe('concept Practice mapping', () => {
@@ -439,7 +448,15 @@ describe('concept Practice mapping', () => {
     // now also records the heavy-sea counter-case. `HANDS_ON_CRUISING_RESEARCH.md`
     // documents the sourcing. Any other change to this digest is a
     // question-bank edit that was not approved.
-    expect(digest).toBe('e749bfcb7b538ec090d8b1535faa905b07edfc1a4a5ffc6a684633b958c87a4c');
+    // Rolled a fifth time, deliberately: Seamanship Step 1 corrects only
+    // emer-rigging-failure-response. In this close-hauled, windward-shroud
+    // failure, tack to unload the damaged side; controlled sail reduction and
+    // stabilization follow. Generic stay/shroud failure is not an always-tack
+    // rule. Correct choice a, affected b/c rationales, explanation and source
+    // changed; the scenario and other questions are preserved. Advisory's
+    // source reconciliation and old/new wording: docs/seamanship-step-1.md.
+    // Previous digest: e749bfcb7b538ec090d8b1535faa905b07edfc1a4a5ffc6a684633b958c87a4c.
+    expect(digest).toBe('24489ac656da5350febef44cdb2feeeeb94c7c9c070552f485c93addcc623349');
   });
 
   it('adds concept metadata to exactly 36 questions for Sails & Trim', () => {
@@ -460,7 +477,7 @@ describe('concept Practice mapping', () => {
     ).toHaveLength(36);
   });
 
-  it('carries concept metadata on exactly 267 questions across the whole bank', () => {
+  it('carries concept metadata on exactly 276 questions across the whole bank', () => {
     // 158 before Boat & Cruising Basics, plus the 24 previously untagged
     // `cruising-systems` questions its six lessons claim, plus Cruising Life &
     // Safety Step 1. That module claims 40 questions, but four of them were
@@ -473,7 +490,9 @@ describe('concept Practice mapping', () => {
     // so the count moves by the full 49 rather than by a smaller number the
     // way Cruising Life & Safety's did. Additive metadata only, with no
     // question content touched.
-    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(267);
+    // Seamanship Step 1 adds nine previously untagged questions: 267 -> 276.
+    // Its sole content correction is documented with the digest above.
+    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(276);
   });
 
   /**
@@ -916,4 +935,77 @@ describe('concept Practice mapping', () => {
       }
     }
   });
+
+  /* Seamanship Step 1: concept membership is pinned separately from lessons. */
+  const SEAMANSHIP_BY_CONCEPT: Record<string, string[]> = {
+    'fixed-loops-and-stoppers': ['sea-knot-bowline', 'sea-knot-figure8-stopper'],
+    'fastening-and-gripping-hitches': [
+      'sea-knot-cleat-hitch',
+      'sea-knot-clove-hitch',
+      'sea-knot-round-turn-two-half-hitches',
+      'sea-knot-rolling-hitch',
+    ],
+    'routine-vhf-communication': ['sea-vhf-concise-comms', 'sea-vhf-working-channel-switch'],
+    'rigging-failure-response': ['emer-rigging-failure-response'],
+  };
+
+  it('resolves each Seamanship concept to its exact literal question set', () => {
+    for (const [concept, ids] of Object.entries(SEAMANSHIP_BY_CONCEPT)) {
+      expect(practiceIdsForConcepts([concept as ConceptId]), concept).toEqual(ids);
+    }
+  });
+
+  it('allows exactly the prescribed Seamanship concept on each claimed question and none elsewhere', () => {
+    for (const question of QUESTIONS) {
+      const expected = Object.entries(SEAMANSHIP_BY_CONCEPT)
+        .filter(([, ids]) => ids.includes(question.id))
+        .map(([concept]) => concept);
+      const actual = (question.concepts ?? []).filter((concept) => concept in SEAMANSHIP_BY_CONCEPT);
+      expect(actual, `${question.id} Seamanship tags`).toEqual(expected);
+      if (expected.length) {
+        // These nine were previously untagged: extra legacy tags would spill
+        // them into another module even if the four concept sets stayed right.
+        expect(question.concepts, `${question.id} has unrelated tags`).toEqual(expected);
+      }
+    }
+  });
+
+  it('resolves Seamanship as 2/4/2/1 with nine unique questions and no lesson duplicates', () => {
+    const lessons = lessonsForModule('seamanship');
+    expect(lessons.map((lesson) => [lesson.id, practiceIdsForConcepts(lesson.concepts).length])).toEqual([
+      ['seamanship-loops-and-stoppers', 2],
+      ['seamanship-fastening-and-gripping-hitches', 4],
+      ['seamanship-routine-vhf', 2],
+      ['seamanship-rigging-trouble-and-assistance', 1],
+    ]);
+    const ids = lessons.flatMap((lesson) => practiceIdsForConcepts(lesson.concepts));
+    expect(ids).toHaveLength(9);
+    expect(new Set(ids).size).toBe(9);
+    expect([...ids].sort()).toEqual(Object.values(SEAMANSHIP_BY_CONCEPT).flat().sort());
+  });
+
+  it('keeps Seamanship concepts and questions out of every other published module', () => {
+    const published = new Set(MODULES.filter((module) => module.status === 'published').map((module) => module.id));
+    const claimed = new Set(Object.values(SEAMANSHIP_BY_CONCEPT).flat());
+    for (const lesson of LESSONS.filter((item) => item.moduleId !== 'seamanship' && published.has(item.moduleId))) {
+      expect(lesson.concepts.filter((concept) => concept in SEAMANSHIP_BY_CONCEPT), lesson.id).toEqual([]);
+      expect(practiceIdsForConcepts(lesson.concepts).filter((id) => claimed.has(id)), lesson.id).toEqual([]);
+    }
+  });
+
+  it('leaves weather, Navigation gaps and distress outside Seamanship', () => {
+    const reserved = new Set([
+      'wx-implication-lee-shore', 'flags-alpha', 'flags-diver-down', 'sys-compass-interference-note',
+      'sea-vhf-ch16', 'sea-vhf-distress-mayday', 'emer-vhf-distress-mayday',
+    ]);
+    for (const question of QUESTIONS.filter((item) => item.id.startsWith('wx-') || reserved.has(item.id))) {
+      expect((question.concepts ?? []).filter((concept) => concept in SEAMANSHIP_BY_CONCEPT), question.id).toEqual([]);
+    }
+    for (const id of ['wx-implication-lee-shore', 'flags-alpha', 'flags-diver-down', 'sys-compass-interference-note']) {
+      const question = QUESTIONS.find((item) => item.id === id);
+      expect(question, id).toBeDefined();
+      expect(question!.concepts ?? [], `${id} remains unmapped`).toEqual([]);
+    }
+  });
+
 });

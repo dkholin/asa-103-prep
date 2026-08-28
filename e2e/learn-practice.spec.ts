@@ -104,3 +104,44 @@ test('Sails & Trim Practice uses concept resolution and never falls back by topi
   await expect(page.getByRole('heading', { name: 'Trim by Point of Sail' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Practice this material' })).toHaveCount(0);
 });
+
+for (const lesson of [
+  { id: 'seamanship-loops-and-stoppers', title: 'Loops & Stoppers', count: 2 },
+  { id: 'seamanship-fastening-and-gripping-hitches', title: 'Fastening & Gripping Hitches', count: 4 },
+  { id: 'seamanship-routine-vhf', title: 'Routine VHF Communication', count: 2 },
+  { id: 'seamanship-rigging-trouble-and-assistance', title: 'Rigging Trouble & Assistance', count: 1 },
+]) {
+  test(`Seamanship skeleton renders and launches its exact Practice session: ${lesson.id}`, async ({ page }) => {
+    await page.goto(seeded());
+    await openLearnLesson(page, lesson.title);
+    await expect(page.getByRole('heading', { name: lesson.title, exact: true })).toBeVisible();
+    await expect(page.getByTestId('lesson-state')).toHaveText('In progress');
+    await page.getByRole('button', { name: 'Practice this material' }).click();
+    await expect(page.getByRole('heading', { name: `${lesson.title} practice`, exact: true })).toBeVisible();
+    await expect(page.getByText(`Question 1 of ${lesson.count}`, { exact: true })).toBeVisible();
+    const started = (await captured(page)).filter(
+      (event) => event.name === 'practice_started' && event.properties?.mode === 'concept',
+    );
+    expect(started).toHaveLength(1);
+    expect(started[0].properties).toMatchObject({
+      mode: 'concept', lesson_id: lesson.id, question_count: lesson.count,
+    });
+    expect(started[0].properties).not.toHaveProperty('topic');
+
+    if (lesson.id === 'seamanship-rigging-trouble-and-assistance') {
+      const mapped = question('emer-rigging-failure-response');
+      await expect(page.getByText(mapped.prompt, { exact: true })).toBeVisible();
+      await page.getByRole('radio', { name: correctText(mapped), exact: true }).check();
+      await page.getByRole('button', { name: 'Submit', exact: true }).click();
+      await expect(page.getByText(mapped.explanation, { exact: true })).toBeVisible();
+      const answered = (await captured(page)).find(
+        (event) => event.name === 'question_answered' && event.properties?.question_id === mapped.id,
+      );
+      expect(answered?.properties).toMatchObject({ mode: 'concept', correct: true });
+    }
+
+    await page.getByRole('button', { name: 'Back to lesson', exact: true }).click();
+    await expect(page.getByRole('heading', { name: lesson.title, exact: true })).toBeVisible();
+    await expect(page.getByTestId('lesson-state')).toHaveText('In progress');
+  });
+}

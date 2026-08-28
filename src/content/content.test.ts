@@ -167,6 +167,43 @@ describe('question bank integrity', () => {
     expect(question!.explanation, 'explanation lost the heavy-sea counter-case')
       .toMatch(/steep sea|heavy|waves/i);
   });
+
+  /**
+   * Seamanship Step 1, Advisory-approved correction. ASA Chapter 7 p.140,
+   * Storm Trysail's US Sailing-sanctioned Safety-at-Sea damage-control table,
+   * and Annapolis Sailing School agree on unloading a failed windward shroud
+   * by tacking. Peerless's generic head-to-wind sequence does not distinguish
+   * which support failed; it does not govern this close-hauled scenario.
+   * See docs/seamanship-step-1.md for original wording, URLs and reconciliation.
+   */
+  it('unloads the failed windward shroud by tacking, then stabilizes without making tacking universal', () => {
+    const question = QUESTIONS.find((item) => item.id === 'emer-rigging-failure-response');
+    expect(question, 'missing rigging question').toBeDefined();
+    expect(question!.prompt).toMatch(/close-hauled.*windward shroud/i);
+    expect(question!.correctChoiceId).toBe('a');
+    const correct = question!.choices.find((choice) => choice.id === question!.correctChoiceId)!;
+    // Pin the action, changed load-bearing side and subsequent load reduction,
+    // not a whole editorial sentence. The old bear-away answer fails these.
+    expect(correct.text).toMatch(/tack.*failed windward shroud.*leeward.*unload/i);
+    expect(correct.text).toMatch(/then.*reduce sail.*stabili[sz]/i);
+    expect(correct.text).not.toMatch(/bear away|always tack/i);
+    const explanation = question!.explanation;
+    expect(explanation).toMatch(/unload the failed support/i);
+    expect(explanation).toMatch(/because.*windward.*close-hauled.*tack/i);
+    expect(explanation).toMatch(/intact shrouds.*new windward side.*load/i);
+    expect(explanation).toMatch(/then.*reduce sail.*controlled.*stabili[sz]/i);
+    expect(explanation).toMatch(/not a universal instruction to tack.*every shroud or stay failure/i);
+    expect(explanation).toMatch(/depends on which support failed.*loaded/i);
+    for (const id of ['b', 'c']) {
+      const rationale = question!.choices.find((choice) => choice.id === id)!.whyWrong!;
+      expect(rationale, id).toMatch(/tack/i);
+      expect(rationale, id).not.toMatch(/bearing away and easing|increases rig load/i);
+    }
+    expect(question!.source).toMatch(/ASA Chapter 7, p\. 140/);
+    expect(question!.source).toMatch(/Storm Trysail.*US Sailing-sanctioned/);
+    expect(question!.source).toMatch(/Annapolis Sailing School/);
+  });
+
 });
 
 describe('asset manifest integrity', () => {

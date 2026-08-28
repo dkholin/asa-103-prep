@@ -49,8 +49,9 @@ export const MODULES: LearnModule[] = [
   {
     id: 'seamanship',
     title: 'Seamanship',
-    blurb: 'Lines and knots, boat handling judgement, and looking after the boat',
-    status: 'coming-soon',
+    blurb: 'Useful knots, routine VHF, and limited rigging trouble and assistance',
+    // Step 1 feature branch only: skeletons must not be merged or deployed.
+    status: 'published',
   },
   {
     id: 'cruise-planning-independence',

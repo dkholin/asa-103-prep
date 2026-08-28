@@ -45,6 +45,30 @@ describe('learn content integrity', () => {
     }
   });
 
+  /** STEP 2 MUST REPLACE/TIGHTEN THIS SKELETON GUARD before release. */
+  it('locally publishes exactly four Seamanship skeletons with the frozen ids, titles, order and concepts', () => {
+    expect(MODULES.find((module) => module.id === 'seamanship')?.status).toBe('published');
+    const lessons = lessonsForModule('seamanship');
+    expect(lessons.map(({ id, title, order, concepts }) => ({ id, title, order, concepts }))).toEqual([
+      { id: 'seamanship-loops-and-stoppers', title: 'Loops & Stoppers', order: 1, concepts: ['fixed-loops-and-stoppers'] },
+      { id: 'seamanship-fastening-and-gripping-hitches', title: 'Fastening & Gripping Hitches', order: 2, concepts: ['fastening-and-gripping-hitches'] },
+      { id: 'seamanship-routine-vhf', title: 'Routine VHF Communication', order: 3, concepts: ['routine-vhf-communication'] },
+      { id: 'seamanship-rigging-trouble-and-assistance', title: 'Rigging Trouble & Assistance', order: 4, concepts: ['rigging-failure-response'] },
+    ]);
+    expect(CONCEPT_IDS).toHaveLength(96);
+    expect(CONCEPT_IDS.slice(92)).toEqual([
+      'fixed-loops-and-stoppers', 'fastening-and-gripping-hitches',
+      'routine-vhf-communication', 'rigging-failure-response',
+    ]);
+    for (const lesson of lessons) {
+      expect(lesson.intro.trim(), lesson.id).not.toBe('');
+      expect(lesson.blocks.map((block) => block.kind), lesson.id).toEqual(['heading', 'text']);
+      for (const block of lesson.blocks) {
+        expect('text' in block && block.text.trim().length > 0, `${lesson.id} empty block`).toBe(true);
+      }
+    }
+  });
+
   it('keeps finished Motoring copy substantial and free of placeholders', () => {
     for (const l of lessonsForModule('motoring')) {
       const serialized = JSON.stringify(l);

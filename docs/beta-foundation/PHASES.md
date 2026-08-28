@@ -127,3 +127,21 @@ Use in a fresh CONTROL chat now that Phase 3 is verified and closed:
 > marketing automation, a custom dashboard, or a fourth study surface. Consider
 > the two hang-path items and code splitting only if real beta evidence makes
 > them concrete. Do not begin any phase beyond Phase 4.
+
+## Separate curriculum checkpoint — Seamanship Step 1 (local only)
+
+This content packet does not start Beta Foundation Phase 4. On local branch
+`seamanship/step-1`, four Seamanship lesson skeletons and four new concepts map
+nine questions (`2/4/2/1`). One Advisory-authorized windward-shroud response
+correction changes the question-content digest. Hands-On's finished release
+at `803cda94d93d109b38422c88aee3029954cc7bda` remains unchanged.
+
+CONTROL checks passed: clean dependency install, 176 unit/content tests,
+production build, 80 full browser tests, five rejected mutations, exact mapping
+and digest audits, and whitespace check. Independent Verifier returned **PASS**, with no blockers, before the local
+commit. See `docs/seamanship-step-1.md` for the evidence,
+full old/new question wording and source reconciliation.
+
+Seamanship is locally `published` only to exercise the existing catalogue.
+Do not merge or deploy these skeletons. Stop for Advisory before Step 2;
+visual corrections remain deferred to Step 3.

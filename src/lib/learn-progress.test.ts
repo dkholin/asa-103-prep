@@ -64,7 +64,7 @@ describe('moduleLessonProgress', () => {
   });
 
   it('reports zero of zero for a coming-soon module', () => {
-    expect(moduleLessonProgress(emptyProgress(), 'seamanship')).toEqual({ completed: 0, total: 0 });
+    expect(moduleLessonProgress(emptyProgress(), 'cruise-planning-independence')).toEqual({ completed: 0, total: 0 });
   });
 });
 
@@ -140,7 +140,7 @@ describe('continueLearning', () => {
     const comingSoon = MODULES.filter((m) => m.status === 'coming-soon').map((m) => m.id);
     const p: Progress = {
       ...emptyProgress(),
-      learn: { lessons: { 'seamanship-knots': 'in-progress' }, lastLessonId: 'seamanship-knots' },
+      learn: { lessons: { 'cruise-planning-independence-weather': 'in-progress' }, lastLessonId: 'cruise-planning-independence-weather' },
     };
     const target = continueLearning(p);
     expect(target?.kind).toBe('lesson');
@@ -199,7 +199,7 @@ describe('defaultExpandedModuleId', () => {
   it('never opens a coming-soon module named by stored state', () => {
     const p: Progress = {
       ...emptyProgress(),
-      learn: { lessons: { 'seamanship-knots': 'in-progress' }, lastLessonId: 'seamanship-knots' },
+      learn: { lessons: { 'cruise-planning-independence-weather': 'in-progress' }, lastLessonId: 'cruise-planning-independence-weather' },
     };
     const opened = defaultExpandedModuleId(p);
     expect(MODULES.find((m) => m.id === opened)?.status).toBe('published');

@@ -6370,6 +6370,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sea-vhf-concise-comms',
+  concepts: ['routine-vhf-communication'],
   topic: 'seamanship-comms',
   format: 'text',
   prompt: "Why should VHF radio transmissions on a shared channel be kept brief and to the point?",
@@ -6385,6 +6386,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sea-vhf-working-channel-switch',
+  concepts: ['routine-vhf-communication'],
   topic: 'seamanship-comms',
   format: 'text',
   prompt: "After making initial contact with another vessel on Channel 16, what should you do next?",
@@ -6464,6 +6466,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sea-knot-bowline',
+  concepts: ['fixed-loops-and-stoppers'],
   topic: 'seamanship-comms',
   format: 'visual',
   assetId: 'photo-bowline',
@@ -6480,6 +6483,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sea-knot-cleat-hitch',
+  concepts: ['fastening-and-gripping-hitches'],
   topic: 'seamanship-comms',
   format: 'visual',
   assetId: 'photo-cleat-hitch',
@@ -6496,6 +6500,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sea-knot-clove-hitch',
+  concepts: ['fastening-and-gripping-hitches'],
   topic: 'seamanship-comms',
   format: 'visual',
   assetId: 'photo-clove-hitch',
@@ -6512,6 +6517,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sea-knot-figure8-stopper',
+  concepts: ['fixed-loops-and-stoppers'],
   topic: 'seamanship-comms',
   format: 'visual',
   assetId: 'custom-figure8-stopper',
@@ -6528,6 +6534,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sea-knot-round-turn-two-half-hitches',
+  concepts: ['fastening-and-gripping-hitches'],
   topic: 'seamanship-comms',
   format: 'visual',
   assetId: 'custom-round-turn-two-half-hitches',
@@ -6544,6 +6551,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sea-knot-rolling-hitch',
+  concepts: ['fastening-and-gripping-hitches'],
   topic: 'seamanship-comms',
   format: 'visual',
   assetId: 'photo-rolling-hitch',
@@ -6929,18 +6937,19 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-rigging-failure-response',
+  concepts: ['rigging-failure-response'],
   topic: 'emergencies',
   format: 'text',
   prompt: "While sailing close-hauled, a windward shroud suddenly parts. What is the correct immediate response to protect the mast?",
   choices: [
-    { id: 'a', text: "Bear away and ease sail to reduce the load on the rig, keeping the boat off the point of sail that stressed the failed shroud" },
-    { id: 'b', text: "Head up closer to the wind to reduce heel", whyWrong: "Heading up closer to the wind on the point of sail where the shroud failed increases rig load on that side rather than reducing it; bearing away and easing sail is the correct way to unload the rig." },
-    { id: 'c', text: "Immediately drop all sail with no attention to boat control, letting the boat go beam-on to the waves", whyWrong: "An uncontrolled sail drop that leaves the boat wallowing beam-on to the waves adds risk from rolling and loss of control; the priority is bearing away and easing sail in a controlled way, reducing rig load, with dousing sail as appropriate from there." },
+    { id: 'a', text: "Tack promptly so the failed windward shroud becomes leeward and unloaded, then reduce sail and stabilize the rig while assessing the damage" },
+    { id: 'b', text: "Head up closer to the wind to reduce heel", whyWrong: "Heading up alone does not transfer the load to the intact shrouds on the other side. In this windward-shroud failure, complete the tack to put the damaged side to leeward, then reduce sail in a controlled way." },
+    { id: 'c', text: "Immediately drop all sail with no attention to boat control, letting the boat go beam-on to the waves", whyWrong: "An uncontrolled sail drop adds risk from rolling and loss of control. First tack to unload this failed windward shroud, then reduce sail and stabilize the rig while maintaining boat control." },
     { id: 'd', text: "Continue on the same course since a single shroud failure doesn't affect the rig", whyWrong: "A parted shroud significantly weakens the mast's lateral support on that side; continuing to load the rig on the same point of sail risks losing the mast entirely." },
   ],
   correctChoiceId: 'a',
-  explanation: "A parted shroud removes lateral support for the mast on that side. Bearing away and easing sheets reduces the sideways loading on the rig immediately, buying time to assess the damage, rig a temporary support if available, and get the sail plan under control before the mast is put at further risk.",
-  source: 'ASA 103 standard curriculum — rigging failure response',
+  explanation: "The immediate goal is to unload the failed support. Because this shroud was windward while sailing close-hauled, tack promptly: the damaged side becomes leeward and the intact shrouds on the new windward side carry the load. Then reduce sail in a controlled way and stabilize the rig while assessing the damage. This is not a universal instruction to tack after every shroud or stay failure; the response depends on which support failed and how it is loaded.",
+  source: 'ASA Chapter 7, p. 140; Storm Trysail Safety-at-Sea 2021 (US Sailing-sanctioned), damage-control guidance; Annapolis Sailing School, What to do if a shroud breaks (2024-08-06)',
 },
 {
   id: 'emer-anchor-dragging-recognize',

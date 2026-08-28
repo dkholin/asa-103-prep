@@ -41,6 +41,10 @@ import { lesson as settingWatchingWeighing } from './hands-on-cruising/setting-w
 import { lesson as makingFast } from './hands-on-cruising/making-fast';
 import { lesson as crewOverboard } from './hands-on-cruising/crew-overboard';
 import { lesson as lossOfControl } from './hands-on-cruising/loss-of-control';
+import { lesson as loopsAndStoppers } from './seamanship/loops-and-stoppers';
+import { lesson as fasteningAndGrippingHitches } from './seamanship/fastening-and-gripping-hitches';
+import { lesson as routineVhf } from './seamanship/routine-vhf';
+import { lesson as riggingTroubleAndAssistance } from './seamanship/rigging-trouble-and-assistance';
 
 export type { Block, Lesson, LearnModule } from './types';
 export { MODULES } from './modules';
@@ -93,6 +97,10 @@ export const LESSONS: Lesson[] = [
   makingFast,
   crewOverboard,
   lossOfControl,
+  loopsAndStoppers,
+  fasteningAndGrippingHitches,
+  routineVhf,
+  riggingTroubleAndAssistance,
 ];
 
 const byId = new Map(LESSONS.map((l) => [l.id, l]));

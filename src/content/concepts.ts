@@ -100,6 +100,10 @@ export const CONCEPT_IDS = [
   'cold-water-immersion',
   'grounding-response',
   'loss-of-steering-or-propulsion',
+  'fixed-loops-and-stoppers',
+  'fastening-and-gripping-hitches',
+  'routine-vhf-communication',
+  'rigging-failure-response',
 ] as const;
 
 export type ConceptId = (typeof CONCEPT_IDS)[number];
