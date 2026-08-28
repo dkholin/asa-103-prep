@@ -120,7 +120,7 @@ export const lesson: Lesson = {
     },
     {
       kind: 'text',
-      text: 'Knowing where your own competence stops is part of the skill here, and it is the least mechanical part of all three of these failures.',
+      text: 'One last point that applies to all three: knowing when to hand the problem to somebody equipped for it is a seamanship decision, not an admission. A tow, a lift off on the next tide, or a call made early while you still have options is very often the answer that keeps a bad afternoon from becoming an expensive one.',
     },
   ],
 };

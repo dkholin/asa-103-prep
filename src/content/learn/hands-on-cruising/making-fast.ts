@@ -27,7 +27,7 @@ export const lesson: Lesson = {
     },
     {
       kind: 'text',
-      text: 'The awkwardness of picking up a mooring is that you cannot know in advance which arrangement you are dealing with unless you have used this one before. Some have a small pickup buoy floating alongside on a light line, which is easy. Some have a pickup stick — a vertical wand standing above the water — which is easier still, because it stays visible to the helm all the way in. Many have neither, and the pendant hangs underneath the buoy where it can only be fished up with a boathook by somebody leaning right over the bow.',
+      text: 'What makes a strange mooring awkward is that its fittings are not standardised and you cannot see most of them until you are on top of it. The useful way to think about the variants is by how far your crew has to reach. Best case, something is standing proud of the water — a wand or a small float on a light line — which the crew can take hold of at arm’s length and which the helm can still see during the last few boat-lengths. Worst case there is nothing above the surface at all, and the pendant hangs below the buoy: now the crew is over the bow with a boathook, groping for a loop they cannot see, at exactly the moment the bow has blocked the helm’s view of everything.',
     },
     {
       kind: 'text',
@@ -42,15 +42,15 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Making fast, and the chafe problem' },
     {
       kind: 'text',
-      text: 'Getting the line on is not the same as being secure. A boat on a mooring swings all night, and every degree of that swing saws the line back and forth wherever it bears. A line simply passed once through a ring will work on that ring for a few hours and then start to lose.',
+      text: 'Getting the line on is not the same as being secure, and what separates the two is time. A moored boat is never still: she works to and fro all night, and every one of those movements drags the line a little way across whatever it is bearing on. One pass through a metal ring gives you a single strand rubbing on a hard edge for hours on end, which is fine for lunch and is not a way to spend a night.',
     },
     {
       kind: 'text',
-      text: 'For anything longer than a lunch stop, bring a second line forward, make one end fast aboard, and tie the other to the ring with a round turn and two half hitches — the round turn is what keeps it from sawing, because the line bears on itself rather than grinding across the metal. Where the pendant or your line passes over a chock or through a fairlead, fit chafing gear: split hose, heavy canvas, or failing everything else a rag well wrapped. In rough weather or for a long stay this stops being an optional refinement.',
+      text: 'The fix is to stop the line from moving where it bears, and to give it two independent attachments rather than one. A round turn and two half hitches is the usual knot for the ring, and the round turn is the part doing the work: the standing part rides on its own turn instead of on the metal, so the wear happens rope-on-rope. Adding a second line, made fast to a different cleat, means no single point of wear can leave the boat unattached. Then look at the deck end, which is where people forget to look — anywhere the line crosses a chock or fairlead it is being worked over an edge just as hard, and wants something wrapped round it to take the abrasion. Split hose is tidy; heavy cloth does the job. Overnight and in any weather, treat this as part of mooring rather than as a refinement.',
     },
     {
       kind: 'text',
-      text: 'Casting off is the reverse and benefits from one small piece of foresight. If you leave your first line rove through the ring and slack, you have something to hold the boat by while you untie the knot on the second — rather than untying your only attachment and then trying to sort the last line out with the boat already drifting.',
+      text: 'Leaving repays a little planning of the same kind. The problem at departure is the gap between having two attachments and having none: undo the wrong one first and you are working a stubborn knot one-handed while the boat sets off. Keep one line slack and simply passed through the ring, so that it holds nothing but can still be pulled on, and it becomes the thing you hang on to while you deal with the knotted one. When you are ready, that last line comes back aboard by letting go one end and hauling — no knot to untie at the worst moment, and nothing left behind.',
     },
     { kind: 'heading', text: 'Alongside: fenders and lines before you arrive' },
     {

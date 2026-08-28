@@ -75,7 +75,7 @@ export const lesson: Lesson = {
       items: [
         'Shelter, judged against the wind you are forecast to get rather than the wind you have. A cove that is a haven now can be a trap after a shift.',
         'Holding, which is bottom character — the chart tells you, in abbreviations like S for sand, M for mud, Cl for clay and Rk for rock.',
-        'Depth, meaning enough under the keel at low water and not so much at high water that you need an unreasonable amount of rode.',
+        'Depth, which has to work at both ends of the tide: enough beneath the keel when the water is at its lowest, without being so deep at the top of the tide that the rode required becomes unreasonable.',
         'Room to swing, cleanly, without reaching another boat, a shoal or the shore.',
       ],
     },

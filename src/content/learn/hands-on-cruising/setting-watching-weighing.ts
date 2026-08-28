@@ -102,11 +102,11 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Weighing anchor' },
     {
       kind: 'text',
-      text: 'Recovering runs the sequence backwards. Before anything else, check nothing is trailing over the side and the swim ladder is up, then start the engine. The foredeck crew points continuously at where the rode leads; the helm drives slowly in that direction in short bursts, and the crew takes in the slack that appears. Nobody is hauling the boat anywhere — the engine moves the boat, the crew simply recovers what the engine has given them.',
+      text: 'Recovering runs the sequence backwards. Start with a look over the side for anything trailing — a swim ladder still down, a trailing line, a dinghy painter — because all of it is about to be near a turning propeller. Then start the engine. The foredeck crew points continuously at where the rode leads; the helm drives slowly in that direction in short bursts, and the crew takes in the slack that appears. Nobody is hauling the boat anywhere — the engine moves the boat, the crew simply recovers what the engine has given them.',
     },
     {
       kind: 'text',
-      text: 'When the rode is up and down — vertical, anchor directly beneath the bow — make it fast and let the boat’s own weight and a gentle nudge ahead break the anchor out. Pulling an anchor out from a distance, at a low angle, is enormously harder and puts great strain on everything. Once it is free, motor slowly to keep steerageway while the crew brings it aboard, and do that last part gently: an anchor swinging on a short rode beside the topsides will find the gelcoat.',
+      text: 'When the rode is up and down — vertical, anchor directly beneath the bow — make it fast and let the boat’s own weight and a gentle nudge ahead break the anchor out. Pulling an anchor out from a distance, at a low angle, is enormously harder and puts great strain on everything. Once it is free you need just enough way on to keep the rudder answering while the crew finishes recovering it, and the last few feet want doing gently: an anchor swinging on a short rode beside the topsides will find the gelcoat.',
     },
     {
       kind: 'callout',
