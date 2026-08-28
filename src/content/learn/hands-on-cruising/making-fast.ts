@@ -12,7 +12,7 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Where this lesson starts' },
     {
       kind: 'text',
-      text: 'Bringing the boat in — the angle to come at, what wind and current will do on the way, how she behaves under reverse, and when to give up on the attempt and try again — is boat handling under power, and the Motoring module owns all of it. This lesson begins at the moment that ends. She is where you wanted her, more or less, and now she has to be tied to something, left there safely for however long, and got away again with the crew still aboard and the gelcoat intact.',
+      text: 'Bringing the boat in — the angle to come at, what wind and current will do on the way, how she behaves under reverse, and when to give up on the attempt and try again — is boat handling under power, and the Motoring module owns all of it. What this lesson owns is the rope-work that runs alongside all of that and outlasts it: getting the boat attached to something, keeping her attached safely for however long she is there, and getting her away again with the crew aboard and the gelcoat intact. Some of that begins before she has stopped — the first line ashore is doing real work during the arrival — but it is line handling throughout, not steering.',
     },
     { kind: 'heading', text: 'One idea underneath all of it' },
     {
@@ -109,7 +109,7 @@ export const lesson: Lesson = {
       kind: 'callout',
       tone: 'note',
       title: 'Leave nobody on the dock',
-      text: 'The awkward moment in any departure is the last line, because whoever casts it off is standing ashore while the boat is already free to move. Doubling removes that moment: instead of tying the shore end, take the line round the fitting ashore and bring it back to the boat, so both ends are aboard and the line can be released and recovered from on deck. Do it to whichever lines will be let go last — normally the ones taking the load — and no one has to make a decision about jumping. Two things are worth checking as you rig them: that nothing will jam where the line doubles back, and that the shore fitting is not one the line can snarl on when you haul. If a doubled line does snag, be ready to let go of it entirely rather than let it steer your departure for you.',
+      text: 'The awkward moment in any departure is the last line, because whoever casts it off is standing ashore while the boat is already free to move. The answer is the same trick used to leave a mooring, applied to a dock fitting: rather than tying the far end, pass the line round the cleat or post ashore and bring it back aboard, so you hold both ends and can let go and recover the whole line from on deck. A line rigged that way is said to be doubled. Do it to whichever lines will be let go last — normally the ones taking the load — and no one has to make a decision about jumping. Two things are worth checking as you rig them: that nothing will jam where the line doubles back, and that the shore fitting is not one the line can snarl on when you haul. If a doubled line does snag, be ready to let go of it entirely rather than let it steer your departure for you.',
     },
     {
       kind: 'text',

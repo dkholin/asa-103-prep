@@ -93,7 +93,7 @@ export const lesson: Lesson = {
       kind: 'callout',
       tone: 'warning',
       title: 'The lee shore',
-      text: 'A shore the wind is blowing onto is a lee shore, and it is the one to be most careful of. Everything that can go wrong at anchor — a dragging anchor, an engine that will not start, a wind that builds beyond the forecast — pushes you the same direction, toward the beach, with the sea building against you and nothing in reserve. If a forecast shift will turn your anchorage into a lee shore overnight, move before it arrives rather than after. More scope is a good answer to many anchoring problems and is not an answer to this one.',
+      text: 'A shore the wind is blowing onto is a lee shore, and it is the one to be most careful of. Everything that can go wrong at anchor — a dragging anchor, an engine that will not start, a wind that builds beyond the forecast — pushes you the same direction, toward the beach, with the sea building against you and nothing in reserve. If a forecast shift will turn your anchorage into a lee shore overnight, move before it arrives rather than after. Letting out more rode, which is the usual answer to a great many anchoring problems and is dealt with at the end of this lesson, is not an answer to this one.',
     },
     { kind: 'heading', text: 'Swinging room and the boats already there' },
     {
