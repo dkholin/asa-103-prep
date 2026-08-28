@@ -456,7 +456,9 @@ describe('concept Practice mapping', () => {
     // changed; the scenario and other questions are preserved. Advisory's
     // source reconciliation and old/new wording: docs/seamanship-step-1.md.
     // Previous digest: e749bfcb7b538ec090d8b1535faa905b07edfc1a4a5ffc6a684633b958c87a4c.
-    expect(digest).toBe('24489ac656da5350febef44cdb2feeeeb94c7c9c070552f485c93addcc623349');
+    // Seamanship Step 2: five documented knot corrections; mappings unchanged.
+    // See docs/learn-foundation/SEAMANSHIP_RESEARCH.md for old/new claims and sources.
+    expect(digest).toBe('f680667228d3578534005ad96dabdaac4a85c80383c5195e3eac70c3e98b6e29');
   });
 
   it('adds concept metadata to exactly 36 questions for Sails & Trim', () => {

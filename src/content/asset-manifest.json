@@ -1129,23 +1129,6 @@
       ]
     },
     {
-      "id": "photo-cleat-hitch",
-      "filename": "photo-cleat-hitch.jpg",
-      "altText": "Close photograph of a dock line secured around a cleat.",
-      "description": "Photo of a dock line secured to a cleat with a proper figure-eight cleat hitch",
-      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tied_cleat.jpg",
-      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Tied_cleat.jpg",
-      "creator": "BenFrantzDale (Wikimedia Commons)",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-      "attributionRequired": true,
-      "modified": true,
-      "modificationNote": "Resized from the original; not otherwise altered.",
-      "usedByQuestions": [
-        "sea-knot-cleat-hitch"
-      ]
-    },
-    {
       "id": "photo-rolling-hitch",
       "filename": "photo-rolling-hitch.jpg",
       "altText": "Photographic sequence showing a knot being tied around another line.",

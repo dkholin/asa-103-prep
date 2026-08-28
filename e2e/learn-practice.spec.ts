@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import {
   captured,
+  currentQuestion,
   correctText,
   displayedPositionOf,
   question,
@@ -111,7 +112,7 @@ for (const lesson of [
   { id: 'seamanship-routine-vhf', title: 'Routine VHF Communication', count: 2 },
   { id: 'seamanship-rigging-trouble-and-assistance', title: 'Rigging Trouble & Assistance', count: 1 },
 ]) {
-  test(`Seamanship skeleton renders and launches its exact Practice session: ${lesson.id}`, async ({ page }) => {
+  test(`Finished Seamanship lesson renders and launches its exact Practice session: ${lesson.id}`, async ({ page }) => {
     await page.goto(seeded());
     await openLearnLesson(page, lesson.title);
     await expect(page.getByRole('heading', { name: lesson.title, exact: true })).toBeVisible();
@@ -128,17 +129,17 @@ for (const lesson of [
     });
     expect(started[0].properties).not.toHaveProperty('topic');
 
-    if (lesson.id === 'seamanship-rigging-trouble-and-assistance') {
-      const mapped = question('emer-rigging-failure-response');
-      await expect(page.getByText(mapped.prompt, { exact: true })).toBeVisible();
+    for (let index = 0; index < lesson.count; index++) {
+      const mapped = await currentQuestion(page);
+      expect(mapped, 'displayed question belongs to the bank').toBeTruthy();
       await page.getByRole('radio', { name: correctText(mapped), exact: true }).check();
       await page.getByRole('button', { name: 'Submit', exact: true }).click();
       await expect(page.getByText(mapped.explanation, { exact: true })).toBeVisible();
-      const answered = (await captured(page)).find(
-        (event) => event.name === 'question_answered' && event.properties?.question_id === mapped.id,
-      );
-      expect(answered?.properties).toMatchObject({ mode: 'concept', correct: true });
+      await page.getByRole('button', { name: index + 1 === lesson.count ? 'Finish session' : 'Next question', exact: true }).click();
     }
+    await expect(page.getByRole('heading', { name: 'Session complete' })).toBeVisible();
+    const finished = (await captured(page)).find((event) => event.name === 'practice_completed');
+    expect(finished?.properties).toMatchObject({ lesson_id: lesson.id, answered: lesson.count, correct: lesson.count });
 
     await page.getByRole('button', { name: 'Back to lesson', exact: true }).click();
     await expect(page.getByRole('heading', { name: lesson.title, exact: true })).toBeVisible();

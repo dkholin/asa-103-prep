@@ -19,6 +19,38 @@ const lessonFigureAssetIds = new Set(
 );
 
 describe('question bank integrity', () => {
+  it('keeps researched Seamanship knot limitations and excludes unsafe attachment advice', () => {
+    const get = (id: string) => QUESTIONS.find((q) => q.id === id)!;
+    const bowline = get('sea-knot-bowline');
+    expect(bowline.correctChoiceId).toBe('a');
+    expect(bowline.choices.find((c) => c.id === 'a')!.text).toMatch(/fixed loop/);
+    expect(JSON.stringify(bowline)).not.toMatch(/won't slip or jam|secure, non-slipping|loop to clip a harness/);
+    expect(bowline.explanation).toMatch(/dressing.*tail/);
+    expect(bowline.explanation).toMatch(/work loose.*cyclic/);
+    expect(bowline.explanation).toMatch(/not a recommendation.*life-safety/);
+    const stopper = get('sea-knot-figure8-stopper');
+    expect(stopper.correctChoiceId).toBe('a');
+    expect(stopper.choices.find((c) => c.id === 'c')!.whyWrong).toMatch(/manufacturer.*instructions/);
+    expect(stopper.choices.find((c) => c.id === 'c')!.whyWrong).not.toMatch(/calls for.*bowline/);
+    const cleat = get('sea-knot-cleat-hitch');
+    expect(cleat.correctChoiceId).toBe('a');
+    expect(cleat.format).toBe('text');
+    expect(cleat.assetId).toBeUndefined();
+    expect(cleat.choices.find((c) => c.id === 'a')!.text).toMatch(/farther horn/);
+    expect(cleat.explanation).toMatch(/base turns.*trap.*jam/);
+    expect(cleat.explanation).toMatch(/not a universal finish for towlines/);
+    const round = get('sea-knot-round-turn-two-half-hitches');
+    expect(round.correctChoiceId).toBe('a');
+    expect(round.explanation).toMatch(/friction.*initial strain.*standing part/);
+    expect(round.explanation).toMatch(/chafe still needs/);
+    expect(round.explanation).not.toMatch(/reduces chafe on the standing part/);
+    const rolling = get('sea-knot-rolling-hitch');
+    expect(rolling.correctChoiceId).toBe('a');
+    expect(rolling.choices.find((c) => c.id === 'a')!.text).not.toMatch(/without slipping/);
+    expect(rolling.explanation).toMatch(/dressing, pull direction.*materials and diameters/);
+    expect(rolling.explanation).toMatch(/may slip/);
+  });
+
   it('has unique question ids', () => {
     expect(new Set(questionIds).size).toBe(questionIds.length);
   });

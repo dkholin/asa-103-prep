@@ -45,8 +45,7 @@ describe('learn content integrity', () => {
     }
   });
 
-  /** STEP 2 MUST REPLACE/TIGHTEN THIS SKELETON GUARD before release. */
-  it('locally publishes exactly four Seamanship skeletons with the frozen ids, titles, order and concepts', () => {
+  it('locally publishes exactly four finished Seamanship lessons with the frozen ids, titles, order and concepts', () => {
     expect(MODULES.find((module) => module.id === 'seamanship')?.status).toBe('published');
     const lessons = lessonsForModule('seamanship');
     expect(lessons.map(({ id, title, order, concepts }) => ({ id, title, order, concepts }))).toEqual([
@@ -60,13 +59,28 @@ describe('learn content integrity', () => {
       'fixed-loops-and-stoppers', 'fastening-and-gripping-hitches',
       'routine-vhf-communication', 'rigging-failure-response',
     ]);
-    for (const lesson of lessons) {
-      expect(lesson.intro.trim(), lesson.id).not.toBe('');
-      expect(lesson.blocks.map((block) => block.kind), lesson.id).toEqual(['heading', 'text']);
-      for (const block of lesson.blocks) {
-        expect('text' in block && block.text.trim().length > 0, `${lesson.id} empty block`).toBe(true);
-      }
+    const expectedFigures = [['photo-bowline'], ['photo-rolling-hitch'], [], []];
+    for (const [index, lesson] of lessons.entries()) {
+      expect(lesson.intro.split(/\s+/).length, lesson.id).toBeGreaterThanOrEqual(20);
+      expect(lesson.blocks.length, lesson.id).toBeGreaterThanOrEqual(12);
+      const kinds = new Set(lesson.blocks.map((block) => block.kind));
+      expect(kinds.size, lesson.id).toBeGreaterThanOrEqual(4);
+      expect(kinds.has('list') && kinds.has('callout'), lesson.id).toBe(true);
+      expect(lesson.blocks.filter((b) => b.kind === 'figure').map((b) => b.assetId)).toEqual(expectedFigures[index]);
+      const prose = JSON.stringify(lesson);
+      expect(prose).not.toMatch(/placeholder|skeleton|finished lesson will|tying practice will follow|TODO|TBD/i);
+      expect(prose).not.toMatch(/custom-figure8-stopper|custom-round-turn-two-half-hitches/);
+      // Catch regression to a skeleton, without imposing the editorial target as a quota.
+      const words = lesson.blocks.flatMap((b) => {
+        if (b.kind === 'list') return b.items;
+        if (b.kind === 'table') return b.rows.flat();
+        return 'text' in b ? [b.text] : [];
+      }).join(' ').split(/\s+/);
+      expect(words.length, lesson.id).toBeGreaterThan(350);
+      expect(prose).not.toMatch(/wx-|barometer|forecast|cold front|cloud formation|MAYDAY|PAN.PAN|press.{0,30}distress/i);
+      expect(prose).not.toMatch(/springing off|quick.stop maneuver|kedging|emergency tiller|prop walk|chainplate identification|turnbuckle identification/i);
     }
+
   });
 
   it('keeps finished Motoring copy substantial and free of placeholders', () => {
