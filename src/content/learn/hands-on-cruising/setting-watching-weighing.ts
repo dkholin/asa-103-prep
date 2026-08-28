@@ -27,11 +27,11 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Getting ready before you get there' },
     {
       kind: 'text',
-      text: 'The unhurried anchoring is the one where everything was prepared while there was still nothing to do. Free the anchor from its lashings or securing pin so it can be lowered the moment it is wanted. If the rode is rope, fake it out on deck in loose figures so it will run without snatching. Make sure the bitter end is actually secured to the boat — this is the check nobody thinks to make until the day the whole rode goes over the side.',
+      text: 'The unhurried anchoring is the one where everything was prepared while there was still nothing to do. Whatever is currently stopping the anchor from moving — a strap, a pin, a bit of line somebody added after it rattled once — needs to be off, so that lowering it is a single unhurried action rather than a search. If the rode is rope, lay it out on deck in loose figures that will pull away cleanly instead of tightening on themselves. And confirm the far end of it is attached to the boat: it is the one check nobody makes twice, and the day it has not been done you lose the lot over the bow.',
     },
     {
       kind: 'text',
-      text: 'Work out your rode length now, too, from the depth you expect at high water rather than the depth you can see. Most rodes are marked at intervals; if yours is not, measure it out in known lengths so somebody can call how much is gone.',
+      text: 'Work out your rode length now, too, from the depth you expect at high water rather than the depth you can see. You also need some way of knowing how much has gone over the bow once it starts running, because nobody can judge it by eye. Many rodes come with markings already; if yours has none, put your own on, or at least establish a repeatable arm-span or boat-length measure the foredeck can count out loud.',
     },
     { kind: 'heading', text: 'Putting it down' },
     {
@@ -59,7 +59,7 @@ export const lesson: Lesson = {
     },
     {
       kind: 'text',
-      text: 'Now look for evidence rather than hoping. The rode comes up taut and stays taut, and the bow swings round to line up with it. A hand on the rode feels solid; a rode that trembles or grumbles is an anchor still skipping. Best of all, pick two fixed things ashore that overlap — a rock against a tree, a post against a roofline — and watch them while the engine pulls. If they stay locked together, you are not moving. If they slide apart, you are, whatever else you believe.',
+      text: 'Now look for evidence rather than hoping, and take it from three places. The rode itself: it should come up hard and stay hard, and a hand laid on it should feel dead. Vibration travelling up it means the anchor is still bumping along rather than buried. The boat: with the load on she should end up pointing at her own anchor and sitting there. And best of all, something outside the boat — line up any two fixed objects ashore that happen to overlap and keep your eye on them while the engine pulls. Two things that stay locked together mean you are not moving; two that come apart mean you are, regardless of what the rode felt like.',
     },
     {
       kind: 'callout',
@@ -93,7 +93,11 @@ export const lesson: Lesson = {
     },
     {
       kind: 'text',
-      text: 'Get the engine on and take the load off the rode by motoring gently up toward the anchor. That single action buys back control: the boat stops being a thing being blown somewhere and becomes a boat under command again, which makes every subsequent choice easier. Then decide, with an eye on how much room is left behind you. If there is clear water astern, paying out more scope may let the anchor reset. If there is not, or if it has already failed to reset, haul it up and anchor again properly — and take the chance to move somewhere with better holding or more shelter while you are at it. If the anchorage itself has turned out to be the problem, leaving is a perfectly respectable answer.',
+      text: 'Get the engine on and motor gently up toward the anchor to take the strain out of the rode. That one action buys back everything else: she stops being an object being blown somewhere and becomes a boat under command, and every decision after it is made from a position of control rather than from behind.',
+    },
+    {
+      kind: 'text',
+      text: 'What you decide next is governed by one number — how much water is left between you and whatever is downwind. With room to spare, more rode is worth trying, since the extra scope may be all the anchor needs to take hold again. Without it, or if it has already been given that chance and refused, stop negotiating with the anchor: recover it and start again, and use the opportunity to pick somewhere with better holding rather than resetting in the spot that has already failed you. Concluding that the anchorage itself was the mistake, and going elsewhere at two in the morning, is a legitimate outcome and not a defeat.',
     },
     {
       kind: 'text',
@@ -102,7 +106,7 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Weighing anchor' },
     {
       kind: 'text',
-      text: 'Recovering runs the sequence backwards. Start with a look over the side for anything trailing — a swim ladder still down, a trailing line, a dinghy painter — because all of it is about to be near a turning propeller. Then start the engine. The foredeck crew points continuously at where the rode leads; the helm drives slowly in that direction in short bursts, and the crew takes in the slack that appears. Nobody is hauling the boat anywhere — the engine moves the boat, the crew simply recovers what the engine has given them.',
+      text: 'Recovering runs the sequence backwards. Before the engine turns, walk the side decks and look at the water: a ladder left down, a dinghy painter, a stray sheet end, anything at all hanging over. In a moment there will be a propeller turning under all of it. Then start up. The foredeck crew points continuously at where the rode leads; the helm drives slowly in that direction in short bursts, and the crew takes in the slack that appears. Nobody is hauling the boat anywhere — the engine moves the boat, the crew simply recovers what the engine has given them.',
     },
     {
       kind: 'text',

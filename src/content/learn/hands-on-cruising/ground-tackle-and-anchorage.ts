@@ -36,7 +36,7 @@ export const lesson: Lesson = {
     },
     {
       kind: 'text',
-      text: 'Most cruisers carry more than one, and not out of indecision. A boat that stays in home waters usually has a primary anchor chosen for the bottom it will actually meet, plus a second of a different pattern for the day the first one will not bite.',
+      text: 'This is why a second anchor is normal rather than fussy. Since each pattern has a bottom it is poor on, carrying two of the same design gives you a spare rather than an option. The useful arrangement is one anchor sized and chosen for the ground you actually cruise, and a second of a different pattern altogether — so that the day the first one skates, the answer is to try something with a different shape rather than the same shape again.',
     },
     {
       kind: 'figure',
@@ -53,11 +53,11 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'The rode: rope, chain, and what each contributes' },
     {
       kind: 'text',
-      text: 'The line between anchor and boat is doing more than connecting them. Chain is heavy, and that weight is useful twice over: it lies along the seabed so the pull arrives at the anchor almost horizontally, and it hangs in a curve that has to be straightened before any load reaches the anchor at all. In moderate conditions much of what is holding you is simply the chain, and every gust spends itself lifting it rather than snatching at the bottom.',
+      text: 'The rode is not merely the thing joining the two ends together; it changes what the anchor experiences. Chain does this by being heavy. Its own weight drags the last part of it flat along the bottom, so what arrives at the anchor is a pull along the seabed rather than a pull up off it — which is precisely the direction an anchor is built to resist. The weight has a second effect between bottom and bow: the chain sags, and a sagging chain has to be pulled straight before the boat can move at all. In anything short of heavy weather that sag is doing much of the work, absorbing gusts by lifting instead of passing them on as a jerk.',
     },
     {
       kind: 'text',
-      text: 'Rope does the same job by a different route. It cannot lie along the bottom, but it stretches, and stretch absorbs the shock loads that a rigid connection would deliver straight to the anchor. Nylon is the usual choice precisely because it is elastic. Rope is also far lighter and easier to handle by hand, which matters on a boat with no windlass — but it chafes where it crosses rock or a rough chock, and it will part there long before it parts anywhere else.',
+      text: 'Rope arrives at a similar result down a different road. Having no useful weight, it cannot flatten the pull the way chain does; what it has instead is elasticity. A nylon rode lengthens under load and shortens again afterwards, which turns the sharp snatch of a gust into something the anchor barely notices — the same job the chain’s catenary was doing, done by the material rather than by mass. It has a second virtue on a boat without a windlass, which is that a crew member can actually handle it. Its weakness is abrasion: rope is perfectly strong in tension and poor across an edge, so wherever it crosses rock on the bottom or a hard corner on deck is where you will lose it.',
     },
     {
       kind: 'callout',
@@ -87,7 +87,7 @@ export const lesson: Lesson = {
     },
     {
       kind: 'text',
-      text: 'The chart also tells you where not to anchor at all: marked channels, cable and pipeline crossings, and areas charted as prohibited or restricted. In busy harbours there may be designated anchorages you are expected to use.',
+      text: 'The chart is equally useful for ruling places out. Somewhere a vessel might reasonably need to pass, or where something important is buried under you, is somewhere you have no business dropping an anchor: shipping channels, charted cable and pipeline runs, and any area shown as restricted or closed. Crowded harbours often go further and set aside particular ground for visiting boats, in which case that is where you are meant to be.',
     },
     {
       kind: 'callout',
@@ -98,7 +98,7 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Swinging room and the boats already there' },
     {
       kind: 'text',
-      text: 'A boat at anchor lies downwind — or down-current, in a tidal area — of her anchor, and when the wind shifts she goes round. So your footprint is not where you stop; it is a circle centred on the anchor with a radius of your rode plus your own length plus a margin. Everything inside that circle is something you may eventually touch.',
+      text: 'The anchor is the only fixed point in the arrangement; the boat is on the end of a tether and goes wherever the wind or the tide sends her. So the area you are actually occupying is not the patch of water you stopped in — it is a circle drawn about the anchor, and its radius is everything between that anchor and your own stern: the rode you have out, the length of the boat, and a margin for the fact that none of this is precise. Anything inside that circle is something you are capable of reaching.',
     },
     {
       kind: 'figure',

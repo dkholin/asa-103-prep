@@ -27,7 +27,7 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Steer at something, not at the compass' },
     {
       kind: 'text',
-      text: 'Staring down into the compass is tiring, it is slow, and it keeps your eyes inside the boat when they should be outside it. The compass is honest but it lags: by the time the card has settled enough to read, the wander it is reporting is already several seconds old. Worse, a helmsman with their head down is not watching the sails, the water, or the traffic.',
+      text: 'There is a reason experienced helmsmen barely look at the compass. It is a slow instrument: the card is a physical object swinging in fluid, and by the time it has settled enough to give you a number, the wander it is describing happened several seconds ago. You are steering on stale information. It is also tiring in a way that creeps up on you, and it costs you the thing that actually keeps a boat safe, which is a person looking out of it — at the set of the sails, at what the water is doing, at the ferry that has just altered.',
     },
     {
       kind: 'text',
@@ -45,7 +45,7 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Turning onto a heading' },
     {
       kind: 'text',
-      text: 'Changing course is the same discipline with the numbers made explicit. Asked for a new heading, work out which way round is shorter before you touch the wheel — it is easy, mid-turn, to find you are taking the boat the long way round through most of the compass. Then start the turn gently, and begin easing the helm back toward centre well before the new number comes up, so the boat settles onto it rather than swinging through and having to be caught.',
+      text: 'Changing course is the same discipline with the numbers made explicit, plus one decision beforehand. A compass is a circle, so there are always two ways to any new heading, and only one of them is short. Work out which before your hands move — it is a peculiarly annoying discovery, halfway through, that you have committed the boat to going the long way round. After that it is the correction habit again on a larger scale: a modest amount of helm, and centring it early enough that she arrives on the number under her own momentum instead of sweeping past it.',
     },
     {
       kind: 'text',
@@ -68,11 +68,11 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Reading sideways drift off a fixed mark' },
     {
       kind: 'text',
-      text: 'A boat does not necessarily go where her bow points. Current carries her bodily across the ground, and under sail she also slips sideways through the water — leeway — with the slip greatest when she is close-hauled and well heeled. Neither shows up in the compass, because the heading can be rock steady while the boat quietly crabs off to one side of it.',
+      text: 'A boat does not necessarily go where her bow points, and two separate effects push her off it. Current moves the whole body of water she is floating in, carrying her sideways over the ground without her passing through the water at all. Leeway is different: under sail the wind pushes her bodily to leeward as she goes, so she slips crabwise through the water itself. Both are worst when you can least afford them, and neither registers on the compass — the heading sits rock steady while the boat quietly travels somewhere else.',
     },
     {
       kind: 'text',
-      text: 'What does show it is a mark with something behind it. Steer at a buoy, then watch the land beyond it. If that background is sliding one way relative to the buoy, you are being set the other way, and you can correct by aiming a little to the side you are being pushed from until the two stop moving against each other. Anchored buoys give the effect away by themselves, too: one with a visible wake trailing from it is standing still while the water goes past, which tells you there is a current here before it has had a chance to do anything to you.',
+      text: 'What does show it is a mark with something fixed behind it. Steer at a buoy and watch the land beyond it. Because the buoy is nearer, any sideways movement of the boat swings your line of sight past it faster than past the distant object, so the far mark appears to creep out from behind the buoy — and it creeps out on the side you are being carried toward. Drifting to starboard, you see the background emerge to starboard of the buoy. The correction is to aim up-set: turn a little toward the side the drift is coming from, and hold that until the two stop separating.',
     },
     {
       kind: 'callout',
