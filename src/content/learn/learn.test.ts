@@ -164,16 +164,23 @@ describe('learn content integrity', () => {
   });
 
   /**
-   * Cruising Life & Safety is at Step 1: the six lesson objects, their order,
-   * ids, titles and concept tags are final and pinned here, while the copy is
-   * still a neutral skeleton — so this guard deliberately does NOT assert the
-   * placeholder-free, block-count, prose-length shape the finished modules
-   * above do.
+   * Cruising Life & Safety is finished as of Step 2. Step 1's version of this
+   * guard deliberately tolerated placeholder copy and asserted the module
+   * shipped no figures; both allowances are gone, replaced by the same contract
+   * the other finished modules carry — ids, order, titles and concept tags,
+   * placeholder-free substantial copy, a prose floor, varied block use, and the
+   * exact list of reused manifest figures in document order.
    *
-   * STEP 2 MUST REPLACE THIS TEST with the normal finished-module content
-   * guard: drop the skeleton allowance, assert placeholder-free substantial
-   * copy and a block-count floor, and pin the module's figure list in document
-   * order the way Boat & Cruising Basics and Navigation Rules & Tools do.
+   * Two module-specific assertions sit below the generic ones, because this is
+   * the module where getting them wrong is a safety problem rather than an
+   * editorial one:
+   *
+   * - L3 must visibly separate federally required carriage from prudent gear
+   *   carried by choice. The guard checks both halves are actually present, so
+   *   a rewrite cannot quietly collapse them into one undifferentiated list.
+   * - The module must not absorb Hands-On Cruising's boat-handling emergencies.
+   *   `practice-concepts.test.ts` already enforces this on the question side;
+   *   this is the content side of the same boundary.
    *
    * Note on the last assertion: it pins that no concept repeats *within this
    * module*, so practising one lesson never re-serves a neighbour's set. It is
@@ -181,7 +188,7 @@ describe('learn content integrity', () => {
    * different modules, which is how `crew-briefing` reaches both Motoring and
    * lesson 1 here.
    */
-  it('publishes six Cruising Life & Safety lesson skeletons in order, tagged and figure-free', () => {
+  it('publishes six finished Cruising Life & Safety lessons in order, tagged and using only approved figures', () => {
     const module = MODULES.find((item) => item.id === 'cruising-life-safety');
     expect(module?.status).toBe('published');
     const lessons = lessonsForModule('cruising-life-safety');
@@ -215,15 +222,78 @@ describe('learn content integrity', () => {
       for (const concept of lesson.concepts) {
         expect([...conceptIds], `concept ${concept} of ${lesson.id}`).toContain(concept);
       }
-      // Skeleton-tolerant: a real title, a real intro sentence, and something
-      // to render. Nothing about length or placeholder wording until Step 2.
+      expect(JSON.stringify(lesson), `placeholder copy in ${lesson.id}`)
+        .not.toMatch(/placeholder|draft lesson|planned coverage|still being drafted|lesson coverage|\bTBD\b/i);
+      // A finished lesson opens with a real sentence, not a stub label.
       expect(lesson.intro.trim().split(/\s+/).length, `stub intro on ${lesson.id}`).toBeGreaterThanOrEqual(8);
-      expect(lesson.blocks.length, `empty lesson ${lesson.id}`).toBeGreaterThan(0);
+      expect(lesson.blocks.length, `thin lesson ${lesson.id}`).toBeGreaterThanOrEqual(12);
+      // Substantial teaching copy, measured on prose only so the floor cannot
+      // be met by piling on list items or table cells. The floor sits below the
+      // shortest finished lesson with room to spare: the job is to catch a
+      // lesson gutted back to a skeleton, not to enforce a word count.
+      const prose = [lesson.intro, ...lesson.blocks.filter((block) => block.kind === 'text').map((block) => block.text)];
+      expect(prose.join(' ').split(/\s+/).length, `thin prose in ${lesson.id}`).toBeGreaterThanOrEqual(400);
+      // Every lesson teaches with more than running text.
+      expect(
+        new Set(lesson.blocks.map((block) => block.kind)).size,
+        `monotonous block use in ${lesson.id}`,
+      ).toBeGreaterThanOrEqual(4);
     }
-    // Step 1 creates no assets and uses none: the figure work is Step 2/3.
+    // Every figure in the module is an approved manifest asset that already
+    // existed, pinned here in document order — no asset was created for this
+    // module, so a new one has to arrive with a deliberate edit here. L1, L4
+    // and L5 carry none: nothing in the manifest illustrates responsibility
+    // aboard, and the layout and fuelling diagrams that were considered for L4
+    // and L5 belong to Boat Basics and Motoring respectively.
     expect(
-      lessons.flatMap((lesson) => lesson.blocks).filter((block) => block.kind === 'figure'),
-    ).toEqual([]);
+      lessons.flatMap((lesson) => lesson.blocks)
+        .filter((block) => block.kind === 'figure')
+        .map((block) => block.assetId),
+    ).toEqual([
+      'custom-pfd-wearable-throwable',
+      'custom-harness-tether-jackline',
+      'custom-visual-distress-flare',
+      'photo-fire-extinguisher-marine',
+      'photo-fire-extinguisher-use',
+      'custom-flooding-seacock',
+    ]);
+    const safetyFiguresOf = (order: number) =>
+      lessons[order - 1].blocks.filter((block) => block.kind === 'figure').map((block) => block.assetId);
+    expect(safetyFiguresOf(1)).toEqual([]);
+    expect(safetyFiguresOf(4)).toEqual([]);
+    expect(safetyFiguresOf(5)).toEqual([]);
+    // The two extinguisher photographs are deliberately assigned to the lesson
+    // that does NOT own them as a question asset, which keeps each figure a
+    // step further from the answer of the question it sits beside.
+    expect(safetyFiguresOf(3)).toContain('photo-fire-extinguisher-marine');
+    expect(safetyFiguresOf(6)[0]).toBe('photo-fire-extinguisher-use');
+    // Every figure carries a caption: these assets have deliberately
+    // answer-neutral alt text for Practice, so Learn supplies the teaching.
+    for (const block of lessons.flatMap((lesson) => lesson.blocks)) {
+      if (block.kind !== 'figure') continue;
+      expect(block.caption?.trim(), `uncaptioned figure ${block.assetId}`).toBeTruthy();
+    }
+    // L3's whole reason for existing is that "required" and "recommended" are
+    // different lists. Both halves must be visibly present.
+    const safetyGear = JSON.stringify(lessons[2]);
+    expect(safetyGear, 'L3 lost the federally-required half').toMatch(/federal(ly)? (carriage )?requir/i);
+    expect(safetyGear, 'L3 lost the recommended half').toMatch(/recommend|prudent/i);
+    expect(safetyGear, 'L3 no longer flags that requirements vary').toMatch(/vary|varies|depends on/i);
+    // Hands-On Cruising's boat-handling emergencies are not this module's, and
+    // the fire/flooding lesson is where they would most easily creep in.
+    //
+    // These are named *techniques*, not topics: the module is free — and in the
+    // last lesson expected — to say that crew overboard, hypothermia,
+    // grounding, a dragging anchor and steering failure belong elsewhere, and
+    // to explain that keeping people aboard matters precisely because getting
+    // them back is hard. What it must not do is teach the manoeuvres. A recovery
+    // method by name is the unambiguous evidence that it has started to.
+    expect(JSON.stringify(lessons), 'Hands-On Cruising manoeuvres taught in Cruising Life & Safety')
+      .not.toMatch(/quick.stop|figure.eight|quick.turn|lifesling|heaving line to the|kedge|set a second anchor|emergency tiller/i);
+    // ...and the deferral itself is pinned, so the boundary is stated to the
+    // learner rather than merely observed by this test.
+    expect(JSON.stringify(lessons[5]), 'L6 lost its Hands-On Cruising deferral')
+      .toMatch(/hands-on cruising/i);
     const tagged = lessons.flatMap((lesson) => lesson.concepts);
     expect(new Set(tagged).size).toBe(tagged.length);
   });

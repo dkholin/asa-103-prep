@@ -84,6 +84,44 @@ describe('question bank integrity', () => {
       expect(count / QUESTIONS.length, `answer position counts ${JSON.stringify(counts)}`).toBeLessThan(0.4);
     }
   });
+
+  /**
+   * Regression guard for the one factual correction made during Cruising Life
+   * & Safety Step 2. `safety-pfd-child` used to teach that federal law
+   * contributes only carriage and that requiring a child to actually *wear* a
+   * PFD is a state layer added on top. It is not: 33 CFR 175.15(c) is itself a
+   * federal wear requirement for children under 13 on a recreational vessel
+   * under way (unless below decks or in an enclosed cabin), and under
+   * 33 CFR 175.25 a state's own child wear age applies on its waters *instead
+   * of* the federal rule.
+   *
+   * Both halves are pinned, because dropping either one puts the question back
+   * where it was: without the federal citation a reader concludes there is no
+   * federal wear rule, and without the supersession clause they conclude the
+   * age is 13 everywhere. The "prudent practice" framing that made the old
+   * prompt wrong is pinned out of the prompt as well.
+   */
+  it('states the child PFD wear rule as federal law with the state supersession', () => {
+    const question = QUESTIONS.find((item) => item.id === 'safety-pfd-child');
+    expect(question, 'missing question safety-pfd-child').toBeDefined();
+    const correct = question!.choices.find((choice) => choice.id === question!.correctChoiceId);
+    const answer = `${correct?.text ?? ''} ${question!.explanation}`;
+
+    expect(question!.prompt, 'prompt reintroduces the prudent-practice framing')
+      .not.toMatch(/prudent practice/i);
+    expect(answer, 'correct answer no longer names the federal rule').toMatch(/federal/i);
+    expect(answer, 'correct answer no longer names the under-13 threshold').toMatch(/\b13\b/);
+    expect(answer, 'correct answer no longer requires the child to be wearing it').toMatch(/wear/i);
+    expect(answer, 'correct answer lost the below-decks / enclosed-cabin exception')
+      .toMatch(/below decks|enclosed cabin/i);
+    expect(answer, 'correct answer lost the state supersession').toMatch(/state/i);
+    // The old wording made the federal contribution carriage-only. That claim
+    // must not come back in the answer a learner is shown as correct.
+    expect(answer, 'correct answer reasserts that federal law is carriage only')
+      .not.toMatch(/federal law sets the baseline/i);
+    expect(question!.source, 'source no longer cites the governing regulation').toMatch(/175\.15/);
+    expect(question!.source, 'source no longer cites the state-supersession regulation').toMatch(/175\.25/);
+  });
 });
 
 describe('asset manifest integrity', () => {

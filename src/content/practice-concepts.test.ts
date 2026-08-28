@@ -350,7 +350,23 @@ describe('concept Practice mapping', () => {
     // `b` gained the mark-handling clause, `a` gained a `whyWrong` defusing the
     // compound-statement trap, and the explanation was updated to agree. Any
     // other change to this digest is a question-bank edit that was not approved.
-    expect(digest).toBe('bddc31c3403161b945d2436fb690decbc44e27237370be76acd4c11d7d2725cd');
+    //
+    // Rolled a third time, deliberately: `safety-pfd-child` taught that federal
+    // law contributes only carriage ("one appropriately sized wearable PFD per
+    // person aboard") and that child *wear* rules are a state layer on top of
+    // it. 33 CFR 175.15(c) is itself a federal wear requirement — no one may
+    // operate a recreational vessel under way with a child under 13 aboard
+    // unless that child is wearing an approved PFD or is below decks / in an
+    // enclosed cabin — and under 33 CFR 175.25 a state's own child wear age
+    // applies on its waters *instead of* the federal rule rather than in
+    // addition to it. The prompt no longer frames the answer as prudent
+    // practice, correct choice `a` now states the federal rule and the state
+    // supersession, the `whyWrong` on `b` and `d` were made consistent with it,
+    // and the explanation and source were rewritten. `correctChoiceId` is
+    // unchanged and no other question was touched; `content.test.ts` pins the
+    // corrected wording. Any other change to this digest is a question-bank
+    // edit that was not approved.
+    expect(digest).toBe('fd3b50a7c8f541e3129b704bfdbb7e13a3ecb69586a09d016a68bd979bc1106f');
   });
 
   it('adds concept metadata to exactly 36 questions for Sails & Trim', () => {
