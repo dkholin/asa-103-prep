@@ -423,7 +423,23 @@ describe('concept Practice mapping', () => {
     // unchanged and no other question was touched; `content.test.ts` pins the
     // corrected wording. Any other change to this digest is a question-bank
     // edit that was not approved.
-    expect(digest).toBe('fd3b50a7c8f541e3129b704bfdbb7e13a3ecb69586a09d016a68bd979bc1106f');
+    // Rolled a fourth time, deliberately: `emer-mob-final-approach` had the
+    // right answer for an inverted reason. Its `whyWrong` on choice `c` and its
+    // explanation both asserted that a victim brought alongside to leeward is
+    // one "the boat drifts away from", and that a windward pickup "risks the
+    // boat drifting down onto the victim". A boat with no way on drifts
+    // downwind, so those two statements are exactly backwards: a victim to
+    // leeward is one the boat drifts *toward*, and a victim to windward is one
+    // it drifts *away from*. The mainstream leeward pickup is taught for that
+    // reason plus the lee the hull provides and the lower heeled freeboard
+    // (US Sailing / CCA / RYA quick-stop teaching; Dockwa states the same fact
+    // as being to windward *of the person* so windage pushes the boat toward
+    // them). The prompt, all four choice texts and `correctChoiceId` are
+    // unchanged — only the two rationale strings moved, and the explanation
+    // now also records the heavy-sea counter-case. `HANDS_ON_CRUISING_RESEARCH.md`
+    // documents the sourcing. Any other change to this digest is a
+    // question-bank edit that was not approved.
+    expect(digest).toBe('e749bfcb7b538ec090d8b1535faa905b07edfc1a4a5ffc6a684633b958c87a4c');
   });
 
   it('adds concept metadata to exactly 36 questions for Sails & Trim', () => {
@@ -666,6 +682,134 @@ describe('concept Practice mapping', () => {
     const ids = lessons.flatMap((lesson) => practiceIdsForConcepts(lesson.concepts));
     expect(ids).toHaveLength(49);
     expect(new Set(ids).size).toBe(49);
+  });
+
+  /**
+   * Step 1's Verifier found a real hole in the guards above, and this closes
+   * it. Pinning each lesson's *count* and its resolved id list leaves a class
+   * of drift undetected: within a multi-concept lesson, a question could be
+   * retagged from one of that lesson's concepts to another — say from
+   * `anchor-scope` to `choosing-an-anchorage` — and the anchorage lesson would
+   * still resolve to exactly the same 22 ids. The lesson-level assertion
+   * cannot see it, because the union is unchanged.
+   *
+   * So the contract is pinned one level down, at the concept. Each of the
+   * eleven Hands-On concepts must resolve to exactly these literal questions,
+   * in this order, which makes any retag inside a lesson a failing test.
+   *
+   * The second half of the guard runs the mapping the other way: no question
+   * anywhere in the bank may carry one of these concepts unless it is listed
+   * here. Without that, a question elsewhere in the bank could quietly join a
+   * Hands-On concept and be served into a lesson nobody added it to.
+   */
+  const HANDS_ON_BY_CONCEPT: Record<string, string[]> = {
+    'steering-a-course': ['sys-compass-purpose'],
+    'ground-tackle-and-anchor-types': [
+      'anchor-type-cqr-plow',
+      'anchor-type-bruce-claw',
+      'anchor-type-danforth-fluke',
+      'anchor-type-mushroom',
+      'anchor-type-holding-power-factors',
+      'anchor-type-choose-for-bottom',
+      'sys-ground-tackle-defn',
+    ],
+    'choosing-an-anchorage': [
+      'chart-nav-lee-shore-defn',
+      'chart-nav-lee-shore-anchoring-risk',
+      'anchor-selection-wind-protection',
+      'anchor-selection-swing-room',
+      'anchor-selection-bottom-type',
+      'anchor-selection-hazards-nearby',
+      'anchor-selection-other-vessels',
+      'anchor-swing-circle-radius',
+    ],
+    'anchor-scope': [
+      'anchor-scope-defn',
+      'anchor-scope-calc-basic',
+      'anchor-scope-calc-storm',
+      'anchor-scope-more-scope-effect',
+      'anchor-scope-less-swing-tradeoff',
+      'anchor-scope-tide-rise-adjust',
+      'anchor-scope-minimum-recommended',
+    ],
+    'setting-and-weighing-anchor': [
+      'anchor-setting-procedure',
+      'anchor-setting-reverse-slowly',
+      'anchor-retrieving-procedure',
+      'sys-windlass-id',
+      'sys-windlass-function',
+    ],
+    'anchor-watch-and-dragging': [
+      'anchor-dragging-signs',
+      'emer-anchor-dragging-recognize',
+      'emer-anchor-dragging-response',
+    ],
+    'mooring-and-dock-line-handling': ['anchor-mooring-vs-anchoring'],
+    'crew-overboard-recovery': [
+      'emer-mob-immediate-actions',
+      'emer-mob-visual-contact',
+      'emer-mob-recovery-methods',
+      'emer-mob-final-approach',
+      'emer-mob-crew-roles',
+    ],
+    'cold-water-immersion': [
+      'emer-hypothermia-recognition',
+      'emer-hypothermia-1101-rule',
+      'emer-hypothermia-prevention',
+      'emer-hypothermia-response-onboard',
+      'emer-hypothermia-handling-caution',
+    ],
+    'grounding-response': [
+      'emer-grounding-recognize',
+      'emer-grounding-response-immediate',
+      'emer-grounding-avoid-further-damage',
+    ],
+    'loss-of-steering-or-propulsion': [
+      'emer-steering-failure-response',
+      'emer-fouled-prop-response',
+      'emer-engine-failure-loss-of-propulsion',
+      'emer-engine-failure-under-sail-response',
+    ],
+  };
+
+  it('resolves every Hands-On Cruising concept to its exact literal question set', () => {
+    for (const [concept, ids] of Object.entries(HANDS_ON_BY_CONCEPT)) {
+      expect(practiceIdsForConcepts([concept as ConceptId]), concept).toEqual(ids);
+    }
+  });
+
+  it('lets no question outside the pinned sets carry a Hands-On Cruising concept', () => {
+    for (const [concept, ids] of Object.entries(HANDS_ON_BY_CONCEPT)) {
+      const expected = new Set(ids);
+      const actual = QUESTIONS.filter((question) =>
+        question.concepts?.includes(concept as ConceptId),
+      ).map((question) => question.id);
+      for (const id of actual) {
+        expect(expected, `${id} unexpectedly carries ${concept}`).toContain(id);
+      }
+      expect(actual.length, `${concept} question count`).toBe(ids.length);
+    }
+  });
+
+  it('covers the eleven Hands-On concepts and their 49 questions exactly once each', () => {
+    const tagged = lessonsForModule('hands-on-cruising').flatMap((lesson) => lesson.concepts);
+    expect(new Set(tagged)).toEqual(new Set(Object.keys(HANDS_ON_BY_CONCEPT)));
+    expect(tagged).toHaveLength(11);
+    const all = Object.values(HANDS_ON_BY_CONCEPT).flat();
+    expect(all).toHaveLength(49);
+    expect(new Set(all).size, 'a question is claimed by two Hands-On concepts').toBe(49);
+    // The lesson-level sets are the union of their concepts' sets, so the two
+    // layers of guard have to agree rather than merely both pass. Compared as
+    // sets: the resolver returns questions in bank order, while the union above
+    // is built concept by concept, so the orderings legitimately differ. Order
+    // itself is already pinned literally by EXPECTED_BY_LESSON and by the
+    // per-concept test above; what is checked here is membership.
+    for (const lesson of lessonsForModule('hands-on-cruising')) {
+      const fromConcepts = lesson.concepts.flatMap((concept) => HANDS_ON_BY_CONCEPT[concept]);
+      const resolved = practiceIdsForConcepts(lesson.concepts);
+      expect(resolved.length, `${lesson.id} size`).toBe(fromConcepts.length);
+      expect([...resolved].sort(), lesson.id).toEqual([...fromConcepts].sort());
+    }
   });
 
   /**

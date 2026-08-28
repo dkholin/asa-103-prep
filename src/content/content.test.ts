@@ -122,6 +122,51 @@ describe('question bank integrity', () => {
     expect(question!.source, 'source no longer cites the governing regulation').toMatch(/175\.15/);
     expect(question!.source, 'source no longer cites the state-supersession regulation').toMatch(/175\.25/);
   });
+
+  /**
+   * The second question-content correction, made during Hands-On Cruising
+   * Step 2. `emer-mob-final-approach` already had the right answer — bring the
+   * person alongside to leeward — but justified it with inverted physics: its
+   * `whyWrong` on choice `c` and its explanation both claimed that leeward is
+   * the side "the boat drifts away from" and that a windward pickup risks
+   * "drifting down onto the victim".
+   *
+   * A boat with no way on drifts downwind. So a person to leeward is one the
+   * boat drifts TOWARD (which is why they stay reachable, and why the hull
+   * shelters them), and a person to windward is one it drifts AWAY from. The
+   * old rationale taught a learner to reason backwards about drift, which is
+   * the part that mattered.
+   *
+   * This pins the direction claim in both places, so the inverted wording
+   * cannot come back, and pins that the heavy-sea counter-case survives — the
+   * one real argument for a windward pickup is that a hull drifting down on a
+   * person in steep waves can land on them, and that trade-off is what stops
+   * the leeward rule being taught as universal.
+   */
+  it('explains the crew-overboard leeward pickup with the drift direction the right way round', () => {
+    const question = QUESTIONS.find((item) => item.id === 'emer-mob-final-approach');
+    expect(question, 'missing question emer-mob-final-approach').toBeDefined();
+    // The answer itself is unchanged by the correction and stays the leeward one.
+    const correct = question!.choices.find((choice) => choice.id === question!.correctChoiceId);
+    expect(correct?.text, 'correct choice is no longer the leeward pickup').toMatch(/leeward/i);
+    const windward = question!.choices.find((choice) => /windward/i.test(choice.text));
+    expect(windward?.whyWrong, 'the windward distractor lost its rationale').toBeTruthy();
+
+    const rationale = `${windward!.whyWrong} ${question!.explanation}`;
+    // The inverted claims, in the forms they actually took.
+    expect(rationale, 'leeward is described as drifting away from the victim again')
+      .not.toMatch(/leeward[^.]*drifts? away from/i);
+    expect(rationale, 'windward is described as drifting onto the victim again')
+      .not.toMatch(/windward[^.]*drift(ing|s)? down onto/i);
+    // The corrected direction, stated positively.
+    expect(question!.explanation, 'explanation no longer says the boat drifts toward the victim')
+      .toMatch(/drifts? (gently )?toward/i);
+    expect(windward!.whyWrong!, 'windward rationale no longer says the boat drifts away')
+      .toMatch(/drift(ing|s)? away from/i);
+    // The trade-off that keeps this from being taught as an absolute rule.
+    expect(question!.explanation, 'explanation lost the heavy-sea counter-case')
+      .toMatch(/steep sea|heavy|waves/i);
+  });
 });
 
 describe('asset manifest integrity', () => {

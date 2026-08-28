@@ -1,6 +1,5 @@
 import type { Lesson } from '../types';
 
-/** Step 1 skeleton — see `holding-a-course.ts`. */
 export const lesson: Lesson = {
   id: 'hands-on-cruising-making-fast',
   moduleId: 'hands-on-cruising',
@@ -10,10 +9,106 @@ export const lesson: Lesson = {
     'Once the boat has been brought alongside or up to a mooring, the job that remains is securing her properly and then getting her away again without damage.',
   concepts: ['mooring-and-dock-line-handling'],
   blocks: [
-    { kind: 'heading', text: 'Placeholder heading' },
+    { kind: 'heading', text: 'Where this lesson starts' },
     {
       kind: 'text',
-      text: 'Placeholder lesson body. Planned coverage: the mooring pendant and pickup hardware, making fast and guarding against chafe, preparing fenders and lines before arrival, casting off, the stopping spring, springing off a berth, doubling lines, and the order in which departure lines come off. Approach decisions — angle, wind on or off, current, prop walk and wash, backing, pivot point, speed control and the go-around — remain Motoring.',
+      text: 'Deciding how to approach a dock — what angle to come in at, what the wind and current will do to you on the way, how the propeller behaves in reverse and when to abandon the attempt and go round again — is boat handling under power, and it belongs to the Motoring module. This lesson picks up where that leaves off: the boat is where you wanted her, and now she has to be attached to something and later detached from it, with the fenders in the right place and everybody still aboard.',
+    },
+    { kind: 'heading', text: 'Moorings: what you will find on the end of the stick' },
+    {
+      kind: 'definition',
+      term: 'Mooring',
+      text: 'A permanent anchor — commonly a mushroom anchor or a heavy sinker — with heavy chain running up to a buoy on the surface. It is sized to sit there for seasons at a time, which is why you can lie to it in conditions where you would think twice about your own ground tackle.',
+    },
+    {
+      kind: 'definition',
+      term: 'Pendant',
+      text: 'The line from the mooring up to your boat, pronounced (and sometimes spelled) "pennant". Some moorings have one permanently attached; on others there is only a ring at the top of the buoy and you supply your own line.',
+    },
+    {
+      kind: 'text',
+      text: 'The awkwardness of picking up a mooring is that you cannot know in advance which arrangement you are dealing with unless you have used this one before. Some have a small pickup buoy floating alongside on a light line, which is easy. Some have a pickup stick — a vertical wand standing above the water — which is easier still, because it stays visible to the helm all the way in. Many have neither, and the pendant hangs underneath the buoy where it can only be fished up with a boathook by somebody leaning right over the bow.',
+    },
+    {
+      kind: 'text',
+      text: 'So go forward prepared for the worst case: boathook in hand, and a dock line already made fast to a bow cleat with the free end led out through the fairlead and back, ready either to pass through a ring or to be dropped over something. Being ready for the version that needs your own line means the easy versions cost you nothing.',
+    },
+    {
+      kind: 'callout',
+      tone: 'warning',
+      title: 'Do not run over the buoy',
+      text: 'The buoy and its pendant must stay clear of the hull and, above all, clear of the propeller. From the moment a crew member has hold of the mooring, the engine belongs in neutral — a shift into gear at that instant can snatch the line out of their hands hard enough to burn or injure, and put it round the propeller as well.',
+    },
+    { kind: 'heading', text: 'Making fast, and the chafe problem' },
+    {
+      kind: 'text',
+      text: 'Getting the line on is not the same as being secure. A boat on a mooring swings all night, and every degree of that swing saws the line back and forth wherever it bears. A line simply passed once through a ring will work on that ring for a few hours and then start to lose.',
+    },
+    {
+      kind: 'text',
+      text: 'For anything longer than a lunch stop, bring a second line forward, make one end fast aboard, and tie the other to the ring with a round turn and two half hitches — the round turn is what keeps it from sawing, because the line bears on itself rather than grinding across the metal. Where the pendant or your line passes over a chock or through a fairlead, fit chafing gear: split hose, heavy canvas, or failing everything else a rag well wrapped. In rough weather or for a long stay this stops being an optional refinement.',
+    },
+    {
+      kind: 'text',
+      text: 'Casting off is the reverse and benefits from one small piece of foresight. If you leave your first line rove through the ring and slack, you have something to hold the boat by while you untie the knot on the second — rather than untying your only attachment and then trying to sort the last line out with the boat already drifting.',
+    },
+    { kind: 'heading', text: 'Alongside: fenders and lines before you arrive' },
+    {
+      kind: 'text',
+      text: 'The whole of a tidy arrival is decided in the ten minutes before it. Sails stowed, lines out and coiled, fenders over, crew told what they are doing — all of it done while there is time, so that the approach itself is quiet.',
+    },
+    {
+      kind: 'text',
+      text: 'Fenders have to be at the right height as well as the right place, and the right height is set by what you are coming alongside. A low floating pontoon and a high fixed quay want them hung quite differently, and a fender riding above the dock edge protects nothing at all. Look at the dock and hang them for that dock. Note what you will be tying to, as well: cleats, rings and pilings each want a different technique, and pilings on a tidal quay may be tall enough that dropping a loop over the top is impossible from deck level.',
+    },
+    {
+      kind: 'text',
+      text: 'Prepare each dock line by making one end fast to a deck cleat first, then leading the free end out through its chock, under the lifelines, and back aboard where it can be picked up. Led that way it is ready to hand ashore or to drop over a cleat, and it is not trapped under a lifeline at the moment it is wanted. A loop worked into the shore end makes life easier for whoever takes it.',
+    },
+    {
+      kind: 'callout',
+      tone: 'warning',
+      title: 'Never fend off with any part of yourself',
+      text: 'A boat closing slowly on a dock carries far more momentum than it looks, and a hand, foot or leg between hull and dock loses. If a crunch is coming and a fender cannot be got in place in time, let it happen and stand clear — gelcoat is repairable. The same applies to stepping ashore: step, do not jump. A misjudged leap turns a small embarrassment into an injury or a person in the water between the boat and the dock.',
+    },
+    { kind: 'heading', text: 'The stopping spring' },
+    {
+      kind: 'definition',
+      term: 'Spring line',
+      text: 'A dock line led at a shallow angle along the boat rather than out from her. An aft spring runs aft from the boat to the dock and stops her moving forward; a forward spring runs forward and stops her moving aft. Together with a bow line and a stern line they are what keep a boat lying parallel to the dock whatever the wind does.',
+    },
+    {
+      kind: 'text',
+      text: 'One spring in particular earns its keep during the arrival itself, not afterwards. Led ashore first and taken round a dock cleat or piling, it can be surged — eased out under friction, the way you would ease a loaded sheet off a winch — so that the boat’s momentum is absorbed gradually and she is brought to a stop without a jolt. On a windy day, once that one line is fast, the boat is effectively under control and the rest of the lines can be attached at walking pace.',
+    },
+    {
+      kind: 'text',
+      text: 'Where it is attached decides what it does. Made fast a little aft of the boat’s widest point, it pulls the boat squarely alongside. Too far forward and it drags the bow in and pushes the stern out, and the arrival stops being elegant.',
+    },
+    { kind: 'heading', text: 'Getting off again: springing and doubling' },
+    {
+      kind: 'text',
+      text: 'Leaving is often harder than arriving, because a boat pinned against a dock has to be levered off it before she can be driven away. That is what springing off does: it uses one line, the engine and a fender to convert forward or reverse thrust into rotation, swinging one end of the boat clear so she can then be driven out.',
+    },
+    {
+      kind: 'text',
+      text: 'The principle is worth holding onto, because the two versions are mirror images of each other. One end of the boat is tethered by the spring and cushioned by a fender, and the engine drives against that tether. Because the tethered end cannot go anywhere, the other end swings out. To swing the stern out, the spring holds the bow and the engine drives ahead against it, with a fender at the bow where the boat will lean. To swing the bow out, the spring holds the stern and the engine drives astern against it, with the fender at the stern. In both cases you wait until the free end is genuinely clear before casting the spring off and driving away.',
+    },
+    {
+      kind: 'figure',
+      assetId: 'custom-springing-off',
+      caption:
+        'The same idea run both ways round. In each panel one spring is still attached and a fender sits at that end, because that is the end being pushed against the dock; the engine drives against the spring, and the end with nothing holding it is the end that swings clear. Read either panel and the other follows from it — swap which end is tethered, reverse the gear, and move the fender to match.',
+    },
+    {
+      kind: 'callout',
+      tone: 'note',
+      title: 'Double the lines that come off last',
+      text: 'To double a line, make one end fast on deck, lead the other round the cleat or piling ashore, and bring it back to the same deck cleat. Now both ends are aboard, and you can let one go and haul the line back in without anybody standing on the dock. Double whichever lines will be released last — usually the ones holding the boat against the wind — and the whole departure can be run from on board, with nobody left ashore to jump for it at the end. Check as you set them up that they will run freely: a knot fouling under a cleat, or a snag on the dock, is discovered at the worst possible moment.',
+    },
+    {
+      kind: 'text',
+      text: 'Once you are clear, bring the fenders aboard rather than motoring off with them dangling, and coil and stow the lines so they are ready for the next arrival.',
     },
   ],
 };

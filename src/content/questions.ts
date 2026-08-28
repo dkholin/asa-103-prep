@@ -6740,11 +6740,11 @@ export const QUESTIONS: Question[] = [
   choices: [
     { id: 'a', text: "Slow the boat well before reaching the victim and bring them alongside on the leeward (downwind) side, under control" },
     { id: 'b', text: "Approach at full speed to minimize time in the water", whyWrong: "A fast final approach risks running over or striking the victim and makes it much harder to stop precisely alongside them; speed should be reduced well before the final approach." },
-    { id: 'c', text: "Bring the victim alongside on the windward (upwind) side of the boat", whyWrong: "Approaching from the windward side risks the boat drifting down onto the victim; bringing them alongside to leeward, where the boat drifts away from them, is the safer approach." },
+    { id: 'c', text: "Bring the victim alongside on the windward (upwind) side of the boat", whyWrong: "A boat with no way on drifts downwind, so a victim held to windward is one the boat is drifting away from — the gap you just closed starts reopening. Brought alongside to leeward they stay within reach, the hull shelters them, and the heeled leeward rail is the lower side to lift from." },
     { id: 'd', text: "Keep the engine in gear and propeller turning right up to the victim for maximum control", whyWrong: "A spinning propeller near a person in the water, or near lines/flotation gear trailing from them, is a serious injury hazard; the engine is normally taken out of gear during the final approach alongside." },
   ],
   correctChoiceId: 'a',
-  explanation: "On the final approach, speed is reduced early so the boat glides to a stop rather than arriving fast, the victim is brought alongside to leeward so the boat drifts away from (not onto) them, and the engine is taken out of gear near the victim to eliminate propeller risk.",
+  explanation: "On the final approach, speed is reduced early so the boat glides to a stop rather than arriving fast; the victim is brought alongside to leeward, where the hull gives them a lee, the freeboard is lowest and the boat drifts gently toward them rather than away; and the engine is taken out of gear near the victim to eliminate propeller risk. In a steep sea some instruction prefers keeping the victim to windward instead, to avoid the hull dropping onto them — a trade-off settled by the conditions on the day.",
   source: 'ASA 103 standard curriculum — crew overboard, final approach and recovery',
 },
 {

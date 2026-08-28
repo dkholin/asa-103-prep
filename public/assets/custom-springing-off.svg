@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" role="img" aria-label="Two overhead panels of a boat lying alongside a dock, each keeping one line attached with a fender at that end, an engine-thrust arrow, and the opposite end of the boat shown swinging clear.">
+  <defs>
+    <!-- Canonical primitive: powerboat-top.svg (asa103-canonical-assets, approved) -->
+    <symbol id="boat-top" viewBox="381.22 122.18 149.98 427.51">
+      <path fill="#282858" d="M 450.309,544.253 C 442.113,541.871 406.465,533.01 404.804,527.907 C 400.943,516.044 397.668,488.236 395.847,475.322 C 384.041,391.626 376.556,305.482 404.099,223.824 C 415.536,189.914 432.957,153.747 456.553,126.176 C 494.343,167.884 516.535,230.711 523.605,286.036 C 532.569,356.187 523.229,429.667 512.091,499.121 C 511.139,505.055 509.33,523.953 505.065,529.741 C 498.976,533.817 469.271,542.654 461.935,544.237 C 461.428,544.239 460.888,544.23 460.384,544.248 C 459.457,544.846 458.613,545.43 457.492,545.575 C 456.11,545.754 453.921,545.834 452.793,544.846 C 451.724,543.91 452.259,509.219 452.208,505.186 C 455.497,505.184 457.188,504.99 460.455,505.667 C 461.1,505.603 461.34,505.542 461.972,505.394 C 472.034,505.112 482.801,505.548 492.591,505.115 C 495.87,477.139 497.974,449.09 500.291,421.523 C 505.233,364.375 511.769,306.564 492.631,251.069 C 490.649,245.321 487.021,230.598 483.597,226.833 C 470.775,212.733 446.398,211.682 431.957,223.988 C 426.303,228.806 424.164,238.772 422.221,245.179 C 414.868,268.625 410.236,292.839 408.419,317.344 C 406.057,346.313 409.178,386.9 411.641,416.246 C 414.02,444.583 416.343,477.089 419.955,505.235 L 450.389,505.174 L 450.309,544.253 Z"/>
+      <path fill="#282858" d="M 451.733,217.452 C 460.14,216.952 478.062,220.523 481.686,227.539 C 490.419,244.448 498.8,277.884 501.033,295.669 C 507.145,344.347 500.746,394.861 496.626,443.443 C 485.652,442.911 473.048,443.152 461.942,443.153 L 415.728,443.503 C 415.472,429.498 413.19,413.15 412.119,399.01 C 408.475,350.924 406.917,303.081 420.94,256.288 C 427.528,234.301 426.591,222.395 451.733,217.452 Z"/>
+    </symbol>
+    <marker id="thrust-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2b6cb0"/>
+    </marker>
+    <marker id="swing-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#52697c"/>
+    </marker>
+  </defs>
+
+  <rect width="560" height="300" fill="#edf6fa"/>
+  <line x1="280" y1="16" x2="280" y2="284" stroke="#c3d4de" stroke-width="1"/>
+
+  <!--
+    PANEL A - springing the stern out.
+    The spring leads AFT from the bow to the dock, so it stops the boat going
+    forward. Engine AHEAD works against it: the bow is held in against a fender
+    and the free end - the stern - rotates away from the dock.
+  -->
+  <text x="145" y="32" text-anchor="middle" font-family="sans-serif" font-size="14.5" font-weight="700" letter-spacing="0.6" fill="#1a3d5c">SPRING THE STERN OUT</text>
+
+  <rect x="10" y="248" width="260" height="44" fill="#d9cfb4" stroke="#9c8f70" stroke-width="1.5"/>
+  <rect x="114" y="241" width="14" height="8" rx="2" fill="#8a8a8a" stroke="#4a4a4a" stroke-width="1.2"/>
+
+  <g transform="rotate(90 146 201)"><use href="#boat-top" x="125" y="135" width="42" height="132"/></g>
+
+  <circle cx="196" cy="236" r="10" fill="#efcb81" stroke="#b8894a" stroke-width="1.8"/>
+  <path d="M 204 207 L 121 246" fill="none" stroke="#c05621" stroke-width="2.8" stroke-linecap="round"/>
+
+  <path d="M 84 182 C 72 164 74 146 88 132" fill="none" stroke="#52697c" stroke-width="2.4" marker-end="url(#swing-head)"/>
+  <line x1="104" y1="170" x2="174" y2="170" stroke="#2b6cb0" stroke-width="2.8" marker-end="url(#thrust-head)"/>
+
+  <text x="139" y="162" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.4" fill="#2b6cb0">ENGINE AHEAD</text>
+  <text x="112" y="244" text-anchor="end" font-family="sans-serif" font-size="11.5" fill="#7a3a12">aft spring</text>
+  <text x="222" y="236" text-anchor="start" font-family="sans-serif" font-size="11.5" fill="#6b5a35">fender</text>
+
+  <!--
+    PANEL B - springing the bow out, the mirror case. The spring leads FORWARD
+    from the stern, engine ASTERN works against it, the stern is held in against
+    a fender and the bow swings clear.
+  -->
+  <text x="425" y="32" text-anchor="middle" font-family="sans-serif" font-size="14.5" font-weight="700" letter-spacing="0.6" fill="#1a3d5c">SPRING THE BOW OUT</text>
+
+  <rect x="290" y="248" width="260" height="44" fill="#d9cfb4" stroke="#9c8f70" stroke-width="1.5"/>
+  <rect x="452" y="241" width="14" height="8" rx="2" fill="#8a8a8a" stroke="#4a4a4a" stroke-width="1.2"/>
+
+  <g transform="rotate(90 426 201)"><use href="#boat-top" x="405" y="135" width="42" height="132"/></g>
+
+  <circle cx="376" cy="236" r="10" fill="#efcb81" stroke="#b8894a" stroke-width="1.8"/>
+  <path d="M 368 207 L 451 246" fill="none" stroke="#c05621" stroke-width="2.8" stroke-linecap="round"/>
+
+  <path d="M 488 182 C 500 164 498 146 484 132" fill="none" stroke="#52697c" stroke-width="2.4" marker-end="url(#swing-head)"/>
+  <line x1="468" y1="170" x2="398" y2="170" stroke="#2b6cb0" stroke-width="2.8" marker-end="url(#thrust-head)"/>
+
+  <text x="433" y="162" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.4" fill="#2b6cb0">ENGINE ASTERN</text>
+  <text x="466" y="244" text-anchor="start" font-family="sans-serif" font-size="11.5" fill="#7a3a12">forward spring</text>
+  <text x="350" y="236" text-anchor="end" font-family="sans-serif" font-size="11.5" fill="#6b5a35">fender</text>
+</svg>

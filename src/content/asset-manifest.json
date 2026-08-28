@@ -1362,6 +1362,19 @@
       "attributionRequired": false,
       "modified": false,
       "usedByQuestions": []
+    },
+    {
+      "id": "custom-springing-off",
+      "filename": "custom-springing-off.svg",
+      "altText": "Two overhead panels of a boat lying alongside a dock, each keeping one line attached with a fender at that end, an engine-thrust arrow, and the opposite end of the boat shown swinging clear.",
+      "description": "Purpose-built diagram: the two mirror-image spring-off cases side by side - an aft spring from the bow with the engine ahead swinging the stern clear, and a forward spring from the stern with the engine astern swinging the bow clear, each with the fender at the pivoting end",
+      "sourcePage": "created in-repo",
+      "originalUrl": "",
+      "creator": "asa-103-prep project (original SVG)",
+      "license": "Project-original, free to use",
+      "attributionRequired": false,
+      "modified": false,
+      "usedByQuestions": []
     }
   ]
 }

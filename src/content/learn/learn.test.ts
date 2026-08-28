@@ -398,18 +398,19 @@ describe('learn content integrity', () => {
   });
 
   /**
-   * Hands-On Cruising, Step 1.
+   * Hands-On Cruising is finished as of Step 2. Step 1's version of this guard
+   * deliberately tolerated placeholder copy, two-block lessons and no figures;
+   * all three allowances are gone, and what is pinned now is the same contract
+   * the other finished modules carry — ids, order, titles and concept tags,
+   * placeholder-free substantial copy, and the exact list of figures in
+   * document order so a new asset arrives with a deliberate edit here.
    *
-   * STEP 2 MUST REPLACE/TIGHTEN THIS SKELETON GUARD. This deliberately
-   * tolerates placeholder copy and a two-block lesson, which the finished
-   * modules above forbid. What it pins now is the structural contract Step 2
-   * must not drift from — the six ids, their titles, their order, their
-   * concept tags, and that every lesson carries content the renderer can
-   * actually render. When the teaching copy lands, this becomes the same
-   * contract the other finished modules carry: no placeholder text, a real
-   * intro, a block floor, a prose-word floor, and an approved-figure list.
+   * The prose floor is 400 words, matching Boat & Cruising Basics. It exists to
+   * catch a lesson gutted back to a skeleton, not to force any particular
+   * length — the shortest lesson here clears it with room to spare, so an
+   * editorial trim does not break the build.
    */
-  it('publishes six Hands-On Cruising lesson skeletons in order with their final ids, titles and concepts', () => {
+  it('publishes six finished Hands-On Cruising lessons in order, tagged and using only approved figures', () => {
     const module = MODULES.find((item) => item.id === 'hands-on-cruising');
     expect(module?.status).toBe('published');
     const lessons = lessonsForModule('hands-on-cruising');
@@ -443,28 +444,185 @@ describe('learn content integrity', () => {
       for (const concept of lesson.concepts) {
         expect([...conceptIds], `concept ${concept} of ${lesson.id}`).toContain(concept);
       }
-      // Renderable: a real intro sentence and at least one block, none of them
-      // empty. Step 1 carries no figures, so nothing here may reference an
-      // asset yet.
-      expect(lesson.intro.trim(), `empty intro on ${lesson.id}`).not.toBe('');
-      expect(lesson.blocks.length, `empty skeleton ${lesson.id}`).toBeGreaterThan(0);
-      for (const block of lesson.blocks) {
-        expect(block.kind, `unrenderable block in ${lesson.id}`).not.toBe('figure');
-        if (block.kind === 'text' || block.kind === 'heading') {
-          expect(block.text.trim(), `empty block in ${lesson.id}`).not.toBe('');
-        }
-      }
+      expect(JSON.stringify(lesson), `placeholder copy in ${lesson.id}`)
+        .not.toMatch(/placeholder|draft lesson|planned coverage|still being drafted|lesson coverage|\bTBD\b/i);
+      expect(lesson.blocks.length, `thin lesson ${lesson.id}`).toBeGreaterThanOrEqual(12);
+      expect(lesson.intro.trim().split(/\s+/).length, `stub intro on ${lesson.id}`).toBeGreaterThanOrEqual(8);
+      const prose = [lesson.intro, ...lesson.blocks.filter((block) => block.kind === 'text').map((block) => block.text)];
+      expect(prose.join(' ').split(/\s+/).length, `thin prose in ${lesson.id}`).toBeGreaterThanOrEqual(400);
+      expect(
+        new Set(lesson.blocks.map((block) => block.kind)).size,
+        `monotonous block use in ${lesson.id}`,
+      ).toBeGreaterThanOrEqual(4);
+    }
+    // Figures in document order. All but one are reused, already-approved
+    // manifest assets; `custom-springing-off` is the single new asset this
+    // module introduced, and it is a Learn-only figure with no question behind
+    // it, which is why it appears here and nowhere in the question bank.
+    expect(
+      lessons.flatMap((lesson) => lesson.blocks)
+        .filter((block) => block.kind === 'figure')
+        .map((block) => block.assetId),
+    ).toEqual([
+      'photo-cqr-anchor',
+      'photo-danforth-anchor',
+      'custom-anchorage-selection',
+      'custom-swing-circle',
+      'custom-scope-geometry',
+      'custom-dragging-anchor',
+      'custom-springing-off',
+      'custom-mob-recovery-approach',
+      'custom-cold-water-1101',
+      'photo-grounded-boat',
+    ]);
+    const figuresOf = (order: number) =>
+      lessons[order - 1].blocks.filter((block) => block.kind === 'figure').map((block) => block.assetId);
+    // L1 carries no figure on purpose: the only close candidate is the
+    // dragging-anchor diagram, and dropping an anchoring scenario into the
+    // steering lesson would teach the wrong subject. Transits are taught in
+    // prose there instead.
+    expect(figuresOf(1)).toEqual([]);
+    // The two crude quiz stimuli stay out of the teaching content entirely.
+    const allFigures = lessons.flatMap((lesson) => lesson.blocks)
+      .filter((block) => block.kind === 'figure').map((block) => block.assetId);
+    expect(allFigures, 'crude windlass stimulus used as a teaching figure')
+      .not.toContain('custom-windlass-deck');
+    expect(allFigures, 'crude emergency-tiller stimulus used as a teaching figure')
+      .not.toContain('custom-emergency-tiller');
+    // L4 must not reuse Motoring's mooring-approach diagram: this lesson is
+    // line handling, not approach geometry.
+    expect(figuresOf(4), 'L4 reuses the Motoring approach diagram')
+      .not.toContain('custom-mooring-approach');
+    for (const block of lessons.flatMap((lesson) => lesson.blocks)) {
+      if (block.kind !== 'figure') continue;
+      expect(block.caption?.trim(), `uncaptioned figure ${block.assetId}`).toBeTruthy();
     }
     // No concept repeats within the module, so practising one lesson never
-    // re-serves a neighbour's set.
+    // re-serves a neighbour's set. The 11 concepts are exactly these, and in
+    // particular there is still no `transits-and-ranges` — transits are taught
+    // in lesson 1's prose without minting taxonomy that would resolve to zero
+    // Practice questions.
     const tags = lessons.flatMap((lesson) => lesson.concepts);
     expect(new Set(tags).size, 'a concept is tagged on two Hands-On lessons').toBe(tags.length);
-    // The 11 concepts this module introduced are exactly the ones above: no
-    // stray reuse of an existing id, and in particular no `transits-and-ranges`
-    // — transits are taught in lesson 1's prose without minting taxonomy that
-    // would resolve to zero Practice questions.
     expect(tags).toHaveLength(11);
     expect([...conceptIds]).not.toContain('transits-and-ranges');
+  });
+
+  /**
+   * The module boundary, enforced on the prose rather than on the tags. Each
+   * neighbouring module already owns a body of material that Hands-On Cruising
+   * would find it easy to re-teach, and the failure mode is a duplicated
+   * lesson rather than a wrong one.
+   *
+   * These are named *techniques and theory*, not topics. Hands-On is free — and
+   * in several places expected — to say that docking approaches, compass
+   * theory, sail trim and the distress call belong elsewhere, and to
+   * cross-reference them. What it must not do is teach them.
+   */
+  it('does not re-teach Motoring, Navigation, Sails or Cruising Life & Safety material', () => {
+    const lessons = lessonsForModule('hands-on-cruising');
+    // Human-visible copy only. Matching against JSON.stringify would also see
+    // structural keys — a table's `headers` array is not the sailing sense of
+    // "header" — so the text a learner actually reads is reassembled here.
+    const visible = (lesson: (typeof lessons)[number]) =>
+      [
+        lesson.title,
+        lesson.intro,
+        ...lesson.blocks.flatMap((block) => {
+          switch (block.kind) {
+            case 'text':
+            case 'heading':
+              return [block.text];
+            case 'list':
+              return block.items;
+            case 'definition':
+              return [block.term, block.text];
+            case 'callout':
+              return [block.title ?? '', block.text];
+            case 'table':
+              return [block.caption ?? '', ...block.headers, ...block.rows.flat()];
+            case 'figure':
+              return [block.caption ?? ''];
+            default:
+              return [];
+          }
+        }),
+      ].join(' \n ');
+    const prose = lessons.map(visible).join(' \n ');
+
+    // Motoring owns approach geometry and propeller behaviour. L4 is the lesson
+    // most at risk, so it is also checked on its own.
+    const makingFast = visible(lessons[3]);
+    for (const [label, pattern] of [
+      ['prop walk', /prop\s*walk/i],
+      ['prop wash', /prop\s*wash/i],
+      ['pivot point', /pivot point/i],
+      ['approach angle', /\b(30|45)[- ]degree angle|angle of approach|approach at an angle/i],
+      ['wind onto/off the dock as an approach case', /wind (blowing )?(onto|off) the dock/i],
+      ['the go-around', /go.around|abort the approach/i],
+    ] as const) {
+      expect(makingFast, `L4 teaches Motoring's ${label}`).not.toMatch(pattern);
+    }
+
+    // Navigation Rules & Tools owns the compass as an instrument and all
+    // chartwork. L1 teaches steering to a heading, not where the heading came
+    // from.
+    for (const [label, pattern] of [
+      ['variation', /\bvariation\b/i],
+      ['deviation', /\bdeviation\b/i],
+      // Deliberately narrow: naming chartwork in order to defer it to
+      // Navigation is a cross-reference and is allowed. What is forbidden is
+      // actually walking a learner through laying a course off on a chart.
+      ['plotting a course', /how to plot|plot(ting)? a (course|position) on the chart/i],
+    ] as const) {
+      expect(prose, `Hands-On teaches Navigation's ${label}`).not.toMatch(pattern);
+    }
+
+    // Sails & Trim owns tactical sailing. The Advisory decision for L1 was to
+    // omit headers, lifts and tacking-angle arithmetic outright.
+    for (const [label, pattern] of [
+      // The tactical sense specifically. "Lift" in the ordinary sense — a tide
+      // lifting a boat off, lifting a casualty aboard — is not this module
+      // straying into Sails & Trim.
+      ['headers and lifts', /\bheaders? and lifts?\b|\b(header|lift)\b[^.]{0,60}wind ?shift|wind ?shift[^.]{0,60}\b(header|lift)\b|closest tack/i],
+      ['tacking angle', /tacking angle|tacks? through (about )?\d+ degrees/i],
+      ['points of sail', /points? of sail|broad reach/i],
+    ] as const) {
+      expect(prose, `Hands-On teaches Sails & Trim's ${label}`).not.toMatch(pattern);
+    }
+
+    // Cruising Life & Safety owns the distress call, the PFD/harness
+    // curriculum, fire, flooding and injury care. L5 may say a life jacket
+    // matters and must not teach how to choose or wear one, or how to call.
+    for (const [label, pattern] of [
+      ['the MAYDAY call', /mayday|channel 16|\bdsc\b/i],
+      ['PFD selection and fit', /\bpfd\b|wearable (device|flotation)|throwable device|fit check/i],
+      // Naming harnesses and jacklines in order to hand them to Cruising Life
+      // & Safety is the deferral working as intended; instructing a learner in
+      // their use is not.
+      ['harnesses and jacklines', /how to (rig|use|wear) a (jackline|harness|tether)|clip (the|your) tether|where to clip/i],
+      ['fire', /fire extinguisher|class [abc] fire/i],
+      ['flooding', /flooding|seacock/i],
+    ] as const) {
+      expect(prose, `Hands-On teaches Cruising Life & Safety's ${label}`).not.toMatch(pattern);
+    }
+
+    // The deferrals are pinned positively as well, so the boundary is stated
+    // to the learner rather than only enforced by the negatives above.
+    expect(visible(lessons[3]), 'L4 lost its deferral of approach handling to Motoring')
+      .toMatch(/motoring/i);
+    expect(visible(lessons[4]), 'L5 lost its deferral of PFDs and distress calling')
+      .toMatch(/cruising life & safety/i);
+    expect(visible(lessons[0]), 'L1 lost its deferral of compass theory to Navigation')
+      .toMatch(/navigation rules & tools/i);
+
+    // Seamanship's reserved material: knots as knots, towing theory, and
+    // physically clearing fouled propulsion. L6 stops at the immediate
+    // response and says so.
+    expect(prose, 'Hands-On teaches a prop-clearing technique')
+      .not.toMatch(/cut(ting)? (the|away) (line|rope) (free|clear) (from|off) the prop|dive down to the prop/i);
+    expect(visible(lessons[5]), 'L6 lost its refusal to teach in-water prop clearing')
+      .toMatch(/does not teach it|do not go in/i);
   });
 
   it('tags every lesson with valid concept ids', () => {
