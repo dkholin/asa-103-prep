@@ -89,6 +89,17 @@ export const CONCEPT_IDS = [
   'fire-and-flooding-response',
   'distress-communications',
   'crew-injury-response',
+  'steering-a-course',
+  'ground-tackle-and-anchor-types',
+  'choosing-an-anchorage',
+  'anchor-scope',
+  'setting-and-weighing-anchor',
+  'anchor-watch-and-dragging',
+  'mooring-and-dock-line-handling',
+  'crew-overboard-recovery',
+  'cold-water-immersion',
+  'grounding-response',
+  'loss-of-steering-or-propulsion',
 ] as const;
 
 export type ConceptId = (typeof CONCEPT_IDS)[number];

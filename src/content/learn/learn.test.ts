@@ -397,6 +397,76 @@ describe('learn content integrity', () => {
     expect(new Set(tagged).size).toBe(tagged.length);
   });
 
+  /**
+   * Hands-On Cruising, Step 1.
+   *
+   * STEP 2 MUST REPLACE/TIGHTEN THIS SKELETON GUARD. This deliberately
+   * tolerates placeholder copy and a two-block lesson, which the finished
+   * modules above forbid. What it pins now is the structural contract Step 2
+   * must not drift from — the six ids, their titles, their order, their
+   * concept tags, and that every lesson carries content the renderer can
+   * actually render. When the teaching copy lands, this becomes the same
+   * contract the other finished modules carry: no placeholder text, a real
+   * intro, a block floor, a prose-word floor, and an approved-figure list.
+   */
+  it('publishes six Hands-On Cruising lesson skeletons in order with their final ids, titles and concepts', () => {
+    const module = MODULES.find((item) => item.id === 'hands-on-cruising');
+    expect(module?.status).toBe('published');
+    const lessons = lessonsForModule('hands-on-cruising');
+    expect(lessons).toHaveLength(6);
+    expect(lessons.map((lesson) => lesson.id)).toEqual([
+      'hands-on-cruising-holding-a-course',
+      'hands-on-cruising-ground-tackle-and-anchorage',
+      'hands-on-cruising-setting-watching-weighing',
+      'hands-on-cruising-making-fast',
+      'hands-on-cruising-crew-overboard',
+      'hands-on-cruising-loss-of-control',
+    ]);
+    expect(lessons.map((lesson) => lesson.title)).toEqual([
+      'Holding a Course',
+      'Ground Tackle & Choosing the Spot',
+      'Setting, Watching & Weighing',
+      'Making Fast: Moorings & Dock Lines',
+      'Crew Overboard & Cold Water',
+      'Grounding, Steering & Propulsion Loss',
+    ]);
+    expect(lessons.map((lesson) => lesson.order)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(lessons.map((lesson) => lesson.concepts)).toEqual([
+      ['steering-a-course'],
+      ['ground-tackle-and-anchor-types', 'choosing-an-anchorage', 'anchor-scope'],
+      ['setting-and-weighing-anchor', 'anchor-watch-and-dragging'],
+      ['mooring-and-dock-line-handling'],
+      ['crew-overboard-recovery', 'cold-water-immersion'],
+      ['grounding-response', 'loss-of-steering-or-propulsion'],
+    ]);
+    for (const lesson of lessons) {
+      for (const concept of lesson.concepts) {
+        expect([...conceptIds], `concept ${concept} of ${lesson.id}`).toContain(concept);
+      }
+      // Renderable: a real intro sentence and at least one block, none of them
+      // empty. Step 1 carries no figures, so nothing here may reference an
+      // asset yet.
+      expect(lesson.intro.trim(), `empty intro on ${lesson.id}`).not.toBe('');
+      expect(lesson.blocks.length, `empty skeleton ${lesson.id}`).toBeGreaterThan(0);
+      for (const block of lesson.blocks) {
+        expect(block.kind, `unrenderable block in ${lesson.id}`).not.toBe('figure');
+        if (block.kind === 'text' || block.kind === 'heading') {
+          expect(block.text.trim(), `empty block in ${lesson.id}`).not.toBe('');
+        }
+      }
+    }
+    // No concept repeats within the module, so practising one lesson never
+    // re-serves a neighbour's set.
+    const tags = lessons.flatMap((lesson) => lesson.concepts);
+    expect(new Set(tags).size, 'a concept is tagged on two Hands-On lessons').toBe(tags.length);
+    // The 11 concepts this module introduced are exactly the ones above: no
+    // stray reuse of an existing id, and in particular no `transits-and-ranges`
+    // — transits are taught in lesson 1's prose without minting taxonomy that
+    // would resolve to zero Practice questions.
+    expect(tags).toHaveLength(11);
+    expect([...conceptIds]).not.toContain('transits-and-ranges');
+  });
+
   it('tags every lesson with valid concept ids', () => {
     for (const l of LESSONS) {
       expect(l.concepts.length, `concepts of ${l.id}`).toBeGreaterThan(0);

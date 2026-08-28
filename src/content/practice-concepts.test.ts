@@ -297,6 +297,63 @@ const EXPECTED_BY_LESSON: Record<string, string[]> = {
     'chart-nav-distance-nm-length',
     'chart-nav-distance-dividers-method',
   ],
+  'hands-on-cruising-holding-a-course': ['sys-compass-purpose'],
+  'hands-on-cruising-ground-tackle-and-anchorage': [
+    'chart-nav-lee-shore-defn',
+    'chart-nav-lee-shore-anchoring-risk',
+    'anchor-type-cqr-plow',
+    'anchor-type-bruce-claw',
+    'anchor-type-danforth-fluke',
+    'anchor-type-mushroom',
+    'anchor-type-holding-power-factors',
+    'anchor-type-choose-for-bottom',
+    'anchor-selection-wind-protection',
+    'anchor-selection-swing-room',
+    'anchor-selection-bottom-type',
+    'anchor-selection-hazards-nearby',
+    'anchor-selection-other-vessels',
+    'anchor-scope-defn',
+    'anchor-scope-calc-basic',
+    'anchor-scope-calc-storm',
+    'anchor-scope-more-scope-effect',
+    'anchor-scope-less-swing-tradeoff',
+    'anchor-scope-tide-rise-adjust',
+    'anchor-scope-minimum-recommended',
+    'anchor-swing-circle-radius',
+    'sys-ground-tackle-defn',
+  ],
+  'hands-on-cruising-setting-watching-weighing': [
+    'anchor-setting-procedure',
+    'anchor-setting-reverse-slowly',
+    'anchor-retrieving-procedure',
+    'anchor-dragging-signs',
+    'sys-windlass-id',
+    'sys-windlass-function',
+    'emer-anchor-dragging-recognize',
+    'emer-anchor-dragging-response',
+  ],
+  'hands-on-cruising-making-fast': ['anchor-mooring-vs-anchoring'],
+  'hands-on-cruising-crew-overboard': [
+    'emer-hypothermia-recognition',
+    'emer-hypothermia-1101-rule',
+    'emer-hypothermia-prevention',
+    'emer-hypothermia-response-onboard',
+    'emer-hypothermia-handling-caution',
+    'emer-mob-immediate-actions',
+    'emer-mob-visual-contact',
+    'emer-mob-recovery-methods',
+    'emer-mob-final-approach',
+    'emer-mob-crew-roles',
+  ],
+  'hands-on-cruising-loss-of-control': [
+    'emer-steering-failure-response',
+    'emer-fouled-prop-response',
+    'emer-grounding-recognize',
+    'emer-grounding-response-immediate',
+    'emer-grounding-avoid-further-damage',
+    'emer-engine-failure-loss-of-propulsion',
+    'emer-engine-failure-under-sail-response',
+  ],
 };
 
 describe('concept Practice mapping', () => {
@@ -387,7 +444,7 @@ describe('concept Practice mapping', () => {
     ).toHaveLength(36);
   });
 
-  it('carries concept metadata on exactly 218 questions across the whole bank', () => {
+  it('carries concept metadata on exactly 267 questions across the whole bank', () => {
     // 158 before Boat & Cruising Basics, plus the 24 previously untagged
     // `cruising-systems` questions its six lessons claim, plus Cruising Life &
     // Safety Step 1. That module claims 40 questions, but four of them were
@@ -396,7 +453,11 @@ describe('concept Practice mapping', () => {
     // keep their Motoring `fueling-safety`/`blower-ventilation` tags and gain
     // a second concept — so only 36 previously untagged questions became
     // tagged. Additive metadata only, with no question content touched.
-    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(218);
+    // Hands-On Cruising Step 1 adds 49 more. All 49 were untagged before it,
+    // so the count moves by the full 49 rather than by a smaller number the
+    // way Cruising Life & Safety's did. Additive metadata only, with no
+    // question content touched.
+    expect(QUESTIONS.filter((question) => question.concepts?.length)).toHaveLength(267);
   });
 
   /**
@@ -454,9 +515,15 @@ describe('concept Practice mapping', () => {
     ]) {
       const question = QUESTIONS.find((item) => item.id === id);
       expect(question, `missing question ${id}`).toBeDefined();
-      expect(question?.concepts ?? [], `${id} gained concepts`).toEqual([]);
       expect(claimed, `${id} claimed by Boat & Cruising Basics`).not.toContain(id);
     }
+    // Five of the six have since been claimed by Hands-On Cruising, which is
+    // the module they were reserved for; the assertion above — that Boat &
+    // Cruising Basics does not serve them — is unchanged and is the part that
+    // was ever about this module. `sys-compass-interference-note` is still
+    // reserved for Navigation and must carry no concepts at all.
+    const stillUnclaimed = QUESTIONS.find((item) => item.id === 'sys-compass-interference-note');
+    expect(stillUnclaimed?.concepts ?? [], 'sys-compass-interference-note gained concepts').toEqual([]);
   });
 
   /**
@@ -557,6 +624,152 @@ describe('concept Practice mapping', () => {
     // tags: reusing them would have dragged their questions in with them.
     for (const concept of ['stowage', 'dc-electrical-system', 'bilge-and-pumps', 'through-hulls-and-seacocks', 'fueling-safety', 'blower-ventilation']) {
       expect([...moduleConcepts], `${concept} tagged on a Cruising Life & Safety lesson`).not.toContain(concept);
+    }
+  });
+
+  /* -------------------------------------------------------------------------
+   * Hands-On Cruising, Step 1.
+   * ---------------------------------------------------------------------- */
+
+  /**
+   * The literal id lists above are the contract; these are the session sizes a
+   * learner actually sees behind "Practice this material" on each of the six
+   * lessons, taken from the app's own resolver rather than counted by hand.
+   * Lessons 1 and 4 resolve to a single question each. That is accepted for
+   * Step 1 — the question-bank expansion is deferred — but both are still real
+   * sessions rather than dead buttons.
+   */
+  it('resolves a pinned Practice count for every Hands-On Cruising lesson', () => {
+    const counts = lessonsForModule('hands-on-cruising').map((lesson) => [
+      lesson.id,
+      practiceIdsForConcepts(lesson.concepts).length,
+    ]);
+    expect(counts).toEqual([
+      ['hands-on-cruising-holding-a-course', 1],
+      ['hands-on-cruising-ground-tackle-and-anchorage', 22],
+      ['hands-on-cruising-setting-watching-weighing', 8],
+      ['hands-on-cruising-making-fast', 1],
+      ['hands-on-cruising-crew-overboard', 10],
+      ['hands-on-cruising-loss-of-control', 7],
+    ]);
+    expect(counts.every(([, count]) => (count as number) > 0)).toBe(true);
+  });
+
+  /**
+   * The module claims 49 distinct questions and practises none of them twice.
+   * Four of the six lessons carry more than one concept, so this is the guard
+   * that a multi-concept lesson resolves to the union of its concepts exactly
+   * once each, and that no question is served by two lessons of this module.
+   */
+  it('claims exactly 49 distinct questions across Hands-On Cruising', () => {
+    const lessons = lessonsForModule('hands-on-cruising');
+    const ids = lessons.flatMap((lesson) => practiceIdsForConcepts(lesson.concepts));
+    expect(ids).toHaveLength(49);
+    expect(new Set(ids).size).toBe(49);
+  });
+
+  /**
+   * The module boundary, enforced from the question side. Hands-On Cruising
+   * owns putting the boat where it needs to be and recovering control when it
+   * is lost — not the approach decisions, the compass theory, or the
+   * fire/flooding/distress/PFD curriculum that sit either side of it.
+   */
+  it('pulls in no Motoring, Navigation, Cruising Life & Safety or Seamanship question', () => {
+    const moduleConcepts = new Set<ConceptId>(
+      lessonsForModule('hands-on-cruising').flatMap((lesson) => lesson.concepts),
+    );
+    const claimed = new Set(practiceIdsForConcepts([...moduleConcepts]));
+    const reserved = [
+      // Motoring: powered approach, docking and prop effects.
+      'eng-mooring-approach-id',
+      'eng-mooring-speed-control',
+      'eng-mooring-pendant-pickup',
+      'eng-dock-spring-line-use',
+      'eng-dock-wind-onto-approach',
+      'eng-dock-wind-off-approach',
+      'eng-dock-current-parallel-approach',
+      'eng-dock-strongest-force-priority',
+      'eng-dock-abort-goaround',
+      'eng-prop-walk-id',
+      'eng-prop-wash-rudder',
+      // Navigation: compass theory and chart work.
+      'sys-compass-interference-note',
+      'chart-nav-compass-variation-defn',
+      'chart-nav-compass-deviation-vs-variation',
+      'chart-nav-tools-parallel-rules',
+      // Cruising Life & Safety: fire, flooding, distress, injury, PFD, harness.
+      'emer-fire-immediate-priorities',
+      'emer-flooding-seacock-response',
+      'emer-vhf-distress-mayday',
+      'emer-crew-injury-priorities',
+      'safety-pfd-type-id',
+      'safety-harness-when-clip',
+      // Seamanship: rigging failure, knots, routine radio etiquette.
+      'emer-rigging-failure-response',
+      'sea-vhf-concise-comms',
+      'sea-vhf-working-channel-switch',
+    ];
+    for (const id of reserved) {
+      const question = QUESTIONS.find((item) => item.id === id);
+      expect(question, `missing question ${id}`).toBeDefined();
+      expect(claimed, `${id} claimed by Hands-On Cruising`).not.toContain(id);
+    }
+    // Reusing any of these existing concepts would have dragged a neighbouring
+    // module's questions in with them, which is why Step 1 minted new ids.
+    for (const concept of [
+      'spring-line',
+      'docking-approach',
+      'docking-wind',
+      'docking-current',
+      'mooring-approach',
+      'mooring-pickup',
+      'steering-systems',
+      'stopping-distance',
+      'prop-walk',
+      'compass-and-compass-rose',
+      'plotting-a-course',
+      'crew-injury-response',
+      'personal-on-deck-safety',
+    ]) {
+      expect([...moduleConcepts], `${concept} tagged on a Hands-On Cruising lesson`).not.toContain(
+        concept,
+      );
+    }
+  });
+
+  /**
+   * Two placements this module was explicitly asked to get right, pinned so a
+   * later retag cannot quietly undo them: the lee-shore pair teaches anchorage
+   * selection and belongs to lesson 2 (their Practice topic labels are
+   * unchanged), and all ten crew-overboard and cold-water questions stay
+   * together in lesson 5 rather than being split back into Cruising Life &
+   * Safety. The engine-failure pair is owned here only as loss of propulsion,
+   * so it must resolve into lesson 6 and nowhere else.
+   */
+  it('places the lee-shore, MOB/cold-water and engine-failure questions in their agreed lessons', () => {
+    const resolve = (id: string) =>
+      practiceIdsForConcepts(LESSONS.find((lesson) => lesson.id === id)!.concepts);
+    const anchorage = resolve('hands-on-cruising-ground-tackle-and-anchorage');
+    for (const id of ['chart-nav-lee-shore-defn', 'chart-nav-lee-shore-anchoring-risk']) {
+      expect(anchorage, `${id} missing from the anchorage lesson`).toContain(id);
+    }
+    const mob = resolve('hands-on-cruising-crew-overboard');
+    expect(
+      QUESTIONS.filter((question) => /^emer-(mob|hypothermia)-/.test(question.id)).map((q) => q.id),
+    ).toHaveLength(10);
+    for (const question of QUESTIONS.filter((item) => /^emer-(mob|hypothermia)-/.test(item.id))) {
+      expect(mob, `${question.id} not in the crew-overboard lesson`).toContain(question.id);
+    }
+    const lossOfControl = resolve('hands-on-cruising-loss-of-control');
+    for (const id of ['emer-engine-failure-loss-of-propulsion', 'emer-engine-failure-under-sail-response']) {
+      expect(lossOfControl, `${id} missing from the loss-of-control lesson`).toContain(id);
+    }
+    // Motoring's own lessons are untouched by this module's ownership of them.
+    for (const lesson of lessonsForModule('motoring')) {
+      const ids = practiceIdsForConcepts(lesson.concepts);
+      for (const id of ['emer-engine-failure-loss-of-propulsion', 'emer-engine-failure-under-sail-response']) {
+        expect(ids, `${id} leaked into ${lesson.id}`).not.toContain(id);
+      }
     }
   });
 });

@@ -44,7 +44,7 @@ export const MODULES: LearnModule[] = [
     id: 'hands-on-cruising',
     title: 'Hands-On Cruising',
     blurb: 'Anchoring, mooring, crew overboard, and the drills you practise afloat',
-    status: 'coming-soon',
+    status: 'published',
   },
   {
     id: 'seamanship',

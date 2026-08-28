@@ -48,7 +48,9 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
     'false',
   );
   // A coming-soon module states its status in text, and offers nothing to open.
-  const comingSoon = page.locator('.card').filter({ hasText: 'Hands-On Cruising' });
+  // Retargeted when Hands-On Cruising was published: Seamanship is now the
+  // first coming-soon module. Same assertions, different module.
+  const comingSoon = page.locator('.card').filter({ hasText: 'Seamanship' });
   await expect(comingSoon.getByText('Coming soon')).toBeVisible();
   await expect(comingSoon.getByRole('button', { name: 'Open lesson' })).toHaveCount(0);
 

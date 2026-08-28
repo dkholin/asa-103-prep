@@ -35,6 +35,12 @@ import { lesson as aidsToNavigation } from './navigation-rules-tools/aids-to-nav
 import { lesson as readingAChart } from './navigation-rules-tools/reading-a-chart';
 import { lesson as compassCoursesBearings } from './navigation-rules-tools/compass-courses-bearings';
 import { lesson as distanceSpeedTimeElectronics } from './navigation-rules-tools/distance-speed-time-electronics';
+import { lesson as holdingACourse } from './hands-on-cruising/holding-a-course';
+import { lesson as groundTackleAndAnchorage } from './hands-on-cruising/ground-tackle-and-anchorage';
+import { lesson as settingWatchingWeighing } from './hands-on-cruising/setting-watching-weighing';
+import { lesson as makingFast } from './hands-on-cruising/making-fast';
+import { lesson as crewOverboard } from './hands-on-cruising/crew-overboard';
+import { lesson as lossOfControl } from './hands-on-cruising/loss-of-control';
 
 export type { Block, Lesson, LearnModule } from './types';
 export { MODULES } from './modules';
@@ -81,6 +87,12 @@ export const LESSONS: Lesson[] = [
   readingAChart,
   compassCoursesBearings,
   distanceSpeedTimeElectronics,
+  holdingACourse,
+  groundTackleAndAnchorage,
+  settingWatchingWeighing,
+  makingFast,
+  crewOverboard,
+  lossOfControl,
 ];
 
 const byId = new Map(LESSONS.map((l) => [l.id, l]));

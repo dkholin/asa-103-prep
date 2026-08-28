@@ -213,7 +213,9 @@ test('a coming-soon module is compact, non-expandable, and not a button', async 
   await page.goto(seeded());
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
 
-  const comingSoon = page.locator('.card').filter({ hasText: 'Hands-On Cruising' });
+  // Retargeted when Hands-On Cruising was published: Seamanship is now the
+  // first coming-soon module. Same assertions, different module.
+  const comingSoon = page.locator('.card').filter({ hasText: 'Seamanship' });
   await expect(comingSoon.getByText('Coming soon')).toBeVisible();
   await expect(comingSoon.getByRole('button')).toHaveCount(0);
   await expect(comingSoon.getByRole('button', { name: 'Open lesson' })).toHaveCount(0);

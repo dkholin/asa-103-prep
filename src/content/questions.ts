@@ -3147,6 +3147,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'chart-nav-lee-shore-defn',
+    concepts: ['choosing-an-anchorage'],
     topic: 'chart-nav',
     format: 'visual',
     assetId: 'custom-lee-shore',
@@ -3183,6 +3184,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'chart-nav-lee-shore-anchoring-risk',
+    concepts: ['choosing-an-anchorage'],
     topic: 'chart-nav',
     format: 'text',
     prompt:
@@ -3222,6 +3224,7 @@ export const QUESTIONS: Question[] = [
   // ---------------------------------------------------------------------
   {
     id: 'anchor-type-cqr-plow',
+    concepts: ['ground-tackle-and-anchor-types'],
     topic: 'anchoring',
     format: 'visual',
     assetId: 'photo-cqr-anchor',
@@ -3258,6 +3261,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-type-bruce-claw',
+    concepts: ['ground-tackle-and-anchor-types'],
     topic: 'anchoring',
     format: 'visual',
     assetId: 'photo-bruce-anchor',
@@ -3294,6 +3298,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-type-danforth-fluke',
+    concepts: ['ground-tackle-and-anchor-types'],
     topic: 'anchoring',
     format: 'visual',
     assetId: 'photo-danforth-anchor',
@@ -3330,6 +3335,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-type-mushroom',
+    concepts: ['ground-tackle-and-anchor-types'],
     topic: 'anchoring',
     format: 'visual',
     assetId: 'photo-mushroom-anchor',
@@ -3366,6 +3372,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-type-holding-power-factors',
+    concepts: ['ground-tackle-and-anchor-types'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3401,6 +3408,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-type-choose-for-bottom',
+    concepts: ['ground-tackle-and-anchor-types'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3436,6 +3444,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-selection-wind-protection',
+    concepts: ['choosing-an-anchorage'],
     topic: 'anchoring',
     format: 'visual',
     assetId: 'custom-anchorage-selection',
@@ -3472,6 +3481,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-selection-swing-room',
+    concepts: ['choosing-an-anchorage'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3507,6 +3517,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-selection-bottom-type',
+    concepts: ['choosing-an-anchorage'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3542,6 +3553,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-selection-hazards-nearby',
+    concepts: ['choosing-an-anchorage'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3577,6 +3589,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-selection-other-vessels',
+    concepts: ['choosing-an-anchorage'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3612,6 +3625,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-scope-defn',
+    concepts: ['anchor-scope'],
     topic: 'anchoring',
     format: 'visual',
     assetId: 'custom-scope-geometry',
@@ -3648,6 +3662,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-scope-calc-basic',
+    concepts: ['anchor-scope'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3683,6 +3698,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-scope-calc-storm',
+    concepts: ['anchor-scope'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3718,6 +3734,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-scope-more-scope-effect',
+    concepts: ['anchor-scope'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3753,6 +3770,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-scope-less-swing-tradeoff',
+    concepts: ['anchor-scope'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3788,6 +3806,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-scope-tide-rise-adjust',
+    concepts: ['anchor-scope'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3823,6 +3842,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-scope-minimum-recommended',
+    concepts: ['anchor-scope'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3858,6 +3878,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-setting-procedure',
+    concepts: ['setting-and-weighing-anchor'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3893,6 +3914,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-setting-reverse-slowly',
+    concepts: ['setting-and-weighing-anchor'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3928,6 +3950,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-retrieving-procedure',
+    concepts: ['setting-and-weighing-anchor'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3963,6 +3986,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-dragging-signs',
+    concepts: ['anchor-watch-and-dragging'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -3998,6 +4022,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-swing-circle-radius',
+    concepts: ['choosing-an-anchorage'],
     topic: 'anchoring',
     format: 'visual',
     assetId: 'custom-swing-circle',
@@ -4034,6 +4059,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'anchor-mooring-vs-anchoring',
+    concepts: ['mooring-and-dock-line-handling'],
     topic: 'anchoring',
     format: 'text',
     prompt:
@@ -4204,6 +4230,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sys-compass-purpose',
+  concepts: ['steering-a-course'],
   topic: 'cruising-systems',
   format: 'text',
   prompt: "What is the primary purpose of the steering compass at the helm?",
@@ -4447,6 +4474,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sys-ground-tackle-defn',
+  concepts: ['ground-tackle-and-anchor-types'],
   topic: 'cruising-systems',
   format: 'visual',
   assetId: 'photo-danforth-anchor',
@@ -4463,6 +4491,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sys-windlass-id',
+  concepts: ['setting-and-weighing-anchor'],
   topic: 'cruising-systems',
   format: 'visual',
   assetId: 'custom-windlass-deck',
@@ -4479,6 +4508,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'sys-windlass-function',
+  concepts: ['setting-and-weighing-anchor'],
   topic: 'cruising-systems',
   format: 'text',
   prompt: "Even with a working windlass, why are ASA-trained sailors taught not to rely on it to pull the boat up to the anchor?",
@@ -6572,6 +6602,7 @@ export const QUESTIONS: Question[] = [
  */
 {
   id: 'emer-hypothermia-recognition',
+  concepts: ['cold-water-immersion'],
   topic: 'emergencies',
   format: 'text',
   prompt: "A crew member who fell in cool water and was quickly recovered is now shivering hard, fumbling with simple tasks, and slurring words. What is this most likely a sign of?",
@@ -6587,6 +6618,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-hypothermia-1101-rule',
+  concepts: ['cold-water-immersion'],
   topic: 'emergencies',
   format: 'visual',
   assetId: 'custom-cold-water-1101',
@@ -6603,6 +6635,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-hypothermia-prevention',
+  concepts: ['cold-water-immersion'],
   topic: 'emergencies',
   format: 'text',
   prompt: "Before an early-season sail in cool weather with a chance of spray and immersion, what is the most effective way for the crew to reduce hypothermia risk?",
@@ -6618,6 +6651,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-hypothermia-response-onboard',
+  concepts: ['cold-water-immersion'],
   topic: 'emergencies',
   format: 'text',
   prompt: "A recovered crew member is conscious, cold, and shivering. Once back aboard, what is the appropriate initial care?",
@@ -6633,6 +6667,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-hypothermia-handling-caution',
+  concepts: ['cold-water-immersion'],
   topic: 'emergencies',
   format: 'text',
   prompt: "A crew member is pulled from cold water after a longer immersion and appears to be moderately to severely hypothermic (very cold, weak, and disoriented). Why should the crew handle and move this person gently rather than briskly?",
@@ -6649,6 +6684,7 @@ export const QUESTIONS: Question[] = [
 
 {
   id: 'emer-mob-immediate-actions',
+  concepts: ['crew-overboard-recovery'],
   topic: 'emergencies',
   format: 'text',
   prompt: "A crew member goes over the side while underway. What should the crew's very first actions be?",
@@ -6664,6 +6700,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-mob-visual-contact',
+  concepts: ['crew-overboard-recovery'],
   topic: 'emergencies',
   format: 'text',
   prompt: "During a crew overboard recovery, why is it standard practice to assign one crew member as a dedicated spotter whose only job is to watch the person in the water?",
@@ -6679,6 +6716,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-mob-recovery-methods',
+  concepts: ['crew-overboard-recovery'],
   topic: 'emergencies',
   format: 'text',
   prompt: "Which statement correctly describes sailboat crew-overboard recovery maneuvers as taught at the ASA 103 level?",
@@ -6694,6 +6732,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-mob-final-approach',
+  concepts: ['crew-overboard-recovery'],
   topic: 'emergencies',
   format: 'visual',
   assetId: 'custom-mob-recovery-approach',
@@ -6710,6 +6749,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-mob-crew-roles',
+  concepts: ['crew-overboard-recovery'],
   topic: 'emergencies',
   format: 'text',
   prompt: "On a boat with four crew members, one goes overboard. How should the remaining three best divide the recovery effort?",
@@ -6857,6 +6897,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-steering-failure-response',
+  concepts: ['loss-of-steering-or-propulsion'],
   topic: 'emergencies',
   format: 'text',
   prompt: "While motoring, the wheel suddenly goes slack and no longer turns the rudder. What is the appropriate response?",
@@ -6872,6 +6913,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-fouled-prop-response',
+  concepts: ['loss-of-steering-or-propulsion'],
   topic: 'emergencies',
   format: 'text',
   prompt: "The engine suddenly bogs down and stalls, and the crew suspects a line has wrapped around the propeller. What should be done first?",
@@ -6902,6 +6944,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-anchor-dragging-recognize',
+  concepts: ['anchor-watch-and-dragging'],
   topic: 'emergencies',
   format: 'visual',
   assetId: 'custom-dragging-anchor',
@@ -6918,6 +6961,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-anchor-dragging-response',
+  concepts: ['anchor-watch-and-dragging'],
   topic: 'emergencies',
   format: 'text',
   prompt: "The crew determines during the night that the anchor is dragging and the boat is drifting toward a lee shore. What is the appropriate response?",
@@ -6933,6 +6977,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-grounding-recognize',
+  concepts: ['grounding-response'],
   topic: 'emergencies',
   format: 'visual',
   assetId: 'photo-grounded-boat',
@@ -6949,6 +6994,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-grounding-response-immediate',
+  concepts: ['grounding-response'],
   topic: 'emergencies',
   format: 'text',
   prompt: "Immediately after running gently aground on a sandy bottom, what should the crew do first, before attempting to power off?",
@@ -6964,6 +7010,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-grounding-avoid-further-damage',
+  concepts: ['grounding-response'],
   topic: 'emergencies',
   format: 'text',
   prompt: "After grounding, the crew wants to reduce the boat's draft to help float it free. Which action helps accomplish that?",
@@ -6979,6 +7026,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-engine-failure-loss-of-propulsion',
+  concepts: ['loss-of-steering-or-propulsion'],
   topic: 'emergencies',
   format: 'text',
   prompt: "The auxiliary engine on a sailboat dies while motoring in a narrow, crowded channel with light wind. What should the crew do first?",
@@ -6994,6 +7042,7 @@ export const QUESTIONS: Question[] = [
 },
 {
   id: 'emer-engine-failure-under-sail-response',
+  concepts: ['loss-of-steering-or-propulsion'],
   topic: 'emergencies',
   format: 'text',
   prompt: "The engine fails on a sailboat in open water with steady wind and sea room. What is the most appropriate response?",
