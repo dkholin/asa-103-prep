@@ -83,6 +83,11 @@ export const lesson: Lesson = {
       ]
     },
     {
+      "kind": "figure",
+      "assetId": "custom-round-turn-two-half-hitches",
+      "caption": "Trace one continuous rope: two complete passes around the piling, then two successive hitches made around the standing part rather than around the post."
+    },
+    {
       "kind": "text",
       "text": "The two half hitches together have a clove-hitch structure, but they surround the rope. A clove hitch tied directly around a post has no separate round turn doing the initial friction work. Do not mistake one arrangement for the other. Neither arrangement removes the need to check for chafe at the attachment."
     },

@@ -59,7 +59,13 @@ describe('learn content integrity', () => {
       'fixed-loops-and-stoppers', 'fastening-and-gripping-hitches',
       'routine-vhf-communication', 'rigging-failure-response',
     ]);
-    const expectedFigures = [['photo-bowline'], ['photo-rolling-hitch'], [], []];
+    // Step 3 replaced the two defective knot SVGs and put them to work in the
+    // lessons they illustrate. Order is the order the figures appear in each lesson.
+    const expectedFigures = [
+      ['photo-bowline', 'custom-figure8-stopper'],
+      ['custom-round-turn-two-half-hitches', 'photo-rolling-hitch'],
+      [], [],
+    ];
     for (const [index, lesson] of lessons.entries()) {
       expect(lesson.intro.split(/\s+/).length, lesson.id).toBeGreaterThanOrEqual(20);
       expect(lesson.blocks.length, lesson.id).toBeGreaterThanOrEqual(12);
@@ -69,7 +75,9 @@ describe('learn content integrity', () => {
       expect(lesson.blocks.filter((b) => b.kind === 'figure').map((b) => b.assetId)).toEqual(expectedFigures[index]);
       const prose = JSON.stringify(lesson);
       expect(prose).not.toMatch(/placeholder|skeleton|finished lesson will|tying practice will follow|TODO|TBD/i);
-      expect(prose).not.toMatch(/custom-figure8-stopper|custom-round-turn-two-half-hitches/);
+      // The two corrected knot diagrams are figures, never named in prose.
+      const proseOnly = JSON.stringify(lesson.blocks.filter((b) => b.kind !== 'figure'));
+      expect(proseOnly).not.toMatch(/custom-figure8-stopper|custom-round-turn-two-half-hitches/);
       // Catch regression to a skeleton, without imposing the editorial target as a quota.
       const words = lesson.blocks.flatMap((b) => {
         if (b.kind === 'list') return b.items;

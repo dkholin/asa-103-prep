@@ -345,6 +345,154 @@ describe('asset manifest integrity', () => {
     expect(svg).toContain('000° T  +12° W → 012° M  +6° W → 018° C');
   });
 
+  it('draws the two corrected knot diagrams as continuous rope with documented topology', () => {
+    const read = (name: string) =>
+      readFileSync(join(process.cwd(), 'public', 'assets', name), 'utf8');
+    const fig8 = read('custom-figure8-stopper.svg');
+    const round = read('custom-round-turn-two-half-hitches.svg');
+
+    // ---------------------------------------------------------------------
+    // Topology is re-derived from the drawn path, not read off the comment.
+    // A comment can survive any redraw; these assertions cannot.
+    // ---------------------------------------------------------------------
+
+    type Pt = [number, number];
+    /** Every `class="rope"` path in the file, longest first. */
+    const ropePaths = (svg: string): Pt[][] =>
+      [...svg.matchAll(/<path class="rope" d="([^"]+)"/g)]
+        .map((m) => m[1].replace(/^M/, '').split(/\s*L\s*/)
+          .map((p) => p.trim().split(/\s+/).map(Number) as Pt))
+        .sort((a, b) => b.length - a.length);
+
+    /**
+     * Self-intersections of the centreline, as parameter pairs into `poly`.
+     * Near-parallel hits are dropped: where the rope turns back on itself at a
+     * silhouette edge, consecutive samples graze without really crossing.
+     */
+    const selfCrossings = (poly: Pt[]) => {
+      const out: Array<{ a: number; b: number; x: number; y: number }> = [];
+      for (let i = 0; i < poly.length - 1; i++) {
+        for (let j = i + 8; j < poly.length - 1; j++) {
+          const [p, q, r, s2] = [poly[i], poly[i + 1], poly[j], poly[j + 1]];
+          const d1: Pt = [q[0] - p[0], q[1] - p[1]];
+          const d2: Pt = [s2[0] - r[0], s2[1] - r[1]];
+          const den = d1[0] * d2[1] - d1[1] * d2[0];
+          if (den === 0) continue;
+          const t = ((r[0] - p[0]) * d2[1] - (r[1] - p[1]) * d2[0]) / den;
+          const u = ((r[0] - p[0]) * d1[1] - (r[1] - p[1]) * d1[0]) / den;
+          if (t < 0 || t > 1 || u < 0 || u > 1) continue;
+          const n1 = Math.hypot(...d1), n2 = Math.hypot(...d2);
+          if (Math.abs(den) / (n1 * n2) < 0.15) continue;   // grazing, not a crossing
+          const hit = { a: i + t, b: j + u, x: p[0] + d1[0] * t, y: p[1] + d1[1] * t };
+          if (out.some((o) => Math.abs(o.a - hit.a) < 3 && Math.abs(o.b - hit.b) < 3)) continue;
+          out.push(hit);
+        }
+      }
+      return out;
+    };
+
+    // ---- figure-eight: a reduced, alternating, 4-crossing diagram is 4_1 ----
+    const [f8rope, ...f8overs] = ropePaths(fig8);
+    expect(f8rope, 'figure-eight has no rope path at all').toBeDefined();
+    const f8x = selfCrossings(f8rope);
+    expect(f8x, 'figure-eight is not a four-crossing diagram').toHaveLength(4);
+
+    // Occurrences in the order the rope passes through them.
+    const occ = f8x.flatMap((c, k) => [{ at: c.a, k }, { at: c.b, k }])
+      .sort((p, q) => p.at - q.at);
+    // Reduced: a crossing at two consecutive positions is a removable kink,
+    // which would mean the real knot has fewer crossings than are drawn.
+    for (let i = 0; i < occ.length - 1; i++) {
+      expect(occ[i].k, 'figure-eight carries a removable kink').not.toBe(occ[i + 1].k);
+    }
+    // Interlacement: for the figure-eight every crossing interleaves exactly
+    // two of the other three. This is what separates it from the other
+    // four-crossing diagrams that share the same crossing count.
+    const span = new Map<number, [number, number]>();
+    occ.forEach((o, i) => {
+      const cur = span.get(o.k);
+      span.set(o.k, cur ? [cur[0], i] : [i, i]);
+    });
+    const interleaves = (p: number, q: number) => {
+      const [a0, a1] = span.get(p)!, [b0, b1] = span.get(q)!;
+      return (a0 < b0 && b0 < a1) !== (a0 < b1 && b1 < a1);
+    };
+    for (const k of span.keys()) {
+      const deg = [...span.keys()].filter((j) => j !== k && interleaves(k, j)).length;
+      expect(deg, `figure-eight interlacement is not a 4-cycle at crossing ${k}`).toBe(2);
+    }
+    // Alternating: the short redrawn slices are exactly the passes that go in
+    // front, so the front/behind sequence along the rope can be read off them.
+    const index = new Map(f8rope.map((p, i) => [`${p[0]},${p[1]}`, i]));
+    const overRanges = f8overs.map((slice) => {
+      const lo = index.get(`${slice[0][0]},${slice[0][1]}`);
+      const hi = index.get(`${slice[slice.length - 1][0]},${slice[slice.length - 1][1]}`);
+      expect(lo, 'an over-slice is not a sub-path of the rope').toBeDefined();
+      return [lo!, hi!] as const;
+    });
+    expect(overRanges, 'figure-eight has no over/under at all').toHaveLength(4);
+    const sequence = occ.map(({ at }) =>
+      overRanges.some(([lo, hi]) => at >= lo && at <= hi) ? 'O' : 'U').join('');
+    expect(sequence, `figure-eight is not alternating: ${sequence}`).toMatch(/^(OU){4}$|^(UO){4}$/);
+    // Each crossing must have exactly one front pass and one behind pass.
+    for (const k of span.keys()) {
+      const [i, j] = span.get(k)!;
+      expect(sequence[i], `crossing ${k} is front or behind on both passes`).not.toBe(sequence[j]);
+    }
+
+    // ---- round turn: two complete passes, hitches clear of the piling ------
+    const [rtRope] = ropePaths(round);
+    expect(rtRope, 'round turn has no rope path at all').toBeDefined();
+    // The wrap reaches past the piling's right edge once per pass. Counting the
+    // returns to that extreme counts the passes, and two is a round turn.
+    const FAR = 335;
+    let passes = 0;
+    for (let i = 1; i < rtRope.length; i++) {
+      if (rtRope[i - 1][0] < FAR && rtRope[i][0] >= FAR) passes++;
+    }
+    expect(passes, 'the wrap is not two complete passes around the piling').toBe(2);
+    // Both ends leave on the same side, which is what a round turn produces.
+    expect(rtRope[0][0]).toBeLessThan(0);
+    expect(rtRope[rtRope.length - 1][0]).toBeLessThan(0);
+    // Three crossings per half hitch: across the standing part, behind it, and
+    // the working end tucking under its own incoming leg.
+    const rtx = selfCrossings(rtRope);
+    expect(rtx, 'round turn does not carry two three-crossing half hitches').toHaveLength(6);
+    // Every one of them is on the rope, well clear of the piling: the hitches
+    // are tied round the standing part, not round the post.
+    for (const c of rtx) {
+      expect(c.x, 'a hitch crossing sits on the piling').toBeLessThan(250);
+    }
+
+    for (const [id, svg] of [['figure-eight', fig8], ['round turn', round]] as const) {
+      // The rejected geometry drew free-standing ellipses and circles instead of
+      // a rope path, in a different palette, with its own baked-in captions.
+      expect(svg, `${id} still uses free-standing ellipses`).not.toMatch(/<(ellipse|circle)\b/);
+      expect(svg, `${id} still uses the rejected palette`).not.toMatch(/#c05621|#2b6cb0|#f5f0e6|#a68f5c/i);
+      expect(svg).not.toContain('Figure-eight stopper knot');
+      expect(svg).not.toContain('Two half hitches finish the bend');
+      // One rope: a single full-length path, plus short redrawn slices that
+      // carry the over/under. Nothing is a closed shape.
+      expect(svg, `${id} fills a shape instead of stroking rope`).not.toMatch(/class="rope"[^>]*fill="(?!none)/);
+      expect(svg).toMatch(/\.rope \{ fill:none;/);
+    }
+
+    // Neither diagram may carry its question's answer, or the wording of one.
+    const visible = (svg: string) =>
+      [...svg.matchAll(/<text\b[^>]*>([^<]*)<\/text>/gi)].map((m) => m[1]).join(' ').toLowerCase();
+    for (const svg of [fig8, round]) {
+      for (const leak of [
+        'stopper', 'block', 'fairlead', 'halyard', 'sheet', 'runs out',
+        'initial strain', 'friction', 'securely fasten', 'non-slip', 'bowline',
+      ]) {
+        expect(visible(svg), `visible label leaks "${leak}"`).not.toContain(leak);
+      }
+    }
+    // Only the geometry is named.
+    expect(visible(fig8).split(/\s+/).filter(Boolean).length).toBeLessThanOrEqual(6);
+    expect(visible(round).split(/\s+/).filter(Boolean).length).toBeLessThanOrEqual(8);
+  });
+
   it('keeps known answer-bearing phrases out of visible custom SVG labels', () => {
     const prohibited = [
       'stemhead fitting',

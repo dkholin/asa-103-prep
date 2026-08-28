@@ -1148,32 +1148,34 @@
     {
       "id": "custom-figure8-stopper",
       "filename": "custom-figure8-stopper.svg",
-      "altText": "Line drawing of the knot named in the question.",
-      "description": "Purpose-built diagram: a figure-eight stopper knot tied near the bitter end of a line",
+      "altText": "Line diagram of one continuous rope tied in a figure-eight stopper knot. The standing part runs out to the left, the rope doubles back on itself through four alternating over-and-under crossings to form the two interlocking lobes of a figure eight, and a long free tail leaves the finished knot at the lower right.",
+      "description": "Purpose-built diagram: a figure-eight stopper knot drawn loosely as one continuous rope so the whole path is traceable, with all four crossings shown over and under, a clear standing part and a generous free tail",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
       "license": "Project-original, free to use",
       "attributionRequired": false,
-      "modified": false,
+      "modified": true,
       "usedByQuestions": [
         "sea-knot-figure8-stopper"
-      ]
+      ],
+      "modificationNote": "Geometry redrawn from scratch in Step 3; the earlier version showed a curve plus a closed decorative loop rather than a figure-eight rope path"
     },
     {
       "id": "custom-round-turn-two-half-hitches",
       "filename": "custom-round-turn-two-half-hitches.svg",
-      "altText": "Line drawing of the knot named in the question tied around a post.",
-      "description": "Purpose-built diagram: a line tied with a round turn and two half hitches around a piling",
+      "altText": "Line diagram of one continuous rope made fast to a piling with a round turn and two half hitches. The standing part runs away to the lower left, wraps twice completely around the piling, and the working end then comes back along the standing part and is tied round it with two successive half hitches before ending in a free tail.",
+      "description": "Purpose-built diagram: a line made fast to a piling with two complete passes around the piling followed by two half hitches tied round the standing part, drawn as one continuous rope",
       "sourcePage": "created in-repo",
       "originalUrl": "",
       "creator": "asa-103-prep project (original SVG)",
       "license": "Project-original, free to use",
       "attributionRequired": false,
-      "modified": false,
+      "modified": true,
       "usedByQuestions": [
         "sea-knot-round-turn-two-half-hitches"
-      ]
+      ],
+      "modificationNote": "Geometry redrawn from scratch in Step 3; the earlier version drew the turns as free-standing ellipses and disconnected curves that did not show a continuous rope path"
     },
     {
       "id": "photo-grounded-boat",

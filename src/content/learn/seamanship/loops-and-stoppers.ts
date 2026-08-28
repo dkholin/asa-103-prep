@@ -66,6 +66,11 @@ export const lesson: Lesson = {
       "text": "A figure-eight stopper adds bulk near a free end so the line cannot accidentally run completely through an appropriately sized block or fairlead. It does not form an attachment eye. Make a small loop, take the working end around the standing part, then return it through the first loop to form the figure-eight path. Dress and snug the knot, leaving a visible tail rather than tying at the very tip."
     },
     {
+      "kind": "figure",
+      "assetId": "custom-figure8-stopper",
+      "caption": "Follow the rope from the standing part on the left: it crosses over itself, passes under and around the standing part, and returns through that first loop, leaving the tail at lower right."
+    },
+    {
       "kind": "text",
       "text": "Check the actual fitting: the dressed stopper must be larger than the opening. Check it again in service because it can work loose. A stopper is not a substitute for controlling a line, and it must not obstruct a release the boat requires."
     },
