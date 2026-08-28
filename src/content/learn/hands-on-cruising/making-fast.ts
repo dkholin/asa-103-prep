@@ -68,8 +68,8 @@ export const lesson: Lesson = {
     {
       kind: 'callout',
       tone: 'warning',
-      title: 'Never fend off with any part of yourself',
-      text: 'A boat closing slowly on a dock carries far more momentum than it looks, and a hand, foot or leg between hull and dock loses. If a crunch is coming and a fender cannot be got in place in time, let it happen and stand clear — gelcoat is repairable. The same applies to stepping ashore: step, do not jump. A misjudged leap turns a small embarrassment into an injury or a person in the water between the boat and the dock.',
+      title: 'Nothing soft goes between the hull and the dock',
+      text: 'Displacement is the thing to keep in front of you here. A hull that appears to be drifting in at walking pace is still several tons of boat, and a limb put out to hold her off does not slow her down — it just becomes the point where she stops. Fenders are made to be squashed and replaced; people are not. When the two are going to touch and there is no time to get a fender into the gap properly, take your hands back and let them touch. Repair quotes are a far better class of problem than crush injuries. Getting ashore deserves the same restraint: put a foot down when you can do it deliberately, rather than committing to something you cannot change your mind about halfway across.',
     },
     { kind: 'heading', text: 'The stopping spring' },
     {
@@ -79,11 +79,11 @@ export const lesson: Lesson = {
     },
     {
       kind: 'text',
-      text: 'One spring in particular earns its keep during the arrival itself, not afterwards. Led ashore first and taken round a dock cleat or piling, it can be surged — eased out under friction, the way you would ease a loaded sheet off a winch — so that the boat’s momentum is absorbed gradually and she is brought to a stop without a jolt. On a windy day, once that one line is fast, the boat is effectively under control and the rest of the lines can be attached at walking pace.',
+      text: 'One spring in particular earns its keep during the arrival itself rather than afterwards. Sent ashore first and given a turn round a cleat or bollard, it does not have to be secured outright: with a turn on, someone can let it render out slowly against the friction of that turn, so the boat’s remaining way bleeds off over several feet instead of arriving all at once at the end of a tight line. That is far kinder to the deck fittings than a sudden check, and it is controllable — more turns to slow her faster, fewer to let her run on. Once she has stopped and that line is made fast, she is held, and everything else can be done unhurriedly.',
     },
     {
       kind: 'text',
-      text: 'Where it is attached decides what it does. Made fast a little aft of the boat’s widest point, it pulls the boat squarely alongside. Too far forward and it drags the bow in and pushes the stern out, and the arrival stops being elegant.',
+      text: 'Where it lands on the boat decides what it does, and the governing point is the beam — the widest part of the hull. Attached just behind that, the pull comes on near enough through the middle of the boat that she is drawn in flat and settles evenly against her fenders. Move the attachment ahead of the beam and you have given the line leverage: it now swings the bow in and levers the stern away, and instead of coming alongside you finish up lying at an angle with your fenders in the wrong places.',
     },
     { kind: 'heading', text: 'Getting off again: springing and doubling' },
     {

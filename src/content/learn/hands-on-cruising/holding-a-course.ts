@@ -59,7 +59,7 @@ export const lesson: Lesson = {
     },
     {
       kind: 'text',
-      text: 'Transits are the most underrated tool on the boat, and you already use them ashore every time you judge when to turn out of a driveway without clipping the kerb. Afloat they answer questions instantly that would otherwise need chartwork: have I cleared that shoal yet? Am I where I think I am? Am I actually holding this line, or sliding off it?',
+      text: 'Transits are the most underrated tool on the boat, and you have been reading them all your life without giving them a name — it is how you know, walking along a street, that you have drawn level with a turning you cannot see down yet, and how a driver decides they are far enough past a parked car to pull back in. Afloat they answer questions instantly that would otherwise need chartwork: have I cleared that shoal yet? Am I where I think I am? Am I holding this line, or sliding off it?',
     },
     {
       kind: 'text',

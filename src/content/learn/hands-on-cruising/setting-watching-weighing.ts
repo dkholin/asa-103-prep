@@ -22,7 +22,7 @@ export const lesson: Lesson = {
       kind: 'callout',
       tone: 'warning',
       title: 'The foredeck is the dangerous end',
-      text: 'Chain and rope under load are unforgiving. Never stand inside a coil or on a rode faked out on deck — if it runs, it will take a foot or an ankle with it. Keep fingers away from the bow roller, the gypsy and anything the rode is about to be snubbed on, and keep your hands clear of a windlass while it is turning. The rule is simple: nothing you care about goes between the rode and anything solid.',
+      text: 'Chain and rope under load are unforgiving, and the specific thing to be frightened of is the bight. A rode flaked or coiled on deck is a set of open loops, and every one of them will close hard the moment the rode runs — with whatever happens to be inside it. So keep your feet outside the loops, not merely near them. The same reasoning covers the rest of the foredeck: fingers away from the bow roller and from the gypsy, hands off a windlass while it is turning, and nothing of yours anywhere the rode could trap it against something solid.',
     },
     { kind: 'heading', text: 'Getting ready before you get there' },
     {
@@ -78,7 +78,7 @@ export const lesson: Lesson = {
     },
     {
       kind: 'text',
-      text: 'You are looking for the difference between swinging and dragging, and the distinction is worth stating plainly. A boat at anchor rarely sits still — in any breeze she will sail about, sheering off to one side, tacking across, and sheering back, all while the anchor stays exactly where it is. That is normal, and it is why you learn what your own boat’s normal restlessness looks like. Dragging is different in kind: the whole pattern travels. The transits do not swing and come back, they open steadily and stay open.',
+      text: 'What you are really distinguishing is movement that returns from movement that accumulates. A boat lying to her anchor is hardly ever still: in any breeze she ranges about, wandering out to one side until the rode gathers her up, drifting across to the other, and doing it again — all of it around an anchor that has not shifted at all. That is ordinary, and worth watching on your own boat on a quiet evening, because it gives you a baseline to judge against. Dragging is a different kind of motion, not a larger amount of the same one: the whole pattern relocates downwind. Transits that had been opening and closing again start opening and staying open.',
     },
     {
       kind: 'figure',
@@ -102,7 +102,7 @@ export const lesson: Lesson = {
     { kind: 'heading', text: 'Weighing anchor' },
     {
       kind: 'text',
-      text: 'Recovering is the reverse of setting, and the same partnership. Before anything else, check nothing is trailing over the side and the swim ladder is up, then start the engine. The foredeck crew points continuously at where the rode leads; the helm drives slowly in that direction in short bursts, and the crew takes in the slack that appears. Nobody is hauling the boat anywhere — the engine moves the boat, the crew simply recovers what the engine has given them.',
+      text: 'Recovering runs the sequence backwards. Before anything else, check nothing is trailing over the side and the swim ladder is up, then start the engine. The foredeck crew points continuously at where the rode leads; the helm drives slowly in that direction in short bursts, and the crew takes in the slack that appears. Nobody is hauling the boat anywhere — the engine moves the boat, the crew simply recovers what the engine has given them.',
     },
     {
       kind: 'text',

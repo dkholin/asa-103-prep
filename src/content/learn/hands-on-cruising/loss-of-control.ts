@@ -120,7 +120,7 @@ export const lesson: Lesson = {
     },
     {
       kind: 'text',
-      text: 'That reservation is the theme of the whole lesson. Every one of these failures has a version where the boat and crew come out of it fine, and the difference is almost never mechanical aptitude — it is whether the crew stopped, worked out what was really happening, and picked the option that did not make it worse.',
+      text: 'Knowing where your own competence stops is part of the skill here, and it is the least mechanical part of all three of these failures.',
     },
   ],
 };
