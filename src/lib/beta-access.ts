@@ -6,7 +6,7 @@ export const BETA_PROGRESS_KEY = 'asa103.beta-progress.v1';
 // Public derived identifiers only. The corresponding plaintext codes are
 // deliberately kept outside the repository.
 export const ALLOWED_BETA_CODE_IDS = [
-  '_Gb6MrtV-KpaPou06jCfm6tuTiSt2W-z782-HP6Nbg0',
+  'uEVlLR7kzzN3IMkZCIdl6GMng_C8I-cl9vzekjaEXuM',
 ] as const;
 
 type BetaMarker = { version: 1; codeId: string };
