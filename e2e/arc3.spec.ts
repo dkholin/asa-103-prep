@@ -3,6 +3,7 @@ import {
   ANCHORING,
   CHART_NAV,
   correctText,
+  openPractice,
   question,
   seeded,
   skipToPrompt,
@@ -16,6 +17,7 @@ test('chart question: image loads, stays readable, answering works, explanation 
   page,
 }) => {
   await page.goto(seeded());
+  await openPractice(page);
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Coastal Navigation & Charts' })
@@ -45,6 +47,7 @@ test('chart question: image loads, stays readable, answering works, explanation 
 
 test('chart figure enlarges on click and closes on Escape', async ({ page }) => {
   await page.goto(seeded());
+  await openPractice(page);
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Coastal Navigation & Charts' })
@@ -62,6 +65,7 @@ test('chart figure enlarges on click and closes on Escape', async ({ page }) => 
 
 test('anchoring scope calculation: answer, scoring, and explanation', async ({ page }) => {
   await page.goto(seeded());
+  await openPractice(page);
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Anchoring & Mooring' })

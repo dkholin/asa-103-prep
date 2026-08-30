@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import {
   SEED,
   correctText,
+  openPractice,
   seeded,
   seededPracticeOrder,
   wrongChoice,
@@ -18,6 +19,7 @@ test('emergency review flow: wrong answer lands in Missed Questions, retry clear
   page,
 }) => {
   await page.goto(seeded());
+  await openPractice(page);
   await page
     .getByRole('listitem')
     .filter({ hasText: 'Emergencies' })
@@ -32,7 +34,7 @@ test('emergency review flow: wrong answer lands in Missed Questions, retry clear
   await expect(page.getByText(emerQ.explanation)).toBeVisible();
   await expect(page.getByText(`Source: ${emerQ.source}`)).toBeVisible();
 
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
   await page.getByRole('button', { name: /Missed questions/ }).click();
   await expect(page.getByText(emerQ.prompt)).toBeVisible();
 
@@ -46,7 +48,7 @@ test('emergency review flow: wrong answer lands in Missed Questions, retry clear
   await page.getByRole('button', { name: 'Submit' }).click();
   await expect(page.getByText('Correct', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Finish session' }).click();
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
   await expect(page.getByRole('button', { name: 'Missed questions (0)' })).toBeVisible();
 });
 
@@ -54,6 +56,7 @@ test('adaptive recommendation favors a weak topic built through real study histo
   page,
 }) => {
   await page.goto(seeded());
+  await openPractice(page);
 
   // Fresh state: recommendation copy explains why (nothing studied yet).
   await expect(page.getByText('Recommended next')).toBeVisible();
@@ -72,7 +75,7 @@ test('adaptive recommendation favors a weak topic built through real study histo
     await page.getByRole('button', { name: 'Submit' }).click();
     await page.getByRole('button', { name: /Next question|Finish session/ }).click();
   }
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
 
   // Answer several Right of Way questions correctly (a strong topic) so the
   // test proves the app picks the weak topic over a topic that's just first
@@ -88,7 +91,7 @@ test('adaptive recommendation favors a weak topic built through real study histo
     await page.getByRole('button', { name: 'Submit' }).click();
     await page.getByRole('button', { name: /Next question|Finish session/ }).click();
   }
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
 
   // The recommendation should now point at Navigation Lights (missed
   // questions to clear) rather than Right of Way or a default first topic.
@@ -116,7 +119,7 @@ test('adaptive recommendation favors a weak topic built through real study histo
     await page.getByRole('button', { name: /Next question|Finish session/ }).click();
     guard++;
   }
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
   await expect(page.getByRole('button', { name: 'Missed questions (0)' })).toBeVisible();
   await expect(page.getByRole('heading', { name: /Navigation Lights/ })).not.toBeVisible();
 });

@@ -218,7 +218,7 @@ async function expectNonBotFingerprint(page: Page) {
 test('a captured event actually reaches the wire', async ({ page }) => {
   const analytics = await interceptAnalytics(page);
   await page.goto(transportBaseURL);
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Learn the material/ })).toBeVisible();
   await expectNonBotFingerprint(page);
 
   await expect.poll(analytics.names, { timeout: 20_000 }).toContain('beta_opened');
@@ -239,8 +239,10 @@ test('session replay records, and no email reaches the wire', async ({ page }) =
   await page.getByRole('button', { name: 'Verify', exact: true }).click();
   // The signed-in header no longer renders the account's email address at all,
   // so there is nothing on screen for the recorder to have to mask.
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Learn the material/ })).toBeVisible();
   await expect(page.getByText('learner@example.test')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
   await page
     .locator('li.topic-row', { hasText: 'Signal Flags' })
     .getByRole('button', { name: 'Practice' })
@@ -286,7 +288,7 @@ test('nothing transmitted from a magic-link callback carries authentication mate
   await expectNonBotFingerprint(page);
 
   await page.getByRole('button', { name: 'Continue with Google' }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Learn the material/ })).toBeVisible();
 
   await expect
     .poll(analytics.names, { timeout: 20_000 })
@@ -312,6 +314,6 @@ test('nothing transmitted from a magic-link callback carries authentication mate
   // read after decompression — compressed bytes would satisfy any absence
   // check. The control proves the corpus holds the recorded screen.
   const corpus = analytics.corpus();
-  expect(corpus).toContain('Overall progress');
+  expect(corpus).toContain('Learn the material');
   for (const pattern of AUTH_MATERIAL) expect(corpus).not.toMatch(pattern);
 });

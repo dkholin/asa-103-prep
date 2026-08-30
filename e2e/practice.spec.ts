@@ -1,5 +1,13 @@
 import { expect, test } from '@playwright/test';
-import { NAV_LIGHTS, SEED, correctText, seeded, seededPracticeOrder, wrongChoice } from './helpers';
+import {
+  NAV_LIGHTS,
+  SEED,
+  correctText,
+  openPractice,
+  seeded,
+  seededPracticeOrder,
+  wrongChoice,
+} from './helpers';
 
 // The app randomizes question and choice order per session; `?seed=` makes one
 // run reproducible so the spec can name the questions it expects to see.
@@ -10,6 +18,7 @@ const q2 = ORDER[1];
 test('practice flow: answer correctly, see feedback, advance', async ({ page }) => {
   await page.goto(seeded());
   await expect(page.getByRole('heading', { name: 'ASA 103 Prep' })).toBeVisible();
+  await openPractice(page);
 
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await expect(page.getByText(`Question 1 of ${NAV_LIGHTS.length}`)).toBeVisible();
@@ -30,6 +39,7 @@ test('wrong answer flow: explanation shown, question enters review queue, retry 
   page,
 }) => {
   await page.goto(seeded());
+  await openPractice(page);
   await page.getByRole('button', { name: 'Continue studying' }).click();
 
   const wrong = wrongChoice(q1);
@@ -44,7 +54,7 @@ test('wrong answer flow: explanation shown, question enters review queue, retry 
   }
 
   // The missed question is now reviewable.
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
   await page.getByRole('button', { name: 'Missed questions (1)' }).click();
   await expect(page.getByText(q1.prompt)).toBeVisible();
 
@@ -56,19 +66,20 @@ test('wrong answer flow: explanation shown, question enters review queue, retry 
   await expect(page.getByText('Correct', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Finish session' }).click();
   await expect(page.getByRole('heading', { name: 'Session complete' })).toBeVisible();
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
   await expect(page.getByRole('button', { name: 'Missed questions (0)' })).toBeVisible();
 });
 
 test('skip flow: skipped question advances and enters review queue', async ({ page }) => {
   await page.goto(seeded());
+  await openPractice(page);
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await expect(page.getByText(q1.prompt)).toBeVisible();
 
   await page.getByRole('button', { name: 'Skip' }).click();
   await expect(page.getByText(`Question 2 of ${NAV_LIGHTS.length}`)).toBeVisible();
 
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
   await page.getByRole('button', { name: 'Missed questions (1)' }).click();
   await expect(page.getByText(q1.prompt)).toBeVisible();
 });

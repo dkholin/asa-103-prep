@@ -45,6 +45,12 @@ export const SEED = 20250815;
 
 export const seeded = (seed: number = SEED) => `/?seed=${seed}`;
 
+/** Open the authenticated Practice surface from the Home-first shell. */
+export async function openPractice(page: Page) {
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+}
+
 /** The order a topic-practice session will show for `seed`, choices included. */
 export function seededPracticeOrder(topic: TopicId, seed: number = SEED): Question[] {
   return prepareAttempt(topicQuestions(topic), mulberry32(seed));

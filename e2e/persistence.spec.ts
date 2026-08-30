@@ -6,6 +6,7 @@ import {
   SEED,
   answerCurrentPractice,
   correctText,
+  openPractice,
   revealLesson,
   seeded,
   seededPracticeOrder,
@@ -15,6 +16,7 @@ const q1 = seededPracticeOrder('nav-lights', SEED)[0];
 
 test('progress survives a browser reload', async ({ page }) => {
   await page.goto(seeded());
+  await openPractice(page);
   await expect(page.getByTestId('overall-readiness')).toContainText(
     `0 of ${QUESTIONS_TOTAL} questions solid`,
   );
@@ -23,13 +25,14 @@ test('progress survives a browser reload', async ({ page }) => {
   await page.getByRole('radio', { name: correctText(q1), exact: true }).check();
   await page.getByRole('button', { name: 'Submit' }).click();
   await expect(page.getByText('Correct', { exact: true })).toBeVisible();
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
 
   await expect(page.getByTestId('overall-readiness')).toContainText(
     `1 of ${QUESTIONS_TOTAL} questions solid`,
   );
 
   await page.reload();
+  await openPractice(page);
 
   await expect(page.getByTestId('overall-readiness')).toContainText(
     `1 of ${QUESTIONS_TOTAL} questions solid`,
@@ -273,6 +276,7 @@ test('opening a lesson costs a cloud write only when the snapshot changes', asyn
   }, PROGRESS_KEY);
 
   await page.goto(seeded());
+  await openPractice(page);
   const writes = () =>
     page.evaluate(() => (window as unknown as { __writes: string[] }).__writes.length);
 
@@ -293,7 +297,7 @@ test('opening a lesson costs a cloud write only when the snapshot changes', asyn
     await answerCurrentPractice(page, 'correct');
   });
   expect(control, 'write counter observed nothing: the instrument is broken').toBeGreaterThan(0);
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
 
   await openLearn(page);
   await revealLesson(page, FIRST.title);
