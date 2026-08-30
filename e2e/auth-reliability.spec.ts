@@ -5,6 +5,11 @@ const TEST_BETA_CODE = 'SAIL-T35T-C9DE';
 const ACTIVE_KEY = 'asa103.beta-access.active.v1';
 const BETA_PROGRESS_KEY = 'asa103.beta-progress.v1';
 const CLOUD_PROGRESS_KEY = 'asa103.e2e.fake-cloud-progress.v1';
+const home = (page: Page) => page.getByRole('region', { name: 'Home' });
+
+async function openPractice(page: Page) {
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
+}
 
 async function enterBeta(page: Page) {
   await page.getByLabel('Beta access code').fill(TEST_BETA_CODE);
@@ -40,9 +45,9 @@ test('a late start-over result cannot replace a newer successful sign-in', async
   await page.getByRole('button', { name: 'Start over' }).click();
   await expect(page.getByRole('heading', { name: 'Sign in to study' })).toBeVisible();
   await page.getByRole('button', { name: 'Continue with Google' }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   await page.waitForTimeout(500);
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
 });
 
 test('a stalled callback is not observed by initializing analytics early', async ({ page }) => {
@@ -62,16 +67,16 @@ test('a timed-out session resolving later cannot replace the recovery state', as
 test('retry wins even when the obsolete restore resolves afterward', async ({ page }) => {
   await page.goto('/?sessionOldLate=1');
   await page.getByRole('button', { name: 'Try again' }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   await page.waitForTimeout(500);
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
 });
 
 test('a newer auth event wins when the original restore resolves afterward', async ({ page }) => {
   await page.goto('/?signedOut=1&authNewerDuringRestore=1');
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   await page.waitForTimeout(500);
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
 });
 
 test('beta entry invalidates a pending Supabase restore', async ({ page }) => {
@@ -113,16 +118,16 @@ test('a late obsolete OTP result cannot replace a newer successful cloud user', 
   await expect(page.getByRole('alert')).toContainText("couldn't reach the sign-in service");
   await input.fill('USERB');
   await page.getByRole('button', { name: 'Verify', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   await page.waitForTimeout(500);
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   const identified = await page.evaluate(() => window.__analyticsEvents
     ?.filter((event) => event.name === '$identify')
     .map((event) => event.properties?.distinct_id));
   expect(identified).toContain('00000000-0000-4000-8000-00000000010b');
   expect(identified).not.toContain('00000000-0000-4000-8000-00000000010a');
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   const restored = await page.evaluate(() => window.__analyticsEvents
     ?.filter((event) => event.name === '$identify')
     .map((event) => event.properties?.distinct_id));
@@ -135,7 +140,7 @@ test('a provider sign-out is still observed after an email OTP sign-in', async (
   await reachOtp(page);
   await page.getByLabel('Enter the code we sent to your email').fill('123456');
   await page.getByRole('button', { name: 'Verify', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   // A revoked refresh token or another tab signing out must not leave this tab
   // showing a signed-in dashboard it can no longer save from.
   await page.evaluate(() => window.__fakeProviderSignOut?.());
@@ -151,19 +156,20 @@ test('a failed OTP attempt does not deafen the app to a later provider event', a
   await expect(page.getByRole('alert')).toContainText('That code is invalid');
   await input.fill('123456');
   await page.getByRole('button', { name: 'Verify', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   await page.evaluate(() => window.__fakeProviderSignOut?.());
   await expect(page.getByRole('heading', { name: 'Sign in to study' })).toBeVisible();
 });
 
 test('a stalled save cannot strand the learner on the signing-out card', async ({ page }) => {
   await page.goto('/?saveHang=1');
+  await openPractice(page);
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await answerCurrentPractice(page, 'correct');
   await signOut(page);
   // Bounded: the card carries no controls, so it must resolve into a screen
   // that does rather than waiting on the save queue forever.
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible({ timeout: 10_000 });
+  await expect(home(page)).toBeVisible({ timeout: 10_000 });
   // And it must not claim the unfinished write succeeded: a write we gave up
   // waiting for is a failure the learner can see and retry.
   await expect(page.getByText(/Saving took too long/)).toBeVisible();
@@ -174,6 +180,7 @@ test('a stalled save cannot strand the learner on the signing-out card', async (
 
 test('a write the app gave up on does not stall every write behind it', async ({ page }) => {
   await page.goto('/?saveHangOnce=1');
+  await openPractice(page);
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await answerCurrentPractice(page, 'correct');
   await expect(page.getByText(/Saving took too long/)).toBeVisible({ timeout: 10_000 });
@@ -184,7 +191,7 @@ test('a write the app gave up on does not stall every write behind it', async ({
   await expect(page.getByText(/Saving took too long/)).toHaveCount(0);
   await expect(page.getByText(/Progress not saved/)).toHaveCount(0);
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
 });
 
 test('invalid and expired OTPs use stable specific messages', async ({ page }) => {
@@ -237,6 +244,7 @@ test('beta progress survives reload and never writes the cloud namespace', async
   const cloudSentinel = JSON.stringify({ sentinel: 'cloud-only' });
   await page.evaluate(([key, value]) => localStorage.setItem(key, value), [CLOUD_PROGRESS_KEY, cloudSentinel]);
   await enterBeta(page);
+  await openPractice(page);
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await answerCurrentPractice(page, 'correct');
   const betaBefore = await page.evaluate((key) => localStorage.getItem(key), BETA_PROGRESS_KEY);
@@ -253,7 +261,7 @@ test('stalled progress and onboarding loads cannot block the study UI indefinite
   await expect(page.getByLabel('Beta access code')).toBeVisible();
 
   await page.goto('/?onboarding=1&onboardingLoadHang=1');
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
 });
 
 test('progress transport errors never expose raw browser text', async ({ page }) => {
@@ -268,12 +276,13 @@ test('a stalled onboarding save becomes a non-blocking recovery choice', async (
   await page.getByRole('button', { name: 'Start studying' }).click();
   await expect(page.getByRole('alert')).toContainText('We couldn’t save your answers');
   await page.getByRole('button', { name: 'Continue without saving' }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
 });
 
 test('exit beta clears only the active marker and retains beta progress', async ({ page }) => {
   await page.goto('/?signedOut=1');
   await enterBeta(page);
+  await openPractice(page);
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await answerCurrentPractice(page, 'correct');
   await page.getByRole('button', { name: 'Beta access', exact: true }).click();

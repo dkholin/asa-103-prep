@@ -46,7 +46,7 @@ export function MissedQuestions(props: {
       )}
       <div className="actions">
         <button className="secondary" onClick={props.onExit}>
-          Back to dashboard
+          Back to Practice
         </button>
       </div>
     </section>

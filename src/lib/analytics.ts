@@ -9,6 +9,8 @@
  */
 
 export type PracticeMode = 'topic' | 'review' | 'concept';
+export type PracticeEntryPoint = 'practice' | 'home' | 'learn';
+export type MockEntryPoint = 'mock_exam' | 'home' | 'practice';
 export type SignupMethod = 'google' | 'email_otp';
 export type AuthDiagnosticMethod = 'google' | 'email_otp' | 'beta_code';
 export type AuthDiagnosticStage =
@@ -54,9 +56,11 @@ export interface AnalyticsEventMap {
     category?: AuthDiagnosticCategory;
   };
   onboarding_completed: OnboardingBuckets & { answered_count: number };
+  home_viewed: HomeEventProperties;
+  home_action_taken: HomeEventProperties;
   practice_started:
-    | { mode: 'topic'; topic: string; question_count: number }
-    | { mode: 'concept'; lesson_id: string; question_count: number };
+    | { mode: 'topic'; topic: string; question_count: number; entry_point: 'practice' | 'home' }
+    | { mode: 'concept'; lesson_id: string; question_count: number; entry_point: 'learn' };
   practice_completed:
     | ({ mode: 'topic'; topic: string } & SessionCompletionProperties)
     | ({ mode: 'concept'; lesson_id: string } & SessionCompletionProperties);
@@ -84,7 +88,7 @@ export interface AnalyticsEventMap {
    */
   lesson_started: { lesson_id: string; module_id: string };
   lesson_completed: { lesson_id: string; module_id: string };
-  mock_started: { question_count: number };
+  mock_started: { question_count: number; entry_point: MockEntryPoint };
   mock_completed: {
     score: number;
     total: number;
@@ -92,6 +96,20 @@ export interface AnalyticsEventMap {
     unanswered: number;
     duration_ms: number;
   };
+}
+
+export interface HomeEventProperties {
+  learner_state: 'new' | 'returning';
+  recommendation:
+    | 'start_learning'
+    | 'resume_lesson'
+    | 'next_lesson'
+    | 'practice_weak_topic'
+    | 'take_mock_exam';
+  completed_lessons: number;
+  total_lessons: number;
+  destination_id?: string;
+  evidence_count?: number;
 }
 
 export type AnalyticsEventName = keyof AnalyticsEventMap;

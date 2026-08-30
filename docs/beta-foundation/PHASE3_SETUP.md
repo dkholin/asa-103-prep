@@ -62,18 +62,31 @@ These live on the **environment** record. `GET /api/projects/<id>/` returns a
 stale view of them and will make a successful change look like it failed — read
 and write `/api/environments/<id>/` instead.
 
-## Beta 1 views
+## Current product views
 
-Three PostHog insights, which is the whole reporting surface. No custom
-dashboard: PostHog already provides the views.
+Use PostHog insights rather than a custom dashboard. The original Practice-first
+funnel is obsolete now that Home and Learn are first-class product surfaces. The
+current minimum reporting set is:
 
-- **Visit to study funnel** — `beta_opened` → `practice_started` →
-  `question_answered` → `practice_completed`.
-- **Activation: learners reaching 10 answered questions** — the activation
-  hypothesis from `PROJECT.md`, keyed by `distinct_id` so a row maps straight
-  back to the Supabase learner.
-- **Weekly study retention** — first-time retention on `practice_started`, so it
-  measures returning to *study* rather than returning to the page.
+- **New learner to first lesson** — `beta_opened` → `home_viewed` filtered to
+  `learner_state = new` → `home_action_taken` filtered to
+  `recommendation = start_learning` → `lesson_started` → `lesson_completed`.
+- **Returning recommendation follow-through** — `home_viewed` filtered to
+  `learner_state = returning` → `home_action_taken`, broken down by
+  `recommendation`.
+- **Learn to Practice** — `lesson_started` or `lesson_completed` →
+  `practice_started`, with `practice_started.entry_point` distinguishing Learn,
+  Home, and the Practice surface.
+- **Mock adoption and completion** — `mock_started` → `mock_completed`, broken
+  down by `mock_started.entry_point`.
+- **Auth reach and blockers** — `beta_opened` or `signup_started` → `home_viewed`,
+  with failed `auth_diagnostic` events inspected between them.
+- **Weekly meaningful-study retention** — return to at least one of
+  `lesson_started`, `practice_started`, or `mock_started`, rather than a raw page
+  return.
+
+The existing ten-answered-question insight can remain as a Practice-depth
+measure. It is no longer the sole definition of product activation.
 
 PostHog also auto-created default insights when the project was made
 ("Pageviews", "DAUs", "Sessions", "Top referrers"). **These read empty and that

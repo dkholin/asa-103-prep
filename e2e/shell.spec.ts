@@ -39,7 +39,7 @@ const bodyOverflows = (page: Page) =>
 test('the header shows five controls in order and no account identity', async ({ page }) => {
   await page.goto(seeded());
 
-  expect(await navNames(page)).toEqual(['Learn', 'Practice', 'Review (0)', 'Exam', 'Account']);
+  expect(await navNames(page)).toEqual(['Home', 'Learn', 'Practice', 'Mock Exam', 'Account']);
 
   // The learner's email address is no longer part of the persistent chrome.
   await expect(page.getByText('learner@example.test')).toHaveCount(0);
@@ -53,9 +53,8 @@ test('each header control lights its own screen and Account never does', async (
   await page.goto(seeded());
   const nav = page.getByRole('navigation', { name: 'Sections' });
 
-  // "Practice" is a label over the unchanged dashboard view, landmark included.
-  await expect(nav.getByRole('button', { name: 'Practice', exact: true })).toHaveClass(/active/);
-  await expect(page.getByRole('region', { name: 'Dashboard' })).toBeVisible();
+  await expect(nav.getByRole('button', { name: 'Home', exact: true })).toHaveClass(/active/);
+  await expect(page.getByRole('region', { name: 'Home' })).toBeVisible();
 
   await nav.getByRole('button', { name: 'Learn', exact: true }).click();
   await expect(nav.getByRole('button', { name: 'Learn', exact: true })).toHaveClass(/active/);
@@ -69,10 +68,11 @@ test('each header control lights its own screen and Account never does', async (
     .click();
   await expect(nav.getByRole('button', { name: 'Learn', exact: true })).toHaveClass(/active/);
 
-  await nav.getByRole('button', { name: /^Review/ }).click();
+  await nav.getByRole('button', { name: 'Practice', exact: true }).click();
+  await page.getByRole('button', { name: /^Missed questions/ }).click();
   await expect(page.getByRole('heading', { name: 'Missed questions' })).toBeVisible();
 
-  await nav.getByRole('button', { name: 'Exam', exact: true }).click();
+  await nav.getByRole('button', { name: 'Mock Exam', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Practice Mock Exam' })).toBeVisible();
 
   // Account is a menu trigger, not a destination: it never takes the
@@ -107,9 +107,9 @@ test('the Account menu opens, signs out, and dismisses by Escape or outside clic
   // A click outside closes it without signing anyone out.
   await account.click();
   await expect(signOut).toBeVisible();
-  await page.getByRole('heading', { name: 'Overall progress' }).click();
+  await page.getByRole('region', { name: 'Home' }).click();
   await expect(account).toHaveAttribute('aria-expanded', 'false');
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Home' })).toBeVisible();
 
   // And the one action it holds still signs out.
   await account.click();
@@ -119,6 +119,7 @@ test('the Account menu opens, signs out, and dismisses by Escape or outside clic
 
 test('a save failure and an account message still surface in the header', async ({ page }) => {
   await page.goto('/?saveError=1');
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await page.getByRole('radio').first().check();
   await page.getByRole('button', { name: 'Submit' }).click();
@@ -321,7 +322,7 @@ for (const [label, width, height, rows] of [
   ['390px', 390, 844, 1],
   ['320px', 320, 568, 2],
 ] as const) {
-  test(`the header fits at ${label} with a large review count`, async ({ page }) => {
+  test(`the header fits at ${label} with existing review progress`, async ({ page }) => {
     await page.addInitScript(({ key, queue }) => {
       localStorage.setItem(key, JSON.stringify({
         version: 1,
@@ -332,14 +333,14 @@ for (const [label, width, height, rows] of [
     }, { key: PROGRESS_KEY, queue: BIG_QUEUE });
     await page.setViewportSize({ width, height });
     await page.goto(seeded());
-    await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+    await expect(page.getByRole('region', { name: 'Home' })).toBeVisible();
 
     // All five controls, in order, with the wide count intact.
     expect(await navNames(page)).toEqual([
+      'Home',
       'Learn',
       'Practice',
-      'Review (154)',
-      'Exam',
+      'Mock Exam',
       'Account',
     ]);
     expect(await bodyOverflows(page), 'the page scrolls sideways').toBe(false);

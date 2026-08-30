@@ -3,6 +3,8 @@ import { SEED, correctText, revealLesson, seeded, seededPracticeOrder } from './
 
 test('every navigation control reaches the expected screen', async ({ page }) => {
   await page.goto(seeded());
+  await expect(page.getByRole('region', { name: 'Home' })).toBeVisible();
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
 
   // Topic practice buttons open the matching session, Back returns.
   for (const topic of [
@@ -19,7 +21,7 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
       .getByRole('button', { name: 'Practice' })
       .click();
     await expect(page.getByRole('heading', { name: topic })).toBeVisible();
-    await page.getByRole('button', { name: 'Back to dashboard' }).click();
+    await page.getByRole('button', { name: 'Back to Practice' }).click();
     await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
   }
 
@@ -27,13 +29,13 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
   await page.getByRole('button', { name: /Missed questions/ }).click();
   await expect(page.getByRole('heading', { name: 'Missed questions' })).toBeVisible();
   await expect(page.getByText('No missed or skipped questions')).toBeVisible();
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
 
   // Mock exam and abandon.
-  await page.getByRole('button', { name: 'Mock exam' }).click();
+  await page.getByRole('button', { name: 'Mock exam', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Practice Mock Exam' })).toBeVisible();
   await page.getByRole('button', { name: 'Abandon exam' }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Home' })).toBeVisible();
 
   // Learn: the module outline, a lesson, and prev/next within the module.
   await page.getByRole('button', { name: 'Learn', exact: true }).click();
@@ -94,15 +96,16 @@ test('every navigation control reaches the expected screen', async ({ page }) =>
   // Header title acts as home from inside a session.
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await page.getByRole('button', { name: 'ASA 103 Prep' }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Home' })).toBeVisible();
 
   // Reset progress clears saved state (confirm dialog accepted).
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
   await page.getByRole('button', { name: 'Continue studying' }).click();
   await page
     .getByRole('radio', { name: correctText(seededPracticeOrder('nav-lights', SEED)[0]), exact: true })
     .check();
   await page.getByRole('button', { name: 'Submit' }).click();
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
   await expect(page.getByTestId('overall-readiness')).toContainText('1 of');
   page.on('dialog', (d) => d.accept());
   await page.getByRole('button', { name: 'Reset progress' }).click();

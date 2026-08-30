@@ -15,18 +15,25 @@ import {
  */
 
 const dashboard = (page: Page) => page.getByRole('heading', { name: 'Overall progress' });
+const home = (page: Page) => page.getByRole('region', { name: 'Home' });
 
-const startFlagsTopic = (page: Page) =>
-  page
+const startFlagsTopic = async (page: Page) => {
+  if (!(await dashboard(page).isVisible())) {
+    await page.getByRole('button', { name: 'Practice', exact: true }).click();
+  }
+  await page
     .locator('li.topic-row', { hasText: 'Signal Flags' })
     .getByRole('button', { name: 'Practice' })
     .click();
+};
 
 test('entry is captured once per page load and before the learner is identified', async ({ page }) => {
   await page.goto(seeded());
-  await expect(dashboard(page)).toBeVisible();
+  await expect(home(page)).toBeVisible();
 
-  await expect.poll(() => capturedNames(page)).toEqual(['beta_opened', '$identify', '$set']);
+  await expect.poll(() => capturedNames(page)).toEqual([
+    'beta_opened', '$identify', '$set', 'home_viewed',
+  ]);
   const opened = await capturedOnce(page, 'beta_opened');
   expect(opened.properties).toMatchObject({ auth_state: 'signed-in' });
 
@@ -55,7 +62,7 @@ test('a failed session check still reports the entry, with an unknown auth state
   });
 
   await page.getByRole('button', { name: 'Try again' }).click();
-  await expect(dashboard(page)).toBeVisible();
+  await expect(home(page)).toBeVisible();
 
   // The retry succeeds, but the page load already had its one entry event.
   const names = await capturedNames(page);
@@ -67,12 +74,35 @@ test('a reload re-emits only a fresh entry event', async ({ page }) => {
   await page.goto(seeded());
   await startFlagsTopic(page);
   await answerCurrentPractice(page, 'correct');
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
   expect(await capturedNames(page)).toContain('practice_started');
 
   await page.reload();
-  await expect(dashboard(page)).toBeVisible();
-  await expect.poll(() => capturedNames(page)).toEqual(['beta_opened', '$identify', '$set']);
+  await expect(home(page)).toBeVisible();
+  await expect.poll(() => capturedNames(page)).toEqual([
+    'beta_opened', '$identify', '$set', 'home_viewed',
+  ]);
+});
+
+test('Home distinguishes a recommendation shown from the action followed', async ({ page }) => {
+  await page.goto(seeded());
+  await expect(home(page)).toBeVisible();
+
+  const viewed = await capturedOnce(page, 'home_viewed');
+  expect(viewed.properties).toMatchObject({
+    learner_state: 'new',
+    recommendation: 'start_learning',
+    completed_lessons: 0,
+    total_lessons: 45,
+    destination_id: 'boat-cruising-basics-anatomy-of-a-cruising-boat',
+  });
+  expect(await capturedNames(page)).not.toContain('home_action_taken');
+
+  await page.getByRole('button', { name: 'Start Learning' }).click();
+  await expect(page.getByRole('heading', { name: 'Anatomy of a Cruising Boat' })).toBeVisible();
+  const followed = await capturedOnce(page, 'home_action_taken');
+  expect(followed.properties).toEqual(viewed.properties);
+  await expect.poll(() => capturedNames(page)).toContain('lesson_started');
 });
 
 test('a topic session starts and completes exactly once and reports its own tally', async ({ page }) => {
@@ -80,7 +110,9 @@ test('a topic session starts and completes exactly once and reports its own tall
   await startFlagsTopic(page);
 
   const started = await capturedOnce(page, 'practice_started');
-  expect(started.properties).toMatchObject({ mode: 'topic', topic: 'flags', question_count: 2 });
+  expect(started.properties).toMatchObject({
+    mode: 'topic', topic: 'flags', question_count: 2, entry_point: 'practice',
+  });
 
   const answered = await answerCurrentPractice(page, 'correct');
   const answeredEvent = await capturedOnce(page, 'question_answered');
@@ -119,7 +151,7 @@ test('abandoning a session emits no completion event', async ({ page }) => {
   await page.goto(seeded());
   await startFlagsTopic(page);
   await answerCurrentPractice(page, 'wrong');
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
   await expect(dashboard(page)).toBeVisible();
 
   const names = await capturedNames(page);
@@ -130,7 +162,7 @@ test('abandoning a session emits no completion event', async ({ page }) => {
 test('re-entering the same topic starts a genuinely new session', async ({ page }) => {
   await page.goto(seeded());
   await startFlagsTopic(page);
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
   await startFlagsTopic(page);
 
   await expect
@@ -142,7 +174,7 @@ test('a review session reports the review pair and never the topic pair', async 
   await page.goto(seeded());
   await startFlagsTopic(page);
   const missed = await answerCurrentPractice(page, 'wrong');
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Practice' }).click();
 
   await page.getByRole('button', { name: /^Missed questions/ }).click();
   await page
@@ -183,6 +215,7 @@ test('a mock attempt reports one start and one grade, with no per-question event
   await expect(page.getByRole('region', { name: 'Mock exam question' })).toBeVisible();
 
   const started = await capturedOnce(page, 'mock_started');
+  expect(started.properties).toMatchObject({ entry_point: 'mock_exam' });
   expect(started.properties?.question_count).toBeGreaterThan(0);
 
   page.once('dialog', (d) => d.accept());
@@ -240,7 +273,7 @@ test('no captured payload carries authentication material from a callback URL', 
   expect(page.url()).toContain('access_token');
 
   await page.getByRole('button', { name: 'Continue with Google' }).click();
-  await expect(dashboard(page)).toBeVisible();
+  await expect(home(page)).toBeVisible();
   await startFlagsTopic(page);
   await answerCurrentPractice(page, 'correct');
 
@@ -253,7 +286,7 @@ test('no captured payload carries authentication material from a callback URL', 
 test('sign-in reports the method and sign-out resets the analytics identity', async ({ page }) => {
   await page.goto('/?signedOut=1&newUser=1');
   await page.getByRole('button', { name: 'Continue with Google' }).click();
-  await expect(dashboard(page)).toBeVisible();
+  await expect(home(page)).toBeVisible();
 
   expect((await capturedOnce(page, 'signup_started')).properties).toMatchObject({ method: 'google' });
   expect((await capturedOnce(page, 'signup_completed')).properties).toMatchObject({
@@ -274,7 +307,7 @@ test('a returning sign-in reports no signup completion', async ({ page }) => {
   await page.getByRole('button', { name: 'Send code' }).click();
   await page.getByLabel('Enter the code we sent to your email').fill('12345678');
   await page.getByRole('button', { name: 'Verify', exact: true }).click();
-  await expect(dashboard(page)).toBeVisible();
+  await expect(home(page)).toBeVisible();
 
   const names = await capturedNames(page);
   expect(names).toContain('signup_started');

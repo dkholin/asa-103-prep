@@ -15,9 +15,9 @@ const questionById = new Map(QUESTIONS.map((q) => [q.id, q]));
  * mutually exclusive event pairs; emitting both would double-count one session.
  */
 export type PracticeSessionMode =
-  | { mode: 'topic'; topic: TopicId }
+  | { mode: 'topic'; topic: TopicId; entryPoint: 'practice' | 'home' }
   | { mode: 'review' }
-  | { mode: 'concept'; lessonId: string };
+  | { mode: 'concept'; lessonId: string; entryPoint: 'learn' };
 
 export function PracticeSession(props: {
   title: string;
@@ -47,14 +47,19 @@ export function PracticeSession(props: {
   const [tally, setTally] = useState({ correct: 0, wrong: 0, skipped: 0 });
   const complete = questions.length === 0 || index >= questions.length;
   const { session } = props;
-  const exitLabel = session.mode === 'concept' ? 'Back to lesson' : 'Back to dashboard';
+  const exitLabel = session.mode === 'concept' ? 'Back to lesson' : 'Back to Practice';
 
   useFireOnceWhen(true, () => {
     analytics.capture(
       session.mode === 'topic'
         ? {
             name: 'practice_started',
-            properties: { mode: 'topic', topic: session.topic, question_count: questions.length },
+            properties: {
+              mode: 'topic',
+              topic: session.topic,
+              question_count: questions.length,
+              entry_point: session.entryPoint,
+            },
           }
         : session.mode === 'concept'
           ? {
@@ -63,6 +68,7 @@ export function PracticeSession(props: {
                 mode: 'concept',
                 lesson_id: session.lessonId,
                 question_count: questions.length,
+                entry_point: session.entryPoint,
               },
             }
           : {
@@ -73,7 +79,7 @@ export function PracticeSession(props: {
   });
 
   // Only reaching the completion screen completes a session: leaving through
-  // "Back to dashboard" unmounts the component with this effect unfired.
+  // Leaving for Practice unmounts the component with this effect unfired.
   useFireOnceWhen(complete, () => {
     const totals = sessionCompletionProperties(tally, Date.now() - startedAt.current);
     analytics.capture(

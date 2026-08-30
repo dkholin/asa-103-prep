@@ -20,7 +20,7 @@ async function answerCurrentMock(page: import('@playwright/test').Page, mode: 'c
 }
 
 const startMock = async (page: import('@playwright/test').Page) => {
-  await page.getByRole('button', { name: 'Exam', exact: true }).click();
+  await page.getByRole('button', { name: 'Mock Exam', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Practice Mock Exam' })).toBeVisible();
 };
 
@@ -80,7 +80,8 @@ test('full mock: 100 questions, stable order through Previous/Next, submit shows
   await expect(page.getByRole('heading', { name: `Questions you missed (${MOCK_SIZE - 4})` })).toBeVisible();
 
   // Mock misses feed the review queue.
-  await page.getByRole('button', { name: 'Back to dashboard' }).click();
+  await page.getByRole('button', { name: 'Back to Home' }).click();
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
   await expect(page.getByText(`Last mock exam: 4 / ${MOCK_SIZE} correct.`)).toBeVisible();
   await expect(page.getByRole('button', { name: `Missed questions (${MOCK_SIZE - 4})` })).toBeVisible();
 });

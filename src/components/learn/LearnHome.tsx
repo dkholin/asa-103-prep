@@ -197,7 +197,7 @@ export function LearnHome(props: {
 
       <div className="actions">
         <button className="secondary" onClick={props.onExit}>
-          Back to dashboard
+          Back to Home
         </button>
       </div>
     </section>

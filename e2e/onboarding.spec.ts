@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { captured, capturedNames, capturedOnce } from './helpers';
 
 /**
@@ -8,18 +8,19 @@ import { captured, capturedNames, capturedOnce } from './helpers';
  */
 
 const ONBOARDING = '/?onboarding=1';
+const home = (page: Page) => page.getByRole('region', { name: 'Home' });
 
 test('a first-time learner answers, is stored, and is not asked again', async ({ page }) => {
   await page.goto(ONBOARDING);
   await expect(page.getByRole('region', { name: 'Beta onboarding' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).not.toBeVisible();
+  await expect(home(page)).not.toBeVisible();
 
   await page.getByLabel('In 2–4 weeks').check();
   await page.getByLabel('Refreshing what I already learned').check();
   await page.getByLabel('Prefer not to say').last().check();
   await page.getByRole('button', { name: 'Start studying' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
 
   const completed = await capturedOnce(page, 'onboarding_completed');
   expect(completed.properties).toMatchObject({
@@ -37,7 +38,7 @@ test('a first-time learner answers, is stored, and is not asked again', async ({
   });
 
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   await expect(page.getByRole('region', { name: 'Beta onboarding' })).not.toBeVisible();
   expect(await capturedNames(page)).not.toContain('onboarding_completed');
 });
@@ -46,7 +47,7 @@ test('every question can be skipped and the submission is still reported', async
   await page.goto(ONBOARDING);
   await page.getByRole('button', { name: 'Skip all' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   expect((await capturedOnce(page, 'onboarding_completed')).properties).toMatchObject({
     exam_timing: 'skipped',
     current_status: 'skipped',
@@ -58,7 +59,7 @@ test('every question can be skipped and the submission is still reported', async
 test('an onboarding load failure sends the learner straight to studying', async ({ page }) => {
   await page.goto('/?onboarding=1&onboardingLoadError=1');
 
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
   await expect(page.getByRole('region', { name: 'Beta onboarding' })).not.toBeVisible();
 });
 
@@ -68,10 +69,10 @@ test('a failed save is shown inline, can be retried, and never re-reports the su
   await page.getByRole('button', { name: 'Start studying' }).click();
 
   await expect(page.getByRole('alert')).toContainText('Simulated onboarding save failure');
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).not.toBeVisible();
+  await expect(home(page)).not.toBeVisible();
 
   await page.getByRole('button', { name: 'Retry' }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
 
   const submissions = (await captured(page)).filter(
     (event) => event.name === 'onboarding_completed',
@@ -85,5 +86,5 @@ test('a learner may continue studying without a saved answer set', async ({ page
   await expect(page.getByRole('alert')).toBeVisible();
 
   await page.getByRole('button', { name: 'Continue without saving' }).click();
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(home(page)).toBeVisible();
 });

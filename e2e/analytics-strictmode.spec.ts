@@ -23,9 +23,13 @@ test.skip(
 
 test('StrictMode does not double-fire the entry or session-start events', async ({ page }) => {
   await page.goto(devURL('?seed=20250815'));
-  await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Home' })).toBeVisible();
 
-  await expect.poll(() => capturedNames(page)).toEqual(['beta_opened', '$identify', '$set']);
+  await expect.poll(() => capturedNames(page)).toEqual([
+    'beta_opened', '$identify', '$set', 'home_viewed',
+  ]);
+
+  await page.getByRole('button', { name: 'Practice', exact: true }).click();
 
   await page
     .locator('li.topic-row', { hasText: 'Signal Flags' })
@@ -39,6 +43,7 @@ test('StrictMode does not double-fire the entry or session-start events', async 
   const names = await capturedNames(page);
   for (const event of [
     'beta_opened',
+    'home_viewed',
     'practice_started',
     'practice_completed',
     'question_answered',

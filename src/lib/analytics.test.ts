@@ -188,7 +188,12 @@ describe('event property construction', () => {
     const events: AnalyticsEvent[] = [
       {
         name: 'practice_started',
-        properties: { mode: 'concept', lesson_id: 'motoring-controls-instruments', question_count: 1 },
+        properties: {
+          mode: 'concept',
+          lesson_id: 'motoring-controls-instruments',
+          question_count: 1,
+          entry_point: 'learn',
+        },
       },
       {
         name: 'practice_completed',
@@ -316,7 +321,10 @@ describe('deferred analytics start', () => {
     const deferred = new DeferredAnalyticsClient(() => {
       throw new Error('vendor init failed');
     });
-    expect(() => deferred.capture({ name: 'mock_started', properties: { question_count: 1 } })).not.toThrow();
+    expect(() => deferred.capture({
+      name: 'mock_started',
+      properties: { question_count: 1, entry_point: 'mock_exam' },
+    })).not.toThrow();
     expect(() => deferred.reset()).not.toThrow();
   });
 });

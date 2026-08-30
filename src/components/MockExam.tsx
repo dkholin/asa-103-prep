@@ -42,6 +42,7 @@ export function MockExam(props: {
   progress: Progress;
   updateProgress: (p: Progress) => void;
   onExit: () => void;
+  entryPoint: 'mock_exam' | 'home' | 'practice';
 }) {
   // Remounting on a new attempt key is what makes "take another mock" draw a
   // genuinely fresh exam rather than replaying the previous one.
@@ -60,6 +61,7 @@ function MockAttempt(props: {
   updateProgress: (p: Progress) => void;
   onExit: () => void;
   onRestart: () => void;
+  entryPoint: 'mock_exam' | 'home' | 'practice';
 }) {
   const analytics = useAnalytics();
   const startedAt = useRef(Date.now());
@@ -72,7 +74,10 @@ function MockAttempt(props: {
   // One attempt, one start. "Take another mock" remounts this component with a
   // new key, which is exactly what makes it a genuinely new attempt.
   useFireOnceWhen(true, () => {
-    analytics.capture({ name: 'mock_started', properties: { question_count: questions.length } });
+    analytics.capture({
+      name: 'mock_started',
+      properties: { question_count: questions.length, entry_point: props.entryPoint },
+    });
   });
 
   // An attempt lives in component state only: a reload discards it. Rebuilding
@@ -305,7 +310,7 @@ function MockResults(props: {
         Everything you missed here has been added to your Missed Questions review queue.
       </p>
       <div className="actions">
-        <button onClick={props.onExit}>Back to dashboard</button>
+        <button onClick={props.onExit}>Back to Home</button>
         <button className="secondary" onClick={props.onRestart}>
           Take another mock
         </button>

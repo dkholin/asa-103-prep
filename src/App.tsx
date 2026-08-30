@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { AccountMenu } from './components/AccountMenu';
 import { Dashboard } from './components/Dashboard';
+import { Home } from './components/Home';
 import { LearnHome } from './components/learn/LearnHome';
 import { LessonView } from './components/learn/LessonView';
 import { MissedQuestions } from './components/MissedQuestions';
@@ -17,10 +18,11 @@ import type { AuthActionResult } from './lib/useCloudProgress';
 import { useOnboarding } from './lib/useOnboarding';
 
 type View =
+  | { name: 'home' }
   | { name: 'dashboard' }
   | { name: 'practice'; title: string; questionIds: string[]; session: PracticeSessionMode }
   | { name: 'missed' }
-  | { name: 'mock' }
+  | { name: 'mock'; entryPoint: 'mock_exam' | 'home' | 'practice' }
   | { name: 'learn' }
   | { name: 'lesson'; lessonId: string };
 
@@ -218,14 +220,15 @@ function AuthenticatedApp(props: {
   accountActionLabel: string;
   accountAction: () => void;
 }) {
-  const [view, setView] = useState<View>({ name: 'dashboard' });
-  const goDashboard = () => setView({ name: 'dashboard' });
+  const [view, setView] = useState<View>({ name: 'home' });
+  const goHome = () => setView({ name: 'home' });
+  const goPractice = () => setView({ name: 'dashboard' });
   const exitPractice = (session: PracticeSessionMode) => {
     if (session.mode === 'concept') {
       setView({ name: 'lesson', lessonId: session.lessonId });
       return;
     }
-    goDashboard();
+    goPractice();
   };
 
   return (
@@ -234,7 +237,7 @@ function AuthenticatedApp(props: {
         <div className="app-shell-row">
           <div className="brand">
             <h1 style={{ margin: 0 }}>
-              <button className="linklike title" onClick={goDashboard}>ASA 103 Prep</button>
+              <button className="linklike title" onClick={goHome}>ASA 103 Prep</button>
             </h1>
             <p className="subtitle">Navigation Rules, Charts, Systems &amp; Safety — practice tool</p>
           </div>
@@ -242,6 +245,7 @@ function AuthenticatedApp(props: {
               <nav>: it opens a menu, not a screen, so it is not a "section". */}
           <div className="shell-controls">
             <nav className="shell-nav" aria-label="Sections">
+              <button className={view.name === 'home' ? 'active' : ''} onClick={goHome}>Home</button>
               {/* A lesson is reached only through Learn, so it keeps Learn lit. */}
               <button
                 className={view.name === 'learn' || view.name === 'lesson' ? 'active' : ''}
@@ -251,11 +255,18 @@ function AuthenticatedApp(props: {
               </button>
               {/* "Practice" is the label for the dashboard view; the view, its
                   component, and its landmark keep their original names. */}
-              <button className={view.name === 'dashboard' ? 'active' : ''} onClick={goDashboard}>Practice</button>
-              <button className={view.name === 'missed' ? 'active' : ''} onClick={() => setView({ name: 'missed' })}>
-                Review ({props.progress.reviewQueue.length})
+              <button
+                className={view.name === 'dashboard' || view.name === 'practice' || view.name === 'missed' ? 'active' : ''}
+                onClick={goPractice}
+              >
+                Practice
               </button>
-              <button className={view.name === 'mock' ? 'active' : ''} onClick={() => setView({ name: 'mock' })}>Exam</button>
+              <button
+                className={view.name === 'mock' ? 'active' : ''}
+                onClick={() => setView({ name: 'mock', entryPoint: 'mock_exam' })}
+              >
+                Mock Exam
+              </button>
             </nav>
             <div className="account-cluster">
               {props.accountDetail && <span className="beta-mode-label">{props.accountDetail}</span>}
@@ -287,16 +298,29 @@ function AuthenticatedApp(props: {
         </div>
       </header>
       <main>
+        {view.name === 'home' && (
+          <Home
+            progress={props.progress}
+            onOpenLesson={(lessonId) => setView({ name: 'lesson', lessonId })}
+            onStartTopic={(topicId, title) => setView({
+              name: 'practice',
+              title,
+              questionIds: QUESTIONS.filter((q) => q.topic === topicId).map((q) => q.id),
+              session: { mode: 'topic', topic: topicId, entryPoint: 'home' },
+            })}
+            onStartMock={() => setView({ name: 'mock', entryPoint: 'home' })}
+          />
+        )}
         {view.name === 'dashboard' && (
           <Dashboard
             progress={props.progress}
             onStartTopic={(topicId, title) => setView({
               name: 'practice', title,
               questionIds: QUESTIONS.filter((q) => q.topic === topicId).map((q) => q.id),
-              session: { mode: 'topic', topic: topicId },
+              session: { mode: 'topic', topic: topicId, entryPoint: 'practice' },
             })}
             onOpenMissed={() => setView({ name: 'missed' })}
-            onStartMock={() => setView({ name: 'mock' })}
+            onStartMock={() => setView({ name: 'mock', entryPoint: 'practice' })}
             onReset={() => {
               if (window.confirm('Reset all saved study progress?')) props.updateProgress(emptyProgress());
             }}
@@ -324,17 +348,22 @@ function AuthenticatedApp(props: {
               name: 'practice', title: 'Missed question review', questionIds: [id],
               session: { mode: 'review' },
             })}
-            onExit={goDashboard}
+            onExit={goPractice}
           />
         )}
         {view.name === 'mock' && (
-          <MockExam progress={props.progress} updateProgress={props.updateProgress} onExit={goDashboard} />
+          <MockExam
+            progress={props.progress}
+            updateProgress={props.updateProgress}
+            entryPoint={view.entryPoint}
+            onExit={goHome}
+          />
         )}
         {view.name === 'learn' && (
           <LearnHome
             progress={props.progress}
             onOpenLesson={(lessonId) => setView({ name: 'lesson', lessonId })}
-            onExit={goDashboard}
+            onExit={goHome}
           />
         )}
         {view.name === 'lesson' && (
@@ -351,7 +380,7 @@ function AuthenticatedApp(props: {
               name: 'practice',
               title: `${lesson.title} practice`,
               questionIds,
-              session: { mode: 'concept', lessonId: lesson.id },
+              session: { mode: 'concept', lessonId: lesson.id, entryPoint: 'learn' },
             })}
             onExit={() => setView({ name: 'learn' })}
           />
