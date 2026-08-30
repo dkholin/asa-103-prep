@@ -7,6 +7,7 @@ import {
   consumeAuthCallbackError,
   createSupabaseGateway,
   readPublicSupabaseConfig,
+  UnavailableCloudGateway,
 } from './lib/cloud';
 import { FakeCloudGateway } from './lib/fake-cloud';
 import './styles.css';
@@ -25,7 +26,11 @@ const gateway = isE2E
   ? new FakeCloudGateway()
   : config
     ? createSupabaseGateway(config)
-    : null;
+    : new UnavailableCloudGateway();
+
+// The E2E code has no relationship to the shipped beta code. Its plaintext is
+// committed only in browser tests; production builds never accept it.
+const E2E_BETA_CODE_ID = 'W_vhusj391YPFO2gKX967au9zrTQO-XOuHGP5Oke3Xc';
 
 // E2E builds never reach the real PostHog project. Routing them to an in-page
 // sink is what lets browser tests assert exact firing, ordering, and property
@@ -39,6 +44,11 @@ const analytics = isE2E && !useRealAnalytics
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App gateway={gateway} analytics={analytics} authCallbackMessage={authCallbackMessage} />
+    <App
+      gateway={gateway}
+      analytics={analytics}
+      authCallbackMessage={authCallbackMessage}
+      allowedBetaCodeIds={isE2E ? [E2E_BETA_CODE_ID] : undefined}
+    />
   </StrictMode>,
 );

@@ -1045,6 +1045,53 @@ button.large {
   background: var(--color-accent-subtle);
 }
 
+.auth-inline-actions,
+.beta-code-row,
+.account-cluster {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.auth-inline-actions {
+  flex-wrap: wrap;
+}
+
+.beta-access-panel {
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.beta-access-panel h3 {
+  margin: 0 0 var(--space-2);
+}
+
+.beta-code-row input {
+  min-width: 0;
+  flex: 1;
+  text-transform: uppercase;
+}
+
+.beta-code-row button {
+  flex: 0 0 auto;
+}
+
+.recovery-actions > .actions {
+  margin-top: var(--space-4);
+}
+
+.account-cluster {
+  justify-content: flex-end;
+}
+
+.beta-mode-label {
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 /* ---------------------------------------------------------------------
    Account menu
    ------------------------------------------------------------------- */

@@ -15,7 +15,8 @@ verification and deployment.
 3. Put the Google web-client credentials in ignored `supabase/.env.local` as
    `SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID` and
    `SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET`, then source that file and run
-   `supabase config push`. Email OTP/magic-link authentication remains enabled.
+   `supabase config push`. Typed email OTP authentication remains enabled;
+   legacy callback handling stays only for older/admin-generated links.
 4. `supabase config push` configures these local and production URLs:
    - `http://localhost:5173/asa-103-prep/` (or the exact printed local URL)
    - `http://127.0.0.1:4173/asa-103-prep/`
@@ -43,7 +44,8 @@ does not print either value.
 Use supported browsers and at least two test users:
 
 1. Google sign-in returns to the correct Pages subpath and loads the dashboard.
-2. Email magic-link sign-in returns to the same subpath and loads the dashboard.
+2. After the SMTP/template actions in `AUTH_BETA_ROLLOUT.md`, typed email OTP
+   works for both a new user and a returning external-mailbox user.
 3. Record a wrong answer, a correct answer, a skip, and a mock result. Wait for
    “Progress saved,” then open another browser/profile and confirm the same
    readiness, review queue, attempt counts, and mock history appear.

@@ -27,14 +27,19 @@ test('an expired email callback shows a safe error, cleans the URL, and keeps si
   expect(page.url()).not.toContain('sensitive-state');
 
   await page.getByLabel('Email address').fill('learner@example.test');
-  await page.getByRole('button', { name: 'Email me a sign-in link' }).click();
+  await page.getByRole('button', { name: 'Send code' }).click();
+  await page.getByLabel('Enter the code we sent to your email').fill('123456');
+  await page.getByRole('button', { name: 'Verify', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
 });
 
-test('email magic link is available as the fallback', async ({ page }) => {
+test('typed email OTP is available as the fallback', async ({ page }) => {
   await page.goto('/?signedOut=1');
   await page.getByLabel('Email address').fill('learner@example.test');
-  await page.getByRole('button', { name: 'Email me a sign-in link' }).click();
+  await page.getByRole('button', { name: 'Send code' }).click();
+  await expect(page.getByLabel('Enter the code we sent to your email')).toBeVisible();
+  await page.getByLabel('Enter the code we sent to your email').fill('123456');
+  await page.getByRole('button', { name: 'Verify', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();
 });
 

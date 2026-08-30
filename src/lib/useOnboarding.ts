@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { AnalyticsClient } from './analytics';
 import type { CloudGateway } from './cloud';
+import { withDeadline } from './auth-reliability';
 import {
   answeredCount,
   onboardingBuckets,
@@ -31,6 +32,7 @@ export function useOnboarding(
   analytics: AnalyticsClient,
   userId: string,
 ) {
+  const deadlineMs = import.meta.env.VITE_E2E_FAKE_CLOUD === 'true' ? 250 : undefined;
   const [state, setState] = useState<OnboardingState>({ phase: 'checking' });
   const submitted = useRef(false);
   const lastAnswers = useRef<OnboardingAnswers | null>(null);
@@ -38,8 +40,7 @@ export function useOnboarding(
   useEffect(() => {
     let live = true;
     setState({ phase: 'checking' });
-    void gateway
-      .loadOnboarding(userId)
+    void withDeadline(gateway.loadOnboarding(userId), deadlineMs)
       .then((answers) => {
         if (!live) return;
         if (!answers) {
@@ -60,8 +61,7 @@ export function useOnboarding(
   const persist = useCallback(
     (answers: OnboardingAnswers) => {
       setState({ phase: 'saving' });
-      gateway
-        .saveOnboarding(userId, answers)
+      withDeadline(gateway.saveOnboarding(userId, answers), deadlineMs)
         .then(() => setState({ phase: 'done' }))
         .catch((error: unknown) => setState({ phase: 'save-error', message: messageOf(error) }));
     },

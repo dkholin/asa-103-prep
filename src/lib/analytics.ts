@@ -9,7 +9,21 @@
  */
 
 export type PracticeMode = 'topic' | 'review' | 'concept';
-export type SignupMethod = 'google' | 'email';
+export type SignupMethod = 'google' | 'email_otp';
+export type AuthDiagnosticMethod = 'google' | 'email_otp' | 'beta_code';
+export type AuthDiagnosticStage =
+  | 'authorize'
+  | 'send'
+  | 'verify'
+  | 'restore'
+  | 'enter';
+export type AuthDiagnosticCategory =
+  | 'network'
+  | 'timeout'
+  | 'expired'
+  | 'invalid'
+  | 'rate_limit'
+  | 'provider';
 /**
  * `unknown` is the session check itself failing. Entry during a Supabase
  * outage is exactly when it matters most that someone showed up, so it is
@@ -33,6 +47,12 @@ export interface AnalyticsEventMap {
   beta_opened: { auth_state: AuthState };
   signup_started: { method: SignupMethod };
   signup_completed: { method?: SignupMethod };
+  auth_diagnostic: {
+    method: AuthDiagnosticMethod;
+    stage: AuthDiagnosticStage;
+    outcome: 'success' | 'failure';
+    category?: AuthDiagnosticCategory;
+  };
   onboarding_completed: OnboardingBuckets & { answered_count: number };
   practice_started:
     | { mode: 'topic'; topic: string; question_count: number }
@@ -271,7 +291,7 @@ export function rememberSignupMethod(method: SignupMethod, store = safeSessionSt
 export function consumeSignupMethod(store = safeSessionStorage()): SignupMethod | undefined {
   const value = store?.getItem(SIGNUP_METHOD_KEY);
   store?.removeItem(SIGNUP_METHOD_KEY);
-  return value === 'google' || value === 'email' ? value : undefined;
+  return value === 'google' || value === 'email_otp' ? value : undefined;
 }
 
 /** Private-mode browsers throw on storage access; analytics must never be fatal. */

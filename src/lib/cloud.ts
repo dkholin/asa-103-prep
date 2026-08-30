@@ -1,4 +1,4 @@
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { createClient, type AuthChangeEvent, type Session, type SupabaseClient } from '@supabase/supabase-js';
 import { emptyProgress, parseProgress, type Progress } from './progress';
 import {
   parseOnboardingRow,
@@ -13,13 +13,28 @@ export interface AuthUser {
   createdAt?: string;
 }
 
+export interface AuthChange {
+  event: AuthChangeEvent;
+  user: AuthUser | null;
+}
+
+export interface VerifiedEmailOtp {
+  user: AuthUser;
+  /** Commits the isolated verified session to the primary client only after the caller's epoch check. */
+  activate(): Promise<void>;
+}
+
 export interface CloudGateway {
   getUser(): Promise<AuthUser | null>;
-  onAuthChange(listener: (user: AuthUser | null) => void): () => void;
+  onAuthChange(listener: (change: AuthChange) => void): () => void;
   signInWithGoogle(redirectTo: string): Promise<void>;
-  sendMagicLink(email: string, redirectTo: string): Promise<void>;
+  sendEmailOtp(email: string): Promise<void>;
+  verifyEmailOtp(email: string, token: string): Promise<VerifiedEmailOtp>;
+  /** Clears only this browser's Supabase session; callers still bound the operation. */
+  clearLocalSession(): Promise<void>;
   loadProgress(userId: string): Promise<Progress>;
-  saveProgress(userId: string, progress: Progress): Promise<void>;
+  /** `signal` lets a caller that has given up actually cancel the request. */
+  saveProgress(userId: string, progress: Progress, signal?: AbortSignal): Promise<void>;
   /** Resolves to null when the learner has no onboarding record yet. */
   loadOnboarding(userId: string): Promise<OnboardingAnswers | null>;
   saveOnboarding(userId: string, answers: OnboardingAnswers): Promise<void>;
@@ -77,6 +92,12 @@ function withoutAuthCallbackParams(url: URL, hashParams: URLSearchParams): strin
 const parseHash = (url: URL) =>
   new URLSearchParams(url.hash.startsWith('#') ? url.hash.slice(1) : '');
 
+export function hasAuthCallbackParams(href = window.location.href): boolean {
+  const url = new URL(href);
+  const hashParams = parseHash(url);
+  return AUTH_CALLBACK_KEYS.some((key) => url.searchParams.has(key) || hashParams.has(key));
+}
+
 const replaceUrlInPlace = (relativeUrl: string) =>
   window.history.replaceState(window.history.state, '', relativeUrl);
 
@@ -131,7 +152,15 @@ function asAuthUser(
 }
 
 export class SupabaseCloudGateway implements CloudGateway {
-  constructor(private readonly client: SupabaseClient) {}
+  constructor(
+    private readonly client: SupabaseClient,
+    private readonly verificationClient: () => SupabaseClient = () => client,
+    private readonly activateSession: (session: Session) => Promise<void> = async (session) => {
+      const auth = client.auth as unknown as { _saveSession?: (value: Session) => Promise<void> };
+      if (typeof auth._saveSession !== 'function') throw new Error('Session activation is unavailable.');
+      await auth._saveSession(session);
+    },
+  ) {}
 
   async getUser() {
     // getSession distinguishes a normal first-time signed-out browser from a
@@ -142,11 +171,11 @@ export class SupabaseCloudGateway implements CloudGateway {
     return asAuthUser(data.session?.user ?? null);
   }
 
-  onAuthChange(listener: (user: AuthUser | null) => void) {
-    const { data } = this.client.auth.onAuthStateChange((_event, session) => {
+  onAuthChange(listener: (change: AuthChange) => void) {
+    const { data } = this.client.auth.onAuthStateChange((event, session) => {
       // Supabase advises keeping this callback synchronous. Deferring also
       // prevents auth callbacks from contending with a progress query.
-      queueMicrotask(() => listener(asAuthUser(session?.user ?? null)));
+      queueMicrotask(() => listener({ event, user: asAuthUser(session?.user ?? null) }));
     });
     return () => data.subscription.unsubscribe();
   }
@@ -159,12 +188,35 @@ export class SupabaseCloudGateway implements CloudGateway {
     if (error) throw error;
   }
 
-  async sendMagicLink(email: string, redirectTo: string) {
+  async sendEmailOtp(email: string) {
     const { error } = await this.client.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: redirectTo },
     });
     if (error) throw error;
+  }
+
+  async verifyEmailOtp(email: string, token: string) {
+    // Verification runs in a non-persisting client. A timed-out request can
+    // resolve there later, but cannot overwrite the primary browser session.
+    const { data, error } = await this.verificationClient().auth.verifyOtp({ email, token, type: 'email' });
+    if (error) throw error;
+    const user = asAuthUser(data.user ?? data.session?.user ?? null);
+    if (!user || !data.session) throw new Error('OTP verification completed without a user session.');
+    const session = data.session;
+    return { user, activate: () => this.activateSession(session) };
+  }
+
+  async clearLocalSession() {
+    // `signOut({ scope: 'local' })` still waits for the provider logout request
+    // before removing browser state. A timed-out request could therefore erase
+    // a newer sign-in later. The locked auth-js version exposes its local
+    // removal primitive at runtime; it bumps auth-js's own removal epoch before
+    // its first await, clears storage, and emits SIGNED_OUT without transport.
+    const auth = this.client.auth as unknown as { _removeSession?: () => Promise<void> };
+    if (typeof auth._removeSession !== 'function') {
+      throw new Error('Local session reset is unavailable in this client version.');
+    }
+    await auth._removeSession();
   }
 
   async loadProgress(userId: string) {
@@ -180,10 +232,13 @@ export class SupabaseCloudGateway implements CloudGateway {
     return progress;
   }
 
-  async saveProgress(userId: string, progress: Progress) {
-    const { error } = await this.client
+  async saveProgress(userId: string, progress: Progress, signal?: AbortSignal) {
+    const request = this.client
       .from('learner_progress')
       .upsert({ user_id: userId, progress }, { onConflict: 'user_id' });
+    // Aborting on the caller's deadline is what keeps an abandoned write from
+    // landing after a newer snapshot and silently rolling progress back.
+    const { error } = await (signal ? request.abortSignal(signal) : request);
     if (error) throw error;
   }
 
@@ -217,9 +272,38 @@ export class SupabaseCloudGateway implements CloudGateway {
 }
 
 export function createSupabaseGateway(config: PublicSupabaseConfig): CloudGateway {
-  return new SupabaseCloudGateway(
-    createClient(config.url, config.publishableKey, {
+  const storageKey = `sb-${new URL(config.url).hostname.split('.')[0]}-auth-token`;
+  const primary = createClient(config.url, config.publishableKey, {
       auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
+    });
+  return new SupabaseCloudGateway(
+    primary,
+    () => createClient(config.url, config.publishableKey, {
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
     }),
+    async (session) => {
+      // Synchronous storage commit inside an async-compatible seam: there is
+      // no provider/network work that can finish later and overwrite a newer
+      // auth generation.
+      window.localStorage.setItem(storageKey, JSON.stringify(session));
+    },
   );
+}
+
+export class UnavailableCloudGateway implements CloudGateway {
+  private unavailable(): never {
+    throw new TypeError('Failed to fetch');
+  }
+
+  async getUser() { return this.unavailable(); }
+  onAuthChange() { return () => undefined; }
+  async signInWithGoogle() { return this.unavailable(); }
+  async sendEmailOtp() { return this.unavailable(); }
+  async verifyEmailOtp() { return this.unavailable(); }
+  async clearLocalSession() {}
+  async loadProgress() { return this.unavailable(); }
+  async saveProgress() { return this.unavailable(); }
+  async loadOnboarding() { return this.unavailable(); }
+  async saveOnboarding() { return this.unavailable(); }
+  async signOut() { return this.unavailable(); }
 }

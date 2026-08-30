@@ -234,7 +234,9 @@ test('session replay records, and no email reaches the wire', async ({ page }) =
   await expectNonBotFingerprint(page);
 
   await page.getByLabel('Email address').fill('secret-learner@example.test');
-  await page.getByRole('button', { name: 'Email me a sign-in link' }).click();
+  await page.getByRole('button', { name: 'Send code' }).click();
+  await page.getByLabel('Enter the code we sent to your email').fill('12345678');
+  await page.getByRole('button', { name: 'Verify', exact: true }).click();
   // The signed-in header no longer renders the account's email address at all,
   // so there is nothing on screen for the recorder to have to mask.
   await expect(page.getByRole('heading', { name: 'Overall progress' })).toBeVisible();

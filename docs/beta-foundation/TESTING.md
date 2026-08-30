@@ -10,7 +10,8 @@ does not replace independent Verifier acceptance.
 - `npm run build`: TypeScript checking plus the production Vite build.
 - `npm run test:e2e`: Playwright across three servers, so it runs three builds.
   The preview server covers navigation, practice, review, mock exams,
-  persistence/reload, onboarding, the semantic event taxonomy, the hosted base
+  persistence/reload, bounded auth/OTP operations, beta/cloud isolation,
+  onboarding, the semantic event taxonomy, the hosted base
   path, and static build assets. A dev server exists solely to exercise React
   `StrictMode` double-invocation, which the production build cannot reproduce
   and which is the only thing that catches a lost once-only guard. A separate
@@ -56,7 +57,7 @@ analytics personal API keys). Environment files are ignored by default. Vite
 `VITE_*` values are browser-public and must never contain secrets.
 
 Unit tests may mock storage and service clients for edge cases. Mocks cannot
-prove a hosted deployment, OAuth/magic-link redirects, Supabase RLS/user
+prove a hosted deployment, OAuth/SMTP delivery, Supabase RLS/user
 isolation, cross-device persistence, PostHog ingestion/identity, or replay
 masking. Those claims require live test accounts/services and independent
 verification in the phase that introduces them. Phase 1 has no runtime external

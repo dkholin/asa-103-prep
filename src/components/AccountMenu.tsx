@@ -19,7 +19,7 @@ import { UserRound } from 'lucide-react';
  * activating an action, so a keyboard learner is never dropped at the top of
  * the document.
  */
-export function AccountMenu(props: { onSignOut: () => void }) {
+export function AccountMenu(props: { label: string; actionLabel: string; onAction: () => void }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -74,7 +74,7 @@ export function AccountMenu(props: { onSignOut: () => void }) {
         onClick={() => setOpen((value) => !value)}
       >
         <UserRound aria-hidden="true" size={16} strokeWidth={1.75} />
-        Account
+        {props.label}
       </button>
       {open && (
         <div className="account-menu-panel" id={panelId} role="group" aria-label="Account">
@@ -86,10 +86,10 @@ export function AccountMenu(props: { onSignOut: () => void }) {
               // Closed first so the panel cannot outlive the click: a failed
               // sign-out re-renders this component in place.
               closeAndRefocus();
-              props.onSignOut();
+              props.onAction();
             }}
           >
-            Sign out
+            {props.actionLabel}
           </button>
         </div>
       )}
