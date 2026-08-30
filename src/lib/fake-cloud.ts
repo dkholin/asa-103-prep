@@ -45,6 +45,7 @@ export class FakeCloudGateway implements CloudGateway {
   private params = new URLSearchParams(window.location.search);
   private sessionCalls = 0;
   private hangSaveOnce = new URLSearchParams(window.location.search).has('saveHangOnce');
+  private authNewerDuringRestore = new URLSearchParams(window.location.search).has('authNewerDuringRestore');
 
   constructor(startSignedOut = new URLSearchParams(window.location.search).has('signedOut')) {
     this.user = startSignedOut ? null : this.account();
@@ -52,9 +53,6 @@ export class FakeCloudGateway implements CloudGateway {
       const persisted = localStorage.getItem(AUTH_USER_KEY);
       if (persisted === USER_A.id) this.user = USER_A;
       if (persisted === USER_B.id) this.user = USER_B;
-    }
-    if (this.params.has('authNewerDuringRestore')) {
-      window.setTimeout(() => this.setUser(this.account(), 'SIGNED_IN'), 50);
     }
     if (this.params.has('providerSignOut')) {
       // Stands in for auth-js emitting SIGNED_OUT on its own: a revoked refresh
@@ -90,6 +88,17 @@ export class FakeCloudGateway implements CloudGateway {
 
   onAuthChange(listener: (change: AuthChange) => void) {
     this.listeners.add(listener);
+    // The "newer" event has to reach a subscribed listener to mean anything.
+    // Scheduling it from the constructor raced the app's own mount: the app
+    // subscribes from an effect, so on a slow machine the event fired before
+    // that listener existed and was dropped, unlike auth-js which replays the
+    // current session to a new subscriber. Anchoring it to the first
+    // subscription keeps the event strictly after subscribe and still well
+    // inside the 350ms restore this test races it against.
+    if (this.authNewerDuringRestore) {
+      this.authNewerDuringRestore = false;
+      window.setTimeout(() => this.setUser(this.account(), 'SIGNED_IN'), 50);
+    }
     return () => this.listeners.delete(listener);
   }
 
